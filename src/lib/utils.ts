@@ -9,6 +9,8 @@ type MDXFrontmatter = {
   title: string;
   slug: string;
   description: string;
+  author: string;
+  published: number;
 };
 
 export function cn(...inputs: ClassValue[]) {
