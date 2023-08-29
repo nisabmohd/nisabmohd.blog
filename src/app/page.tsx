@@ -16,7 +16,7 @@ export async function generateMetadata() {
 export default async function page() {
   const { content } = await getMarkdown();
   return (
-    <div className="w-[35%] m-auto h-screen py-5 prose prose-sm prose-neutral max-[1020px]:w-[85%] max-[500px]:w-[95%]">
+    <div className="w-[35%] m-auto h-screen py-5 prose prose-sm prose-neutral max-[1020px]:w-[85%] max-[500px]:w-[95%] prose-code:bg-neutral-950 prose-pre:bg-neutral-950 prose-pre:rounded-md prose-headings:dark:text-neutral-50 prose-p:dark:text-neutral-100 prose-li:dark:text-neutral-100 prose-ol:dark:text-neutral-100">
       {content}
     </div>
   );

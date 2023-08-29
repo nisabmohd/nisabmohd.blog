@@ -11,15 +11,15 @@ pre>code {
     display: grid;
     padding: 7px 0 !important;
     margin: 7px 0 !important;
-    font-size: 13.25px !important;
+    font-size: 13.375px !important;
 }
 
 span[data-highlighted-line] {
-    background-color: #2f353f;
-    border-left: 4px solid #0062b7;
-    padding-left: 2px;
+    /* background-color: #181818; */
+    border-left: 3px solid #3b82f6;
+    @apply bg-zinc-900
 }
 
 span[data-line] {
-    padding: 2px 18px;
+    padding: 0.75px 18px;
 }

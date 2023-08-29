@@ -36,7 +36,7 @@ Let's look at implementing each package in more details.
 
 2. Configure NextJS to support top level .mdx pages:
 
-```js showLineNumbers {4,11}
+```js showLineNumbers {8,10-12}
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 
@@ -53,7 +53,6 @@ export default function TestPage({ source }) {
 }
 
 export async function getStaticProps() {
-  // MDX text - can be from a local file, database, anywhere
   const source = "Some **mdx** text, with a component <Test />";
   const mdxSource = await serialize(source);
   return { props: { source: mdxSource } };

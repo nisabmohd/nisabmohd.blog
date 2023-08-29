@@ -16,7 +16,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 const options = {
-  theme: "material-theme-darker",
+  theme: "github-dark-dimmed",
   keepBackground: false,
 };
 
