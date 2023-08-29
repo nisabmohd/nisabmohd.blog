@@ -15,9 +15,9 @@ pre>code {
 }
 
 span[data-highlighted-line] {
-    /* background-color: #181818; */
+    background-color: #111827;
     border-left: 3px solid #3b82f6;
-    @apply bg-zinc-900
+    /* @apply bg-gray-950 */
 }
 
 span[data-line] {
