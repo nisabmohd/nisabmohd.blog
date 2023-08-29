@@ -12,6 +12,7 @@ export default function Code(props: any) {
       <SyntaxHighlighter
         language={props.className.split("-")[1]}
         style={vscDarkPlus}
+        showLineNumbers={true}
         customStyle={{
           fontSize: "15px",
           fontWeight: "500",
