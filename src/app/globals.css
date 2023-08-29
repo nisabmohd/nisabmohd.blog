@@ -14,14 +14,17 @@ pre>code {
     font-size: 13.375px !important;
 }
 
+span[data-line] {
+    border-left: 3px solid transparent;
+    padding: 0.75px 13px;
+}
+
 span[data-highlighted-line] {
     background-color: #1e1f21;
     border-left: 3px solid #3b82f6;
 }
 
-span[data-line] {
-    padding: 0.75px 18px;
-}
+
 
 [data-line-numbers] {
     counter-reset: line;
@@ -36,7 +39,7 @@ span[data-line] {
     content: counter(line);
     display: inline-block;
     width: 1em;
-    margin-left: -1.5em;
+    margin-left: -1.7em;
     text-align: right;
     color: rgb(110, 110, 110);
     margin-right: 1.24em;
