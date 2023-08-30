@@ -1,5 +1,4 @@
 import { readMDX } from "@/lib/utils";
-import {} from "rehype-pretty-code";
 
 async function getMarkdown() {
   return await readMDX();
