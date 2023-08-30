@@ -46,3 +46,7 @@ span[data-highlighted-line] {
     font-size: 11.95px;
     font-weight: 500;
 }
+
+input :checked {
+    accent-color: green;
+}

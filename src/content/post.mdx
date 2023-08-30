@@ -8,7 +8,7 @@ slug: using-mdx
 
 # Using MDX with NextJS
 
-MDX is a superset of markdown that allows you to use JSX in your markdown files. You can import and embed components in your content to add interactivity to your otherwise static markdown.
+**MDX** is a superset of markdown that allows you to use JSX in your markdown files. You can import and embed components in your content to add interactivity to your otherwise static markdown.
 
 ### Why Markdown?
 
@@ -38,7 +38,7 @@ Let's look at implementing each package in more details.
 
 1. Install the required packages:
 
-```bash
+```other
 npm install @next/mdx @mdx-js/loader
 ```
 
@@ -66,5 +66,9 @@ export async function getStaticProps() {
   return { props: { source: mdxSource } };
 }
 ```
+
+- [x] #739
+- [x] https://github.com/octo-org/octo-repo/issues/740
+- [ ] Add delight to the experience when all tasks are complete :tada:
 
 <br />

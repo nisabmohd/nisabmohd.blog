@@ -4,6 +4,7 @@ import path from "path";
 import { promises as fs } from "fs";
 import { compileMDX } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
+import remarkGfm from "remark-gfm";
 
 type MDXFrontmatter = {
   title: string;
@@ -31,6 +32,7 @@ export async function readMDX() {
       parseFrontmatter: true,
       mdxOptions: {
         rehypePlugins: [[rehypePrettyCode, options]],
+        remarkPlugins: [remarkGfm],
       },
     },
   });
