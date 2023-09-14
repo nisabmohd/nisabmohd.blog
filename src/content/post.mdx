@@ -16,7 +16,7 @@ HashMap allows you to store null elements as well.
 
 The each key value pair class can be represented as :
 
-```java showLineNumbers
+```java showLineNumbers  {4,8}
 private class Entry<K, V> {
   K key;
   V val;
@@ -64,7 +64,7 @@ Hence this can take O(L) complexity in order to fetch a data in this case, where
 
 Here is the complete custom implementation of HashMap in Java
 
-```java showLineNumbers {8,10-12}
+```java showLineNumbers {2,7-8,17-19}
 public class HashMapCustom<K, V> {
     private final int DEFAULT_CAPACITY = 17;
     private final Entry[] bucket = new Entry[DEFAULT_CAPACITY];
