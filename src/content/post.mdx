@@ -213,4 +213,73 @@ public class HashMapCustom<K, V> {
 }
 ```
 
+## slug: using-mdx
+
+<br />
+
+# Using MDX with NextJS
+
+**MDX** is a superset of markdown that allows you to use JSX in your markdown files. You can import and embed components in your content to add interactivity to your otherwise static markdown.
+
+### Why Markdown?
+
+Markdown often feels more natural to type, its brief syntax can enable you to write content that is both readable and maintainable. Markdown typically looks more like what's intended. So instead of the following HTML:
+
+```html showLineNumbers {2}
+<blockquote>
+  <p>A blockquote with <em>some</em> emphasis.</p>
+</blockquote>
+```
+
+However, markdown is essentially static content, where MDX shines is in its ability to let you use your React components directly in the markup.
+
+### Under the Hood
+
+Internally MDX uses remark and rehype. Remark is a markdown processor powered by plugins. Plugins allow you to transform the processed markdown. Rehype is an HTML processor, also powered by plugins. Similar to remark, these plugins let you compile and transform your content.
+
+### Using MDX with Next.js
+
+Generally speaking, there are two approaches to integrate MDX in your NextJS project that mainly depends on your data source (where your content is stored) and how you're planning to use components inside your MDX files.
+
+For local files (stored in the local file system), you can use the @next/mdx package from NextJS team. This allows you to create pages directly with the .mdx extension inside your pages/ folder.
+
+For local and/or remote data (stored in a different repo, database or CMS), one option is to use next-mdx-remote package (a third-party package) that allows you to load MDX data inside getStaticProps or getServerSideProps in the same way you would normally load any other data in NextJS.
+
+Let's look at implementing each package in more details.
+
+1. Install the required packages:
+
+```other
+npm install @next/mdx @mdx-js/loader
+```
+
+2. Configure NextJS to support top level .mdx pages:
+
+```js showLineNumbers {8,10-12}
+import { serialize } from "next-mdx-remote/serialize";
+import { MDXRemote } from "next-mdx-remote";
+
+import Test from "../components/test";
+
+const components = { Test };
+
+export default function TestPage({ source }) {
+  return (
+    <div className="wrapper">
+      <MDXRemote {...source} components={components} />
+    </div>
+  );
+}
+
+export async function getStaticProps() {
+  const source = "Some **mdx** text, with a component <Test />";
+  const mdxSource = await serialize(source);
+  return { props: { source: mdxSource } };
+}
+```
+
+- [x] #739
+- [x] https://github.com/octo-org/octo-repo/issues/740
+- [ ] Add delight to the experience when all tasks are complete :tada:
+
 <br />
