@@ -50,3 +50,26 @@ span[data-highlighted-line] {
 input :checked {
     accent-color: green;
 }
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #444444 #8b8b8b;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #808080;
+    border-radius: 16px;
+    border: 3px solid transparent;
+}

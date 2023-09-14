@@ -1,74 +1,216 @@
 ---
-title: MDX is awesome
+title: HashMap
 author: Nisab Mohd
-description: NextMDX usage for application
+description: HashMap implementation in Java
 published: 1693321034206
-slug: using-mdx
+slug: hashmap
 ---
 
-# Using MDX with NextJS
+<br />
 
-**MDX** is a superset of markdown that allows you to use JSX in your markdown files. You can import and embed components in your content to add interactivity to your otherwise static markdown.
+# HashMap in Java
 
-### Why Markdown?
+A HashMap is a class in java which implements Map Interface that gives you a feature to store key-value pair. HashMap uses a hashing algorithm in which key is hashed and stored in array to that hashed index, hence retrieval and storing takes constant times. But when a duplicate data is provided to HashMap it overrides the previous data.
 
-Markdown often feels more natural to type, its brief syntax can enable you to write content that is both readable and maintainable. Markdown typically looks more like what's intended. So instead of the following HTML:
+HashMap allows you to store null elements as well.
 
-```html showLineNumbers {2}
-<blockquote>
-  <p>A blockquote with <em>some</em> emphasis.</p>
-</blockquote>
-```
+The each key value pair class can be represented as :
 
-However, markdown is essentially static content, where MDX shines is in its ability to let you use your React components directly in the markup.
-
-### Under the Hood
-
-Internally MDX uses remark and rehype. Remark is a markdown processor powered by plugins. Plugins allow you to transform the processed markdown. Rehype is an HTML processor, also powered by plugins. Similar to remark, these plugins let you compile and transform your content.
-
-### Using MDX with Next.js
-
-Generally speaking, there are two approaches to integrate MDX in your NextJS project that mainly depends on your data source (where your content is stored) and how you're planning to use components inside your MDX files.
-
-For local files (stored in the local file system), you can use the @next/mdx package from NextJS team. This allows you to create pages directly with the .mdx extension inside your pages/ folder.
-
-For local and/or remote data (stored in a different repo, database or CMS), one option is to use next-mdx-remote package (a third-party package) that allows you to load MDX data inside getStaticProps or getServerSideProps in the same way you would normally load any other data in NextJS.
-
-Let's look at implementing each package in more details.
-
-1. Install the required packages:
-
-```other
-npm install @next/mdx @mdx-js/loader
-```
-
-2. Configure NextJS to support top level .mdx pages:
-
-```js showLineNumbers {8,10-12}
-import { serialize } from "next-mdx-remote/serialize";
-import { MDXRemote } from "next-mdx-remote";
-
-import Test from "../components/test";
-
-const components = { Test };
-
-export default function TestPage({ source }) {
-  return (
-    <div className="wrapper">
-      <MDXRemote {...source} components={components} />
-    </div>
-  );
-}
-
-export async function getStaticProps() {
-  const source = "Some **mdx** text, with a component <Test />";
-  const mdxSource = await serialize(source);
-  return { props: { source: mdxSource } };
+```java showLineNumbers
+private class Entry<K, V> {
+  K key;
+  V val;
+  Entry next;
+  public Entry(K key, V val, Entry next) {
+    this.key = key;
+    this.val = val;
+    this.next = next;
+   }
 }
 ```
 
-- [x] #739
-- [x] https://github.com/octo-org/octo-repo/issues/740
-- [ ] Add delight to the experience when all tasks are complete :tada:
+The key in the class Entry stands for key , val stands for value and next is used in order to store other values of same hashed key;
+
+let us understand it using an array of type Entry called bucket[]. and let size of this be 10(for easy understanding purpose).
+
+We use put method in order to store that key value pair in Map, that return a boolean ie. true when added ,false when not added to Map
+
+<img
+  src="https://firebasestorage.googleapis.com/v0/b/upload-pics-e599e.appspot.com/o/images%2FUntitled-2023-05-30-21542.png?alt=media&token=1d38da70-9806-49fd-a0ba-542e68921f0e"
+  alt="arr"
+/>
+
+Initially the bucket is empty so lets add two data
+
+ie **_put(45,”string1")_** and **_put(99,”String2")_**;
+
+Now in the hood 45 key is hashed with a hashing algorithm, Here we are gonna use a simple hashing algo which hashes a key like this : **_key%bucket.length_**
+
+The bucket length is 10 and key is 45 hence the hash we get is 5, so at location 5 in bucket we store “string1” and same goes with key 99 and stored at index 9. So now our array looks like this :
+
+<img
+  src="https://firebasestorage.googleapis.com/v0/b/upload-pics-e599e.appspot.com/o/images%2FUntitled-2023-05-30-21541.png?alt=media&token=cdc86343-d01c-4442-8144-2c6b8544fad1"
+  alt="linking"
+/>
+
+So, everything works great until I add 55,65 or some other value whose hash value is 5, because at index 5 data is already present, this is called Hash Collision and we can tackle this using linear chaining technique. Now whatever data is provided it will be added to next of that object. So lets add 55 with “string3” and 65 with “string4”
+
+<img
+  src="https://firebasestorage.googleapis.com/v0/b/upload-pics-e599e.appspot.com/o/images%2FUntitled-2023-05-30-2154.png?alt=media&token=7df90511-0f4b-41c4-a8ff-b0bfb76dd341"
+  alt="collision"
+/>
+
+Hence this can take O(L) complexity in order to fetch a data in this case, where L is length of linked list chain.
+
+Here is the complete custom implementation of HashMap in Java
+
+```java showLineNumbers {8,10-12}
+public class HashMapCustom<K, V> {
+    private final int DEFAULT_CAPACITY = 17;
+    private final Entry[] bucket = new Entry[DEFAULT_CAPACITY];
+    private int size = 0;
+
+    private class Entry<K, V> {
+        K key;
+        V val;
+        Entry next;
+        public Entry(K key, V val, Entry next) {
+            this.key = key;
+            this.val = val;
+            this.next = next;
+        }
+    }
+
+    private int hashCode(K key) {
+        return key.toString().length() > 13 ? key.toString().length() % DEFAULT_CAPACITY : key.toString().length() % DEFAULT_CAPACITY % 10;
+    }
+
+    public boolean put(K key, V val) {
+        int hash = hashCode(key);
+        if (bucket[hash] == null) {
+            bucket[hash] = new Entry(key, val, null);
+            size++;
+            return true;
+        }
+        Entry temp = bucket[hash];
+        if (temp.key.equals(key)) {
+            temp.val = val;
+            return true;
+        }
+        while (temp.next != null) {
+            if (temp.key.equals(key)) {
+                temp.val = val;
+                return true;
+            }
+            temp = temp.next;
+        }
+        size++;
+        temp.next = new Entry(key, val, null);
+        return true;
+    }
+
+    public V get(K key) {
+        int hash = hashCode(key);
+        Entry temp = bucket[hash];
+        while (temp != null) {
+            if (temp.key.equals(key)) {
+                return (V) temp.val;
+            }
+            temp = temp.next;
+        }
+        return null;
+    }
+
+    public boolean containsKey(K key) {
+        return get(key) != null;
+    }
+
+    public boolean containsValue(V val) {
+        for (int i = 0; i < bucket.length; i++) {
+            Entry temp = bucket[i];
+            while (temp != null) {
+                if (temp.val.equals(val)) {
+                    return true;
+                }
+                temp = temp.next;
+            }
+        }
+        return false;
+    }
+
+    public V remove(K key) throws Exception {
+        int hash = hashCode(key);
+        Entry temp = bucket[hash];
+        if (temp == null) {
+            throw new Exception("No such element exception");
+        }
+        if (temp.key.equals(key)) {
+            V retval = (V) bucket[hash].val;
+            bucket[hash] = temp.next;
+            size--;
+            return retval;
+        }
+        while (temp.next != null) {
+            if (temp.next.key.equals(key)) {
+                break;
+            }
+            temp = temp.next;
+        }
+        if (temp.next == null) {
+            throw new Exception("No such element exception");
+        }
+        V retval = (V) temp.next.val;
+        temp.next = temp.next.next;
+        size--;
+        return retval;
+    }
+
+    public V getOrDefault(K key, V defaultValue) {
+        V value = get(key);
+        if (value != null) {
+            return value;
+        }
+        return defaultValue;
+    }
+
+    public void clear() {
+        for (int i = 0; i < bucket.length; i++) {
+            bucket[i] = null;
+        }
+    }
+
+    @Override
+    public String toString() {
+        String str = "{ ";
+        for (int i = 0; i < bucket.length; i++) {
+            Entry temp = bucket[i];
+            while (temp != null) {
+                str += temp.key + "=" + temp.val + " ";
+                temp = temp.next;
+            }
+        }
+        str += "}";
+        return str;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public Object[] toKeyArray() {
+        Object[] t = new Object[size()];
+        int j = 0;
+        for (int i = 0; i < bucket.length; i++) {
+            Entry temp = bucket[i];
+            while (temp != null) {
+                t[j++] = temp.key;
+                temp = temp.next;
+            }
+        }
+        return t;
+    }
+
+}
+```
 
 <br />
