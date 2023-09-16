@@ -29,8 +29,9 @@ pre>code {
     width: 1rem;
     margin-right: 16px;
     margin-left: -8px;
-    color: rgb(156, 163, 175);
+    color: rgb(110, 110, 110);
     content: attr(line);
+    text-align: right;
 }
 
 input :checked {
