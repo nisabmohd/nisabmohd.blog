@@ -3,7 +3,6 @@ import { twMerge } from "tailwind-merge";
 import path from "path";
 import { promises as fs } from "fs";
 import { compileMDX } from "next-mdx-remote/rsc";
-// import rehypePrettyCode from "rehype-pretty-code";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism-plus";
 

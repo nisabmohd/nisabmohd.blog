@@ -30,7 +30,6 @@ pre>code {
     margin-right: 16px;
     margin-left: -8px;
     color: rgb(156, 163, 175);
-    /* Line number color */
     content: attr(line);
 }
 
@@ -48,7 +47,7 @@ input :checked {
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
     width: 3px;
-    height: 3px;
+    height: 5px;
 }
 
 *::-webkit-scrollbar-track {
@@ -59,4 +58,24 @@ input :checked {
     background-color: #808080;
     border-radius: 16px;
     border: 3px solid transparent;
+}
+
+.keyword {
+    color: rgb(238, 79, 79);
+}
+
+.function {
+    color: #8463ac;
+}
+
+.punctuation {
+    color: gray;
+}
+
+.string,
+.constant,
+.annotation,
+.boolean,
+.number {
+    color: #5e8fdf;
 }
