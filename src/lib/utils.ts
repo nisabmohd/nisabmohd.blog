@@ -18,10 +18,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-const options = {
-  // theme: "github-dark-dimmed",
-  keepBackground: false,
-};
+async function getTheme() {
+  const themeDir = path.join(process.cwd(), "src/lib");
+  return await fs.readFile(themeDir + `/theme.json`, "utf8");
+}
 
 export async function getAllMetaData() {
   "use server";
@@ -43,6 +43,7 @@ export async function getAllMetaData() {
 }
 
 export async function readMDX(slug: string) {
+  const theme = await getTheme();
   const contentDir = path.join(process.cwd(), "src/content");
   const files = await fs.readdir(contentDir);
   const result = Promise.all(
@@ -53,7 +54,15 @@ export async function readMDX(slug: string) {
         options: {
           parseFrontmatter: true,
           mdxOptions: {
-            rehypePlugins: [[rehypePrettyCode, options]],
+            rehypePlugins: [
+              [
+                rehypePrettyCode,
+                {
+                  keepBackground: false,
+                  theme: JSON.parse(theme),
+                },
+              ],
+            ],
             remarkPlugins: [remarkGfm],
           },
         },
