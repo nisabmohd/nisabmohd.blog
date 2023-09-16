@@ -3,9 +3,9 @@ import { twMerge } from "tailwind-merge";
 import path from "path";
 import { promises as fs } from "fs";
 import { compileMDX } from "next-mdx-remote/rsc";
-import rehypePrettyCode from "rehype-pretty-code";
+// import rehypePrettyCode from "rehype-pretty-code";
 import remarkGfm from "remark-gfm";
-import githubdarkdimmed from "shiki/themes/github-dark-dimmed.json";
+import rehypePrism from "rehype-prism-plus";
 
 type MDXFrontmatter = {
   title: string;
@@ -17,11 +17,6 @@ type MDXFrontmatter = {
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
-}
-
-async function getTheme() {
-  const themeDir = path.join(process.cwd(), "src/lib");
-  return await fs.readFile(themeDir + `/theme.json`, "utf8");
 }
 
 export async function getAllMetaData() {
@@ -53,15 +48,7 @@ export async function readMDX(slug: string) {
         options: {
           parseFrontmatter: true,
           mdxOptions: {
-            rehypePlugins: [
-              [
-                rehypePrettyCode,
-                {
-                  keepBackground: false,
-                  theme: githubdarkdimmed,
-                },
-              ],
-            ],
+            rehypePlugins: [rehypePrism],
             remarkPlugins: [remarkGfm],
           },
         },
