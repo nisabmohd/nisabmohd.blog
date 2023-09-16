@@ -33,6 +33,7 @@ export async function getAllMetaData() {
       return frontmatter;
     })
   );
+  (await result).sort((a, b) => b.published - a.published);
   return result;
 }
 

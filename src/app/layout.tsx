@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${inter.className} dark:bg-neutral-900 dark:text-neutral-50 text-zinc-800`}
+        className={`${inter.className} dark:bg-neutral-900 dark:text-neutral-50 text-zinc-800 w-[32%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto h-screen py-5 `}
       >
         {children}
       </body>
