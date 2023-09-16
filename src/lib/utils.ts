@@ -23,17 +23,43 @@ const options = {
   keepBackground: false,
 };
 
-export async function readMDX() {
+export async function getAllMetaData() {
+  "use server";
   const contentDir = path.join(process.cwd(), "src/content");
-  const fileContent = await fs.readFile(contentDir + "/post.mdx", "utf8");
-  return await compileMDX<MDXFrontmatter>({
-    source: fileContent,
-    options: {
-      parseFrontmatter: true,
-      mdxOptions: {
-        rehypePlugins: [[rehypePrettyCode, options]],
-        remarkPlugins: [remarkGfm],
-      },
-    },
-  });
+  const files = await fs.readdir(contentDir);
+  const result = Promise.all(
+    files.map(async (file) => {
+      const fileContent = await fs.readFile(contentDir + `/${file}`, "utf8");
+      const { frontmatter } = await compileMDX<MDXFrontmatter>({
+        source: fileContent,
+        options: {
+          parseFrontmatter: true,
+        },
+      });
+      return frontmatter;
+    })
+  );
+  return result;
+}
+
+export async function readMDX(slug: string) {
+  const contentDir = path.join(process.cwd(), "src/content");
+  const files = await fs.readdir(contentDir);
+  const result = Promise.all(
+    files.map(async (file) => {
+      const fileContent = await fs.readFile(contentDir + `/${file}`, "utf8");
+      const parsed = await compileMDX<MDXFrontmatter>({
+        source: fileContent,
+        options: {
+          parseFrontmatter: true,
+          mdxOptions: {
+            rehypePlugins: [[rehypePrettyCode, options]],
+            remarkPlugins: [remarkGfm],
+          },
+        },
+      });
+      return parsed;
+    })
+  );
+  return (await result).find((item) => item.frontmatter.slug == slug);
 }
