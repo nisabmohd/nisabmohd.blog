@@ -2,7 +2,9 @@
 const nextConfig = {
   experimental: {
     serverActions: true,
-    serverComponentsExternalPackages: ["shiki"],
+    outputFileTracingIncludes: {
+      "/blog/[slug]": ["node_modules/shiki/**/*"],
+    },
   },
 };
 
