@@ -62,11 +62,11 @@ input :checked {
 }
 
 .keyword {
-    color: rgb(238, 79, 79);
+    color: #ec5a5a;
 }
 
 .function {
-    color: #8463ac;
+    color: #955cda;
 }
 
 .punctuation {
@@ -78,5 +78,5 @@ input :checked {
 .annotation,
 .boolean,
 .number {
-    color: #5e8fdf;
+    color: #86b4ff;
 }
