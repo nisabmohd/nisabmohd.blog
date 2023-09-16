@@ -5,6 +5,7 @@ import { promises as fs } from "fs";
 import { compileMDX } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
 import remarkGfm from "remark-gfm";
+import githubdarkdimmed from "shiki/themes/github-dark-dimmed.json";
 
 type MDXFrontmatter = {
   title: string;
@@ -24,7 +25,6 @@ async function getTheme() {
 }
 
 export async function getAllMetaData() {
-  "use server";
   const contentDir = path.join(process.cwd(), "src/content");
   const files = await fs.readdir(contentDir);
   const result = Promise.all(
@@ -43,7 +43,6 @@ export async function getAllMetaData() {
 }
 
 export async function readMDX(slug: string) {
-  const theme = await getTheme();
   const contentDir = path.join(process.cwd(), "src/content");
   const files = await fs.readdir(contentDir);
   const result = Promise.all(
@@ -59,7 +58,7 @@ export async function readMDX(slug: string) {
                 rehypePrettyCode,
                 {
                   keepBackground: false,
-                  theme: JSON.parse(theme),
+                  theme: githubdarkdimmed,
                 },
               ],
             ],
