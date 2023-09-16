@@ -19,7 +19,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 const options = {
-  theme: "github-dark-dimmed",
+  // theme: "github-dark-dimmed",
   keepBackground: false,
 };
 
