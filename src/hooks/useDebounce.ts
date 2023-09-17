@@ -5,7 +5,7 @@ type cleanUpFn = () => void;
 export default function useDebounce(
   cb: () => void | cleanUpFn,
   deps: Array<unknown>,
-  delay: number = 1200
+  delay: number = 800
 ) {
   useEffect(() => {
     let rt: void | cleanUpFn;

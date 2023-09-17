@@ -13,10 +13,13 @@ import {
 } from "@/components/ui/sheet";
 import { useEffect, useState } from "react";
 import ThemeMode from "./dark-toggle";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [loading, setLoading] = useState(true);
   const [sheetOpen, setSheetOpen] = useState(false);
+  const pathname = usePathname();
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -74,15 +77,26 @@ export default function Navbar() {
       <div className="left flex flex-row items-center gap-7 dark:text-slate-300">
         <Link
           href="/"
-          className="font-semibold flex flex-row items-center gap-2 max-[500px]:hidden"
+          className={`font-semibold flex flex-row items-center gap-2 max-[500px]:hidden dark:text-slate-200 text-slate-800 ${
+            pathname == "/"
+              ? "underline dark:text-slate-50 text-slate-950 "
+              : ""
+          }`}
         >
           <Command className="w-[21px] h-[21px]" />
-          <span className="text-[19px] dark:text-slate-200 text-slate-800">
-            nisab/blogs
-          </span>
+          <span className="text-[19px]">nisab/blogs</span>
         </Link>
         <div className="flex flex-row gap-4 text-sm max-[500px]:hidden">
-          <Link href={"/blog"}>Blogs</Link>
+          <Link
+            className={`${
+              pathname == "/blog"
+                ? "dark:text-slate-50 text-slate-950 font-semibold underline"
+                : ""
+            }`}
+            href={"/blog"}
+          >
+            Blogs
+          </Link>
           <Link
             href={
               "https://drive.google.com/file/d/1Ps1G2YhzoO26Qyl8QvkuwHBxC4Hvzo5V/view?usp=sharing"

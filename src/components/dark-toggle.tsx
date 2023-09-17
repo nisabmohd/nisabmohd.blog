@@ -7,7 +7,6 @@ import { Sun, Moon } from "lucide-react";
 export default function ThemeMode() {
   const [dark, setDark] = useState(() => {
     if (!window) return false;
-    console.log(localStorage.getItem("mode"), "Nisab");
     const preferDarkMode = localStorage.getItem("mode") ?? "false";
     if (preferDarkMode == "true")
       document.getElementById("body-theme")?.classList.add("dark");

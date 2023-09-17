@@ -54,4 +54,5 @@ export async function readMDX(slug: string) {
   return (await result).find((item) => item.frontmatter.slug == slug);
 }
 
+// TODO:
 export async function incrementViews() {}

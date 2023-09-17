@@ -8,8 +8,17 @@ export const metadata: Metadata = {
   description: "List of all blogs from Nisab Mohd",
 };
 
-export default async function page() {
-  const metadatas = await getAllMetaData();
+export default async function page({
+  searchParams: { key },
+}: {
+  searchParams: { key: string };
+}) {
+  let metadatas = await getAllMetaData();
+  if (key) {
+    metadatas = metadatas.filter(
+      (item) => item.description.includes(key) || item.title.includes(key)
+    );
+  }
   return (
     <div className="flex flex-col gap-4 pt-2">
       <h1 className="text-xl font-semibold mt-3 mb-2">All blogs</h1>

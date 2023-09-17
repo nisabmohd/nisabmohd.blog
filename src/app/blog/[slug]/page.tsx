@@ -1,4 +1,4 @@
-import { readMDX } from "@/lib/markdown";
+import { incrementViews, readMDX } from "@/lib/markdown";
 import NotFound from "./not-found";
 import { Circle, Clock, ChevronLeft } from "lucide-react";
 import Image from "next/image";
@@ -29,6 +29,8 @@ export default async function page({
 }) {
   const result = await getMarkdown(slug);
   if (!result) return NotFound();
+  incrementViews();
+  // TODO:count time to read
 
   return (
     <div className="m-auto prose prose-md dark:prose-invert prose-neutral prose-code:dark:bg-neutral-950 prose-pre:dark:bg-neutral-950 prose-code:bg-slate-50  prose-pre:bg-slate-50 prose-code:text-black prose-code:dark:text-neutral-200 prose-pre:rounded-md max-w-none prose-img:m-auto mt-5 pb-6 prose-pre:border-[1px] prose-pre:border-gray-100 dark:prose-pre:border-stone-900">
