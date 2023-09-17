@@ -19,9 +19,14 @@ pre>code {
     padding: 0.75px 13px;
 }
 
-.highlight-line {
+.dark .highlight-line {
     background-color: #1e1f21;
     border-left: 3px solid #3b82f6;
+}
+
+.highlight-line {
+    background-color: #ece7ff;
+    border-left: 3px solid #8871d7;
 }
 
 .line-number::before {
@@ -62,15 +67,31 @@ input :checked {
 }
 
 .keyword {
+    color: #b55c04;
+}
+
+.dark .keyword {
     color: #ec5a5a;
 }
 
-.function {
+.dark .function {
     color: #c99cff;
+}
+
+.function {
+    color: #6639ba;
 }
 
 .punctuation {
     color: gray;
+}
+
+.dark .string,
+.constant,
+.annotation,
+.boolean,
+.number {
+    color: #86b4ff;
 }
 
 .string,
@@ -78,7 +99,7 @@ input :checked {
 .annotation,
 .boolean,
 .number {
-    color: #86b4ff;
+    color: #0550ae;
 }
 
 .comment {

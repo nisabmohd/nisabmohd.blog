@@ -12,6 +12,7 @@ type MDXFrontmatter = {
   description: string;
   author: string;
   published: number;
+  views: number;
 };
 
 export function cn(...inputs: ClassValue[]) {
@@ -58,3 +59,5 @@ export async function readMDX(slug: string) {
   );
   return (await result).find((item) => item.frontmatter.slug == slug);
 }
+
+export async function incrementViews() {}
