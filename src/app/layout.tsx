@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Footer from "@/components/footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Inter({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "nisab/blogs",
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" id="body-theme">
       <body
-        className={`${inter.className} dark:bg-neutral-900 dark:text-neutral-50 text-zinc-800  h-screen`}
+        className={`${font.className} dark:bg-neutral-900 dark:text-neutral-50 text-zinc-800  h-screen`}
       >
         <nav className="sticky top-0 border-b-[1px] dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-50 bg-white ">
           <Navbar />

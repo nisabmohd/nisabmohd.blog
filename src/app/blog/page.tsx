@@ -16,21 +16,27 @@ export default async function page({
   let metadatas = await getAllMetaData();
   if (key) {
     metadatas = metadatas.filter(
-      (item) => item.description.includes(key) || item.title.includes(key)
+      (item) =>
+        item.description.toLowerCase().includes(key.toLowerCase()) ||
+        item.title.toLowerCase().includes(key.toLowerCase())
     );
   }
   return (
     <div className="flex flex-col gap-4 pt-2">
-      <h1 className="text-xl font-semibold mt-3 mb-2">All blogs</h1>
+      <h1 className="text-2xl font-semibold mt-3 -mb-2">Blog</h1>
+      <p className="text-md dark:text-neutral-400 text-neutral-500">
+        Explore a collection of Nisab blogs.
+      </p>
       <SearchBar />
-      <div className="flex flex-col gap-8 pt-2">
-        {metadatas.map(({ description, slug, title, views }) => (
+      <div className="grid gap-10 sm:grid-cols-2 pt-4 mb-8">
+        {metadatas.map(({ description, slug, title, image, published }) => (
           <BlogCard
             key={slug}
             slug={slug}
             description={description}
             title={title}
-            views={views}
+            image={image}
+            date={published}
           />
         ))}
       </div>

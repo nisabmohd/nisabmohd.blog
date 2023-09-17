@@ -10,7 +10,8 @@ type MDXFrontmatter = {
   description: string;
   author: string;
   published: number;
-  views: number;
+  // views: number;
+  image: string;
 };
 
 export async function getAllMetaData() {

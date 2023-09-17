@@ -31,7 +31,7 @@ export default function Navbar() {
 
   if (loading)
     return (
-      <div className="w-[85%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-[5rem] py-2 z-40"></div>
+      <div className="w-[85%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-14 py-2 z-40"></div>
     );
 
   return (
