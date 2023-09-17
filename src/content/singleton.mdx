@@ -9,13 +9,13 @@ views: 1
 
 {/* <img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*nvONyK39DBjX2NiVINXpjA.jpeg" /> */}
 
-The Singleton is a useful Design Pattern for allowing only one instance of your class. So we know that objects are created from constructors hence as many objects can be created from it which defies the property of singleton. So to limit the number of objects the user must not have access to the constructor.
+The **Singleton** is a useful Design Pattern for allowing only one instance of your class. So, we know that objects are created from constructors hence as many objects can be created from it which defies the property of singleton. So to limit the number of objects the user must not have access to the constructor.
 
 So now user is not able to access the constructor so how will he be able to make objects of that class.
 
 Simply you provide user a custom method which returns the type object of that class and does not allow multiple instance to be created.
 
-Here is an example for singleton class(Database)
+Here is an example for singleton class **Database**
 
 ```java
 //Singleton class
@@ -41,7 +41,7 @@ class Main{
 
 ```
 
-Hence now even if the user tries to call getInstance() method multiple times it returns the same object reference. Hence we achieved the property of singleton class.
+Hence now even if the user tries to call **getInstance()** method multiple times it returns the same object reference. Hence we achieved the property of singleton class.
 
 Real usage of Singleton class :
 
