@@ -12,7 +12,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [loading, setLoading] = useState(true);
@@ -28,11 +27,11 @@ export default function Navbar() {
 
   if (loading)
     return (
-      <div className="w-[32%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-14 py-2 z-40"></div>
+      <div className="w-[32%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-16 py-2 z-40"></div>
     );
 
   return (
-    <div className="w-[32%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-14 py-2 z-[9999]">
+    <div className="w-[32.5%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-16 py-2 z-[9999] pl-[2px]">
       <Sheet open={sheetOpen} onOpenChange={(val) => setSheetOpen(val)}>
         <SheetTrigger
           onClick={() => setSheetOpen(true)}
@@ -88,7 +87,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className="right flex flex-row gap-1 ">
+      <div className="right flex flex-row gap-1 justify-between ml-auto">
         <Link
           href="https://github.com/nisabmohd"
           className={buttonVariants({ variant: "ghost", size: "icon" })}
