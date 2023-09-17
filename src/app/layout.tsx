@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="" id="body-theme">
       <body
         className={`${inter.className} dark:bg-neutral-900 dark:text-neutral-50 text-zinc-800  h-screen`}
       >

@@ -12,6 +12,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useEffect, useState } from "react";
+import ThemeMode from "./dark-toggle";
 
 export default function Navbar() {
   const [loading, setLoading] = useState(true);
@@ -37,11 +38,7 @@ export default function Navbar() {
           onClick={() => setSheetOpen(true)}
           className="min-[500px]:hidden max-[500px]:visible"
         >
-          <div className="hamburger -ml-1 -mr-2 ">
-            <Button variant="ghost" size="icon">
-              <Menu className="w-6 h-6" />
-            </Button>
-          </div>
+          <Menu className="w-6 h-6" />
         </SheetTrigger>
         <SheetContent className="border-none" side={"left"}>
           <SheetHeader className="mt-5">
@@ -57,15 +54,13 @@ export default function Navbar() {
                 </span>
               </Link>
             </SheetTitle>
-            <SheetDescription className="text-left">
-              <div className="flex flex-col gap-7 text-sm mt-8">
-                <Link onClick={() => setSheetOpen(false)} href={"/blog"}>
-                  Blogs
-                </Link>
-                <Link onClick={() => setSheetOpen(false)} href={"/resume"}>
-                  Resume
-                </Link>
-              </div>
+            <SheetDescription className="text-left flex flex-col gap-7 text-sm pt-8">
+              <Link onClick={() => setSheetOpen(false)} href={"/blog"}>
+                Blogs
+              </Link>
+              <Link onClick={() => setSheetOpen(false)} href={"/resume"}>
+                Resume
+              </Link>
             </SheetDescription>
           </SheetHeader>
         </SheetContent>
@@ -106,9 +101,7 @@ export default function Navbar() {
         >
           <Linkedin className="w-5 h-5" />
         </Link>
-        <Button variant="ghost" size="icon">
-          <Sun className="w-5 h-5" />
-        </Button>
+        <ThemeMode />
       </div>
     </div>
   );
