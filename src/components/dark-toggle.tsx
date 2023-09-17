@@ -14,7 +14,7 @@ export default function ThemeMode() {
     return preferDarkMode == "false" ? false : true;
   });
   function toggle() {
-    localStorage.setItem("mode", JSON.stringify(dark));
+    localStorage.setItem("mode", JSON.stringify(!dark));
     setDark((prev) => !prev);
     document.getElementById("body-theme")?.classList.toggle("dark");
   }
