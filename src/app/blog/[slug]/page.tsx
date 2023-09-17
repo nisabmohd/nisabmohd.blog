@@ -35,9 +35,9 @@ export default async function page({
       <h1>{result.frontmatter.title}</h1>
       <div className="flex flex-row max-[500px]:flex-col justify-between items-center gap-2 text-sm mb-10 dark:text-neutral-300 text-neutral-700">
         <div className="left-side">
-          <div className="flex flex-row items-center gap-2 z-0">
+          <div className="flex flex-row items-center gap-2">
             <Image
-              className="z-0 rounded-full"
+              className="rounded-full"
               src="https://avatars.githubusercontent.com/u/76525761?v=4"
               alt="nisabmohd"
               width={32}
