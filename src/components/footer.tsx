@@ -8,7 +8,7 @@ export default function Footer() {
       <span>
         Built by{" "}
         <Link
-          className="text-slate-100 font-semibold"
+          className="dark:text-slate-100 font-semibold"
           href="https://github.com/nisabmohd"
         >
           nisabmohd
@@ -16,13 +16,13 @@ export default function Footer() {
         . Hosted on{" "}
         <Link
           href="https://vercel.com/dashboard"
-          className="text-slate-100 font-semibold"
+          className="dark:text-slate-100 font-semibold"
         >
           Vercel
         </Link>
         .The source code is available on{" "}
         <Link
-          className="text-slate-100 font-semibold"
+          className="dark:text-slate-100 font-semibold"
           href="https://github.com/nisabmohd/blogs"
         >
           GitHub

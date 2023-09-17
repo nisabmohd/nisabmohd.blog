@@ -2,6 +2,7 @@ import { readMDX } from "@/lib/markdown";
 import NotFound from "./not-found";
 import { Circle, Clock, ChevronLeft } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 async function getMarkdown(slug: string) {
   return await readMDX(slug);
@@ -59,9 +60,12 @@ export default async function page({
         </div>
       </div>
       {result.content}
-      <div className=" mt-14 flex flex-row items-center justify-center pt-5 gap-1 text-sm">
+      <Link
+        href="/blog"
+        className=" mt-14 flex flex-row items-center justify-center pt-5 gap-1 text-sm"
+      >
         <ChevronLeft className="w-4 h-4" /> <span>See all posts</span>
-      </div>
+      </Link>
     </div>
   );
 }
