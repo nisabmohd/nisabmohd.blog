@@ -21,7 +21,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} dark:bg-neutral-900 dark:text-neutral-50 text-zinc-800  h-screen`}
       >
-        <nav className="sticky top-0 dark:bg-neutral-900 dark:text-neutral-50 bg-white py-1">
+        <nav className="sticky top-0 dark:bg-neutral-900 dark:text-neutral-50 bg-white py-1 ">
           <Navbar />
         </nav>
 

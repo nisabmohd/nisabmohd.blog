@@ -1,4 +1,4 @@
-import { readMDX } from "@/lib/utils";
+import { readMDX } from "@/lib/markdown";
 import NotFound from "./not-found";
 
 async function getMarkdown(slug: string) {

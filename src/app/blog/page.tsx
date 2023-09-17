@@ -1,7 +1,7 @@
 import BlogCard from "@/components/blog-card";
-import { getAllMetaData } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Input } from "@/components/ui/input";
+import { getAllMetaData } from "@/lib/markdown";
 
 export const metadata: Metadata = {
   title: "All blogs",
