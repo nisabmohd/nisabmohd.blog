@@ -32,7 +32,7 @@ export default function Navbar() {
     );
 
   return (
-    <div className="w-[55%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-16 py-2 z-[9999] pl-[2px]">
+    <div className="w-[55%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-[5rem] py-2 z-[9999] pl-[2px]">
       <Sheet open={sheetOpen} onOpenChange={(val) => setSheetOpen(val)}>
         <SheetTrigger
           onClick={() => setSheetOpen(true)}
@@ -58,7 +58,12 @@ export default function Navbar() {
               <Link onClick={() => setSheetOpen(false)} href={"/blog"}>
                 Blogs
               </Link>
-              <Link onClick={() => setSheetOpen(false)} href={"/resume"}>
+              <Link
+                onClick={() => setSheetOpen(false)}
+                href={
+                  "https://drive.google.com/file/d/1Ps1G2YhzoO26Qyl8QvkuwHBxC4Hvzo5V/view?usp=sharing"
+                }
+              >
                 Resume
               </Link>
             </SheetDescription>
@@ -78,7 +83,13 @@ export default function Navbar() {
         </Link>
         <div className="flex flex-row gap-4 text-sm max-[500px]:hidden">
           <Link href={"/blog"}>Blogs</Link>
-          <Link href={"/resume"}>Resume</Link>
+          <Link
+            href={
+              "https://drive.google.com/file/d/1Ps1G2YhzoO26Qyl8QvkuwHBxC4Hvzo5V/view?usp=sharing"
+            }
+          >
+            Resume
+          </Link>
         </div>
       </div>
 

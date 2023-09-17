@@ -7,7 +7,10 @@ export default function Footer() {
       <Command className="w-4 h-4" />
       <span>
         Built by{" "}
-        <Link className="text-slate-100 font-semibold" href="/">
+        <Link
+          className="text-slate-100 font-semibold"
+          href="https://github.com/nisabmohd"
+        >
           nisabmohd
         </Link>
         . Hosted on{" "}

@@ -25,7 +25,7 @@ export default function BlogCard({
         </h3>
         <p className="text-sm text-neutral-400">{description}</p>
       </div>
-      <div className="dark:text-slate-300 text-slate-600 text-[12px] font-light flex flex-row items-center gap-1">
+      <div className="dark:text-slate-300 text-slate-600 text-[13px] flex flex-row items-center gap-1">
         <span>{numberWithCommas(views)} </span>
         <span>views</span>
       </div>
