@@ -1,7 +1,7 @@
 "use client";
 
-import { Sun, Github, Twitter, Menu, Command, Linkedin } from "lucide-react";
-import { Button, buttonVariants } from "./ui/button";
+import { Github, Twitter, Menu, Command, Linkedin } from "lucide-react";
+import { buttonVariants } from "./ui/button";
 import Link from "next/link";
 import {
   Sheet,
@@ -28,11 +28,11 @@ export default function Navbar() {
 
   if (loading)
     return (
-      <div className="w-[32%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-16 py-2 z-40"></div>
+      <div className="w-[45%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-[5rem] py-2 z-40"></div>
     );
 
   return (
-    <div className="w-[32.5%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-16 py-2 z-[9999] pl-[2px]">
+    <div className="w-[55%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-16 py-2 z-[9999] pl-[2px]">
       <Sheet open={sheetOpen} onOpenChange={(val) => setSheetOpen(val)}>
         <SheetTrigger
           onClick={() => setSheetOpen(true)}

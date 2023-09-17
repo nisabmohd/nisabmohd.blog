@@ -1,7 +1,6 @@
 import { readMDX } from "@/lib/markdown";
 import NotFound from "./not-found";
-import { Circle, Clock } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Circle, Clock, ChevronLeft } from "lucide-react";
 import Image from "next/image";
 
 async function getMarkdown(slug: string) {
@@ -44,13 +43,13 @@ export default async function page({
               height={32}
             />
 
-            <span>
+            <span className="text-[12.5px]">
               {result.frontmatter.author} /{" "}
               {new Date(result.frontmatter.published).toDateString()}
             </span>
           </div>
         </div>
-        <div className="right-side flex flex-row gap-3 items-center">
+        <div className="right-side flex flex-row gap-3 items-center text-[12.5px]">
           <div className="flex flex-row items-center gap-2">
             <Clock className="w-4 h-4" />
             <span>5 min read</span>
@@ -60,6 +59,9 @@ export default async function page({
         </div>
       </div>
       {result.content}
+      <div className=" mt-14 flex flex-row items-center justify-center pt-5 gap-1 text-sm">
+        <ChevronLeft className="w-4 h-4" /> <span>See all posts</span>
+      </div>
     </div>
   );
 }
