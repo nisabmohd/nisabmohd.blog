@@ -18,7 +18,7 @@ export default function SearchBar() {
     router.push(`/blog?key=${key}`);
   }, [key]);
   return (
-    <div className="input flex flex-row gap-3 items-center bg-inherit py-[8.5px] border-[1px] dark:border-neutral-700 border-neutral-300 rounded-md mb-[3.5px] px-3">
+    <div className="input flex flex-row gap-3 items-center bg-inherit h-10 border-[1px] dark:border-neutral-700 border-neutral-300 rounded-md mb-[3.5px] px-3">
       <input
         value={key}
         onChange={(e) => setKey(e.target.value)}
