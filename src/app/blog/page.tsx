@@ -12,7 +12,11 @@ export default async function page() {
   const metadatas = await getAllMetaData();
   return (
     <div className="flex flex-col gap-4 pt-2">
-      <Input className="h-11" placeholder="Search blog ..." />
+      <input
+        type="text"
+        className="w-full bg-transparent"
+        placeholder="search blog ..."
+      />
       <div className="flex flex-col gap-6 pt-2">
         {metadatas.map(({ description, slug, title, views }) => (
           <BlogCard

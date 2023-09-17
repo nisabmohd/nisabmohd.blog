@@ -1,6 +1,6 @@
 "use client";
 
-import { Sun, Github, Twitter, Menu, Command } from "lucide-react";
+import { Sun, Github, Twitter, Menu, Command, Linkedin } from "lucide-react";
 import { Button, buttonVariants } from "./ui/button";
 import Link from "next/link";
 import {
@@ -12,9 +12,11 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [loading, setLoading] = useState(true);
+  const [sheetOpen, setSheetOpen] = useState(false);
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -26,23 +28,27 @@ export default function Navbar() {
 
   if (loading)
     return (
-      <div className="w-[38%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-14"></div>
+      <div className="w-[32%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-14"></div>
     );
 
   return (
-    <div className="w-[38%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-14">
-      <Sheet>
-        <SheetTrigger>
-          <div className="hamburger -ml-2 -mr-2 min-[500px]:hidden max-[500px]:visible ">
+    <div className="w-[32%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-16 py-2">
+      <Sheet open={sheetOpen} onOpenChange={(val) => setSheetOpen(val)}>
+        <SheetTrigger
+          onClick={() => setSheetOpen(true)}
+          className="min-[500px]:hidden max-[500px]:visible"
+        >
+          <div className="hamburger -ml-1 -mr-2 ">
             <Button variant="ghost" size="icon">
-              <Menu className="w-5 h-5" />
+              <Menu className="w-6 h-6" />
             </Button>
           </div>
         </SheetTrigger>
-        <SheetContent side={"left"}>
+        <SheetContent className="border-none" side={"left"}>
           <SheetHeader className="mt-5">
             <SheetTitle>
               <Link
+                onClick={() => setSheetOpen(false)}
                 href="/"
                 className="font-semibold flex flex-row items-center gap-2 "
               >
@@ -53,9 +59,13 @@ export default function Navbar() {
               </Link>
             </SheetTitle>
             <SheetDescription className="text-left">
-              <div className="flex flex-col gap-4 text-sm mt-8">
-                <Link href={"/blog"}>Blogs</Link>
-                <Link href={"/resume"}>Resume</Link>
+              <div className="flex flex-col gap-7 text-sm mt-8">
+                <Link onClick={() => setSheetOpen(false)} href={"/blog"}>
+                  Blogs
+                </Link>
+                <Link onClick={() => setSheetOpen(false)} href={"/resume"}>
+                  Resume
+                </Link>
               </div>
             </SheetDescription>
           </SheetHeader>
@@ -91,7 +101,12 @@ export default function Navbar() {
         >
           <Twitter className="w-5 h-5" />
         </Link>
-
+        <Link
+          href="https://www.linkedin.com/in/mohd-nisab-725148197/"
+          className={buttonVariants({ variant: "ghost", size: "icon" })}
+        >
+          <Linkedin className="w-5 h-5" />
+        </Link>
         <Button variant="ghost" size="icon">
           <Sun className="w-5 h-5" />
         </Button>
