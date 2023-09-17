@@ -24,7 +24,7 @@ export default function SearchBar() {
         onChange={(e) => setKey(e.target.value)}
         type="text"
         className="w-full bg-transparent outline-none text-sm"
-        placeholder="Search blog ..."
+        placeholder="Search blogs..."
       />
       <Search className="w-4 h-4" />
     </div>

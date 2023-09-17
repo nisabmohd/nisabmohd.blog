@@ -12,8 +12,9 @@ export default async function page() {
   const metadatas = await getAllMetaData();
   return (
     <div className="flex flex-col gap-4 pt-2">
+      <h1 className="text-xl font-semibold mt-3 mb-2">All blogs</h1>
       <SearchBar />
-      <div className="flex flex-col gap-6 pt-2">
+      <div className="flex flex-col gap-8 pt-2">
         {metadatas.map(({ description, slug, title, views }) => (
           <BlogCard
             key={slug}

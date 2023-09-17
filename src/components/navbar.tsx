@@ -28,11 +28,11 @@ export default function Navbar() {
 
   if (loading)
     return (
-      <div className="w-[32%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-14 py-2"></div>
+      <div className="w-[32%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-14 py-2 z-40"></div>
     );
 
   return (
-    <div className="w-[32%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-14 py-2">
+    <div className="w-[32%] max-[1200px]:w-[85%] max-[500px]:w-[91%] m-auto flex flex-row items-center justify-between h-14 py-2 z-[9999]">
       <Sheet open={sheetOpen} onOpenChange={(val) => setSheetOpen(val)}>
         <SheetTrigger
           onClick={() => setSheetOpen(true)}
