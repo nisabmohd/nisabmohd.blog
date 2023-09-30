@@ -1,5 +1,7 @@
 import BlogCard from "@/components/blog-card";
 import { getAllMetaData } from "@/lib/md";
+import { ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 export default async function Home() {
   const metadatas = await getAllMetaData();
@@ -25,6 +27,12 @@ export default async function Home() {
           />
         ))}
       </div>
+      <Link
+        href="/blog"
+        className="text-right flex flex-row items-center gap-2 text-muted-foreground mt-10"
+      >
+        All Posts <ChevronRight className="w-5 h-5" />
+      </Link>
     </div>
   );
 }

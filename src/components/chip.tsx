@@ -5,7 +5,7 @@ export default function Chip({
   href,
 }: PropsWithChildren & { href: string }) {
   return (
-    <Link href={`/tags/${href}`} className="text-blue-400 uppercase text-sm">
+    <Link href={`/tags/${href}`} className="text-blue-400 capitalize text-sm">
       {children}
     </Link>
   );

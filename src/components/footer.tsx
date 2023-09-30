@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer>
-      <div className="h-24 flex flex-row items-center justify-between max-w-[1028px] mx-auto px-8">
+      <div className="h-24 flex flex-row items-center justify-between max-w-[1028px] mx-auto px-8 text-muted-foreground">
         <div className="flex flex-row items-center gap-2">
           <CommandIcon className="w-4 h-4" />
           Built by{" "}

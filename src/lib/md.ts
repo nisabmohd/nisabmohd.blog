@@ -56,6 +56,11 @@ export async function getAllTags() {
   return map;
 }
 
+export async function getTagPosts(tag: string) {
+  const metas = await getAllMetaData();
+  return metas.filter((meta) => meta.tags.includes(tag));
+}
+
 export async function readMDX(slug: string) {
   const contentDir = path.join(process.cwd(), "src/content/blog");
   const files = await fs.readdir(contentDir);

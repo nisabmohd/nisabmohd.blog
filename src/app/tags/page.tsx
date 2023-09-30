@@ -4,9 +4,15 @@ import { getAllTags } from "@/lib/md";
 export default async function page() {
   const tagMap = await getAllTags();
   return (
-    <div className="flex flex-col items-center justify-center pt-4">
-      <h1 className="text-3xl mb-8">Tags</h1>
-      <div className="flex flex-row flex-wrap gap-5">
+    <div className="flex flex-col">
+      <div className="border-b-2 pb-8">
+        <h1 className="text-3xl">All Tags</h1>
+        <p className="text-muted-foreground">
+          Explore a collection of personal blogs chronicling my coding journey
+          and experiences, challenges, and solutions.
+        </p>
+      </div>
+      <div className="flex flex-row flex-wrap gap-5 mt-8">
         {Array.from(tagMap.keys()).map((tag) => (
           <Chip key={tag} href={tag}>
             {tag}{" "}
