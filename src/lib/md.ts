@@ -3,19 +3,30 @@ import { promises as fs } from "fs";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism-plus";
+import rehypeCodeTitles from "rehype-code-titles";
 
-type MDXFrontmatter = {
+export type MDXFrontmatter = {
   title: string;
   slug: string;
   description: string;
   author: string;
   published: number;
-  // views: number;
-  image: string;
+  tags: string[];
 };
 
-export async function getAllMetaData() {
-  const contentDir = path.join(process.cwd(), "src/content");
+const COUNT = 5;
+
+type Pagination = {
+  search?: string;
+  page?: number;
+  tag?: string;
+};
+
+export async function getAllMetaData({
+  page = 1,
+  search = "",
+}: Pagination = {}) {
+  const contentDir = path.join(process.cwd(), "src/content/blog");
   const files = await fs.readdir(contentDir);
   const result = Promise.all(
     files.map(async (file) => {
@@ -33,8 +44,20 @@ export async function getAllMetaData() {
   return result;
 }
 
+export async function getAllTags() {
+  const metas = await getAllMetaData();
+  const map = new Map<string, number>();
+  metas
+    .map((meta) => meta.tags)
+    .flat()
+    .forEach((item) => {
+      map.set(item, (map.get(item) ?? 0) + 1);
+    });
+  return map;
+}
+
 export async function readMDX(slug: string) {
-  const contentDir = path.join(process.cwd(), "src/content");
+  const contentDir = path.join(process.cwd(), "src/content/blog");
   const files = await fs.readdir(contentDir);
   const result = Promise.all(
     files.map(async (file) => {
@@ -44,7 +67,7 @@ export async function readMDX(slug: string) {
         options: {
           parseFrontmatter: true,
           mdxOptions: {
-            rehypePlugins: [rehypePrism],
+            rehypePlugins: [rehypeCodeTitles, rehypePrism],
             remarkPlugins: [remarkGfm],
           },
         },
@@ -52,8 +75,12 @@ export async function readMDX(slug: string) {
       return parsed;
     })
   );
-  return (await result).find((item) => item.frontmatter.slug == slug);
+  const index = (await result).findIndex(
+    (item) => item.frontmatter.slug == slug
+  );
+  if (index == -1) return null;
+  const previous = (await result)[index - 1] ?? null;
+  const current = (await result)[index];
+  const next = (await result)[index + 1] ?? null;
+  return { previous: previous?.frontmatter, current, next: next?.frontmatter };
 }
-
-// TODO:
-export async function incrementViews() {}

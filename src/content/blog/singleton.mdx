@@ -1,13 +1,14 @@
 ---
 title: Singleton class in Java
 author: Nisab Mohd
-description: Singleton class examples with explanation
+description: Release of Tailwind Nextjs Starter Blog template v2.0, refactored with Nextjs App directory and React Server Components setup.Discover the new features and how to migrate from V1.
 published: 1694890101072
 slug: singleton-class
-image: "/blog3.webp"
+tags:
+  - java
+  - code
+  - pattern
 ---
-
-{/* <img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*nvONyK39DBjX2NiVINXpjA.jpeg" /> */}
 
 The **Singleton** is a useful Design Pattern for allowing only one instance of your class. So, we know that objects are created from constructors hence as many objects can be created from it which defies the property of singleton. So to limit the number of objects the user must not have access to the constructor.
 
@@ -17,7 +18,7 @@ Simply you provide user a custom method which returns the type object of that cl
 
 Here is an example for singleton class **Database**
 
-```java {4-12,18}
+```java showLineNumbers
 //Singleton class
 class Database{
     private boolean connected;
