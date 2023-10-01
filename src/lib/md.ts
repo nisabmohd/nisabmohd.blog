@@ -5,6 +5,10 @@ import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism-plus";
 import rehypeCodeTitles from "rehype-code-titles";
 
+// custom components imports
+import Highlight from "@/components/md/highlight";
+import HTMLTag from "@/components/md/tag";
+
 export type MDXFrontmatter = {
   title: string;
   slug: string;
@@ -21,6 +25,11 @@ type Pagination = {
   tag?: string;
 };
 
+const components = {
+  Highlight,
+  HTMLTag,
+};
+
 export async function getAllMetaData({ page = 1, tag = "" }: Pagination = {}) {
   const contentDir = path.join(process.cwd(), "src/content/blog");
   const files = await fs.readdir(contentDir);
@@ -32,6 +41,7 @@ export async function getAllMetaData({ page = 1, tag = "" }: Pagination = {}) {
         options: {
           parseFrontmatter: true,
         },
+        components,
       });
       return frontmatter;
     })
@@ -81,6 +91,7 @@ export async function readMDX(slug: string) {
             remarkPlugins: [remarkGfm],
           },
         },
+        components,
       });
       return parsed;
     })

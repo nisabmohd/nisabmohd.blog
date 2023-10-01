@@ -3,7 +3,7 @@ title: Implement your own API fetching & caching mechanism in React
 author: Nisab Mohd
 description: Release of Tailwind Nextjs Starter Blog template v2.0, refactored with Nextjs App directory and React Server Components setup.Discover the new features and how to migrate from V1.
 published: 1696144310432
-slug: use-imperative-handle
+slug: use-fetch
 tags:
   - typescript
   - react
@@ -103,7 +103,7 @@ export default function CacheProvider({ children }: { children: ReactNode }) {
 
 ```
 
-As now the context is created let's wrap our App with this CacheContext. We can see the cache context gives you four methods to set, delete, get & empty the cache, The set method takes a key string, a value of type any, and a TTL (Time to live in seconds) which determines when this cache should be invalidated. The get method gives you a cache if present under expiry time otherwise gives you undefined, The other two functions are to remove a cache or to empty a cache respectively.
+As now the context is created let's wrap our App with this <HTMLTag>CacheContext</HTMLTag>. We can see the cache context gives you four methods to set, delete, get & empty the cache, The set method takes a key string, a value of type any, and a TTL (Time to live in seconds) which determines when this cache should be invalidated. The get method gives you a cache if present under expiry time otherwise gives you undefined, The other two functions are to remove a cache or to empty a cache respectively.
 
 ```tsx {2}
 <CacheProvider>

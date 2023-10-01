@@ -1,7 +1,7 @@
-import { CommandIcon, Menu } from "lucide-react";
+import { CommandIcon } from "lucide-react";
 import Link from "next/link";
 import Anchor from "./anchor";
-import { Button } from "./ui/button";
+import NavSheet from "./sm-nav-sheet";
 
 export default function Navbar() {
   return (
@@ -12,27 +12,40 @@ export default function Navbar() {
           <h1 className="text-xl">nisabmohd/blog</h1>
         </Link>
         <div className="tabs flex-row items-center gap-3 hidden sm:flex">
-          <NavItems />
+          {NavItemsList.map((item) => (
+            <Anchor key={item.href} absolute={item.absolute} href={item.href}>
+              {item.title}
+            </Anchor>
+          ))}
         </div>
-        <Button variant="ghost" size="icon" className="hidden">
-          <Menu className="w-5 h-5" />
-        </Button>
+        {/* sm devices navbar */}
+        <div className="hidden max-[640px]:flex">
+          <NavSheet />
+        </div>
       </div>
     </nav>
   );
 }
 
-function NavItems() {
-  return (
-    <>
-      <Anchor absolute href="/blog">
-        Blog
-      </Anchor>
-      <Anchor absolute href="/tags">
-        Tags
-      </Anchor>
-      <Anchor href="/projects">Projects</Anchor>
-      <Anchor href="/about">About</Anchor>
-    </>
-  );
-}
+export const NavItemsList = [
+  {
+    title: "Blog",
+    href: "/blog",
+    absolute: true,
+  },
+  {
+    title: "Tags",
+    href: "/tags",
+    absolute: true,
+  },
+  {
+    title: "Projects",
+    href: "/projects",
+    absolute: false,
+  },
+  {
+    title: "About",
+    href: "/about",
+    absolute: false,
+  },
+];
