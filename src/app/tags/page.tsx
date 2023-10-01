@@ -8,8 +8,8 @@ export default async function page() {
       <div className="border-b-2 pb-8">
         <h1 className="text-3xl">All Tags</h1>
         <p className="text-muted-foreground">
-          Explore a collection of personal blogs chronicling my coding journey
-          and experiences, challenges, and solutions.
+          Explore a collection of my personal blogs chronicling my coding
+          journey and experiences by blog tags.
         </p>
       </div>
       <div className="flex flex-row flex-wrap gap-5 mt-8">

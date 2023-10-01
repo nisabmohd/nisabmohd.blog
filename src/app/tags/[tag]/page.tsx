@@ -18,8 +18,9 @@ export default async function TagSpecific({
           Tag : <span className="capitalize text-muted-foreground">{tag}</span>
         </h1>
         <p className="text-muted-foreground">
-          Explore a collection of personal blogs chronicling my coding journey
-          and experiences, challenges, and solutions.
+          Explore a collection of my personal blogs chronicling my coding
+          journey and experiences by blog tag{" "}
+          <span className="font-semibold capitalize text-blue-400">{tag}</span>.
         </p>
       </div>
       <div className="flex flex-col gap-16 mt-8 mb-16">

@@ -11,8 +11,8 @@ export default async function Home() {
       <div className="border-b-2 pb-8">
         <h1 className="text-3xl">Latest</h1>
         <p className="text-muted-foreground">
-          Explore a collection of personal blogs chronicling my coding journey
-          and experiences, challenges, and solutions.
+          Explore a latest collection of my personal blogs chronicling my coding
+          journey here.
         </p>
       </div>
       <div className="flex flex-col gap-16 mt-8">
