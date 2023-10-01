@@ -21,7 +21,7 @@ export default function BlogCard({
       <span className="text-sm text-muted-foreground">
         {new Date(date).toDateString()}
       </span>
-      <Link href={`/blog/${slug}`} className="text-2xl font-semibold ">
+      <Link href={`/blog/${slug}`} className="text-2xl  ">
         {title}
       </Link>
       <div className=" flex flex-row gap-4 my-2">
