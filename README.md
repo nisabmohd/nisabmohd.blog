@@ -37,8 +37,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 TODO:
 
+- navbar responsiveness
 - add few more markdowns
 - custom compoents in markdown
-- navbar responsiveness
 - add projects
-- add about
