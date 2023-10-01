@@ -85,12 +85,12 @@ export async function readMDX(slug: string) {
       return parsed;
     })
   );
-  const index = (await result).findIndex(
-    (item) => item.frontmatter.slug == slug
-  );
+  const index = (await result)
+    .toSorted((a, b) => a.frontmatter.published - b.frontmatter.published)
+    .findIndex((item) => item.frontmatter.slug == slug);
   if (index == -1) return null;
-  const previous = (await result)[index - 1] ?? null;
+  const previous = (await result)[index + 1] ?? null;
   const current = (await result)[index];
-  const next = (await result)[index + 1] ?? null;
+  const next = (await result)[index - 1] ?? null;
   return { previous: previous?.frontmatter, current, next: next?.frontmatter };
 }

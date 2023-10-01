@@ -20,7 +20,6 @@ export default function ThemeMode() {
       <Button
         onClick={() => setTheme("light")}
         size={"icon"}
-        className="rounded-full"
         variant={theme == "light" ? "secondary" : "ghost"}
       >
         <Sun
@@ -30,7 +29,6 @@ export default function ThemeMode() {
       <Button
         onClick={() => setTheme("system")}
         size={"icon"}
-        className="rounded-full"
         variant={theme == "system" ? "secondary" : "ghost"}
       >
         <Laptop2
@@ -40,7 +38,6 @@ export default function ThemeMode() {
       <Button
         onClick={() => setTheme("dark")}
         size={"icon"}
-        className="rounded-full"
         variant={theme == "dark" ? "secondary" : "ghost"}
       >
         <Moon

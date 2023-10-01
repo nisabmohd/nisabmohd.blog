@@ -11,9 +11,9 @@ export default function About() {
       </div>
       <div className="mt-8 mb-16 flex flex-col gap-14 md:flex-row">
         <div className="flex flex-col gap-1 items-center min-w-[300px]">
-          <Avatar className="w-60 h-60">
+          <Avatar className="w-60 h-60 rounded-sm">
             <AvatarImage src="avatar.png" />
-            <AvatarFallback>Nisab</AvatarFallback>
+            <AvatarFallback className=" rounded-sm">Nisab</AvatarFallback>
           </Avatar>
 
           <h2 className="text-3xl">Nisab Mohd</h2>
@@ -21,25 +21,25 @@ export default function About() {
             I am a software engineer with a strong background in full-stack
             development and data structures.
           </span>
-          <div className="flex flex-row items-center gap-1 mt-2">
+          <div className="flex flex-row gap-1 items-center mt-2">
             <Link
               className={buttonVariants({ variant: "ghost", size: "icon" })}
               href="https://github.com/nisabmohd"
             >
-              <Github className="w-6 h-6" />
+              <Github className="w-5 h-5" />
             </Link>
             <Link
               className={buttonVariants({ variant: "ghost", size: "icon" })}
               href="https://www.linkedin.com/in/mohd-nisab-725148197/"
             >
-              <Linkedin className="w-6 h-6" />
+              <Linkedin className="w-5 h-5" />
             </Link>
 
             <Link
               className={buttonVariants({ variant: "ghost", size: "icon" })}
               href="https://twitter.com/MohdNisab"
             >
-              <Twitter className="w-6 h-6" />
+              <Twitter className="w-5 h-5" />
             </Link>
           </div>
         </div>

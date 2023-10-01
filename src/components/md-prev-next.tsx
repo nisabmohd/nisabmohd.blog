@@ -11,7 +11,7 @@ export default function MarkdownSlider({
 }) {
   return (
     <div className="pagination flex flex-row items-center justify-between w-full pt-5">
-      <div>
+      <div className="max-w-[50%]">
         {previous && (
           <Link
             href={`/blog/${previous?.slug}`}
@@ -22,7 +22,7 @@ export default function MarkdownSlider({
           </Link>
         )}
       </div>
-      <div>
+      <div className="max-w-[50%]">
         {next && (
           <Link
             className="flex flex-row items-center gap-2 no-underline"
