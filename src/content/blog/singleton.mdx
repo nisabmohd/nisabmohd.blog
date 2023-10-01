@@ -18,7 +18,7 @@ Simply you provide user a custom method which returns the type object of that cl
 
 Here is an example for singleton class **Database**
 
-```java showLineNumbers
+```java:Database.java showLineNumbers {7}
 //Singleton class
 class Database{
     private boolean connected;
@@ -32,14 +32,17 @@ class Database{
         } return instance;
     }
 }
+```
 
+```java:Main.java showLineNumbers {6}
 //Main class
 class Main{
     public static void main(String[] args){
-        Database db=Database.getInstance();
+        Database db1=Database.getInstance();
+        Database db2=Database.getInstance(); // returns same instance
+        System.out.print(db1==db2) // true
     }
 }
-
 ```
 
 Hence now even if the user tries to call **getInstance()** method multiple times it returns the same object reference. Hence we achieved the property of singleton class.
