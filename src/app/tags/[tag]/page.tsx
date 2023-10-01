@@ -9,7 +9,7 @@ export default async function TagSpecific({
   params: { tag: string };
   searchParams: { page?: string };
 }) {
-  const posts = await getAllMetaData({ tag });
+  const posts = await getAllMetaData({ tag, page : parseInt(page) });
   return (
     <div>
       <div className="border-b-2 pb-8">
