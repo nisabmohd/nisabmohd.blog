@@ -1,4 +1,3 @@
-import Chip from "@/components/chip";
 import MarkdownSlider from "@/components/md-prev-next";
 import { readMDX } from "@/lib/md";
 import { notFound } from "next/navigation";
