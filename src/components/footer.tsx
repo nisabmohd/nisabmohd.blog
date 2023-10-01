@@ -5,8 +5,8 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer>
-      <div className="h-24 flex flex-row items-center justify-between max-w-[1028px] mx-auto px-8 text-muted-foreground">
-        <div className="flex flex-row items-center gap-2">
+      <div className="h-24 flex flex-col items-center justify-between max-w-[1028px] mx-auto px-8 text-muted-foreground sm:flex-row">
+        <div className="flex flex-row items-center flex-wrap text-center justify-center sm:text-start gap-2 mb-8 sm:mb-0">
           <CommandIcon className="w-4 h-4" />
           Built by{" "}
           <Link
@@ -20,9 +20,9 @@ export default function Footer() {
             className="font-semibold underline underline-offset-2"
             href="https://vercel.com/"
           >
-            Vercel
+            Vercel.
           </Link>
-          .The source code is available on{" "}
+          <span>The source code is available on </span>
           <Link
             className="font-semibold underline underline-offset-2"
             href={process.env.GITHUB_PROJECT_URL ?? ""}
@@ -31,7 +31,9 @@ export default function Footer() {
           </Link>
           .
         </div>
-        <ThemeMode />
+        <div className="pb-5 sm:pb-0 h-full flex items-center justify-between">
+          <ThemeMode />
+        </div>
       </div>
     </footer>
   );
