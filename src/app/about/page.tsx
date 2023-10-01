@@ -16,7 +16,7 @@ export default function About() {
             <AvatarFallback className=" rounded-sm">Nisab</AvatarFallback>
           </Avatar>
 
-          <h2 className="text-3xl">Nisab Mohd</h2>
+          <h2 className="text-3xl mt-5">Nisab Mohd</h2>
           <span className="text-center text-muted-foreground text-md mt-2">
             I am a software engineer with a strong background in full-stack
             development and data structures.
@@ -43,7 +43,7 @@ export default function About() {
             </Link>
           </div>
         </div>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 text-[16.5px]">
           <p>
             I am a passionate and highly skilled software engineer with a robust
             foundation in full-stack development and a deep understanding of
