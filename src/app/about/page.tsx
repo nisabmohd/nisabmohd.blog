@@ -9,7 +9,7 @@ export default function About() {
         <h1 className="text-3xl">About</h1>
         <p className="text-muted-foreground">Explore about me.</p>
       </div>
-      <div className="mt-8 mb-16 flex flex-col sm:gap-14 gap-4 md:flex-row">
+      <div className="mt-8 mb-2 flex flex-col sm:gap-14 gap-4 md:flex-row">
         <div className="flex flex-col gap-1 items-center min-w-[300px]">
           <Avatar className="w-60 h-60 rounded-sm">
             <AvatarImage src="avatar.png" />
