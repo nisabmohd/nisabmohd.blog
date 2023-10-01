@@ -113,18 +113,26 @@ pre>code {
 
 .highlight-line {
   border-left: 3px solid #3b82f6;
-  @apply bg-zinc-800
+  @apply dark:bg-zinc-800;
+  @apply bg-zinc-500/5;
 }
 
-.keyword {
+.dark .keyword {
   color: #d64343;
 }
 
+.keyword {
+  color: #df0606;
+}
 
-.function {
+
+.dark .function {
   color: #8c67c8;
 }
 
+.function {
+  color: #732de5;
+}
 
 .punctuation {
   color: gray;
@@ -143,8 +151,12 @@ pre>code {
 }
 
 
-.tag {
+.dark .tag {
   color: #71d382
+}
+
+.tag {
+  color: #1ed33c
 }
 
 .attr-name {
@@ -157,7 +169,8 @@ pre>code {
 
 
 .rehype-code-title {
-  @apply bg-zinc-900;
+  @apply dark:bg-zinc-900;
+  @apply bg-zinc-50;
   @apply px-3;
   @apply -mb-9;
   @apply rounded-md;
@@ -167,7 +180,8 @@ pre>code {
   @apply pb-4;
   @apply font-normal;
   @apply tracking-wider;
-  @apply text-zinc-300
+  @apply dark:text-zinc-300;
+  @apply text-zinc-700;
 }
 
 
