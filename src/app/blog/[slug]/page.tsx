@@ -2,6 +2,19 @@ import MarkdownSlider from "@/components/md-prev-next";
 import { readMDX } from "@/lib/md";
 import { notFound } from "next/navigation";
 
+export async function generateMetadata({
+  params: { slug },
+}: {
+  params: { slug: string };
+}) {
+  const md = await readMDX(slug);
+  if (!md) return null;
+  return {
+    title: md.current.frontmatter.title,
+    description: md.current.frontmatter.description,
+  };
+}
+
 export default async function page({
   params: { slug },
 }: {
@@ -17,7 +30,7 @@ export default async function page({
           <h1 className="mb-1 font-normal text-3xl">
             {md.current.frontmatter.title}
           </h1>
-          <span className=" text-muted-foreground w-[100%] mx-auto">
+          <span className="text-[14.8px] text-muted-foreground w-[100%] mx-auto">
             {new Date(md.current.frontmatter.published).toDateString()} -{" "}
             {md.current.frontmatter.author}
           </span>

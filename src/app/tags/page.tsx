@@ -1,5 +1,12 @@
 import Chip from "@/components/chip";
 import { getAllTags } from "@/lib/md";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Nisab Mohd | Tags",
+  description:
+    "Explore a collection of my personal blogs chronicling my coding journey and experiences by blog tags.",
+};
 
 export default async function page() {
   const tagMap = await getAllTags();

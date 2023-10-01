@@ -2,6 +2,13 @@ import { AvatarImage, Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { buttonVariants } from "@/components/ui/button";
 import { Github, Linkedin, Twitter } from "lucide-react";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Nisab Mohd | About",
+  description: "Explore about me.",
+};
+
 export default function About() {
   return (
     <div>

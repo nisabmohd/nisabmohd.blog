@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Nisab Mohd | Projects",
+  description: "Explore a collection of my personal projects.",
+};
 export default function Projects() {
   return (
     <div>

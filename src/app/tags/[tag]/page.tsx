@@ -2,6 +2,24 @@ import BlogCard from "@/components/blog-card";
 import Pagination from "@/components/pagination";
 import { getAllMetaData } from "@/lib/md";
 
+function capitalizeFirstLetter(data: string) {
+  return data.charAt(0).toUpperCase() + data.slice(1);
+}
+
+export async function generateMetadata({
+  params: { tag },
+}: {
+  params: { tag: string };
+}) {
+  return {
+    title: "Nisab Mohd | Tags - " + capitalizeFirstLetter(tag),
+    description:
+      "Explore a collection of my personal blogs chronicling my coding journey and experiences by blog tag " +
+      capitalizeFirstLetter(tag) +
+      ".",
+  };
+}
+
 export default async function TagSpecific({
   params: { tag },
   searchParams: { page = "1" },
@@ -9,7 +27,7 @@ export default async function TagSpecific({
   params: { tag: string };
   searchParams: { page?: string };
 }) {
-  const posts = await getAllMetaData({ tag, page : parseInt(page) });
+  const posts = await getAllMetaData({ tag, page: parseInt(page) });
   return (
     <div>
       <div className="border-b-2 pb-8">
