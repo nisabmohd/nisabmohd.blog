@@ -86,7 +86,7 @@ export async function readMDX(slug: string) {
     })
   );
   const index = (await result)
-    .toSorted((a, b) => a.frontmatter.published - b.frontmatter.published)
+    .sort((a, b) => a.frontmatter.published - b.frontmatter.published)
     .findIndex((item) => item.frontmatter.slug == slug);
   if (index == -1) return null;
   const previous = (await result)[index + 1] ?? null;
