@@ -17,15 +17,11 @@ export type MDXFrontmatter = {
 const COUNT = 5;
 
 type Pagination = {
-  search?: string;
   page?: number;
   tag?: string;
 };
 
-export async function getAllMetaData({
-  page = 1,
-  search = "",
-}: Pagination = {}) {
+export async function getAllMetaData({ page = 1, tag = "" }: Pagination = {}) {
   const contentDir = path.join(process.cwd(), "src/content/blog");
   const files = await fs.readdir(contentDir);
   const result = Promise.all(
@@ -41,11 +37,25 @@ export async function getAllMetaData({
     })
   );
   (await result).sort((a, b) => b.published - a.published);
-  return result;
+
+  if (tag) {
+    const tagRes = (await result).filter((meta) => meta.tags.includes(tag));
+    return {
+      totalPages: Math.ceil(tagRes.length / COUNT),
+      currentPage: page,
+      data: tagRes.slice((page - 1) * COUNT, page * COUNT),
+    };
+  }
+  const paginatedResult = {
+    totalPages: Math.ceil((await result).length / COUNT),
+    currentPage: page,
+    data: (await result).slice((page - 1) * COUNT, page * COUNT),
+  };
+  return paginatedResult;
 }
 
 export async function getAllTags() {
-  const metas = await getAllMetaData();
+  const metas = (await getAllMetaData()).data;
   const map = new Map<string, number>();
   metas
     .map((meta) => meta.tags)
@@ -54,11 +64,6 @@ export async function getAllTags() {
       map.set(item, (map.get(item) ?? 0) + 1);
     });
   return map;
-}
-
-export async function getTagPosts(tag: string) {
-  const metas = await getAllMetaData();
-  return metas.filter((meta) => meta.tags.includes(tag));
 }
 
 export async function readMDX(slug: string) {

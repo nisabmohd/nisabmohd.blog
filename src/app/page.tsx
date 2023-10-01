@@ -15,8 +15,8 @@ export default async function Home() {
           and experiences, challenges, and solutions.
         </p>
       </div>
-      <div className="flex flex-col gap-12 mt-8">
-        {metadatas.map((metadata) => (
+      <div className="flex flex-col gap-16 mt-8">
+        {metadatas.data.map((metadata) => (
           <BlogCard
             key={metadata.slug}
             date={metadata.published}

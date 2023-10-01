@@ -1,12 +1,15 @@
 import BlogCard from "@/components/blog-card";
-import { getTagPosts } from "@/lib/md";
+import Pagination from "@/components/pagination";
+import { getAllMetaData } from "@/lib/md";
 
 export default async function TagSpecific({
   params: { tag },
+  searchParams: { page = "1" },
 }: {
   params: { tag: string };
+  searchParams: { page?: string };
 }) {
-  const posts = await getTagPosts(tag);
+  const posts = await getAllMetaData({ tag });
   return (
     <div>
       <div className="border-b-2 pb-8">
@@ -19,8 +22,8 @@ export default async function TagSpecific({
           and experiences, challenges, and solutions.
         </p>
       </div>
-      <div className="flex flex-col gap-16 mt-8">
-        {posts.map((metadata) => (
+      <div className="flex flex-col gap-16 mt-8 mb-16">
+        {posts.data.map((metadata) => (
           <BlogCard
             key={metadata.slug}
             date={metadata.published}
@@ -31,6 +34,11 @@ export default async function TagSpecific({
           />
         ))}
       </div>
+      <Pagination
+        currentPage={parseInt(page)}
+        totalPages={posts.totalPages}
+        baseUrl={`/tags/${tag}`}
+      />
     </div>
   );
 }

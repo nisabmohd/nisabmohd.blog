@@ -1,8 +1,13 @@
 import BlogCard from "@/components/blog-card";
+import Pagination from "@/components/pagination";
 import { getAllMetaData } from "@/lib/md";
 
-export default async function page() {
-  const metadatas = await getAllMetaData();
+export default async function page({
+  searchParams: { page = "1" },
+}: {
+  searchParams: { page?: string };
+}) {
+  const metadatas = await getAllMetaData({ page: parseInt(page) });
   return (
     <div>
       <div className="border-b-2 pb-8">
@@ -12,8 +17,8 @@ export default async function page() {
           and experiences, challenges, and solutions.
         </p>
       </div>
-      <div className="flex flex-col gap-16 mt-8">
-        {metadatas.map((metadata) => (
+      <div className="flex flex-col gap-16 mt-8 mb-16">
+        {metadatas.data.map((metadata) => (
           <BlogCard
             key={metadata.slug}
             date={metadata.published}
@@ -24,6 +29,11 @@ export default async function page() {
           />
         ))}
       </div>
+      <Pagination
+        currentPage={parseInt(page)}
+        totalPages={metadatas.totalPages}
+        baseUrl="/blog"
+      />
     </div>
   );
 }
