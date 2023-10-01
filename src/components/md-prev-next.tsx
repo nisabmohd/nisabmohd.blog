@@ -18,7 +18,7 @@ export default function MarkdownSlider({
   return (
     <TooltipProvider>
       <div className="pagination flex flex-col sm:flex-row items-center justify-between w-full pt-5">
-        <div className="max-w-[50%]">
+        <div className="sm:max-w-[50%] w-fit">
           {previous && (
             <Tooltip>
               <TooltipTrigger>
@@ -38,7 +38,7 @@ export default function MarkdownSlider({
             </Tooltip>
           )}
         </div>
-        <div className="max-w-[50%]">
+        <div className="sm:max-w-[50%] w-fit">
           {next && (
             <Tooltip>
               <TooltipTrigger>
