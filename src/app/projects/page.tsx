@@ -13,7 +13,7 @@ export default function Projects() {
           Explore a collection of my personal projects.
         </p>
       </div>
-      <div className="mt-8 mb-16 ">Projects page</div>
+      <div className="mt-8 mb-16 ">No projects yet mentioned.</div>
     </div>
   );
 }
