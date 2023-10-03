@@ -35,7 +35,7 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
 
 The component which created is a client component and can ne used in our layout file to wrap our app. lets first go to <Highlight>tailwind.config.ts</Highlight> and add the class **darkMode** property in it.
 
-```ts showLineNumbers
+```ts showLineNumbers {2}
 module.exports = {
   darkMode: "class", // important
   content: [... ],
@@ -44,15 +44,11 @@ module.exports = {
 
 Now wrap the layout with custom component which we just made.
 
-```tsx:app/layout.tsx showLineNumbers
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+```tsx:app/layout.tsx showLineNumbers {5,8}
+export default function RootLayout({children,}: {children: React.ReactNode}) {
   return (
     <html lang="en">
-      <body className={`${font.className} dark:bg-zinc-950 dark:text-slate-200`}>
+      <body className="dark:bg-zinc-950 dark:text-slate-200">
         <ThemeProvider attribute="class" defaultTheme="system">
          {/* attribute is mandatory and defaultTheme can be provided */}
             {children}
@@ -94,17 +90,12 @@ export default function ThemeMode() {
 The **mounted** part needs to be there which is highlighted in above code if not there will be glitch or hydration error. Now you can start the dev server and check the default mode is already there as theme mode.
 And also you can toggle it. but when you open console you can see error that html has now new attribute that was not produced by server rendering, this is hydration error that next-themes is adding that **className** property to **html** document that was not on server side rendering. to avoid this you can mark your html in layout file with <Highlight>suppressHydraitonWarning</Highlight>, this is provided by react to solve issue for hydration error in some cases.
 
-```tsx:app/layout.tsx showLineNumbers
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+```tsx:app/layout.tsx showLineNumbers {3}
+export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en" suppressHydraitonWarning>
-      <body className={`${font.className} dark:bg-zinc-950 dark:text-slate-200`}>
+      <body className="dark:bg-zinc-950 dark:text-slate-200">
         <ThemeProvider attribute="class" defaultTheme="system">
-         {/* attribute is mandatory and defaultTheme can be provided */}
             {children}
         </ThemeProvider>
       </body>
