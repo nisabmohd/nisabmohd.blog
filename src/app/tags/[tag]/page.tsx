@@ -56,7 +56,7 @@ export default async function TagSpecific({
       <Pagination
         currentPage={parseInt(page)}
         totalPages={posts.totalPages}
-        baseUrl={`/tag/${tag}`}
+        baseUrl={`/tags/${tag}`}
       />
     </div>
   );
