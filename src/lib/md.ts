@@ -8,6 +8,7 @@ import rehypeCodeTitles from "rehype-code-titles";
 // custom components imports
 import Highlight from "@/components/md/highlight";
 import HTMLTag from "@/components/md/tag";
+import NoWrap from "@/components/md/no-wrap";
 
 export type MDXFrontmatter = {
   title: string;
@@ -28,6 +29,7 @@ type Pagination = {
 const components = {
   Highlight,
   HTMLTag,
+  NoWrap,
 };
 
 export async function getAllMetaData({ page = 1, tag = "" }: Pagination = {}) {
