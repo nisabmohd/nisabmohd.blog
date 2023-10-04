@@ -13,7 +13,7 @@ export default function Footer() {
             className="font-semibold underline  underline-offset-2"
             href={process.env.GITHUB_USER_URL ?? ""}
           >
-            nisabmohd
+            Nisab Mohd
           </Link>
           . Hosted on{" "}
           <Link
