@@ -38,8 +38,9 @@ export default async function page({
             {md.current.frontmatter.title}
           </h1>
           <span className="text-[14.8px] text-muted-foreground w-[100%] mx-auto">
-            {new Date(md.current.frontmatter.published).toDateString()} -{" "}
-            {md.current.frontmatter.author}
+            {md.current.timeToRead + " mins read"} -{" "}
+            {md.current.frontmatter.author} -{" "}
+            {new Date(md.current.frontmatter.published).toDateString()}
           </span>
         </div>
 

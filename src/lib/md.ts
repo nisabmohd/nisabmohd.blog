@@ -105,7 +105,7 @@ export async function readMDX(slug: string) {
         },
         components,
       });
-      return parsed;
+      return { ...parsed, timeToRead: estimateReadingTime(fileContent) };
     })
   );
   const index = (await result)
