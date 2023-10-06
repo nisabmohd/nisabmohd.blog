@@ -8,7 +8,7 @@ tags:
   - nextjs
   - theme
   - react
-  - app-router
+  - RSC
 ---
 
 Themes, such as dark and light modes, are crucial today as they enhance user comfort, save battery life, and improve accessibility by allowing users to adapt the interface to their preferences and lighting conditions.
@@ -33,9 +33,9 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
 
 ```
 
-The component which created is a client component and can ne used in our layout file to wrap our app. lets first go to <Highlight>tailwind.config.ts</Highlight> and add the class **darkMode** property in it.
+The component which created is a client component and can ne used in our layout file to wrap our app. lets first go to <Highlight>tailwind.config.ts</Highlight> and add the **darkMode** property in it.
 
-```ts showLineNumbers {2}
+```ts:tailwind.config.ts showLineNumbers {2}
 module.exports = {
   darkMode: "class", // important
   content: [... ],
