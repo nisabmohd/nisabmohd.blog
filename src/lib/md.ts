@@ -19,7 +19,7 @@ export type MDXFrontmatter = {
   tags: string[];
 };
 
-export const COUNT = 1;
+export const COUNT = 5;
 
 type Pagination = {
   page?: number;
