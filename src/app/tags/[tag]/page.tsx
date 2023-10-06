@@ -6,13 +6,6 @@ function capitalizeFirstLetter(data: string) {
   return data.charAt(0).toUpperCase() + data.slice(1);
 }
 
-export async function generateStaticParams() {
-  const tagMap = await getAllTags();
-  return Array.from(tagMap.keys()).map((tag) => ({
-    tag,
-  }));
-}
-
 export async function generateMetadata({
   params: { tag },
 }: {
