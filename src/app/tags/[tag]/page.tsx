@@ -1,9 +1,16 @@
 import BlogCard from "@/components/blog-card";
 import Pagination from "@/components/pagination";
-import { getAllMetaData } from "@/lib/md";
+import { COUNT, getAllMetaData, getAllTags } from "@/lib/md";
 
 function capitalizeFirstLetter(data: string) {
   return data.charAt(0).toUpperCase() + data.slice(1);
+}
+
+export async function generateStaticParams() {
+  const tagMap = await getAllTags();
+  return Array.from(tagMap.keys()).map((tag) => ({
+    tag,
+  }));
 }
 
 export async function generateMetadata({
@@ -27,7 +34,11 @@ export default async function TagSpecific({
   params: { tag: string };
   searchParams: { page?: string };
 }) {
-  const posts = await getAllMetaData({ tag, page: parseInt(page) });
+  const posts = await getAllMetaData({
+    tag,
+    page: parseInt(page),
+    count: COUNT,
+  });
   return (
     <div>
       <div className="border-b-2 pb-8">

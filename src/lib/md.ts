@@ -19,11 +19,12 @@ export type MDXFrontmatter = {
   tags: string[];
 };
 
-const COUNT = 5;
+export const COUNT = 1;
 
 type Pagination = {
   page?: number;
   tag?: string;
+  count?: number;
 };
 
 const components = {
@@ -32,7 +33,11 @@ const components = {
   NoWrap,
 };
 
-export async function getAllMetaData({ page = 1, tag = "" }: Pagination = {}) {
+export async function getAllMetaData({
+  page = 1,
+  tag = "",
+  count,
+}: Pagination = {}) {
   const contentDir = path.join(process.cwd(), "src/content/blog");
   const files = await fs.readdir(contentDir);
   const result = Promise.all(
@@ -58,10 +63,15 @@ export async function getAllMetaData({ page = 1, tag = "" }: Pagination = {}) {
       data: tagRes.slice((page - 1) * COUNT, page * COUNT),
     };
   }
+  const total = Math.ceil((await result).length / COUNT);
+  const internalCount = count ?? total;
   const paginatedResult = {
-    totalPages: Math.ceil((await result).length / COUNT),
+    totalPages: total,
     currentPage: page,
-    data: (await result).slice((page - 1) * COUNT, page * COUNT),
+    data: (await result).slice(
+      (page - 1) * internalCount,
+      page * internalCount
+    ),
   };
   return paginatedResult;
 }
@@ -106,4 +116,11 @@ export async function readMDX(slug: string) {
   const current = (await result)[index];
   const next = (await result)[index - 1] ?? null;
   return { previous: previous?.frontmatter, current, next: next?.frontmatter };
+}
+
+function estimateReadingTime(text: string) {
+  const wordsPerMinute = 200;
+  const wordCount = text.split(/\s+/).length;
+  const readingTimeMinutes = Math.ceil(wordCount / wordsPerMinute);
+  return readingTimeMinutes;
 }

@@ -1,13 +1,16 @@
 import BlogCard from "@/components/blog-card";
 import Pagination from "@/components/pagination";
-import { getAllMetaData } from "@/lib/md";
+import { COUNT, getAllMetaData } from "@/lib/md";
 
 export default async function page({
   searchParams: { page = "1" },
 }: {
   searchParams: { page?: string };
 }) {
-  const metadatas = await getAllMetaData({ page: parseInt(page) });
+  const metadatas = await getAllMetaData({
+    page: parseInt(page),
+    count: COUNT,
+  });
   return (
     <div>
       <div className="border-b-2 pb-8">

@@ -5,7 +5,6 @@ import Link from "next/link";
 
 export default async function Home() {
   const metadatas = await getAllMetaData();
-
   return (
     <div>
       <div className="border-b-2 pb-8">
