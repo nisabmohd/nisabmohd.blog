@@ -63,7 +63,7 @@ export async function getAllMetaData({
       data: tagRes.slice((page - 1) * COUNT, page * COUNT),
     };
   }
-  const total = Math.ceil((await result).length / COUNT);
+  const total = Math.ceil((await result).length);
   const internalCount = count ?? total;
   const paginatedResult = {
     totalPages: total,
