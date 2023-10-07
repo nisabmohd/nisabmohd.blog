@@ -17,6 +17,7 @@ export type MDXFrontmatter = {
   author: string;
   published: number;
   tags: string[];
+  githubUrl?: string;
 };
 
 export const COUNT = 5;
@@ -25,6 +26,7 @@ type Pagination = {
   page?: number;
   tag?: string;
   count?: number;
+  filepath?: string;
 };
 
 const components = {
@@ -37,8 +39,9 @@ export async function getAllMetaData({
   page = 1,
   tag = "",
   count,
+  filepath = "/blog",
 }: Pagination = {}) {
-  const contentDir = path.join(process.cwd(), "src/content/blog");
+  const contentDir = path.join(process.cwd(), "src/content" + filepath);
   const files = await fs.readdir(contentDir);
   const result = Promise.all(
     files.map(async (file) => {
