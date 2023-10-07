@@ -1,10 +1,10 @@
 import BlogCard from "@/components/blog-card";
-import { COUNT, getAllMetaData } from "@/lib/md";
+import { getAllMetaData } from "@/lib/md";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 export default async function Home() {
-  const metadatas = await getAllMetaData({ count: COUNT });
+  const metadatas = await getAllMetaData();
   return (
     <div>
       <div className="border-b-2 pb-8">

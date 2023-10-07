@@ -1,6 +1,6 @@
 import BlogCard from "@/components/blog-card";
 import Pagination from "@/components/pagination";
-import { COUNT, getAllMetaData, getAllTags } from "@/lib/md";
+import { getAllMetaData } from "@/lib/md";
 
 function capitalizeFirstLetter(data: string) {
   return data.charAt(0).toUpperCase() + data.slice(1);
@@ -30,7 +30,6 @@ export default async function TagSpecific({
   const posts = await getAllMetaData({
     tag,
     page: parseInt(page),
-    count: COUNT,
   });
   return (
     <div>

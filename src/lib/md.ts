@@ -54,30 +54,25 @@ export async function getAllMetaData({
     })
   );
   (await result).sort((a, b) => b.published - a.published);
-
+  count ||= COUNT;
   if (tag) {
     const tagRes = (await result).filter((meta) => meta.tags.includes(tag));
     return {
-      totalPages: Math.ceil(tagRes.length / COUNT),
+      totalPages: Math.ceil(tagRes.length / count),
       currentPage: page,
-      data: tagRes.slice((page - 1) * COUNT, page * COUNT),
+      data: tagRes.slice((page - 1) * count, page * count),
     };
   }
-  const total = Math.ceil((await result).length);
-  const internalCount = count ?? total;
   const paginatedResult = {
-    totalPages: total,
+    totalPages: Math.ceil((await result).length / count),
     currentPage: page,
-    data: (await result).slice(
-      (page - 1) * internalCount,
-      page * internalCount
-    ),
+    data: (await result).slice((page - 1) * count, page * count),
   };
   return paginatedResult;
 }
 
 export async function getAllTags() {
-  const metas = (await getAllMetaData()).data;
+  const metas = (await getAllMetaData({ count: Infinity })).data;
   const map = new Map<string, number>();
   metas
     .map((meta) => meta.tags)
