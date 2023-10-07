@@ -24,7 +24,7 @@ export default function BlogCard({
       <Link href={`/blog/${slug}`} className="text-2xl  ">
         {title}
       </Link>
-      <div className=" flex flex-row gap-4 my-2">
+      <div className="flex flex-row gap-x-4 gap-y-2 my-2 flex-wrap">
         {tags.map((tag) => (
           <Chip href={tag} key={tag}>
             {tag}

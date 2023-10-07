@@ -30,7 +30,7 @@ export default function ProjectCard({
         {title}{" "}
         <ArrowUpRightIcon className="text-muted-foreground w-4 h-4 -mt-3" />
       </Link>
-      <div className=" flex flex-row gap-4 my-2">
+      <div className="flex flex-row gap-x-4 gap-y-2 my-2 flex-wrap">
         {languages.map((tag) => (
           <LanguageChip key={tag}>{tag}</LanguageChip>
         ))}
