@@ -27,8 +27,8 @@ export default function MarkdownSlider({
                   className="flex flex-row items-center justify-center gap-2 no-underline"
                 >
                   <ChevronLeft className="w-4 h-4" />
-                  {previous.title.length
-                    ? previous.title.slice(0, 30) + "..."
+                  {previous.title.length > 30
+                    ? previous.title.slice(0, 22) + "..."
                     : previous.title}
                 </Link>
               </TooltipTrigger>
@@ -46,8 +46,8 @@ export default function MarkdownSlider({
                   className="flex flex-row items-center gap-2 no-underline"
                   href={`/blog/${next?.slug}`}
                 >
-                  {next.title.length > 40
-                    ? next.title.slice(0, 30) + "..."
+                  {next.title.length > 30
+                    ? next.title.slice(0, 22) + "..."
                     : next.title}{" "}
                   <ChevronRight className="w-4 h-4" />
                 </Link>

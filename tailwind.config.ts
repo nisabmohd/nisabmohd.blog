@@ -71,7 +71,7 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        mono: ["var(--font-space)"],
+        mono: ["var(--font-jetbrains)"],
       },
     },
   },

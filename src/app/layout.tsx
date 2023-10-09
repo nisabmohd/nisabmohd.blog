@@ -1,11 +1,15 @@
 import Navbar from "@/components/navbar";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const font = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" });
+const font = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-jetbrains",
+});
 
 export const metadata: Metadata = {
   title: "Nisab Mohd | Blog",
@@ -25,7 +29,7 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="system">
           <Navbar />
-          <main className="max-w-[1028px] mx-auto px-8 py-2 pb-8 min-h-screen">
+          <main className="max-w-[1028px] mx-auto sm:px-8 px-5 py-4 pb-8 min-h-screen">
             {children}
           </main>
           <Footer />

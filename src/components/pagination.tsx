@@ -17,7 +17,7 @@ export default function Pagination({
       {currentPage - 1 == 0 ? (
         <span className="flex flex-row items-center gap-2 text-muted-foreground cursor-not-allowed">
           <ChevronLeft className="w-4 h-4" />
-          Previous
+          Prev
         </span>
       ) : (
         <Link
@@ -25,7 +25,7 @@ export default function Pagination({
           className="flex flex-row items-center gap-2"
         >
           <ChevronLeft className="w-4 h-4" />
-          Previous
+          Prev
         </Link>
       )}
 
