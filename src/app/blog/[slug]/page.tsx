@@ -32,7 +32,7 @@ export default async function page({
   if (!md) return notFound();
   return (
     <div className="flex flex-col items-center">
-      <div className="prose prose-md font-mono dark:prose-invert prose-slate prose-code:text-[14px] dark:prose-code:text-zinc-200 prose-code:text-zinc-800 dark:prose-code:bg-zinc-900 dark:prose-pre:bg-zinc-900 prose-code:bg-zinc-50 prose-pre:bg-zinc-50 max-[500px]:max-w-[100%] max-w-sm sm:max-w-[75%]">
+      <div className="prose prose-md font-mono dark:prose-invert prose-slate prose-code:text-[14px] dark:prose-code:text-zinc-200 prose-code:text-zinc-800 dark:prose-code:bg-zinc-900 dark:prose-pre:bg-zinc-900 prose-code:bg-zinc-50 prose-pre:bg-zinc-50 max-[500px]:max-w-[100%] max-w-sm sm:max-w-[70%]">
         <div className="border-b-2 mb-8 pb-8">
           <h1 className="mb-1 font-normal text-3xl">
             {md.current.frontmatter.title}
