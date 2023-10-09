@@ -1,11 +1,11 @@
 import Navbar from "@/components/navbar";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Ubuntu } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const font = Ubuntu({
+const font = Space_Grotesk({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-ubuntu",
