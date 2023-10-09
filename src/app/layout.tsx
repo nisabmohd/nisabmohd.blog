@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${font.className} dark:bg-zinc-950 dark:text-slate-200`}
+        className={`${font.className} dark:bg-neutral-950 dark:text-slate-50`}
       >
         <ThemeProvider attribute="class" defaultTheme="system">
           <Navbar />
