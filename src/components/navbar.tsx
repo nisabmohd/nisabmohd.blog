@@ -6,7 +6,7 @@ import NavSheet from "./sm-nav-sheet";
 export default function Navbar() {
   return (
     <nav className="top-0 sticky z-40 bg-inherit">
-      <div className="h-24 flex flex-row items-center justify-between max-w-[1028px] mx-auto sm:px-8 px-5">
+      <div className="h-24 flex flex-row items-center justify-between max-w-[980px] mx-auto sm:px-8 px-5">
         <Link href="/" className="logo flex flex-row items-center gap-3">
           <CommandIcon />
           <h1 className="text-[18px] sm:text-[22px] capitalize">
