@@ -10,21 +10,21 @@ export default function Footer() {
           <CommandIcon className="w-4 h-4" />
           Built by{" "}
           <Link
-            className="font-semibold underline  underline-offset-2"
+            className="font-semibold underline  underline-offset-2 -mr-2"
             href={process.env.GITHUB_USER_URL ?? ""}
           >
             Nisab Mohd
           </Link>
           . Hosted on{" "}
           <Link
-            className="font-semibold underline underline-offset-2"
+            className="font-semibold underline underline-offset-2 -mr-2"
             href="https://vercel.com/"
           >
-            Vercel.
+            Vercel
           </Link>
-          <span>The source code is available on </span>
+          .<span>The source code is available on </span>
           <Link
-            className="font-semibold underline underline-offset-2"
+            className="font-semibold underline underline-offset-2 -mr-2"
             href={process.env.GITHUB_PROJECT_URL ?? ""}
           >
             GitHub
