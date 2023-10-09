@@ -1,14 +1,14 @@
 import Navbar from "@/components/navbar";
 import "./globals.css";
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
+import { Ubuntu } from "next/font/google";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const font = JetBrains_Mono({
+const font = Ubuntu({
   subsets: ["latin"],
   weight: "400",
-  variable: "--font-jetbrains",
+  variable: "--font-ubuntu",
 });
 
 export const metadata: Metadata = {

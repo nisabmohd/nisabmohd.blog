@@ -28,7 +28,7 @@ export default function MarkdownSlider({
                 >
                   <ChevronLeft className="w-4 h-4" />
                   {previous.title.length > 30
-                    ? previous.title.slice(0, 22) + "..."
+                    ? previous.title.slice(0, 30) + "..."
                     : previous.title}
                 </Link>
               </TooltipTrigger>
@@ -47,7 +47,7 @@ export default function MarkdownSlider({
                   href={`/blog/${next?.slug}`}
                 >
                   {next.title.length > 30
-                    ? next.title.slice(0, 22) + "..."
+                    ? next.title.slice(0, 30) + "..."
                     : next.title}{" "}
                   <ChevronRight className="w-4 h-4" />
                 </Link>
