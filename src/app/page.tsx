@@ -1,10 +1,10 @@
 import BlogCard from "@/components/blog-card";
-import { getAllMetaData } from "@/lib/md";
+import { getAllMetaData } from "@/lib/markdown";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 export default async function Home() {
-  const metadatas = await getAllMetaData();
+  const metadatas = (await getAllMetaData()).slice(0, 5);
   return (
     <div>
       <div className="border-b-2 pb-8">
@@ -15,7 +15,7 @@ export default async function Home() {
         </p>
       </div>
       <div className="flex flex-col gap-16 mt-8">
-        {metadatas.data.map((metadata) => (
+        {metadatas.map((metadata) => (
           <BlogCard
             key={metadata.slug}
             date={metadata.published}

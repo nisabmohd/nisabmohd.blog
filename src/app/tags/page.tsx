@@ -1,5 +1,5 @@
 import Chip from "@/components/chip";
-import { getAllTags } from "@/lib/md";
+import { getAllTags } from "@/lib/markdown";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

@@ -1,15 +1,8 @@
 import BlogCard from "@/components/blog-card";
-import Pagination from "@/components/pagination";
-import { getAllMetaData } from "@/lib/md";
+import { getAllMetaData } from "@/lib/markdown";
 
-export default async function page({
-  searchParams: { page = "1" },
-}: {
-  searchParams: { page?: string };
-}) {
-  const metadatas = await getAllMetaData({
-    page: parseInt(page),
-  });
+export default async function page() {
+  const metadatas = await getAllMetaData();
   return (
     <div>
       <div className="border-b-2 pb-8">
@@ -20,7 +13,7 @@ export default async function page({
         </p>
       </div>
       <div className="flex flex-col gap-16 mt-8 mb-16">
-        {metadatas.data.map((metadata) => (
+        {metadatas.map((metadata) => (
           <BlogCard
             key={metadata.slug}
             date={metadata.published}
@@ -31,11 +24,6 @@ export default async function page({
           />
         ))}
       </div>
-      <Pagination
-        currentPage={parseInt(page)}
-        totalPages={metadatas.totalPages}
-        baseUrl="/blog"
-      />
     </div>
   );
 }

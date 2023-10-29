@@ -1,9 +1,15 @@
 import BlogCard from "@/components/blog-card";
-import Pagination from "@/components/pagination";
-import { getAllMetaData } from "@/lib/md";
+import { getAllMetaData, getAllTags } from "@/lib/markdown";
 
 function capitalizeFirstLetter(data: string) {
   return data.charAt(0).toUpperCase() + data.slice(1);
+}
+
+export async function generateStaticParams() {
+  const metas = (await getAllTags()).keys();
+  return Array.from(metas).map((item) => ({
+    tag: item,
+  }));
 }
 
 export async function generateMetadata({
@@ -22,14 +28,11 @@ export async function generateMetadata({
 
 export default async function TagSpecific({
   params: { tag },
-  searchParams: { page = "1" },
 }: {
   params: { tag: string };
-  searchParams: { page?: string };
 }) {
   const posts = await getAllMetaData({
     tag,
-    page: parseInt(page),
   });
   return (
     <div>
@@ -45,7 +48,7 @@ export default async function TagSpecific({
         </p>
       </div>
       <div className="flex flex-col gap-16 mt-8 mb-16">
-        {posts.data.map((metadata) => (
+        {posts.map((metadata) => (
           <BlogCard
             key={metadata.slug}
             date={metadata.published}
@@ -56,11 +59,6 @@ export default async function TagSpecific({
           />
         ))}
       </div>
-      <Pagination
-        currentPage={parseInt(page)}
-        totalPages={posts.totalPages}
-        baseUrl={`/tags/${tag}`}
-      />
     </div>
   );
 }

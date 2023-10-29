@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ChevronRight, ChevronLeft } from "lucide-react";
-import { MDXFrontmatter } from "@/lib/md";
+import { MDXFrontmatter } from "@/lib/markdown";
 import {
   Tooltip,
   TooltipContent,

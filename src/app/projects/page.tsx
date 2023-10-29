@@ -1,17 +1,12 @@
-import Pagination from "@/components/pagination";
 import ProjectCard from "@/components/project-card";
-import { getAllMetaData } from "@/lib/md";
+import { getAllMetaData } from "@/lib/markdown";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Nisab Mohd | Projects",
   description: "Explore a collection of my personal projects.",
 };
-export default async function Projects({
-  searchParams: { page = "1" },
-}: {
-  searchParams: { page?: string };
-}) {
+export default async function Projects() {
   const projectsMetadata = await getAllMetaData({ filepath: "/project" });
   return (
     <div>
@@ -22,7 +17,7 @@ export default async function Projects({
         </p>
       </div>
       <div className="flex flex-col gap-16 mt-8 mb-16">
-        {projectsMetadata.data.map((metadata) => (
+        {projectsMetadata.map((metadata) => (
           <ProjectCard
             key={metadata.slug}
             date={metadata.published}
@@ -34,11 +29,6 @@ export default async function Projects({
           />
         ))}
       </div>
-      <Pagination
-        currentPage={parseInt(page)}
-        totalPages={projectsMetadata.totalPages}
-        baseUrl="/blog"
-      />
     </div>
   );
 }

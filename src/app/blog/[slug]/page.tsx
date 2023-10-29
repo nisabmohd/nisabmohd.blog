@@ -1,9 +1,9 @@
 import MarkdownSlider from "@/components/md-prev-next";
-import { getAllMetaData, readMDX } from "@/lib/md";
+import { getAllMetaData, readMDX } from "@/lib/markdown";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  const { data } = await getAllMetaData();
+  const data = await getAllMetaData();
 
   return data.map((post) => ({
     slug: post.slug,

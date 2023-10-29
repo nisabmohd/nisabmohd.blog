@@ -21,11 +21,10 @@ export type MDXFrontmatter = {
 };
 
 export const COUNT = 5;
+const BASE_CONTENT_PATH = "src/content";
 
 type Pagination = {
-  page?: number;
   tag?: string;
-  count?: number;
   filepath?: string;
 };
 
@@ -36,12 +35,10 @@ const components = {
 };
 
 export async function getAllMetaData({
-  page = 1,
-  tag = "",
-  count,
   filepath = "/blog",
+  tag = "",
 }: Pagination = {}) {
-  const contentDir = path.join(process.cwd(), "src/content" + filepath);
+  const contentDir = path.join(process.cwd(), BASE_CONTENT_PATH + filepath);
   const files = await fs.readdir(contentDir);
   const result = Promise.all(
     files.map(async (file) => {
@@ -57,25 +54,13 @@ export async function getAllMetaData({
     })
   );
   (await result).sort((a, b) => b.published - a.published);
-  count ||= COUNT;
-  if (tag) {
-    const tagRes = (await result).filter((meta) => meta.tags.includes(tag));
-    return {
-      totalPages: Math.ceil(tagRes.length / count),
-      currentPage: page,
-      data: tagRes.slice((page - 1) * count, page * count),
-    };
-  }
-  const paginatedResult = {
-    totalPages: Math.ceil((await result).length / count),
-    currentPage: page,
-    data: (await result).slice((page - 1) * count, page * count),
-  };
-  return paginatedResult;
+  return tag
+    ? (await result).filter((item) => item.tags.includes(tag))
+    : result;
 }
 
 export async function getAllTags() {
-  const metas = (await getAllMetaData({ count: Infinity })).data;
+  const metas = await getAllMetaData();
   const map = new Map<string, number>();
   metas
     .map((meta) => meta.tags)
