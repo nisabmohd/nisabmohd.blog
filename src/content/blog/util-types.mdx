@@ -22,7 +22,7 @@ import { helper } from "npm-package";
 in above case if you want to infer return type of helper which is a function provided by some package then how would you do it?
 So you can use <Highlight>ReturnType</Highlight> utility type and can easily infer the type of function. This can also be done to normal function and reduce creating new types and importing it to multiple places.
 
-```typescript showLineNumbers
+```typescript showLineNumbers {3}
 import { helper } from "npm-package";
 // easily infer type of what type function returns
 type FnReturns = ReturnType<typeof helper>;
@@ -34,7 +34,7 @@ type FnReturns = ReturnType<typeof helper>;
 
 If you want to infer to parameters type of a function you can use <Highlight>Parameters</Highlight> utility type to easily infer the parameters of a function.
 
-```typescript showLineNumbers
+```typescript showLineNumbers {1}
 function JSONStringify(...args: Parameters<typeof JSON.stringify>) {
   return JSON.stringify(...args);
 }
@@ -48,7 +48,7 @@ function JSONStringify(...args: Parameters<typeof JSON.stringify>) {
 
 If you have a type already defined and you want to make a type simlar but want to omit few properties of the type then we can use <Highlight>Omit</Highlight> utility type to do this.
 
-```typescript showLineNumbers
+```typescript showLineNumbers {21}
 type MDXFrontmatter = {
   title: string;
   slug: string;
@@ -78,7 +78,7 @@ type PageProps = Omit<MDXFrontmatter, "githubUrl" | "tags">;
 
 Its very similar to <Highlight>Omit</Highlight> type. If you have a type already defined and you want to make a type simlar but only pick few properties of the type then we can use <Highlight>Pick</Highlight> utility type.
 
-```typescript showLineNumbers
+```typescript showLineNumbers {13}
 type Something = {
   posts: MarkdownPost[];
   total: number;
@@ -100,7 +100,7 @@ type CustomType = Pick<Something, "posts">;
 
 If you have a type and you want to derive a type from that by keeping all properties as optional then instead of creating new type use the <Highlight>Partial</Highlight> helper type.
 
-```typescript showLineNumbers
+```typescript showLineNumbers {13}
 type Pagination = {
   page: number;
   size: number;
@@ -122,7 +122,7 @@ type CustomType = Partial<Pagination>;
 
 If you have a type and you want to derive a type from that by keeping all properties as optional then instead of creating new type use the <Highlight>Partial</Highlight> helper type.
 
-```typescript showLineNumbers
+```typescript showLineNumbers {15}
 type User = {
   avatar?: string;
   email: string;
@@ -146,7 +146,7 @@ type RequiredTypeUser = Required<User>;
 
 If you want to have an object with all key of same type and all value of object same type then you can annotate your object as <Highlight>Record</Highlight> type.
 
-```typescript showLineNumbers
+```typescript showLineNumbers {1}
 type UserNameAndRatings = Record<string, number>;
 const data: UserNameAndRatings = {
   nisab: 5,
