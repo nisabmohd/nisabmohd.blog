@@ -20,7 +20,7 @@ import { helper } from "npm-package";
 ```
 
 in above case if you want to infer return type of helper which is a function provided by some package then how would you do it?
-So you can use <Highlight>ReturnType</Highlight> utility type and can easily infer the type of function. This can also be done to normal function and reduce creating new types and importing multiple places.
+So you can use <Highlight>ReturnType</Highlight> utility type and can easily infer the type of function. This can also be done to normal function and reduce creating new types and importing it to multiple places.
 
 ```typescript showLineNumbers
 import { helper } from "npm-package";
@@ -30,7 +30,7 @@ type FnReturns = ReturnType<typeof helper>;
 
 <Note>Note that this only takes function as type to produce return type.</Note>
 
-#### Example 2 : Infer the type a function parameters.
+#### Example 2 : Infer a function parameters type.
 
 If you want to infer to parameters type of a function you can use <Highlight>Parameters</Highlight> utility type to easily infer the parameters of a function.
 
@@ -44,7 +44,7 @@ function JSONStringify(...args: Parameters<typeof JSON.stringify>) {
   Note that this only takes function as type to produce parameters type.
 </Note>
 
-#### Example 3 : Type defined and want to omit few properties in a type.
+#### Example 3 : Remove or omit few properties in a type.
 
 If you have a type already defined and you want to make a type simlar but want to emit few properties of the type then we can use <Highlight>Omit</Highlight> utility type to do this.
 
