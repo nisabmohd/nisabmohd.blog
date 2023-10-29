@@ -9,6 +9,8 @@ import rehypeCodeTitles from "rehype-code-titles";
 import Highlight from "@/components/md/highlight";
 import HTMLTag from "@/components/md/tag";
 import NoWrap from "@/components/md/no-wrap";
+import Note from "@/components/md/note";
+import Link from "next/link";
 
 export type MDXFrontmatter = {
   title: string;
@@ -32,6 +34,8 @@ const components = {
   Highlight,
   HTMLTag,
   NoWrap,
+  Note,
+  Link,
 };
 
 export async function getAllMetaData({
