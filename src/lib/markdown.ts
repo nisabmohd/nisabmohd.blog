@@ -24,7 +24,7 @@ export type MDXFrontmatter = {
 
 const BASE_CONTENT_PATH = "src/content";
 
-type Pagination = {
+type Options = {
   tag?: string;
   filepath?: string;
 };
@@ -40,7 +40,7 @@ const components = {
 export async function getAllMetaData({
   filepath = "/blog",
   tag = "",
-}: Pagination = {}) {
+}: Options = {}) {
   const contentDir = path.join(process.cwd(), BASE_CONTENT_PATH + filepath);
   const files = await fs.readdir(contentDir);
   const result = Promise.all(
