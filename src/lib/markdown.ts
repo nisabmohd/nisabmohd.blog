@@ -77,34 +77,30 @@ export async function getAllTags() {
 export async function readMDX(slug: string) {
   const contentDir = path.join(process.cwd(), "src/content/blog");
   const files = await fs.readdir(contentDir);
-  type ResultType = Awaited<ReturnType<typeof compileMDX<MDXFrontmatter>>> & {
-    timeToRead: number;
-  };
-  let result: Array<ResultType> = [];
-  let found = false;
-  for (let file of files) {
-    if (found) break;
-    const fileContent = await fs.readFile(contentDir + `/${file}`, "utf8");
-    const parsed = await compileMDX<MDXFrontmatter>({
-      source: fileContent,
-      options: {
-        parseFrontmatter: true,
-        mdxOptions: {
-          rehypePlugins: [rehypeCodeTitles, rehypePrism],
-          remarkPlugins: [remarkGfm],
+  const result = Promise.all(
+    files.map(async (file) => {
+      const fileContent = await fs.readFile(contentDir + `/${file}`, "utf8");
+      const parsed = await compileMDX<MDXFrontmatter>({
+        source: fileContent,
+        options: {
+          parseFrontmatter: true,
+          mdxOptions: {
+            rehypePlugins: [rehypeCodeTitles, rehypePrism],
+            remarkPlugins: [remarkGfm],
+          },
         },
-      },
-      components,
-    });
-    if (parsed.frontmatter.slug == slug) found = true;
-    result.push({ ...parsed, timeToRead: estimateReadingTime(fileContent) });
-  }
-
-  const index = result.findIndex((item) => item.frontmatter.slug == slug);
+        components,
+      });
+      return { ...parsed, timeToRead: estimateReadingTime(fileContent) };
+    })
+  );
+  const index = (await result)
+    .sort((a, b) => a.frontmatter.published - b.frontmatter.published)
+    .findIndex((item) => item.frontmatter.slug == slug);
   if (index == -1) return null;
-  const previous = result[index + 1] ?? null;
-  const current = result[index];
-  const next = result[index - 1] ?? null;
+  const previous = (await result)[index + 1] ?? null;
+  const current = (await result)[index];
+  const next = (await result)[index - 1] ?? null;
   return { previous: previous?.frontmatter, current, next: next?.frontmatter };
 }
 
@@ -113,4 +109,3 @@ function estimateReadingTime(text: string) {
   const wordCount = text.split(/\s+/).length;
   const readingTimeMinutes = Math.ceil(wordCount / wordsPerMinute);
   return readingTimeMinutes;
-}
