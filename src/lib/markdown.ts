@@ -109,3 +109,4 @@ function estimateReadingTime(text: string) {
   const wordCount = text.split(/\s+/).length;
   const readingTimeMinutes = Math.ceil(wordCount / wordsPerMinute);
   return readingTimeMinutes;
+}
