@@ -1,6 +1,9 @@
 import MarkdownSlider from "@/components/md-prev-next";
 import { getAllMetaData, readMDX } from "@/lib/markdown";
 import { notFound } from "next/navigation";
+import { cache } from "react";
+
+const cacheReadMDX = cache(readMDX);
 
 export async function generateStaticParams() {
   const data = await getAllMetaData();
@@ -15,7 +18,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const md = await readMDX(slug);
+  const md = await cacheReadMDX(slug);
   if (!md) return null;
   return {
     title: md.current.frontmatter.title,
@@ -28,7 +31,7 @@ export default async function page({
 }: {
   params: { slug: string };
 }) {
-  const md = await readMDX(slug);
+  const md = await cacheReadMDX(slug);
   if (!md) return notFound();
   return (
     <div className="flex flex-col items-center">
