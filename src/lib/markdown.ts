@@ -22,7 +22,6 @@ export type MDXFrontmatter = {
   githubUrl?: string;
 };
 
-export const COUNT = 5;
 const BASE_CONTENT_PATH = "src/content";
 
 type Pagination = {
@@ -100,7 +99,6 @@ export async function readMDX(slug: string) {
     if (parsed.frontmatter.slug == slug) found = true;
     result.push({ ...parsed, timeToRead: estimateReadingTime(fileContent) });
   }
-  console.log(result.length);
 
   const index = result.findIndex((item) => item.frontmatter.slug == slug);
   if (index == -1) return null;
