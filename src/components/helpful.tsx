@@ -16,22 +16,22 @@ const FEEDBACK_OPTIONS = [
   {
     type: "super",
     icon: SmilePlusIcon,
-    color: "text-yellow-400",
+    css: "hover:text-yellow-400",
   },
   {
     type: "ok",
     icon: SmileIcon,
-    color: "text-blue-400",
+    css: "hover:text-blue-400",
   },
   {
     type: "meh",
     icon: MehIcon,
-    color: "text-orange-400",
+    css: "hover:text-orange-400",
   },
   {
     type: "bad",
     icon: FrownIcon,
-    color: "text-red-500",
+    css: "hover:text-red-500",
   },
 ];
 
@@ -47,6 +47,7 @@ export default function Helpful({ slug }: { slug: string }) {
   }, [submit]);
 
   function handleRating(rating: string) {
+    //TODO: Send email to me
     console.log(slug, "--->", rating);
     setSubmit(true);
   }
@@ -70,10 +71,7 @@ export default function Helpful({ slug }: { slug: string }) {
                 <TooltipTrigger>
                   <item.icon
                     onClick={() => handleRating(item.type)}
-                    className={cn(
-                      "w-5 h-5 cursor-pointer",
-                      `hover:${item.color}`
-                    )}
+                    className={`w-5 h-5 cursor-pointer ${item.css}`}
                   />
                 </TooltipTrigger>
                 <TooltipContent>
