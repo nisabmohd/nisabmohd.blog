@@ -1,3 +1,4 @@
+import Helpful from "@/components/helpful";
 import MarkdownSlider from "@/components/md-prev-next";
 import { getAllMetaData, readMDX } from "@/lib/markdown";
 import { notFound } from "next/navigation";
@@ -46,8 +47,8 @@ export default async function page({
             {new Date(md.current.frontmatter.published).toDateString()}
           </span>
         </div>
-
         {md.current.content}
+        <Helpful slug={slug} />
         <MarkdownSlider previous={md.previous} next={md.next} />
       </div>
     </div>
