@@ -8,6 +8,32 @@ import {
   SmilePlusIcon,
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Tooltip, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
+import { TooltipContent } from "@radix-ui/react-tooltip";
+import { cn } from "@/lib/utils";
+
+const FEEDBACK_OPTIONS = [
+  {
+    type: "super",
+    icon: SmilePlusIcon,
+    color: "text-yellow-400",
+  },
+  {
+    type: "ok",
+    icon: SmileIcon,
+    color: "text-blue-400",
+  },
+  {
+    type: "meh",
+    icon: MehIcon,
+    color: "text-orange-400",
+  },
+  {
+    type: "bad",
+    icon: FrownIcon,
+    color: "text-red-500",
+  },
+];
 
 export default function Helpful({ slug }: { slug: string }) {
   const [submit, setSubmit] = useState(false);
@@ -20,7 +46,7 @@ export default function Helpful({ slug }: { slug: string }) {
     return () => clearTimeout(timer);
   }, [submit]);
 
-  function handleRating(rating: "super" | "ok" | "meh" | "bad") {
+  function handleRating(rating: string) {
     console.log(slug, "--->", rating);
     setSubmit(true);
   }
@@ -36,24 +62,28 @@ export default function Helpful({ slug }: { slug: string }) {
   return (
     <div className="flex flex-row items-center gap-4 border-2 w-fit mx-auto mt-12 mb-8 px-4 py-2 rounded-full">
       <span> Was this helpful?</span>
-      <div className="flex flex-row items-center gap-3">
-        <SmilePlusIcon
-          onClick={() => handleRating("super")}
-          className="w-5 h-5 hover:text-yellow-400 cursor-pointer"
-        />
-        <SmileIcon
-          onClick={() => handleRating("ok")}
-          className="w-5 h-5 hover:text-blue-400 cursor-pointer"
-        />
-        <MehIcon
-          onClick={() => handleRating("meh")}
-          className="w-5 h-5 hover:text-orange-400 cursor-pointer"
-        />
-        <FrownIcon
-          onClick={() => handleRating("bad")}
-          className="w-5 h-5 hover:text-red-500 cursor-pointer"
-        />
-      </div>
+      <TooltipProvider>
+        <div className="flex flex-row items-center gap-3">
+          {FEEDBACK_OPTIONS.map((item) => {
+            return (
+              <Tooltip key={item.type}>
+                <TooltipTrigger>
+                  <item.icon
+                    onClick={() => handleRating(item.type)}
+                    className={cn(
+                      "w-5 h-5 cursor-pointer",
+                      `hover:${item.color}`
+                    )}
+                  />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="text-xs font-light capitalize">{item.type}</p>
+                </TooltipContent>
+              </Tooltip>
+            );
+          })}
+        </div>
+      </TooltipProvider>
     </div>
   );
 }
