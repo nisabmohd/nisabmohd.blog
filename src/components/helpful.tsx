@@ -10,7 +10,6 @@ import {
 import { useState, useEffect } from "react";
 import { Tooltip, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { TooltipContent } from "@radix-ui/react-tooltip";
-import { cn } from "@/lib/utils";
 
 const FEEDBACK_OPTIONS = [
   {
