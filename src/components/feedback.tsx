@@ -35,7 +35,7 @@ const FEEDBACK_OPTIONS = [
   },
 ];
 
-export default function Helpful({ slug }: { slug: string }) {
+export default function Feedback({ slug }: { slug: string }) {
   const [submit, setSubmit] = useState(false);
   const [_, transitionFn] = useTransition();
 
