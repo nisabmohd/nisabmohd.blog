@@ -7,9 +7,10 @@ import {
   SmileIcon,
   SmilePlusIcon,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useTransition } from "react";
 import { Tooltip, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { TooltipContent } from "@radix-ui/react-tooltip";
+import { handleFeedbackSubmit } from "@/app/actions";
 
 const FEEDBACK_OPTIONS = [
   {
@@ -36,6 +37,7 @@ const FEEDBACK_OPTIONS = [
 
 export default function Helpful({ slug }: { slug: string }) {
   const [submit, setSubmit] = useState(false);
+  const [_, transitionFn] = useTransition();
 
   useEffect(() => {
     if (!submit) return;
@@ -46,8 +48,9 @@ export default function Helpful({ slug }: { slug: string }) {
   }, [submit]);
 
   function handleRating(rating: string) {
-    //TODO: Send email to me
-    console.log(slug, "--->", rating);
+    transitionFn(() => {
+      handleFeedbackSubmit(rating, slug);
+    });
     setSubmit(true);
   }
 
