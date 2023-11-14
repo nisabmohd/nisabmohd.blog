@@ -8,7 +8,6 @@ let transporter = nodemailer.createTransport({
     user: process.env.EMAIL,
     pass: process.env.PASSWORD,
   },
-  from: process.env.email,
 });
 
 export async function handleFeedbackSubmit(feedback: string, slug: string) {
