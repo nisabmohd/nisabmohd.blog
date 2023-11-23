@@ -113,7 +113,7 @@ pre>code {
 
 .highlight-line {
   border-left: 3px solid #3b82f6;
-  @apply dark:bg-zinc-800;
+  @apply dark:bg-zinc-700;
   @apply bg-zinc-500/5;
 }
 
@@ -169,7 +169,7 @@ pre>code {
 
 
 .rehype-code-title {
-  @apply dark:bg-zinc-900;
+  @apply dark:bg-zinc-800;
   @apply bg-zinc-50;
   @apply px-3;
   @apply -mb-9;
