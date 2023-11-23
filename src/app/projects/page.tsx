@@ -11,8 +11,8 @@ export default async function Projects() {
   return (
     <div>
       <div className="border-b-2 pb-8">
-        <h1 className="text-3xl">Projects</h1>
-        <p className="text-muted-foreground">
+        <h1 className="text-2xl mb-1">Projects</h1>
+        <p className="text-muted-foreground text-sm">
           Explore a collection of my personal projects.
         </p>
       </div>

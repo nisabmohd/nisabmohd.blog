@@ -37,11 +37,11 @@ export default async function TagSpecific({
   return (
     <div>
       <div className="border-b-2 pb-8">
-        <h1 className="text-3xl">
+        <h1 className="text-2xl mb-1">
           {" "}
           Tag : <span className="capitalize text-muted-foreground">{tag}</span>
         </h1>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Explore a collection of my personal blogs chronicling my coding
           journey and experiences by blog tag{" "}
           <span className="font-semibold capitalize text-blue-400">{tag}</span>.

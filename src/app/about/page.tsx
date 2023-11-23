@@ -13,8 +13,8 @@ export default function About() {
   return (
     <div>
       <div className="border-b-2 pb-8">
-        <h1 className="text-3xl">About</h1>
-        <p className="text-muted-foreground">Explore about me.</p>
+        <h1 className="text-2xl mb-1">About</h1>
+        <p className="text-muted-foreground text-sm">Explore about me.</p>
       </div>
       <div className="mt-8 mb-2 flex flex-col sm:gap-14 gap-4 md:flex-row">
         <div className="flex flex-col gap-1 items-center min-w-[300px]">
@@ -50,7 +50,7 @@ export default function About() {
             </Link>
           </div>
         </div>
-        <div className="flex flex-col gap-3 text-[16.5px]">
+        <div className="flex flex-col gap-3 text-[14.5px]">
           <p>
             I am a passionate and highly skilled software engineer with a robust
             foundation in full-stack development and a deep understanding of

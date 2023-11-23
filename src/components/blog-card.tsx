@@ -18,10 +18,10 @@ export default function BlogCard({
 }: BlogCardProps) {
   return (
     <article className="flex flex-col gap-1">
-      <span className="text-sm text-muted-foreground">
+      <span className="text-muted-foreground text-[12.2px]">
         {new Date(date).toDateString()}
       </span>
-      <Link href={`/blog/${slug}`} className="text-2xl  ">
+      <Link href={`/blog/${slug}`} className="text-xl  ">
         {title}
       </Link>
       <div className="flex flex-row gap-x-4 gap-y-2 my-2 flex-wrap">
@@ -31,7 +31,7 @@ export default function BlogCard({
           </Chip>
         ))}
       </div>
-      <p className="text-muted-foreground">{description}</p>
+      <p className="text-muted-foreground text-sm">{description}</p>
     </article>
   );
 }

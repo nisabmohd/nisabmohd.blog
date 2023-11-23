@@ -8,8 +8,8 @@ export default async function Home() {
   return (
     <div>
       <div className="border-b-2 pb-8">
-        <h1 className="text-3xl">Latest</h1>
-        <p className="text-muted-foreground">
+        <h1 className="text-2xl mb-1">Latest</h1>
+        <p className="text-muted-foreground text-sm">
           Explore a latest collection of my personal blogs chronicling my coding
           journey here.
         </p>

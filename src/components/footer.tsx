@@ -5,8 +5,8 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer>
-      <div className="h-24 flex flex-col items-center justify-between max-w-[980px] mx-auto px-8 text-muted-foreground sm:flex-row">
-        <div className="flex flex-row items-center flex-wrap text-center justify-center sm:text-start gap-2 mb-8 sm:mb-0 texy-xs">
+      <div className="h-24 flex flex-col items-center justify-between max-w-[900px] mx-auto px-8 text-muted-foreground sm:flex-row">
+        <div className="flex flex-row items-center flex-wrap text-center justify-center sm:text-start gap-2 mb-8 sm:mb-0 text-sm">
           <CommandIcon className="w-4 h-4" />
           Built by{" "}
           <Link

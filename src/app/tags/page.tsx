@@ -13,8 +13,8 @@ export default async function page() {
   return (
     <div className="flex flex-col">
       <div className="border-b-2 pb-8">
-        <h1 className="text-3xl">All Tags</h1>
-        <p className="text-muted-foreground">
+        <h1 className="text-2xl mb-1">All Tags</h1>
+        <p className="text-muted-foreground text-sm">
           Explore a collection of my personal blogs chronicling my coding
           journey and experiences by blog tags.
         </p>

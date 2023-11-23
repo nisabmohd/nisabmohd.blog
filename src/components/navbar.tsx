@@ -6,16 +6,19 @@ import NavSheet from "./sm-nav-sheet";
 export default function Navbar() {
   return (
     <nav className="top-0 sticky z-40 bg-inherit">
-      <div className="h-24 flex flex-row items-center justify-between max-w-[980px] mx-auto sm:px-8 px-5">
+      <div className="h-24 flex flex-row items-center justify-between max-w-[900px] mx-auto sm:px-8 px-5">
         <Link href="/" className="logo flex flex-row items-center gap-3">
-          <CommandIcon />
-          <h1 className="text-[18px] sm:text-[22px] capitalize">
-            nisabmohd/blog
-          </h1>
+          <CommandIcon className="w-6 h-6" />
+          <h1 className="sm:text-[19px] capitalize">nisabmohd/blog</h1>
         </Link>
         <div className="tabs flex-row items-center gap-3 hidden sm:flex">
           {NavItemsList.map((item) => (
-            <Anchor key={item.href} absolute={item.absolute} href={item.href}>
+            <Anchor
+              className="text-sm"
+              key={item.href}
+              absolute={item.absolute}
+              href={item.href}
+            >
               {item.title}
             </Anchor>
           ))}

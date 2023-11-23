@@ -6,8 +6,8 @@ export default async function page() {
   return (
     <div>
       <div className="border-b-2 pb-8">
-        <h1 className="text-3xl">All Blogs</h1>
-        <p className="text-muted-foreground">
+        <h1 className="text-2xl mb-1">All Blogs</h1>
+        <p className="text-muted-foreground text-sm">
           Explore a collection of personal blogs chronicling my coding journey
           and experiences, challenges, and solutions.
         </p>
