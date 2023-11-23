@@ -24,7 +24,7 @@ export default function About() {
           </Avatar>
 
           <h2 className="text-3xl mt-5">Nisab Mohd</h2>
-          <span className="text-center text-muted-foreground text-md mt-2">
+          <span className="text-center text-muted-foreground text-md mt-2 text-sm">
             I am a software engineer with a strong background in full-stack
             development and data structures.
           </span>
@@ -50,7 +50,7 @@ export default function About() {
             </Link>
           </div>
         </div>
-        <div className="flex flex-col gap-3 text-[14.5px]">
+        <div className="flex flex-col gap-3 text-[14px]">
           <p>
             I am a passionate and highly skilled software engineer with a robust
             foundation in full-stack development and a deep understanding of
