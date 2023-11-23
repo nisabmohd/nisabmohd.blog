@@ -20,12 +20,12 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   return (
     <article className="flex flex-col gap-1">
-      <span className="text-sm text-muted-foreground">
+      <span className="text-sm text-muted-foreground text-[12.2px]">
         {new Date(date).toDateString()}
       </span>
       <Link
         href={githubUrl!}
-        className="text-2xl flex flex-row items-center gap-2"
+        className="text-xl flex flex-row items-center gap-2"
       >
         {title}{" "}
         <ArrowUpRightIcon className="text-muted-foreground w-4 h-4 -mt-3" />
@@ -35,7 +35,7 @@ export default function ProjectCard({
           <LanguageChip key={tag}>{tag}</LanguageChip>
         ))}
       </div>
-      <p className="text-muted-foreground">{description}</p>
+      <p className="text-muted-foreground text-sm">{description}</p>
     </article>
   );
 }
