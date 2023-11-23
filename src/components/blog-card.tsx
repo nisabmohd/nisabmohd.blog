@@ -31,7 +31,7 @@ export default function BlogCard({
           </Chip>
         ))}
       </div>
-      <p className="text-muted-foreground text-sm">{description}</p>
+      <p className="text-muted-foreground text-sm leading-6">{description}</p>
     </article>
   );
 }
