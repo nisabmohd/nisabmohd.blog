@@ -57,7 +57,7 @@ john = null; // overwrite the reference
 
 Compare it with the regular Map example above. Now if john only exists as the key of WeakMap – it will be automatically deleted from the map (and memory).
 
-WeakMap does not support iteration and methods <Highlight>keys ( )</Highlight>, <Highlight>values ( )</Highlight>, <Highlight>entries ( )</Highlight>, so there’s no way to get all keys or values from it.
+WeakMap does not support iteration and methods <Highlight>keys ()</Highlight>, <Highlight>values ()</Highlight>, <Highlight>entries ()</Highlight>, so there’s no way to get all keys or values from it.
 
 WeakMap has only the following methods:
 
@@ -78,7 +78,7 @@ weakMap.set(john, "secret documents");
 A WeakSet behaves similarly to a WeakMap; the only difference is that it does not associate a value with an object key
 
 - It is analogous to Set, but we may only add objects to WeakSet (not primitives).
-- Like Set, it supports <Highlight>add ( )</Highlight>, <Highlight>has ( )</Highlight> and <Highlight>delete ( )</Highlight>, but not <Highlight>size</Highlight>, <Highlight>keys ( )</Highlight> and no iterations.
+- Like Set, it supports <Highlight>add ()</Highlight>, <Highlight>has ()</Highlight> and <Highlight>delete ()</Highlight>, but not <Highlight>size</Highlight>, <Highlight>keys ()</Highlight> and no iterations.
 
 For instance, we can add users to WeakSet to keep track of those who visited our site:
 
