@@ -5,11 +5,11 @@ import NavSheet from "./sm-nav-sheet";
 
 export default function Navbar() {
   return (
-    <nav className="top-0 sticky z-40 bg-inherit">
-      <div className="h-24 flex flex-row items-center justify-between max-w-[900px] mx-auto sm:px-8 px-5">
-        <Link href="/" className="logo flex flex-row items-center gap-3">
-          <CommandIcon className="w-6 h-6" />
-          <h1 className="sm:text-[19px] capitalize">nisabmohd/blog</h1>
+    <nav className="top-0 sticky z-40 bg-transparent backdrop-filter backdrop-blur-lg bg-opacity-30 ">
+      <div className="h-24 flex flex-row items-center justify-between max-w-[760px] mx-auto sm:px-8 px-5">
+        <Link href="/" className="logo flex flex-row items-center gap-2">
+          <CommandIcon className="w-5 h-5" />
+          <h1 className="sm:text-[18px] capitalize">nisabmohd/blog</h1>
         </Link>
         <div className="tabs flex-row items-center gap-3 hidden sm:flex">
           {NavItemsList.map((item) => (

@@ -1,14 +1,14 @@
 import Navbar from "@/components/navbar";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Space_Grotesk, JetBrains_Mono, Montserrat } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const font = JetBrains_Mono({
+export const font = Space_Grotesk({
   subsets: ["latin"],
   weight: "400",
-  variable: "--font-ubuntu",
+  variable: "--font-main",
 });
 
 export const metadata: Metadata = {
@@ -23,13 +23,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning={true}>
       <body
         className={`${font.className} dark:bg-neutral-950 dark:text-slate-50`}
+        suppressHydrationWarning={true}
       >
         <ThemeProvider attribute="class" defaultTheme="system">
           <Navbar />
-          <main className="max-w-[900px] mx-auto sm:px-8 px-5 py-4 pb-8 min-h-screen">
+          <main className="max-w-[750px] mx-auto sm:px-8 px-5 py-4 pb-8 min-h-[80vh] font-mono">
             {children}
           </main>
           <Footer />

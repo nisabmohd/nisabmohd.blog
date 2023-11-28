@@ -17,7 +17,7 @@ export default function About() {
         <p className="text-muted-foreground text-sm">Explore about me.</p>
       </div>
       <div className="mt-8 mb-2 flex flex-col sm:gap-14 gap-4 md:flex-row">
-        <div className="flex flex-col gap-1 items-center min-w-[300px]">
+        <div className="flex flex-col gap-1 items-center min-w-[230px]">
           <Avatar className="w-60 h-60 rounded-sm">
             <AvatarImage src="avatar.png" />
             <AvatarFallback className=" rounded-sm">Nisab</AvatarFallback>

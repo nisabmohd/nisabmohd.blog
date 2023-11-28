@@ -71,7 +71,8 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        mono: ["var(--font-ubuntu)"],
+        sans: ["var(--font-code)"],
+        mono: ["var(--font-main)"],
       },
     },
   },
