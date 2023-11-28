@@ -93,6 +93,9 @@ pre {
 pre>code {
   display: grid;
   padding: 18px 0 !important;
+}
+
+code {
   font-family: var(--font-code) !important;
 }
 
