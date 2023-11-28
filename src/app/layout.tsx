@@ -5,7 +5,7 @@ import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 
-export const font = Space_Grotesk({
+const font = Space_Grotesk({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-main",
@@ -17,7 +17,7 @@ const codefont = JetBrains_Mono({
   variable: "--font-code",
 });
 
-const metadata: Metadata = {
+export const metadata: Metadata = {
   title: "Nisab Mohd | Blog",
   description:
     "Explore a collection of personal blogs chronicling my coding journey and experiences, filled with insights, challenges, and solutions.",
