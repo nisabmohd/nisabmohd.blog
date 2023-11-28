@@ -11,13 +11,13 @@ export const font = Space_Grotesk({
   variable: "--font-main",
 });
 
-export const codefont = JetBrains_Mono({
+const codefont = JetBrains_Mono({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-code",
 });
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Nisab Mohd | Blog",
   description:
     "Explore a collection of personal blogs chronicling my coding journey and experiences, filled with insights, challenges, and solutions.",

@@ -16,7 +16,7 @@ export default async function Projects() {
           Explore a collection of my personal projects.
         </p>
       </div>
-      <div className="flex flex-col gap-16 mt-8 mb-16">
+      <div className="flex flex-col sm:gap-16 gap-12 mt-8 mb-16">
         {projectsMetadata.map((metadata) => (
           <ProjectCard
             key={metadata.slug}

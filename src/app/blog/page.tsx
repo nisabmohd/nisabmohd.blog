@@ -12,7 +12,7 @@ export default async function page() {
           and experiences, challenges, and solutions.
         </p>
       </div>
-      <div className="flex flex-col gap-16 mt-8 mb-16">
+      <div className="flex flex-col sm:gap-16 gap-12 mt-8 mb-16">
         {metadatas.map((metadata) => (
           <BlogCard
             key={metadata.slug}
