@@ -14,17 +14,17 @@ export default function About() {
     <div>
       <div className="border-b-2 pb-8">
         <h1 className="text-2xl mb-1">About</h1>
-        <p className="text-muted-foreground text-sm">Explore about me.</p>
+        <p className="text-muted-foreground text-base">Explore about me.</p>
       </div>
       <div className="mt-8 mb-2 flex flex-col sm:gap-14 gap-4 md:flex-row">
-        <div className="flex flex-col gap-1 items-center min-w-[230px]">
+        <div className="flex flex-col gap-1 items-center min-w-[248px]">
           <Avatar className="w-60 h-60 rounded-sm">
             <AvatarImage src="avatar.png" />
             <AvatarFallback className=" rounded-sm">Nisab</AvatarFallback>
           </Avatar>
 
           <h2 className="text-3xl mt-5">Nisab Mohd</h2>
-          <span className="text-center text-muted-foreground text-md mt-2 text-sm">
+          <span className="text-center text-muted-foreground text-md mt-2 text-base max-w-[400px]">
             I am a software engineer with a strong background in full-stack
             development and data structures.
           </span>
@@ -50,7 +50,7 @@ export default function About() {
             </Link>
           </div>
         </div>
-        <div className="flex flex-col gap-3 text-[14px]">
+        <div className="flex flex-col gap-3 text-[16px]">
           <p>
             I am a passionate and highly skilled software engineer with a robust
             foundation in full-stack development and a deep understanding of
@@ -66,13 +66,13 @@ export default function About() {
             the ever-evolving tech landscape and leveraging my skills to make a
             meaningful impact in the software development field.
           </p>
-          <p>
+          {/* <p>
             In summary, my journey in software engineering is characterized by
             expertise, innovation, problem-solving, collaboration, and a
             relentless pursuit of knowledge. I look forward to leveraging these
             qualities to contribute to exciting and transformative projects,
             while also fostering growth within the broader tech community.
-          </p>
+          </p> */}
         </div>
       </div>
     </div>

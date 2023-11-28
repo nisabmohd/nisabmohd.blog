@@ -16,7 +16,7 @@ export default function NavSheet() {
       <SheetContent className="pt-16 flex flex-col gap-6 items-center">
         {NavItemsList.map((item) => (
           <Anchor
-            className="text-sm"
+            className="text-base"
             onClick={() => setOpen(false)}
             key={item.href}
             absolute={item.absolute}

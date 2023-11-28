@@ -9,12 +9,11 @@ export default async function Home() {
     <div>
       <div className="border-b-2 pb-8">
         <h1 className="text-2xl mb-1">Latest</h1>
-        <p className="text-muted-foreground text-sm">
-          Explore a latest collection of my personal blogs chronicling my coding
-          journey here.
+        <p className="text-muted-foreground text-base">
+          Explore a latest collection of my personal blogs here.
         </p>
       </div>
-      <div className="flex flex-col sm:gap-16 gap-12 mt-8">
+      <div className="flex flex-col sm:gap-16 gap-10 mt-8">
         {metadatas.map((metadata) => (
           <BlogCard
             key={metadata.slug}

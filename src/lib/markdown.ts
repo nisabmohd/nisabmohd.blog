@@ -12,6 +12,7 @@ import NoWrap from "@/components/md/no-wrap";
 import Note from "@/components/md/note";
 import Link from "next/link";
 import StaticImg from "@/components/md/static-img";
+import Snippet from "@/components/md/snippet";
 
 export type MDXFrontmatter = {
   title: string;
@@ -37,6 +38,7 @@ const components = {
   Note,
   Link,
   StaticImg,
+  Snippet,
 };
 
 export async function getAllMetaData({

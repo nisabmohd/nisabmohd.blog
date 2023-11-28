@@ -12,11 +12,11 @@ export default async function Projects() {
     <div>
       <div className="border-b-2 pb-8">
         <h1 className="text-2xl mb-1">Projects</h1>
-        <p className="text-muted-foreground text-sm">
+        <p className="text-muted-foreground text-base">
           Explore a collection of my personal projects.
         </p>
       </div>
-      <div className="flex flex-col sm:gap-16 gap-12 mt-8 mb-16">
+      <div className="flex flex-col sm:gap-16 gap-10 mt-8 mb-16">
         {projectsMetadata.map((metadata) => (
           <ProjectCard
             key={metadata.slug}

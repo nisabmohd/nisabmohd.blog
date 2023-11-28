@@ -7,12 +7,11 @@ export default async function page() {
     <div>
       <div className="border-b-2 pb-8">
         <h1 className="text-2xl mb-1">All Blogs</h1>
-        <p className="text-muted-foreground text-sm">
-          Explore a collection of personal blogs chronicling my coding journey
-          and experiences, challenges, and solutions.
+        <p className="text-muted-foreground text-base">
+          Explore a collection of all my blogs here.
         </p>
       </div>
-      <div className="flex flex-col sm:gap-16 gap-12 mt-8 mb-16">
+      <div className="flex flex-col sm:gap-16 gap-10 mt-8 mb-16">
         {metadatas.map((metadata) => (
           <BlogCard
             key={metadata.slug}

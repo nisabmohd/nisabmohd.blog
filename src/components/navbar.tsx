@@ -14,7 +14,7 @@ export default function Navbar() {
         <div className="tabs flex-row items-center gap-3 hidden sm:flex">
           {NavItemsList.map((item) => (
             <Anchor
-              className="text-sm"
+              className="text-base"
               key={item.href}
               absolute={item.absolute}
               href={item.href}

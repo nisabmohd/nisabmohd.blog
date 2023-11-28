@@ -4,8 +4,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Nisab Mohd | Tags",
-  description:
-    "Explore a collection of my personal blogs chronicling my coding journey and experiences by blog tags.",
+  description: "Explore a collection of my personal blogs by tags.",
 };
 
 export default async function page() {
@@ -14,9 +13,8 @@ export default async function page() {
     <div className="flex flex-col">
       <div className="border-b-2 pb-8">
         <h1 className="text-2xl mb-1">All Tags</h1>
-        <p className="text-muted-foreground text-sm">
-          Explore a collection of my personal blogs chronicling my coding
-          journey and experiences by blog tags.
+        <p className="text-muted-foreground text-base">
+          Explore a collection of my personal blogs by tags.
         </p>
       </div>
       <div className="flex flex-row flex-wrap gap-5 mt-8">
