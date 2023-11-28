@@ -9,7 +9,7 @@ export default function Navbar() {
       <div className="h-24 flex flex-row items-center justify-between max-w-[760px] mx-auto sm:px-8 px-5">
         <Link href="/" className="logo flex flex-row items-center gap-2">
           <CommandIcon className="w-5 h-5" />
-          <h1 className="sm:text-[18px] capitalize">nisabmohd/blog</h1>
+          <h1 className="text-[20px] capitalize">nisabmohd/blog</h1>
         </Link>
         <div className="tabs flex-row items-center gap-3 hidden sm:flex">
           {NavItemsList.map((item) => (
