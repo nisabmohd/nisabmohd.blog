@@ -78,6 +78,7 @@
 
 body {
   scroll-behavior: smooth;
+  font-family: var(--font-main) !important;
 }
 
 .dark {
@@ -92,6 +93,7 @@ pre {
 pre>code {
   display: grid;
   padding: 18px 0 !important;
+  font-family: var(--font-code) !important;
 }
 
 .code-line {

@@ -1,7 +1,7 @@
 import Navbar from "@/components/navbar";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -9,6 +9,12 @@ export const font = Space_Grotesk({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-main",
+});
+
+export const codefont = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-code",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body
-        className={`${font.className} dark:bg-neutral-950 dark:text-slate-50`}
+        className={`${font.variable} ${codefont.variable} dark:bg-neutral-950 dark:text-slate-50`}
         suppressHydrationWarning={true}
       >
         <ThemeProvider attribute="class" defaultTheme="system">
