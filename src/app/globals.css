@@ -187,6 +187,7 @@ code {
   @apply tracking-wider;
   @apply dark:text-zinc-300;
   @apply text-zinc-700;
+  font-family: var(--font-code) !important;
 }
 
 
