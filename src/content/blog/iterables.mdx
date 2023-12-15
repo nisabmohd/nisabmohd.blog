@@ -1,5 +1,5 @@
 ---
-title: Iterables in JavaScript
+title: Iterables & Iterators in JavaScript
 author: Nisab Mohd
 description: Iterable objects are a generalization of arrays. That’s a concept that allows us to make any object useable in a for..of loop.
 published: 1701445620078
@@ -38,7 +38,7 @@ Currently, the range object does not have <Snippet>Symbol.iterator</Snippet> pro
   the next method.
 </Note>
 
-```js showLineNumbers
+```js showLineNumbers {6-16}
 const range = {
   from: 1,
   to: 5,
@@ -69,7 +69,7 @@ Similarly, you can add the property to an object and make it iterate as you like
   <Snippet>done</Snippet> and <Snippet>value</Snippet> property.
 </Note>
 
-```js showLineNumbers
+```js showLineNumbers {2}
 const str = "Hello";
 for (let char of str) {
   console.log(char); // H e l l o
@@ -80,7 +80,7 @@ for (let char of str) {
 
 You can also directly access the <Snippet>Symbol.iterator</Snippet> property and call it and it will return an iterator object in which you have <Snippet>next()</Snippet> method.
 
-```js showLineNumbers
+```js showLineNumbers {1}
 const itr = range[Symbol.iterator]();
 while (true) {
   const { done, val } = itr.next();
@@ -113,7 +113,7 @@ Yes, it will work because our range object has an iterator property. you can ass
 Regular functions return only one, single value (or nothing). Generators can return <Snippet>(“yield”)</Snippet> multiple values, one after another, on-demand. They work great with iterables, allowing you to create data streams with ease.
 Generators make your life easy to make iterators. To create a generator, we need a special syntax construct: <Snippet>function\*</Snippet>, the so-called “generator function”.
 
-```js
+```js showLineNumbers {1}
 function* generateRange() {
   yield 1;
   yield 2;
@@ -126,7 +126,7 @@ function* generateRange() {
 You can also specify <Snippet>Symbol.iterator</Snippet> with a generator function and it not only reduces code but also enhances readability.
 Let's rewrite our range iterator with the generator function.
 
-```js
+```js showLineNumbers {6-13}
 const range = {
   from: 1,
   to: 10,
