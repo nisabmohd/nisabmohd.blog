@@ -35,7 +35,7 @@ export default function ProjectCard({
           <LanguageChip key={tag}>{tag}</LanguageChip>
         ))}
       </div>
-      <p className="text-muted-foreground text-sm leading-6">{description}</p>
+      <p className="text-muted-foreground text-base leading-6">{description}</p>
     </article>
   );
 }
