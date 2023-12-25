@@ -15,7 +15,7 @@ import { MDXFrontmatter } from "@/lib/markdown";
 
 export default async function Navbar({ search }: { search: MDXFrontmatter[] }) {
   return (
-    <nav className="flex justify-between items-center h-32 sm:px-0 px-5 top-0 sticky z-40 bg-transparent backdrop-filter backdrop-blur-lg bg-opacity-30 ">
+    <nav className="flex justify-between items-center h-32 lg:px-0 px-5 top-0 sticky z-40 bg-transparent backdrop-filter backdrop-blur-lg bg-opacity-30">
       <div className="max-w-[1000px] mx-auto w-[100%] flex flex-row items-center justify-between">
         <Link href="/" className="flex flex-row items-center gap-2">
           <TerminalSquare className="h-10 w-10 mr-1" />
@@ -35,7 +35,7 @@ export default async function Navbar({ search }: { search: MDXFrontmatter[] }) {
               </Anchor>
             ))}
           </div>
-          <div className="flex flex-row items-center gap-3">
+          <div className="flex flex-row items-center sm:gap-3 gap-1">
             <Search search={search} />
             <ModeToggle />
             <NavSheet />
