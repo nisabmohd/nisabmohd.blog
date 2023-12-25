@@ -34,6 +34,7 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${font.variable} ${codefont.variable} dark:bg-neutral-950 dark:text-slate-50 font-mono`}
+        suppressHydrationWarning
       >
         <ThemeProvider
           attribute="class"

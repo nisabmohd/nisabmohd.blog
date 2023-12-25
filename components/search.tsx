@@ -19,7 +19,6 @@ export default function Search({ search }: { search: MDXFrontmatter[] }) {
   const result = query
     ? search.filter((i) => i.title.toLowerCase().includes(query.toLowerCase()))
     : search;
-  console.log(result);
 
   return (
     <>
