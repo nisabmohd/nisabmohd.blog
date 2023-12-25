@@ -16,6 +16,20 @@ export async function generateStaticParams() {
   });
 }
 
+export async function generateMetadata({
+  params: { tag },
+}: {
+  params: { tag: string };
+}) {
+  return {
+    title: "Nisab Mohd | Tags - " + capitalizeFirstLetter(tag),
+    description:
+      "Explore a collection of my personal blogs chronicling my coding journey and experiences by blog tag " +
+      capitalizeFirstLetter(tag) +
+      ".",
+  };
+}
+
 export default async function page({
   params: { tag },
 }: {

@@ -17,6 +17,19 @@ export async function generateStaticParams() {
   });
 }
 
+export async function generateMetadata({
+  params: { slug },
+}: {
+  params: { slug: string };
+}) {
+  const md = await readBlogMDX(slug);
+  if (!md) return null;
+  return {
+    title: md.current.frontmatter.title,
+    description: md.current.frontmatter.description,
+  };
+}
+
 export default async function ReadPage({
   params: { slug },
 }: {
@@ -32,8 +45,8 @@ export default async function ReadPage({
         sm={true}
         title={data.current.frontmatter.title}
       />
-      <div className="flex md:flex-row flex-col-reverse items-start md:gap-6 gap-2">
-        <div className="md:w-[260px] md:min-w-[220px] w-full text-muted-foreground">
+      <div className="flex md:flex-row flex-col-reverse items-start md:gap-6 gap-4">
+        <div className="md:w-[260px] md:min-w-[220px] w-full text-muted-foreground pr-4">
           <div className="author  border-b-[1px] py-6 flex sm:flex-col flex-row sm:gap-3 gap-8 flex-wrap sm:border-t-0 sm:mt-0 mt-8 border-t-[1px]">
             {data.current.frontmatter.author.map((author) => (
               <Author key={author.username} {...author} />
@@ -88,7 +101,7 @@ export default async function ReadPage({
             </Link>
           </div>
         </div>
-        <div className="prose dark:prose-invert prose-neutral py-8 prose-code:text-[13.5px] dark:prose-code:text-zinc-200 prose-code:text-zinc-800 dark:prose-code:bg-zinc-900 dark:prose-pre:bg-zinc-900 prose-code:bg-zinc-50 prose-pre:bg-zinc-50 prose-pre:font-mono max-[650px]:max-w-[100%]">
+        <div className="prose dark:prose-invert prose-neutral py-8 prose-code:text-[13.5px] dark:prose-code:text-zinc-200 prose-code:text-zinc-800 dark:prose-code:bg-zinc-900 dark:prose-pre:bg-zinc-900 prose-code:bg-zinc-50 prose-pre:bg-zinc-50 prose-pre:font-mono max-[650px]:max-w-[100%] pl-1">
           {data.current.content}
         </div>
       </div>

@@ -1,4 +1,11 @@
-import { BookTypeIcon } from "lucide-react";
+import {
+  BookTypeIcon,
+  ParenthesesIcon,
+  RssIcon,
+  SlackIcon,
+  TerminalIcon,
+  TerminalSquare,
+} from "lucide-react";
 import { ModeToggle } from "./theme-toggle";
 import Search from "./search";
 import Link from "next/link";
@@ -10,7 +17,7 @@ export default async function Navbar() {
     <nav className="flex justify-between items-center h-32 sm:px-0 px-5 top-0 sticky z-40 bg-transparent backdrop-filter backdrop-blur-lg bg-opacity-30 ">
       <div className="max-w-[1000px] mx-auto w-[100%] flex flex-row items-center justify-between">
         <Link href="/" className="flex flex-row items-center gap-2">
-          <BookTypeIcon className="h-10 w-10 mr-1" />
+          <TerminalSquare className="h-10 w-10 mr-1" />
           <h3 className="font-semibold text-2xl">NisabBlog</h3>
         </Link>
         <div className="flex-row items-center gap-4 flex">

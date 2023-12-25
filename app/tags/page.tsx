@@ -1,6 +1,12 @@
 import Header from "@/components/header";
 import { getAllBlogTags } from "@/lib/markdown";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Nisab Mohd | Tags",
+  description: "Explore a collection of my personal blogs by tags.",
+};
 
 export default async function TagsIndexPage() {
   const data = await getAllBlogTags();

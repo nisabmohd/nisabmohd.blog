@@ -2,7 +2,13 @@ import Header from "@/components/header";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { buttonVariants } from "@/components/ui/button";
 import { Github, Linkedin, Twitter } from "lucide-react";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Nisab Mohd | About",
+  description: "Explore about me.",
+};
 
 export default function AboutPage() {
   return (
