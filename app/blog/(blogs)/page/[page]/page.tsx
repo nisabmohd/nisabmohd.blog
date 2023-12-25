@@ -25,7 +25,6 @@ export async function generateStaticParams() {
 export default async function BlogPage({
   params: { page },
 }: BlogPageParamsType) {
-  console.log("called");
   const currentPageNo = parseInt(page);
   const { data, totalPages } = await getAllMetaData("blog", {
     page: currentPageNo,

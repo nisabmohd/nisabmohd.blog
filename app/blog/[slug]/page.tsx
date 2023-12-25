@@ -1,9 +1,21 @@
 import Author from "@/components/author";
 import Header from "@/components/header";
-import { readBlogMDX } from "@/lib/markdown";
+import { getAllMetaData, readBlogMDX } from "@/lib/markdown";
 import { MoveLeftIcon } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
+export async function generateStaticParams() {
+  const { data } = await getAllMetaData("blog", {
+    page: 1,
+    count: Infinity,
+  });
+  return data.map((item) => {
+    return {
+      slug: item.slug,
+    };
+  });
+}
 
 export default async function ReadPage({
   params: { slug },
