@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { getAllMetaData } from "@/lib/markdown";
 
 const font = Space_Grotesk({
   subsets: ["latin"],
@@ -23,11 +24,12 @@ export const metadata: Metadata = {
     "Explore a collection of personal blogs chronicling my coding journey and experiences, filled with insights, challenges, and solutions.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { data } = await getAllMetaData("blog", { count: Infinity, page: 1 });
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -39,7 +41,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
+          <Navbar search={data} />
           <main className="max-w-[1000px] min-h-[75vh] mx-auto py-4 lg:px-0 px-5">
             {children}
           </main>
