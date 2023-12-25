@@ -16,13 +16,15 @@ import { MDXFrontmatter } from "@/lib/markdown";
 import Link from "next/link";
 export default function Search({ search }: { search: MDXFrontmatter[] }) {
   const [query, setQuery] = useState("");
+
+  const [open, setOpen] = useState(false);
   const result = query
     ? search.filter((i) => i.title.toLowerCase().includes(query.toLowerCase()))
     : search;
 
   return (
     <>
-      <Dialog>
+      <Dialog open={open} onOpenChange={(val) => setOpen(val)}>
         <DialogTrigger asChild>
           <Button variant="ghost" size="icon">
             <SearchIcon className="w-6 h-6" />
@@ -31,7 +33,6 @@ export default function Search({ search }: { search: MDXFrontmatter[] }) {
         <DialogContent>
           <DialogHeader>
             <DialogTitle className="pr-8 flex flex-row items-center gap-5">
-              <SearchIcon />
               <Input
                 placeholder="Search blogs..."
                 value={query}
@@ -44,16 +45,22 @@ export default function Search({ search }: { search: MDXFrontmatter[] }) {
               Blogs
             </h4>
             <div className="flex flex-col gap-1 max-h-[300px] overflow-y-auto">
+              {result.length == 0 && (
+                <span className="text-center my-5">
+                  No results for your search...
+                </span>
+              )}
               {result.map((item) => (
                 <Link
+                  onClick={() => setOpen(false)}
                   href={`/blog/${item.slug}`}
                   className="flex flex-col items-start hover:bg-blue-500 px-8 py-2 hover:text-white"
                   key={item.slug}
                 >
-                  <span className="text-sm font-medium">
+                  <span className="text-xs font-medium">
                     {new Date(item.published).toDateString()}
                   </span>
-                  <span>{item.title}</span>
+                  <span className="font-medium">{item.title}</span>
                 </Link>
               ))}
             </div>
