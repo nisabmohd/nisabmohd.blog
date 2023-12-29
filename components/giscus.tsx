@@ -79,7 +79,7 @@ function LoadGiscus({
       theme={theme}
       lang="en"
       loading="lazy"
-      strict="0"
+      strict="1"
     />
   );
 }
