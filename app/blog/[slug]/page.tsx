@@ -107,10 +107,8 @@ export default async function ReadPage({
             </Link>
           </div>
         </div>
-        <div className="flex flex-col gap-5">
-          <div className="prose dark:prose-invert prose-neutral py-8 prose-code:text-[13.5px] dark:prose-code:text-zinc-200 prose-code:text-zinc-800 dark:prose-code:bg-zinc-900 dark:prose-pre:bg-zinc-900 prose-code:bg-zinc-50 prose-pre:bg-zinc-50 prose-pre:font-mono max-[650px]:max-w-[100%] pl-1">
-            {data.current.content}
-          </div>
+        <div className="prose dark:prose-invert prose-neutral py-8 prose-code:text-[13.5px] dark:prose-code:text-zinc-200 prose-code:text-zinc-800 dark:prose-code:bg-zinc-900 dark:prose-pre:bg-zinc-900 prose-code:bg-zinc-50 prose-pre:bg-zinc-50 prose-pre:font-mono max-[650px]:max-w-[100%] pl-1">
+          {data.current.content}
           <div className="border-t-[1px] -mt-5 pt-10 max-w-full">
             <Comments
               category={category}

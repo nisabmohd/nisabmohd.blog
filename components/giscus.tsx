@@ -26,7 +26,7 @@ const Comments = ({
       </div>
     );
   return (
-    <div className="max-w-full">
+    <div className="w-full">
       <Giscus
         repo={repo}
         repoId={repoId}
