@@ -31,7 +31,7 @@ export default function ProjectCard({
       </div>
       <Link
         href={githubUrl}
-        className="flex flex-row items-center gap-1  text-blue-500 text-[13px] mt-5"
+        className="flex flex-row items-center gap-1  text-blue-500 text-[15px] mt-5"
       >
         Learn More <ExternalLinkIcon className="w-3 h-3" />
       </Link>
