@@ -174,8 +174,8 @@ code {
 
 
 .rehype-code-title {
-  @apply dark:bg-zinc-900;
   @apply bg-zinc-50;
+  @apply dark:bg-zinc-900;
   @apply px-3;
   @apply -mb-9;
   @apply rounded-md;
@@ -185,8 +185,8 @@ code {
   @apply pb-4;
   @apply font-normal;
   @apply tracking-wider;
-  @apply dark:text-zinc-300;
   @apply text-zinc-700;
+  @apply dark:text-zinc-300;
   font-family: var(--font-code) !important;
 }
 

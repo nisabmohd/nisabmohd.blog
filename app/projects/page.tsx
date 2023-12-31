@@ -1,4 +1,6 @@
 import Header from "@/components/header";
+import ProjectCard from "@/components/project-card";
+import { MDXProjectFrontmatter, getAllMetaData } from "@/lib/markdown";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,16 +8,23 @@ export const metadata: Metadata = {
   description: "Explore a collection of my personal projects.",
 };
 
-export default function ProjectPage() {
+export default async function ProjectPage() {
+  const { data } = await getAllMetaData<MDXProjectFrontmatter>("project", {
+    page: 1,
+    count: Infinity,
+  });
+
   return (
     <div>
       <Header
         title="Projects"
         description="Explore a collection of my personal projects."
       />
-      <div>No projects mentioned yet.</div>
+      <div className="grid gap-6 md:grid-cols-3 sm:grid-cols-2 pt-6">
+        {data.map((item) => (
+          <ProjectCard {...item} key={item.githubUrl} />
+        ))}
+      </div>
     </div>
   );
 }
-
-//TODO:

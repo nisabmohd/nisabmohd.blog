@@ -17,13 +17,12 @@ export default function Header({
     <div className="flex flex-col gap-3 border-b-[1px] pb-7 mb-2">
       {top && <p className="text-center text-muted-foreground -mb-2">{top}</p>}
       {sm ? (
-        <h2 className="font-bold text-center md:text-5xl sm:text:4xl text-3xl">
+        <h2 className="font-bold text-center md:text-4xl sm:text:4xl text-3xl">
           {title}
         </h2>
       ) : (
-        <h2 className="font-bold md:text-6xl sm:text:5xl text-3xl">{title}</h2>
+        <h2 className="font-bold md:text-4xl sm:text:4xl text-3xl">{title}</h2>
       )}
-
       <p className="text-muted-foreground">{description}</p>
     </div>
   );

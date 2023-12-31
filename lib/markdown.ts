@@ -22,7 +22,15 @@ export type MDXFrontmatter = {
   author: AuthorType[];
   published: number;
   tags: string[];
-  githubUrl?: string;
+};
+
+export type MDXProjectFrontmatter = {
+  title: string;
+  description: string;
+  published: number;
+  tags: string[];
+  githubUrl: string;
+  imagePath?: string;
 };
 
 const BASE_CONTENT_PATH = "contents";
@@ -47,11 +55,11 @@ function paginate<T>(array: T[], size: number, page: number) {
   return array.slice((page - 1) * size, page * size);
 }
 
-export async function getAllMetaData(
+export async function getAllMetaData<T = MDXFrontmatter>(
   articleType: "blog" | "project",
   filters: Filters
 ) {
-  const contentFolder = articleType == "blog" ? "/blogs" : "projects";
+  const contentFolder = articleType == "blog" ? "/blogs" : "/projects";
   const contentDir = path.join(
     process.cwd(),
     BASE_CONTENT_PATH + contentFolder
@@ -60,7 +68,9 @@ export async function getAllMetaData(
   const resultPromise = Promise.all(
     files.map(async (file) => {
       const fileContent = await fs.readFile(contentDir + `/${file}`, "utf8");
-      const { frontmatter } = await compileMDX<MDXFrontmatter>({
+      const { frontmatter } = await compileMDX<
+        MDXFrontmatter | MDXProjectFrontmatter
+      >({
         source: fileContent,
         options: {
           parseFrontmatter: true,
@@ -77,7 +87,7 @@ export async function getAllMetaData(
   }
   const totalPages = Math.ceil(result.length / filters.count);
   result = paginate(result, filters.count, filters.page);
-  return { data: result, totalPages };
+  return { data: result as T[], totalPages };
 }
 
 export async function readBlogMDX(slug: string) {
