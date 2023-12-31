@@ -17,7 +17,7 @@ export default function AboutPage() {
       <div className="flex sm:flex-row flex-col items-start gap-6 py-5">
         <div className="sm:w-[27%] flex flex-col items-center">
           <Avatar className="w-52 h-52">
-            <AvatarImage src="https://avatars.githubusercontent.com/u/76525761?v=4" />
+            <AvatarImage src="avatar.png" />
             <AvatarFallback>NISAB</AvatarFallback>
           </Avatar>
           <h3 className="text-2xl mt-5 font-bold">Nisab Mohd</h3>
