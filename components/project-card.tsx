@@ -15,7 +15,7 @@ export default function ProjectCard({
       <h2 className="text-2xl font-semibold">{title}</h2>
       <Avatar className="w-56 h-56 mx-auto rounded-none my-5">
         <AvatarImage src={imagePath} />
-        <AvatarFallback className=" rounded-none">CN</AvatarFallback>
+        <AvatarFallback className=" rounded-none">Image</AvatarFallback>
       </Avatar>
 
       <p className="text-muted-foreground my-3 text-sm">{description}</p>
