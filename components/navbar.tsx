@@ -25,7 +25,7 @@ export default function Navbar() {
           <Link
             className={cn(
               buttonVariants({ variant: "link" }),
-              "m-0 p-0 text-[15px]"
+              "m-0 p-0 text-[15px] text-inherit"
             )}
             key={item.href}
             href={item.href}
