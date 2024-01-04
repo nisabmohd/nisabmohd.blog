@@ -5,8 +5,6 @@ import { Suspense } from "react";
 
 type BlogCardProps = MDXFrontmatter;
 
-export const revalidate = 0;
-
 export default async function Blog({ slug, title }: BlogCardProps) {
   return (
     <Link href={`/blog/${slug}`}>
