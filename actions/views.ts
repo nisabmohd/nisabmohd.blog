@@ -13,6 +13,4 @@ export async function incrementViews(slug: string) {
       },
     },
   });
-  revalidatePath('/blog');
-  revalidatePath(`/blog/${slug}`);
 }
