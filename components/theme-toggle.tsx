@@ -1,14 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-
 import { Button } from "@/components/ui/button";
 import { MoonIcon, SunIcon } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export function ModeToggle() {
-  const [mounted, setMounted] = useState(false);
   const { setTheme, theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -20,11 +19,11 @@ export function ModeToggle() {
     <>
       {theme == "dark" ? (
         <Button onClick={() => setTheme("light")} variant="ghost" size="icon">
-          <SunIcon className="h-6 w-6" />
+          <SunIcon className="w-5 h-5" />
         </Button>
       ) : (
         <Button onClick={() => setTheme("dark")} variant="ghost" size="icon">
-          <MoonIcon className="h-6 w-6" />
+          <MoonIcon className="w-5 h-5" />
         </Button>
       )}
     </>
