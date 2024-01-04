@@ -12,9 +12,7 @@ export default async function BlogIndexPage() {
   const blogs = await getAllBlogs();
   return (
     <div>
-      <h3 className="mb-10 text-[21px] font-semibold">
-        Explore a collection of all my blogs here.
-      </h3>
+      <h3 className="mb-10 text-[21px] font-semibold">Explore my blogs.</h3>
       <div className="flex flex-col gap-5">
         {blogs.map(({ frontmatter }) => (
           <Blog key={frontmatter.slug} {...frontmatter} />
