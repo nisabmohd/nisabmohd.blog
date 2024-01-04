@@ -1,7 +1,7 @@
 import { MDXFrontmatter } from "@/lib/markdown";
 import Link from "next/link";
-import prisma from "@/prisma/client";
 import { Suspense } from "react";
+import Views from "./views";
 
 type BlogCardProps = MDXFrontmatter;
 
@@ -13,14 +13,5 @@ export default async function Blog({ slug, title }: BlogCardProps) {
         <Views slug={slug} />
       </Suspense>
     </Link>
-  );
-}
-
-async function Views({ slug }: Pick<BlogCardProps, "slug">) {
-  const blog = await prisma.blog.findUnique({ where: { slug } });
-  return (
-    <span className="text-muted-foreground text-[14.5px]">
-      {blog?.views ?? 0} views
-    </span>
   );
 }

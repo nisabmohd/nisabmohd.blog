@@ -22,12 +22,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="font-sans max-w-[650px] mx-auto sm:px-0 px-5">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" enableSystem disableTransitionOnChange>
           <Navbar />
           <main>{children}</main>
         </ThemeProvider>

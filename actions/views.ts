@@ -14,3 +14,8 @@ export async function incrementViews(slug: string) {
     },
   });
 }
+
+export async function getViews(slug: string) {
+  const blog = await prisma.blog.findUnique({ where: { slug } });
+  return blog?.views;
+}

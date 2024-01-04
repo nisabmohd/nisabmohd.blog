@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { buttonVariants } from "./ui/button";
 import { cn } from "@/lib/utils";
-import { ModeToggle } from "./theme-toggle";
 
 const NAV_ITEMS = [
   {
@@ -32,7 +31,6 @@ export default function Navbar() {
           </Link>
         ))}
       </div>
-      <ModeToggle />
     </nav>
   );
 }

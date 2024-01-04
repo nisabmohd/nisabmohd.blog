@@ -8,8 +8,6 @@ export const metadata: Metadata = {
     "Explore a collection of personal blogs chronicling my coding journey and experiences, filled with insights, challenges, and solutions.",
 };
 
-export const revalidate = 0;
-
 export default async function BlogIndexPage() {
   const blogs = await getAllBlogs();
   return (
