@@ -8,22 +8,25 @@ const NAV_ITEMS = [
     href: "/",
   },
   {
-    title: "Blogs",
-    href: "/blog",
-  },
-  {
     title: "Work",
     href: "/work",
+  },
+  {
+    title: "Blog",
+    href: "/blog",
   },
 ];
 
 export default function Navbar() {
   return (
     <nav className="flex flex-row items-center justify-between">
-      <div className="flex flex-row gap-7 items-center h-32">
+      <div className="flex flex-row gap-4 items-center h-32">
         {NAV_ITEMS.map((item) => (
           <Link
-            className={cn(buttonVariants({ variant: "link" }), "m-0 p-0")}
+            className={cn(
+              buttonVariants({ variant: "link" }),
+              "m-0 p-0 text-[15px]"
+            )}
             key={item.href}
             href={item.href}
           >
