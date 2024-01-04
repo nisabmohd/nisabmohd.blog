@@ -92,6 +92,7 @@ pre {
 pre>code {
   display: grid;
   padding: 18px 0 !important;
+  @apply font-semibold
 }
 
 .code-line {
@@ -112,9 +113,9 @@ pre>code {
 
 
 .highlight-line {
-  border-left: 2.5px solid gray;
-  @apply bg-stone-700/5;
-  @apply dark:bg-stone-800;
+  border-left: 3px solid #a19595;
+  @apply bg-zinc-600/5;
+  @apply dark:bg-zinc-800/45;
 }
 
 .keyword {

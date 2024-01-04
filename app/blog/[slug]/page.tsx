@@ -39,7 +39,7 @@ export default async function SpecificBlogPage({
   return (
     <div>
       <FrontMatter {...frontmatter} />
-      <div className="prose dark:prose-invert prose-neutral py-8 dark:prose-code:text-zinc-200 prose-code:text-zinc-800 dark:prose-code:bg-stone-900 dark:prose-pre:bg-stone-900 prose-code:bg-zinc-50 prose-pre:bg-zinc-50 prose-pre:font-mono">
+      <div className="prose dark:prose-invert prose-neutral py-8 dark:prose-code:text-zinc-200 prose-code:text-[#354150] dark:prose-code:bg-zinc-900 dark:prose-pre:bg-zinc-900 prose-code:bg-stone-50 prose-pre:bg-stone-50 prose-pre:font-mono prose-code:font-medium">
         {content}
       </div>
     </div>
