@@ -20,6 +20,7 @@
     "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-tweet": "^3.2.0",
     "rehype-code-titles": "^1.2.0",
     "rehype-prism-plus": "^1.6.3",
     "remark-gfm": "^4.0.0",

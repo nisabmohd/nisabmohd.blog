@@ -3,6 +3,7 @@ import { InfoIcon } from "lucide-react";
 import Image from "next/image";
 import { ComponentProps } from "react";
 import Link from "next/link";
+import { Tweet } from "react-tweet";
 
 function Highlight({ children }: PropsWithChildren) {
   return (
@@ -72,4 +73,5 @@ export const components = {
   NoWrap,
   Link,
   Quote,
+  Tweet,
 };

@@ -21,7 +21,7 @@ export default function RootLayout({
       className={`${GeistSans.variable} ${GeistMono.variable}`}
       suppressHydrationWarning
     >
-      <body className="font-sans max-w-[700px] dark:bg-[#111010] bg-white dark:text-stone-200 text-black mx-auto sm:px-0 px-5">
+      <body className="font-sans max-w-[670px] dark:bg-[#111010] bg-white dark:text-stone-200 text-black mx-auto sm:px-0 px-5">
         <ThemeProvider
           defaultTheme="system"
           attribute="class"

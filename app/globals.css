@@ -176,3 +176,7 @@ pre>code {
 .highlight-comp>code {
   background-color: transparent !important;
 }
+
+.react-tweet-theme {
+  margin: auto !important;
+}
