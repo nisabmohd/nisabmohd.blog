@@ -7,7 +7,7 @@ import { Tweet } from "react-tweet";
 
 function Highlight({ children }: PropsWithChildren) {
   return (
-    <span className="dark:bg-zinc-800 dark:text-zinc-200 bg-zinc-300/40 text-zinc-700 rounded-md text-[15px] px-[2.5px] py-1 whitespace-nowrap highlight-comp font-medium">
+    <span className="dark:bg-zinc-800 dark:text-zinc-200 bg-zinc-300/40 text-zinc-700 rounded-md text-[15px] px-[5px] py-1 whitespace-nowrap highlight-comp font-medium">
       {children}
     </span>
   );
