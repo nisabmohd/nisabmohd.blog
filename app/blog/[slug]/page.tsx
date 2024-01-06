@@ -39,7 +39,7 @@ export default async function SpecificBlogPage({
   return (
     <div>
       <FrontMatter {...frontmatter} />
-      <div className="prose dark:prose-invert prose-neutral py-8 dark:prose-code:text-zinc-200 prose-code:text-[#354150] dark:prose-code:bg-zinc-900 dark:prose-pre:bg-zinc-900 prose-code:bg-stone-50 prose-pre:bg-stone-50 prose-pre:font-mono prose-code:font-medium">
+      <div className="prose dark:prose-invert prose-neutral py-8 dark:prose-code:text-zinc-200 prose-code:text-[#354150] dark:prose-code:bg-zinc-900 dark:prose-pre:bg-zinc-900 prose-code:bg-stone-50 prose-pre:bg-stone-50 prose-pre:font-mono prose-code:font-medium prose-headings:font-medium">
         {content}
       </div>
     </div>
@@ -49,7 +49,7 @@ export default async function SpecificBlogPage({
 function FrontMatter({ published, title }: MDXFrontmatter) {
   return (
     <div className="flex flex-col">
-      <h3 className="text-2xl font-semibold mb-2">{title}</h3>
+      <h3 className="text-2xl font-medium mb-2">{title}</h3>
       <div className="flex flex-row items-center justify-between">
         <p className="text-sm text-muted-foreground">
           {new Date(published).toDateString()}

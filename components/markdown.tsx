@@ -4,9 +4,9 @@ import Image from "next/image";
 import { ComponentProps } from "react";
 import Link from "next/link";
 
-function Highlight({ children }: { children: string }) {
+function Highlight({ children }: PropsWithChildren) {
   return (
-    <span className="dark:bg-zinc-900 dark:text-zinc-200 bg-zinc-200 text-zinc-700 px-2 rounded-md text-sm py-1 whitespace-nowrap">
+    <span className="dark:bg-zinc-800 dark:text-zinc-200 bg-zinc-300/40 text-zinc-700 px-2 rounded-md text-[15px] py-1 whitespace-nowrap highlight-comp font-medium">
       {children}
     </span>
   );
@@ -18,18 +18,20 @@ function NoWrap({ children }: PropsWithChildren) {
 
 function Note({ children }: PropsWithChildren) {
   return (
-    <div className=" dark:bg-zinc-900 bg-zinc-50 rounded-md px-3 py-4 h-fit prose-p:m-0 my-6 flex flex-row items-start gap-3">
+    <div className=" dark:bg-zinc-900 bg-zinc-50 rounded-md px-3 py-4 h-fit prose-p:m-0 my-6 flex flex-row items-start gap-3 font-medium">
       <InfoIcon className="min-w-[18px] min-h-[18px] max-w-[19px] max-h-[19px]" />
-      <span className="text-sm">{children}</span>
+      <span className="text-[14px]">{children}</span>
     </div>
   );
 }
 
 function Snippet({ children }: { children: string }) {
   return (
-    <code className="dark:bg-zinc-900 font-mono dark:text-zinc-400 bg-zinc-200 text-zinc-700 px-2 rounded-md text-sm py-1 whitespace-nowrap font-medium before:hidden after:hidden">
-      {children}
-    </code>
+    <Highlight>
+      <code className="font-mono whitespace-nowrap font-medium before:hidden bg-transparent after:hidden">
+        {children}
+      </code>
+    </Highlight>
   );
 }
 
@@ -53,6 +55,14 @@ function HTMLTag({ children }: { children: string }) {
   );
 }
 
+function Quote({ children }: PropsWithChildren) {
+  return (
+    <div className="border-l-4 border-[#404040] pl-4 font-semibold italic">
+      {children}
+    </div>
+  );
+}
+
 export const components = {
   Highlight,
   HTMLTag,
@@ -61,4 +71,5 @@ export const components = {
   Note,
   NoWrap,
   Link,
+  Quote,
 };

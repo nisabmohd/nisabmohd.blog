@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function WorkPage() {
   return (
     <div>
-      <h3 className="mb-10 text-[21px] font-semibold">Work experiences</h3>
+      <h3 className="mb-10 text-[21px] font-medium">Work experiences</h3>
       <div>
         <div>
           <div>
