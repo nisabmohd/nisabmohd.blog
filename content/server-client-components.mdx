@@ -1,0 +1,121 @@
+---
+title: React client & server components
+description: The new architecture of React brings server & client components
+published: 1704994875011
+slug: server-client-components
+---
+
+The new React architecture has introduced us to two new approaches to React components, The client components & the server components. While the server components are rendered on the server and client components are rendered on the client-side browser.
+
+<Note>
+  Note that the react server components & SSR (server side rendering) are not
+  the same.
+</Note>
+
+### Server components
+
+React Server Components allow you to write UI that can be rendered and optionally cached on the server. this component is rendered on the server and served to the client as an HTML reducing the client-side computation.
+This allows a react functional component to be marked as <Snippet>async</Snippet> and directly we can access db to fetch data on the server side.
+
+##### Example
+
+```tsx showLineNumbers
+async function BlogList() {
+  const blogs = await getAllBlogs();
+  return (
+    <div>
+      <h3 className="mb-10 text-[21px] font-medium">Explore my blogs.</h3>
+      <div className="flex flex-col gap-5">
+        {blogs.map(({ frontmatter }) => (
+          <Blog key={frontmatter.slug} {...frontmatter} />
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+This approach gives you a lot of benefits such as <Highlight>Data fetching</Highlight>, <Highlight>Caching</Highlight>, <Highlight>Bundling</Highlight>, <Highlight>Streaaming</Highlight> etc. This also helps the app to render heavy libraries on the server itself.
+
+The server components will drastically reduce the waterfall in the client as all data fetching can be performed on the server in parallel. The server components can be wrapped under <HTMLTag>Suspense</HTMLTag> boundary until all the async code resolves and UI is rendered on the server.
+
+<Note>You can render a client component inside a server component</Note>
+
+##### Example of streaming chunks of server components with <HTMLTag>Suspense</HTMLTag>
+
+```tsx showLineNumbers
+type Sluggish = {
+  slug: string;
+};
+
+async function Blog({ slug }: Sluggish) {
+  const blog = await getBlogFromSlug(slug); // mdx file read
+  return <div className="prose">{blog}</div>;
+}
+
+async function Comments({ slug }: Sluggish) {
+  const commentsList = await getAllComments(slug); // db call
+  return (
+    <div>
+      {commentsList.map((comment) => (
+        <div key={comment.id}>{comment.text}</div>
+      ))}
+    </div>
+  );
+}
+
+async function BlogPage({}) {
+  const slug = "/iterables-iterators";
+  return (
+    <div className="flex flex-col gap-5">
+      <Suspense fallback="Loading blog post...">
+        <Blog slug={slug} />
+      </Suspense>
+      <Suspense fallback="Loading comments...">
+        <Comments slug={slug} />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+Remember that server components are rendered on the server so it can be said SSR but SSR does not mean server components.
+
+<Note>
+  Caveats: There is no interactivity in server components such as using{" "}
+  <Highlight>hooks</Highlight>, <Highlight>onClick or other events</Highlight>{" "}
+  etc.
+</Note>
+
+### Client components
+
+Client Components allows you to write interactive UI that can be rendered on the client at request time. the react client components are a kind of traditional way of writing react where things are rendered on the client side itself. Client components are marked with <Snippet>"use client"</Snippet> directive at the top of the file.
+
+##### Example
+
+```tsx showLineNumbers
+"use client";
+
+import { use } from "react";
+
+function LikeButton() {
+  const { currentTheme } = use(themeContext); // using hooks
+  return <button onClick={handleLike}>Like</button>; // interactivity
+}
+```
+
+The main benefits of client components are <Highlight>Interactivity</Highlight> and <Highlight>Browser APIs</Highlight> access (such as <Snippet>localStorage</Snippet>).
+You can use hooks and use <Highlight>context</Highlight> values in client components
+
+<Note>You cant render a server component inside a client component</Note>
+
+because the client boundary does not allow the server components to be rendered on
+the client. When react starts creating the dom tree as soon it observes a client component it stops server rendering and pretends the lower boundary as the client boundary.
+
+So, remember that if you are using any component inside a client component, it will be treated as a client component too and you do not need to mark them with directive <Snippet>"use client"</Snippet>. Also if a server component is passed to a client component as props and then rendered directly then that part of the component is server-rendered.
+
+Frameworks like <Link href="https://nextjs.org/docs">NextJS</Link> also render the client components on the server and are hydrated on the client by sending chunks of Javascript along (Confusing right😥).
+
+### Conclusion
+
+Both client components and server components are powerful and combining them will make the ultimate React, this architecture can be used directly without any setup by <Link href="https://nextjs.org/docs/getting-started/installation">NextJS app router setup</Link>. I know this seems a bit confusing compared to the traditional react approach, it will take time to evolve & to be accepted by a lot of developers. Do check the <Link href="https://react.dev/reference/react">React docs</Link>. for references
