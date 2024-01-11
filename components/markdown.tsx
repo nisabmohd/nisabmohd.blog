@@ -3,7 +3,7 @@ import { InfoIcon } from "lucide-react";
 import Image from "next/image";
 import { ComponentProps } from "react";
 import Link from "next/link";
-import { Tweet } from "react-tweet";
+import { CachedTweet } from "./tweet";
 
 function Highlight({ children }: PropsWithChildren) {
   return (
@@ -60,6 +60,10 @@ function Quote({ children }: PropsWithChildren) {
   return (
     <div className="border-l-4 border-[#2e74e4] pl-4 italic">{children}</div>
   );
+}
+
+function Tweet({ id }: { id: string }) {
+  return <CachedTweet id={id} />;
 }
 
 export const components = {
