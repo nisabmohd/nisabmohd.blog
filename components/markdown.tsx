@@ -20,7 +20,7 @@ function NoWrap({ children }: PropsWithChildren) {
 function Note({ children }: PropsWithChildren) {
   return (
     <div className=" dark:bg-zinc-900 bg-zinc-50 rounded-md px-3 py-4 h-fit prose-p:m-0 my-6 flex flex-row items-start gap-3 ">
-      <InfoIcon className="min-w-[18px] min-h-[18px] max-w-[19px] max-h-[19px]" />
+      <InfoIcon className="min-w-[18px] min-h-[18px] max-w-[19px] max-h-[19px] mt-3" />
       <span className="text-[14px]">{children}</span>
     </div>
   );
