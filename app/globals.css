@@ -92,7 +92,8 @@ pre {
 pre>code {
   display: grid;
   padding: 18px 0 !important;
-  @apply font-medium
+  @apply font-medium;
+  font-size: 0.95em !important;
 }
 
 .code-line {
@@ -113,18 +114,21 @@ pre>code {
 
 
 .highlight-line {
-  border-left: 3px solid #404040;
-  @apply bg-zinc-600/5;
+  border-left: 3px solid #2e74e4;
+  @apply bg-zinc-300/25;
   @apply dark:bg-zinc-800/45;
 }
 
-
 .keyword {
-  color: #f47067;
+  color: #f32e2e;
+}
+
+.dark .keyword {
+  color: #ee6b6b;
 }
 
 .function {
-  color: #4c97f8;
+  color: #8f59d6;
 }
 
 .punctuation {
@@ -140,7 +144,7 @@ pre>code {
 .annotation,
 .boolean,
 .number {
-  color: #0fa295;
+  color: #74a8fa;
 }
 
 .tag {

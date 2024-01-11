@@ -8,10 +8,6 @@ const NAV_ITEMS = [
     href: "/",
   },
   {
-    title: "Work",
-    href: "/work",
-  },
-  {
     title: "Blog",
     href: "/blog",
   },

@@ -54,7 +54,7 @@ const config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)"],
+        sans: ["var(--font-outfit)"],
         mono: ["var(--font-geist-mono)"],
       },
       borderRadius: {
