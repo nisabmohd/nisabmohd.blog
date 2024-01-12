@@ -27,7 +27,10 @@ export default function RootLayout({
       className={`${GeistSans.variable} ${OutFit_Font.variable} ${GeistMono.variable}`}
       suppressHydrationWarning
     >
-      <body className="font-sans max-w-[600px] dark:bg-[#111010] bg-white dark:text-stone-200 text-black mx-auto sm:px-0 px-6">
+      <body
+        className="font-sans max-w-[600px] dark:bg-[#111010] bg-white dark:text-stone-200 text-black mx-auto sm:px-0 px-6"
+        suppressHydrationWarning
+      >
         <ThemeProvider
           defaultTheme="system"
           attribute="class"

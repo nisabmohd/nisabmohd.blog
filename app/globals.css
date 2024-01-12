@@ -197,3 +197,12 @@ pre>code {
   --tweet-color-blue-secondary-hover: #333;
   --tweet-font-color-secondary: #9ca3af;
 }
+
+.tweet-header_avatarOverflow__E2gxj {
+  overflow: visible !important;
+  top: -30px;
+}
+
+.tweet-header_avatarOverflow__E2gxj>img {
+  @apply rounded-full;
+}
