@@ -1,6 +1,7 @@
+import Comments from "@/components/giscus";
 import { MDXFrontmatter, getAllBlogs, getBlogFromSlug } from "@/lib/markdown";
 import { notFound } from "next/navigation";
-import { cache } from "react";
+import { Suspense, cache } from "react";
 
 const cachedGetMdx = cache(getBlogFromSlug);
 
@@ -9,6 +10,11 @@ type PageProps = {
     slug: string;
   };
 };
+
+const repo = process.env.REPO_NAME as `${string}/${string}`;
+const repoId = process.env.REPO_ID!;
+const category = process.env.CATEGORY!;
+const categoryId = process.env.CATEGORY_ID!;
 
 export async function generateStaticParams() {
   const blogs = await getAllBlogs();
@@ -42,6 +48,13 @@ export default async function SpecificBlogPage({
       <div className="prose dark:prose-invert prose-neutral py-8 dark:prose-code:text-zinc-200 prose-code:text-[#354150] dark:prose-code:bg-zinc-900 dark:prose-pre:bg-zinc-900 prose-code:bg-stone-50 prose-pre:bg-stone-50 prose-pre:font-mono prose-code:font-medium prose-headings:font-medium underline-offset-2">
         {content}
       </div>
+      <Comments
+        category={category}
+        categoryId={categoryId}
+        repo={repo}
+        repoId={repoId}
+        key={slug}
+      />
     </div>
   );
 }
