@@ -30,18 +30,21 @@ export default function Home() {
           software development field.
         </p>
       </div>
-      <div className="flex flex-row gap-1 items-center mt-5 -ml-3">
+      <div className="flex flex-row items-center mt-5 -ml-3">
         <Link
           href="https://github.com/nisabmohd"
           className={cn(buttonVariants({ variant: "link" }), "text-inherit")}
         >
-          <GithubIcon className="mr-2 w-5 h-5" /> GitHub
+          <GithubIcon className="mr-1 w-5 h-5" /> GitHub
         </Link>
         <Link
           href="https://twitter.com/MohdNisab"
-          className={cn(buttonVariants({ variant: "link" }), "text-inherit")}
+          className={cn(
+            buttonVariants({ variant: "link" }),
+            "text-inherit -ml-3"
+          )}
         >
-          <TwitterIcon className="mr-2 w-5 h-5" /> Twitter
+          <TwitterIcon className="mr-1 w-5 h-5" /> Twitter
         </Link>
       </div>
     </div>
