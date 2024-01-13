@@ -183,7 +183,7 @@ pre>code {
 
 .react-tweet-theme {
   margin: auto !important;
-  --tweet-body-font-size: 0.875rem !important;
+  --tweet-body-font-size: inherit !important;
   --tweet-font-family: var(--font-sans) !important;
   max-width: 500px !important;
 }

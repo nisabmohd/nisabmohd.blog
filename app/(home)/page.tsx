@@ -1,4 +1,5 @@
 import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { GithubIcon, TwitterIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -29,11 +30,17 @@ export default function Home() {
           software development field.
         </p>
       </div>
-      <div className="flex flex-row gap-2 items-center mt-8">
-        <Link href="https://github.com/nisabmohd" className={buttonVariants()}>
+      <div className="flex flex-row gap-1 items-center mt-5 -ml-3">
+        <Link
+          href="https://github.com/nisabmohd"
+          className={cn(buttonVariants({ variant: "link" }), "text-inherit")}
+        >
           <GithubIcon className="mr-2 w-5 h-5" /> GitHub
         </Link>
-        <Link href="https://twitter.com/MohdNisab" className={buttonVariants()}>
+        <Link
+          href="https://twitter.com/MohdNisab"
+          className={cn(buttonVariants({ variant: "link" }), "text-inherit")}
+        >
           <TwitterIcon className="mr-2 w-5 h-5" /> Twitter
         </Link>
       </div>
