@@ -1,5 +1,5 @@
 import { getAllBlogs } from "@/lib/markdown";
-import Blog from "./blog";
+import BlogCard from "./blog-card";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export default async function BlogIndexPage() {
       <h3 className="mb-10 text-[21px] font-medium">Explore my blogs.</h3>
       <div className="flex flex-col gap-5">
         {blogs.map(({ frontmatter }) => (
-          <Blog key={frontmatter.slug} {...frontmatter} />
+          <BlogCard key={frontmatter.slug} {...frontmatter} />
         ))}
       </div>
     </div>

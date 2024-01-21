@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@giscus/react": "^2.4.0",
-    "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
@@ -22,6 +21,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-tweet": "^3.2.0",
+    "react-wrap-balancer": "^1.1.0",
     "rehype-code-titles": "^1.2.0",
     "rehype-prism-plus": "^1.6.3",
     "remark-gfm": "^4.0.0",

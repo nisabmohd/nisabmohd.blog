@@ -40,7 +40,7 @@ type StaticImgProps = ComponentProps<typeof Image>;
 
 function StaticImg(props: StaticImgProps) {
   return (
-    <div className="relative w-full min-h-[400px] max-h-[450px] mb-16 -mt-2">
+    <div className="relative w-full min-h-[400px] mb-16 -mt-2">
       <Image className="rounded-xl" {...props} alt="" fill />
     </div>
   );

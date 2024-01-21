@@ -8,7 +8,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Nisab Mohd",
-  description: "Nisab Mohd blogs website",
+  description:
+    "Step into my digital world at Nisab's personal website, where I share my passions, experiences, and the things that make life uniquely mine.",
 };
 
 const OutFit_Font = Outfit({

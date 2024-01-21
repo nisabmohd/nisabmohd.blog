@@ -1,7 +1,8 @@
 import Comments from "@/components/giscus";
 import { MDXFrontmatter, getAllBlogs, getBlogFromSlug } from "@/lib/markdown";
 import { notFound } from "next/navigation";
-import { Suspense, cache } from "react";
+import { cache } from "react";
+import Balancer from "react-wrap-balancer";
 
 const cachedGetMdx = cache(getBlogFromSlug);
 
@@ -62,7 +63,9 @@ export default async function SpecificBlogPage({
 function FrontMatter({ published, title }: MDXFrontmatter) {
   return (
     <div className="flex flex-col">
-      <h3 className="text-3xl font-medium mb-2">{title}</h3>
+      <h3 className="text-3xl font-medium mb-2">
+        <Balancer>{title}</Balancer>
+      </h3>
       <div className="flex flex-row items-center">
         <p className="text-[15px] text-muted-foreground">
           {new Date(published).toDateString()}
