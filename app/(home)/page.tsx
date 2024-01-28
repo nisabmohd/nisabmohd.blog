@@ -7,7 +7,7 @@ import Balancer from "react-wrap-balancer";
 export default function Home() {
   return (
     <div>
-      <div className="text-[21px] mb-10 font-medium">
+      <div className="text-[21px] mb-8 font-medium">
         Hey, I&apos;m Nisab Mohd
       </div>
       <div className="flex flex-col gap-6">
