@@ -1,0 +1,22 @@
+---
+title: In NextJS, should I use pages/ or app/?
+description: NextJS use pages or app directory discussion.
+published: 1707193835637
+slug: pages-or-app-dir
+---
+
+In the Next community, there are two versions of this framework: app directory and pages directory. The pages directory has been around for a while, and the app directory arrived in late 2022, causing a lot of controversy among developers. Meta and Vercel handle the app directory to make React's dream a reality.
+
+If you navigate to documentation, there is a dropdown at the top that divides the document into two versions: app directory and pages directory.
+
+<StaticImg src="/app-page.png" />
+
+The pages directory is a traditional way of using React with NextJS's additional APIs, such as <Snippet>getStaticProps</Snippet>, <Snippet>getStaticPath</Snippet>, and <Snippet>getInitialProps</Snippet>. Pages directory has been around for a long time and has a large community. It is a production-grade version that has been used by many tech giants for quite some time. And most libraries and solutions are available for this. In contrast, the app directory's library support and solutions are relatively small.
+
+React's new features, like React Server Components and Server actions, are built upon which the app directory is built. As of the blog post, these features are only usable with NextJS. With the help of React's new architecture, the web can now function seamlessly on both servers and clients. You can access a built-in file-based router called app-router through the app directory. Route handlers are another feature of the app-dir that can be used to build APIs.
+
+NextJS app-dir has built-in caching that caches a page/route at build time, as well as numerous different strategies for building dynamic pages at build time. The app router also supports React's Streaming, which dynamically loads chunks when needed, improving the user experience, and much more. Learn more about <Link href="https://nextjs.org/docs">NextJS</Link> in the documentation.
+
+### Conclusion
+
+The pages directory has been around for a long, whereas the app directory is relatively new; therefore, if you want to create a production-grade application, go with the pages directory, which has a large community and library support, and if you want to discover new React capabilities and patterns, go with the app directory.
