@@ -31,7 +31,6 @@ export default function ThemedImage({
       alt="img"
       width={width ?? 400}
       height={height ?? 400}
-      className="mx-auto"
     />
   );
 }
