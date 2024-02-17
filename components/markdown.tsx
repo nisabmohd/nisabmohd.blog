@@ -29,7 +29,7 @@ function Note({ children }: PropsWithChildren) {
 function Snippet({ children }: { children: string }) {
   return (
     <Highlight>
-      <code className="font-mono whitespace-nowrap font-medium before:hidden bg-transparent after:hidden">
+      <code className="font-code whitespace-nowrap font-medium before:hidden bg-transparent after:hidden">
         {children}
       </code>
     </Highlight>
@@ -53,7 +53,7 @@ function StaticImg(props: StaticImgProps) {
 
 function HTMLTag({ children }: { children: string }) {
   return (
-    <span className="dark:bg-zinc-800 bg-zinc-200 px-2 rounded-md text-sm py-1 mx-[2px] font-normal font-mono">
+    <span className="dark:bg-zinc-800 bg-zinc-200 px-2 rounded-md text-sm py-1 mx-[2px] font-normal font-code">
       {"<"}
       {children}
       {">"}

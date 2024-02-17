@@ -1,10 +1,6 @@
-import Comments from "@/components/giscus";
 import { MDXFrontmatter, getAllBlogs, getBlogFromSlug } from "@/lib/markdown";
 import { notFound } from "next/navigation";
 import { cache } from "react";
-import Balancer from "react-wrap-balancer";
-
-const cachedGetMdx = cache(getBlogFromSlug);
 
 type PageProps = {
   params: {
@@ -12,10 +8,7 @@ type PageProps = {
   };
 };
 
-const repo = process.env.REPO_NAME as `${string}/${string}`;
-const repoId = process.env.REPO_ID!;
-const category = process.env.CATEGORY!;
-const categoryId = process.env.CATEGORY_ID!;
+const cachedGetMdx = cache(getBlogFromSlug);
 
 export async function generateStaticParams() {
   const blogs = await getAllBlogs();
@@ -46,16 +39,9 @@ export default async function SpecificBlogPage({
   return (
     <div>
       <FrontMatter {...frontmatter} />
-      <div className="prose dark:prose-invert prose-neutral py-8 dark:prose-code:text-zinc-200 prose-code:text-[#354150] dark:prose-code:bg-zinc-900 dark:prose-pre:bg-zinc-900 prose-code:bg-stone-50 prose-pre:bg-stone-50 prose-pre:font-mono prose-code:font-medium prose-headings:font-medium underline-offset-2">
+      <div className="prose dark:prose-invert prose-neutral py-8 dark:prose-code:text-zinc-200 prose-code:text-[#354150] dark:prose-code:bg-zinc-900 dark:prose-pre:bg-zinc-900 prose-code:bg-stone-50 prose-pre:bg-stone-50 prose-pre:font-code prose-code:font-medium prose-headings:font-medium underline-offset-2">
         {content}
       </div>
-      <Comments
-        category={category}
-        categoryId={categoryId}
-        repo={repo}
-        repoId={repoId}
-        key={slug}
-      />
     </div>
   );
 }
@@ -63,9 +49,7 @@ export default async function SpecificBlogPage({
 function FrontMatter({ published, title }: MDXFrontmatter) {
   return (
     <div className="flex flex-col">
-      <h3 className="text-3xl font-medium mb-2">
-        <Balancer>{title}</Balancer>
-      </h3>
+      <h3 className="text-3xl font-medium mb-2">{title}</h3>
       <div className="flex flex-row items-center">
         <p className="text-[15px] text-muted-foreground">
           {new Date(published).toDateString()}

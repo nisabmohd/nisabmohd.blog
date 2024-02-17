@@ -93,7 +93,6 @@ pre>code {
   display: grid;
   padding: 18px 0 !important;
   @apply font-medium;
-  font-size: 0.95em !important;
 }
 
 .code-line {

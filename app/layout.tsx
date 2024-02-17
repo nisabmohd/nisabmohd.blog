@@ -3,7 +3,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import Navbar from "@/components/navbar";
-import { Outfit } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -12,9 +12,14 @@ export const metadata: Metadata = {
     "Step into my digital world at Nisab's personal website, where I share my passions, experiences, and the things that make life uniquely mine.",
 };
 
-const OutFit_Font = Outfit({
-  variable: "--font-outfit",
+const MainFont = Space_Grotesk({
+  variable: "--font-body",
   subsets: ["latin"],
+});
+
+const CodeFont = JetBrains_Mono({
+  variable: "--font-code",
+  subsets: ["cyrillic"],
 });
 
 export default function RootLayout({
@@ -25,11 +30,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} ${OutFit_Font.variable} ${GeistMono.variable}`}
+      className={`${GeistSans.variable} ${MainFont.variable} ${CodeFont.variable} ${GeistMono.variable}`}
       suppressHydrationWarning
     >
       <body
-        className="font-sans max-w-[600px] dark:bg-[#111010] bg-white dark:text-stone-200 text-black mx-auto sm:px-0 px-6"
+        className="font-body max-w-[600px] dark:bg-[#111010] bg-white dark:text-stone-200 text-black mx-auto sm:px-0 px-6"
         suppressHydrationWarning
       >
         <ThemeProvider
