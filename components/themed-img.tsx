@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { StaticImg } from "./markdown";
+import { components } from "./markdown";
 import { useEffect, useState } from "react";
 
 export default function ThemedImage({
@@ -26,7 +26,7 @@ export default function ThemedImage({
 
   if (!imagePath) return null;
   return (
-    <StaticImg
+    <components.StaticImg
       src={imagePath}
       alt="img"
       width={width ?? 400}
