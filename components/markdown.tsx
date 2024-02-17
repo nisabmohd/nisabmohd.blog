@@ -42,7 +42,7 @@ type StaticImgProps = ComponentProps<typeof Image>;
 function StaticImg(props: StaticImgProps) {
   return (
     <Image
-      className="rounded-xl max-w-full mx-auto border-[1px] dark:border-zinc-800 border-zinc-400"
+      className="rounded-xl max-w-full mx-auto"
       {...props}
       alt="img"
     />
