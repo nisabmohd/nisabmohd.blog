@@ -6,12 +6,10 @@ import { useEffect, useState } from "react";
 
 export default function ThemedImage({
   filename,
-  ext,
   height,
   width,
 }: {
   filename: string;
-  ext: string;
   width?: number;
   height?: number;
 }) {
@@ -20,9 +18,9 @@ export default function ThemedImage({
 
   useEffect(() => {
     if (!resolvedTheme) return;
-    const exactFileName = "/" + filename + "-" + resolvedTheme + "." + ext;
+    const exactFileName = `/(${resolvedTheme})${filename}`;
     setImagePath(exactFileName);
-  }, [resolvedTheme, filename, ext]);
+  }, [resolvedTheme, filename]);
 
   if (!imagePath) return null;
   return (
