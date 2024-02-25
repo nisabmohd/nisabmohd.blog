@@ -5,6 +5,15 @@ import { ComponentProps } from "react";
 import Link from "next/link";
 import ThemedImage from "./themed-img";
 import { CachedTweet } from "./tweet";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 function Highlight({ children }: PropsWithChildren) {
   return (
@@ -41,11 +50,7 @@ type StaticImgProps = ComponentProps<typeof Image>;
 
 function StaticImg(props: StaticImgProps) {
   return (
-    <Image
-      className="rounded-xl max-w-full mx-auto"
-      {...props}
-      alt="img"
-    />
+    <Image className="rounded-xl max-w-full mx-auto" {...props} alt="img" />
   );
 }
 
@@ -80,4 +85,11 @@ export const components = {
   Quote,
   Tweet,
   ThemedImage,
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 };
