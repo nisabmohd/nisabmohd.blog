@@ -159,7 +159,7 @@ pre>code {
   color: hsla(275, 80%, 71%, 1)
 }
 
-.string,
+.dark .string,
 .constant,
 .annotation,
 .boolean,
@@ -167,12 +167,12 @@ pre>code {
   color: hsla(210, 100%, 66%, 1)
 }
 
-.tag,
+.dark .tag,
 .attr-value {
   color: hsla(131, 43%, 57%, 1)
 }
 
-.attr-name {
+.dark .attr-name {
   color: #cacaca;
 }
 
