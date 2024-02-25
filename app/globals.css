@@ -139,7 +139,10 @@ pre>code {
   color: hsla(211, 100%, 42%, 1);
 }
 
-.tag,
+.tag {
+  color: #e02518;
+}
+
 .attr-value {
   color: hsla(133, 50%, 32%, 1)
 }
@@ -167,9 +170,12 @@ pre>code {
   color: hsla(210, 100%, 66%, 1)
 }
 
-.dark .tag,
-.attr-value {
+.dark .attr-value {
   color: hsla(131, 43%, 57%, 1)
+}
+
+.dark .tag {
+  color: #f47067
 }
 
 .dark .attr-name {
