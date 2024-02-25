@@ -80,10 +80,6 @@ body {
   scroll-behavior: smooth;
 }
 
-.dark {
-  color-scheme: dark;
-}
-
 pre {
   padding: 0 !important;
   width: inherit;
@@ -92,11 +88,10 @@ pre {
 pre>code {
   display: grid;
   padding: 18px 0 !important;
-  @apply font-medium;
 }
 
 .code-line {
-  border-left: 3px solid transparent;
+  border-left: 2px solid transparent;
   padding: 0.75px 8px;
 }
 
@@ -113,21 +108,19 @@ pre>code {
 
 
 .highlight-line {
-  border-left: 3px solid #2e74e4;
+  border-left: 2px solid #2e74e4;
   @apply bg-zinc-300/25;
   @apply dark:bg-zinc-800/45;
 }
 
-.keyword {
-  color: #f32e2e;
-}
+/*  light  mode syntax highlight */
 
-.dark .keyword {
-  color: #ee6b6b;
+.keyword {
+  color: hsla(336, 65%, 45%, 1);
 }
 
 .function {
-  color: #8f59d6;
+  color: hsla(274, 71%, 43%, 1);
 }
 
 .punctuation {
@@ -143,19 +136,44 @@ pre>code {
 .annotation,
 .boolean,
 .number {
-  color: #74a8fa;
+  color: hsla(211, 100%, 42%, 1);
 }
 
-.tag {
-  color: #6266d1
+.tag,
+.attr-value {
+  color: hsla(133, 50%, 32%, 1)
 }
 
 .attr-name {
-  color: #a19595;
+  color: #313131;
 }
 
+
+/*  dark mode syntax highlight */
+
+.dark .keyword {
+  color: hsla(341, 90%, 67%, 1)
+}
+
+.dark .function {
+  color: hsla(275, 80%, 71%, 1)
+}
+
+.string,
+.constant,
+.annotation,
+.boolean,
+.number {
+  color: hsla(210, 100%, 66%, 1)
+}
+
+.tag,
 .attr-value {
-  color: #0fa295;
+  color: hsla(131, 43%, 57%, 1)
+}
+
+.attr-name {
+  color: #cacaca;
 }
 
 
