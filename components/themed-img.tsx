@@ -17,7 +17,7 @@ export default function ThemedImage({
   const [imagePath, setImagePath] = useState<string>();
 
   useEffect(() => {
-    if (!resolvedTheme || resolved theme == "system") return;
+    if (!resolvedTheme || resolvedTheme == "system") return;
     const exactFileName = `/(${resolvedTheme})${filename}`;
     setImagePath(exactFileName);
   }, [resolvedTheme, filename]);
