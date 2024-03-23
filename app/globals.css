@@ -120,7 +120,7 @@ pre>code {
 }
 
 .function {
-  color: hsla(274, 71%, 43%, 1);
+  color: #2d5e9d
 }
 
 .punctuation {
@@ -136,11 +136,11 @@ pre>code {
 .annotation,
 .boolean,
 .number {
-  color: hsla(211, 100%, 42%, 1);
+  color: hsl(0deg 0% 41.25%)
 }
 
 .tag {
-  color: #e02518;
+  color: hsla(336, 65%, 45%, 1);
 }
 
 .attr-value {
@@ -159,7 +159,7 @@ pre>code {
 }
 
 .dark .function {
-  color: hsla(275, 80%, 71%, 1)
+  color: hsla(210, 100%, 66%, 1)
 }
 
 .dark .string,
@@ -167,7 +167,7 @@ pre>code {
 .annotation,
 .boolean,
 .number {
-  color: hsla(210, 100%, 66%, 1)
+  color: hsl(0, 0%, 71%)
 }
 
 .dark .attr-value {
@@ -175,7 +175,7 @@ pre>code {
 }
 
 .dark .tag {
-  color: #f47067
+  color: hsla(341, 90%, 67%, 1)
 }
 
 .dark .attr-name {
@@ -207,7 +207,7 @@ pre>code {
 .react-tweet-theme {
   margin: auto !important;
   --tweet-body-font-size: inherit !important;
-  --tweet-font-family: var(--font-sans) !important;
+  --tweet-font-family: var(--font-body) !important;
   max-width: 500px !important;
 }
 
