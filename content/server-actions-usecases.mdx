@@ -1,0 +1,123 @@
+---
+title: Server Actions in React beyond Forms
+description: Exploring the Unique Use Cases of Peops Server Actions in React.
+published: 1711212273737
+slug: server-actions-usecases
+---
+
+<Quote>
+  Server action are asyncronous function that are executed on server.
+</Quote>
+
+A common conversation among Next and React developers is regarding server action on forms, which is a react component that extends traditional forms and allows you to send an action prop.
+
+{/* When server actions were in their early phases, they were only demonstrated with forms; however, as server actions became more stable, they opened up a plethora of other uses that were never explored or included. */}
+
+### Convention :
+
+Server actions are peice of code that is runned on the server triggered by client or server components. A server component can be made very easily marking an async function with <Snippet>use server</Snippet> directive.
+
+###### 1. Marking a file with use server and define server components in it.
+
+This can be used even by client components by importing them and also can be used with server components
+
+```tsx showLineNumbers
+"use server";
+export async function create() {
+  // ...
+}
+```
+
+###### 2. Making an async function within server component
+
+This method is useful when you have an action that is only required at one place.
+
+<Note>
+  The create action will never reach client even though it is created in a
+  component.
+</Note>
+
+```tsx showLineNumbers
+// Server Component
+export default function Page() {
+  // Server Action
+  async function create() {
+    'use server'
+
+    // ...
+  }
+
+  return (
+    // ...
+  )
+}
+```
+
+### Using server action in forms
+
+React introduces the form component, a wrapper for the standard HTML form element that uses an action prop to trigger a server action upon form submission. T
+
+```tsx showLineNumbers
+export default function LoginPage() {
+  return <form action={login}></form>;
+}
+```
+
+his component can be used in client and server components. The most recent react dom hooks, <Snippet>useFormStatus</Snippet> & <Snippet>useFormState</Snippet>, can be used with client components.
+
+### Event handlers
+
+Event handlers such as onClick and onChange can initiate server operations when client components require engagement. Although you can start a server action, React advises taking care of the client's progressivity to enhance the user experience.
+
+```tsx showLineNumbers
+"use client";
+
+import { incrementLike } from "./actions";
+import { useState } from "react";
+
+export default function LikeButton({ initialLikes }: { initialLikes: number }) {
+  const [likes, setLikes] = useState(initialLikes);
+
+  return (
+    <>
+      <p>Total Likes: {likes}</p>
+      <button
+        onClick={async () => {
+          const updatedLikes = await incrementLike();
+          setLikes(updatedLikes);
+        }}
+      >
+        Like
+      </button>
+    </>
+  );
+}
+```
+
+### Calling inside useEffects
+
+You can use the React useEffect hook to invoke a Server Action when the component mounts or a dependency changes. Remember to consider the behavior and caveats of useEffect.
+
+```tsx showLineNumbers
+"use client";
+
+import { incrementViews } from "./actions";
+import { useState, useEffect } from "react";
+
+export default function ViewCount({ initialViews }: { initialViews: number }) {
+  const [views, setViews] = useState(initialViews);
+
+  useEffect(() => {
+    const updateViews = async () => {
+      const updatedViews = await incrementViews();
+      setViews(updatedViews);
+    };
+
+    updateViews();
+  }, []);
+
+  return <p>Total Views: {views}</p>;
+}
+```
+
+When utilising server actions, please take client-to-server security into consideration. These are fantastic, brand-new features that address a very specific use case involving the running of some code on the server.
