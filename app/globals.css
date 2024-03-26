@@ -91,7 +91,7 @@ pre>code {
 }
 
 .code-line {
-  border-left: 2px solid transparent;
+  border-left: 3px solid transparent;
   padding: 0.75px 8px;
 }
 
@@ -108,7 +108,7 @@ pre>code {
 
 
 .highlight-line {
-  border-left: 2px solid #2e74e4;
+  border-left: 3px solid #2e74e4;
   @apply bg-zinc-300/25;
   @apply dark:bg-zinc-800/45;
 }
