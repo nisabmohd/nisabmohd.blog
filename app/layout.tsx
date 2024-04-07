@@ -34,7 +34,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body
-        className="font-body max-w-[600px] dark:bg-[#111010] bg-white dark:text-stone-200 text-black mx-auto sm:px-0 px-6"
+        className="font-body max-w-[600px] dark:bg-neutral-950 bg-white dark:text-stone-200 text-black mx-auto sm:px-0 px-6"
         suppressHydrationWarning
       >
         <ThemeProvider
