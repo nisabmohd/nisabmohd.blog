@@ -16,7 +16,7 @@ To begin, let's create a file called <Highlight>auth.ts</Highlight> in the lib f
 ```ts:lib/auth.ts showLineNumbers {17}
 "use server";
 
-import { SignJWT } from "jose";
+import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
 // Please store in env variables
