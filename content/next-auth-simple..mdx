@@ -28,7 +28,7 @@ async function encrypt(payload: any) {
     .sign(JWTSECRET);
 }
 
-// exported server action to login
+// exported function to login
 export async function login(credentials: UserCredentials) {
   // logic for verify user credentials from db
   // user from db
@@ -40,9 +40,9 @@ export async function login(credentials: UserCredentials) {
 }
 ```
 
-After receiving the user credentials and using a database to confirm the user's validity, the login server action encrypts the user payload using JWT. It then returns a token that is stored in cookies.
+After receiving the user credentials and using a database to confirm the user's validity, the login function encrypts the user payload using JWT. It then returns a token that is stored in cookies.
 
-To obtain the user information contained in the cookie, you can utilise a helper server action. Let's do it in the same file, which does require a decrypt function in order to decode the session token.
+To obtain the user information contained in the cookie, you can utilise a helper function. Let's do it in the same file, which does require a decrypt function in order to decode the session token.
 
 ```ts:lib/auth.ts showLineNumbers
 async function decrypt(token: string): Promise<any> {
@@ -56,7 +56,7 @@ async function decrypt(token: string): Promise<any> {
   }
 }
 
-// exported server action to access user info
+// exported function to access user info
 export async function getSession() {
   const session = cookies().get("session")?.value;
   if (!session) return null;
@@ -67,7 +67,7 @@ export async function getSession() {
 Currently, we have the login and getSession functions to allow users to log in. Let's create a logout function that would finally remove the token to log users out of the application.
 
 ```ts:lib/auth.ts showLineNumbers
-// exported server action to logout
+// exported function to logout
 export async function logout() {
   // remove session from cookie
   cookies().set("session", "", { expires: new Date(0) });
@@ -107,7 +107,7 @@ export async function middleware(req: NextRequest) {
 }
 ```
 
-The server actions that we imported from the auth file are now ready to be used. If the user is present, the page can be viewed; if not, the user is redirected to the auth page via the getSession action. and when also when user is logged in the logout can be done by logout button that calls logout server action that also indeed take to auth page.
+The functions that we imported from the auth file are now ready to be used. If the user is present, the page can be viewed; if not, the user is redirected to the auth page via the getSession action. and when also when user is logged in the logout can be done by logout button that calls logout action that also indeed take to auth page.
 
 ```tsx:app/page.tsx showLineNumbers
 import { getSession, logout } from "@/lib/auth";
@@ -133,7 +133,7 @@ export default async function Home() {
 }
 ```
 
-The code for the auth page, which calls the login server action to authenticate and then reroutes to the homepage, is shown below.
+The code for the auth page, which calls the login within an server action to authenticate and then reroutes to the homepage, is shown below.
 
 ```tsx:app/auth/page.tsx showLineNumbers
 import { login } from "@/lib/auth";
