@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -16,12 +18,6 @@ const fontSpaceGrotesk = Space_Grotesk({
   variable: "--font-space",
 });
 
-const jetbrainsFont = JetBrains_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-jetbrains",
-});
-
 export default function RootLayout({
   children,
 }: {
@@ -30,7 +26,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fontSpaceGrotesk.variable} ${jetbrainsFont.variable}`}
+      className={`${fontSpaceGrotesk.variable} ${GeistMono.variable} ${GeistSans.variable}`}
       suppressHydrationWarning
     >
       <body
