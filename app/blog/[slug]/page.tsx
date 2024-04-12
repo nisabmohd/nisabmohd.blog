@@ -49,9 +49,9 @@ export default async function SpecificBlogPage({
 function FrontMatter({ published, title }: MDXFrontmatter) {
   return (
     <div className="flex flex-col">
-      <h3 className="text-3xl font-medium mb-2">{title}</h3>
+      <h3 className="text-2xl font-medium mb-2">{title}</h3>
       <div className="flex flex-row items-center">
-        <p className="text-sm font-medium text-muted-foreground">
+        <p className="text-neutral-400 text-[15px]">
           {new Date(published).toDateString()}
         </p>
       </div>

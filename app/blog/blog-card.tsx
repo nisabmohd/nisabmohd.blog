@@ -5,8 +5,8 @@ type BlogCardProps = MDXFrontmatter;
 export default async function Blog({ slug, title, published }: BlogCardProps) {
   return (
     <Link href={`/blog/${slug}`}>
-      <h3 className="sm:mb-1 mb-0.5">{title}</h3>
-      <span className="text-sm font-medium text-muted-foreground">
+      <p className="mb-[0.15rem]">{title}</p>
+      <span className="text-neutral-400 text-[15px]">
         {new Date(published).toDateString()}
       </span>
     </Link>

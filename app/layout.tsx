@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
 import { GeistSans } from "geist/font/sans";
@@ -12,12 +11,6 @@ export const metadata: Metadata = {
     "Step into my digital world at Nisab's personal website, where I share my passions, experiences, and the things that make life uniquely mine.",
 };
 
-const fontSpaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-space",
-});
-
 export default function RootLayout({
   children,
 }: {
@@ -26,11 +19,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fontSpaceGrotesk.variable} ${GeistMono.variable} ${GeistSans.variable}`}
+      className={`${GeistMono.variable} ${GeistSans.variable}`}
       suppressHydrationWarning
     >
       <body
-        className="font-body max-w-[600px] dark:bg-neutral-950 bg-white dark:text-stone-200 text-black mx-auto sm:px-0 px-6"
+        className="font-regular  max-w-[650px] dark:bg-zinc-950 bg-white dark:text-stone-300 text-black mx-auto sm:px-0 px-6"
         suppressHydrationWarning
       >
         <ThemeProvider

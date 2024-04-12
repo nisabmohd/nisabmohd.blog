@@ -6,8 +6,10 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div>
-      <div className="text-2xl mb-8 font-medium">Hey, I&apos;m Nisab Mohd</div>
-      <div className="flex flex-col gap-4 prose dark:prose-invert prose-p:m-0">
+      <div className="text-2xl mb-8 font-medium">
+        Hey, I&apos;m Nisab Mohd 👋
+      </div>
+      <div className="flex flex-col gap-4 text-inherit prose dark:prose-invert prose-p:m-0">
         <p>
           I am a software engineer with a strong background in full-stack
           development and data structures. I am a passionate and highly skilled
@@ -35,7 +37,7 @@ export default function Home() {
           href="https://github.com/nisabmohd"
           className={cn(buttonVariants({ variant: "link" }), "text-inherit")}
         >
-          <GithubIcon className="mr-1 w-5 h-5" /> GitHub
+          <GithubIcon className="mr-1 w-4 h-4" /> GitHub
         </Link>
         <Link
           href="https://twitter.com/MohdNisab"
@@ -44,7 +46,7 @@ export default function Home() {
             "text-inherit -ml-3"
           )}
         >
-          <TwitterIcon className="mr-1 w-5 h-5" /> Twitter
+          <TwitterIcon className="mr-1 w-4 h-4" /> Twitter
         </Link>
       </div>
     </div>
