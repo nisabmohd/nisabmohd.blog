@@ -66,7 +66,7 @@ function HTMLTag({ children }: { children: string }) {
 
 function Quote({ children }: PropsWithChildren) {
   return (
-    <div className="border-l-4 border-[#2e74e4] pl-4 italic">{children}</div>
+    <div className="border-l-4 border-[#808080] pl-4 italic">{children}</div>
   );
 }
 
