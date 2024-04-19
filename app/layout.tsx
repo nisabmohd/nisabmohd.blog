@@ -19,11 +19,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistMono.variable} ${GeistSans.variable}`}
+      className={`${GeistMono.variable} ${GeistSans.variable} dark`}
       suppressHydrationWarning
     >
       <body
-        className="font-regular  max-w-[650px] dark:bg-zinc-950 bg-white dark:text-stone-300 text-black mx-auto sm:px-0 px-6"
+        className="font-regular max-w-[650px] mx-auto sm:px-0 px-6"
         suppressHydrationWarning
       >
         <ThemeProvider

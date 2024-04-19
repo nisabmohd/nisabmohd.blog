@@ -35,16 +35,13 @@ export default function Home() {
       <div className="flex flex-row items-center mt-5 -ml-3">
         <Link
           href="https://github.com/nisabmohd"
-          className={cn(buttonVariants({ variant: "link" }), "text-inherit")}
+          className={buttonVariants({ variant: "link" })}
         >
           <GithubIcon className="mr-1 w-4 h-4" /> GitHub
         </Link>
         <Link
           href="https://twitter.com/MohdNisab"
-          className={cn(
-            buttonVariants({ variant: "link" }),
-            "text-inherit -ml-3"
-          )}
+          className={buttonVariants({ variant: "link", className: "-ml-3" })}
         >
           <TwitterIcon className="mr-1 w-4 h-4" /> Twitter
         </Link>
