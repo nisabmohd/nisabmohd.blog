@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div>
-      <div className="text-2xl mb-8 font-semibold">
+      <div className="text-2xl mb-8 font-medium">
         Hey, I&apos;m Nisab Mohd 👋
       </div>
       <div className="flex flex-col gap-4 text-inherit prose dark:prose-invert prose-p:m-0">

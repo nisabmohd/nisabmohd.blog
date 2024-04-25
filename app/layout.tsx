@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 const font = Albert_Sans({
   subsets: ["latin"],
   display: "swap",
-  weight: "400",
   variable: "--font-regular",
 });
 
@@ -30,7 +29,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body
-        className="font-regular max-w-[650px] mx-auto sm:px-0 px-6 tracking-wide"
+        className="font-regular max-w-[650px] mx-auto sm:px-0 px-6 tracking-wide bg-neutral-50 dark:bg-neutral-950/10"
         suppressHydrationWarning
       >
         <ThemeProvider

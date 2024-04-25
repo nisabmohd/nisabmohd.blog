@@ -12,7 +12,7 @@ export default async function BlogIndexPage() {
   const blogs = await getAllBlogs();
   return (
     <div>
-      <h3 className="mb-8 text-2xl font-semibold">Explore my blog</h3>
+      <h3 className="mb-8 text-2xl font-medium">Explore my blog</h3>
       <div className="flex flex-col gap-5">
         {blogs.map(({ frontmatter }) => (
           <BlogCard key={frontmatter.slug} {...frontmatter} />
