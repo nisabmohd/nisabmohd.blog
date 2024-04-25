@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
-import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { Albert_Sans } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -10,6 +10,13 @@ export const metadata: Metadata = {
   description:
     "Step into my digital world at Nisab's personal website, where I share my passions, experiences, and the things that make life uniquely mine.",
 };
+
+const font = Albert_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  weight: "400",
+  variable: "--font-regular",
+});
 
 export default function RootLayout({
   children,
@@ -19,11 +26,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistMono.variable} ${GeistSans.variable} dark`}
+      className={`${GeistMono.variable} ${font.variable} dark`}
       suppressHydrationWarning
     >
       <body
-        className="font-regular max-w-[650px] mx-auto sm:px-0 px-6"
+        className="font-regular max-w-[650px] mx-auto sm:px-0 px-6 tracking-wide"
         suppressHydrationWarning
       >
         <ThemeProvider
