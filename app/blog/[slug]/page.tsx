@@ -51,7 +51,7 @@ function FrontMatter({ published, title }: MDXFrontmatter) {
     <div className="flex flex-col">
       <h3 className="text-2xl font-medium mb-2">{title}</h3>
       <div className="flex flex-row items-center">
-        <p className="text-neutral-400 text-[15px]">
+        <p className="text-muted-foreground text-[15px]">
           {new Date(published).toDateString()}
         </p>
       </div>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
 import { GeistMono } from "geist/font/mono";
-import { Albert_Sans } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Step into my digital world at Nisab's personal website, where I share my passions, experiences, and the things that make life uniquely mine.",
 };
 
-const font = Albert_Sans({
+const font = DM_Sans({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-regular",
