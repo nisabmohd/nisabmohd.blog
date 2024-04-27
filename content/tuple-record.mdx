@@ -1,0 +1,144 @@
+---
+title: My Take on JavaScript's Record & Tuple Proposal.
+description: In this blog, I delve into my personal journey discovering the remarkable advantages of JavaScript's record and tuple proposal.
+published: 1714203796227
+slug: record-tuple
+---
+
+This proposal introduces two data structures for JavaScript that are deeply nested immutable objects. If you haven't already, check out the TC39 proposal at <a href="https://github.com/tc39/proposal-record-tuple"><Highlight>tc39/proposal-record-tuple</Highlight></a>. Record is a deeply nested, object-like data structure that is primitive in nature. The primitive data type tuple, on the other hand, is deeply nested, immutable, and has an array-like appearance.
+
+Since this data structure only contains primitives, it can also be referred to as a compound primitive. At this stage of the proposal, the primitives are indicated by a bar or hash in front, but this could change in later stages. Let's look at each data structure's example below.
+
+#### Record
+
+This is analogous to an object having a key-value pair that can only contain tuples, records, and primitives. You can access by key and index as object and arrays respectively.
+
+```js showLineNumbers
+// remember record only takes primitives
+const rec = #{
+  id: 123,
+  name: "Nisab Mohd",
+  age: 23,
+  favNumbers: #[8, 2, 3, 4], // yes, tuple is primitive
+};
+
+// accessing values
+console.log(rec.name);
+console.log(rec.favNumbers[1]);
+
+// equality check
+const obj1 = { name: "Nisab" };
+const obj2 = { name: "Nisab" };
+// false, because the refrence equality is checked
+console.log(obj1 == obj2);
+
+const rec1 = #{ name: "Nisab" };
+const rec2 = #{ name: "Nisab" };
+// true, the value equality is checked
+console.log(rec1 == rec2);
+
+// spread like objects
+const rec3 = #{ ...rec1 };
+```
+
+#### Tuple
+
+Like records, tuples only contain primitives, tuples, or records; they are immutable, and all Array methods can be applied to them. Tuples are similar to arrays in that values can be accessed from them using index notation.
+
+```js showLineNumbers
+const tup = #["commit", "proceed", "resolve"];
+
+// accessing index values
+console.log(tup[0]);
+
+// spread like array
+const tupCopy = #[...tup];
+
+// Array methods
+tup.forEach((item) => console.log(item));
+
+// equality check
+console.log(tup == tupCopy);
+```
+
+As you can see, this proposal is very promising and may find many applications in the future. I personally find this useful for a Leetcode problem called <a href="https://leetcode.com/problems/group-anagrams/"><Highlight>Group Anagram</Highlight></a>, where the goal is to return all of the groups of anagaram in the result.
+
+#### Problem
+
+```js
+given input = ["eat", "tea", "tan", "ate", "nat", "bat"];
+resultant output = [["bat"], ["nat", "tan"], ["ate", "eat", "tea"]];
+```
+
+I know there are other ways to solve this problem, but this approach highlights this proposal, so let's talk about it. I solved this problem in Java using Map. In essence, anagarams are words with the same letter frequency.
+
+```txt
+lets take "eat" and "tea" values if you make a frequency map of both.
+
+ e -> 1 // e occurs once in both tea and eat
+ a -> 1 // a occurs once in both tea and eat
+ t -> 1 // t occurs once in both tea and eat
+
+both "tea" and "eat" have same frequncy map hence,
+I can say they are anagarams.
+```
+
+In order to determine if two words are anagrams, I employed the frequency map approach. However, we had to group them according to the requirements, so I created another map that uses the frequency map as the key and the list of strings as the value.
+
+```java
+var map = new Map<Map<Character,Integer>,List<String>>();
+// {e-> 1, a->1, t->1} -> ["ate", "eat", "tea"]
+```
+
+In Javascript, the map compares keys by <Highlight>==</Highlight>, so for a map as key, it will check the reference, which we don't want. This is where the problem lies in Javascript. Java maps operate on the equals and hashcode methods. For example, when equals is applied to a frequency map, it yields the same hashcode, implying that the keys are the same. This Java solution solves the problem, but it won't function at all if we try the same thing in Javascript.
+
+```java showLineNumbers
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<Map<Character,Integer>,List<String>> map=new HashMap<>();
+        for(String item:strs){
+            Map<Character,Integer> m=getFreqMap(item);
+            if(map.get(m)==null) map.put(m,new ArrayList<>());
+            map.get(m).add(item);
+        }
+        List<List<String>> ans=new LinkedList<>();
+        map.forEach((k,v)->{
+           ans.add(v) ;
+        });
+        return ans;
+    }
+    private Map<Character,Integer> getFreqMap(String s){
+        Map<Character,Integer> map=new HashMap<>();
+        for(int i=0;i<s.length();i++){
+            char t=s.charAt(i);
+            map.put(t,map.getOrDefault(t,0)+1);
+        }
+        return map;
+    }
+}
+```
+
+Records can help achieve the same strategy as Java in this way: string arrays are stored in values, and frequency records are stored in map keys. Since the equal comparison checks primitive value comparison rather than reference comparison, it succeeds when records are stored in data structures like Map or Set in JavaScript
+
+```js showLineNumbers
+function groupAnagrams(strs) {
+  const map = new Map();
+  for (let str of strs) {
+    const t = getFreqMap(str);
+    if (!map.has(t)) map.set(t, []);
+    map.get(t).push(str);
+  }
+  return [...map.values()];
+}
+
+function getFreqMap(str) {
+  const freqmap = {};
+  for (let i = 0; i < str.length; i++) {
+    let char = str.charAt(i);
+    freqmap[char] = (freqmap[char] ?? 0) + 1;
+  }
+  return #{ ...freqmap };
+}
+```
+
+As a result, I can conclude that records and tuples are a very good proposal that can alter many of the things we implement in different ways. Tuples and records also have a variety of use cases, but I concentrated on the anagram problem.
