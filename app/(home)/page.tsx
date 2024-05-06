@@ -9,7 +9,7 @@ export default function Home() {
       <div className="text-2xl mb-8 font-medium">
         Hey, I&apos;m Nisab Mohd 👋
       </div>
-      <div className="flex sm:flex-row flex-col-reverse items-start gap-8">
+      <div className="flex sm:flex-row flex-col items-start gap-8">
         <Image
           src="/profile.png"
           width={110}
