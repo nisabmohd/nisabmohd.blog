@@ -15,7 +15,7 @@ export default function Home() {
           width={110}
           height={100}
           alt="profile"
-          className="rounded-lg"
+          className="rounded-lg mt-1.5"
         />
         <p className="text-inherit prose dark:prose-invert prose-p:m-0">
           I am a software engineer with a strong background in full-stack
