@@ -44,3 +44,14 @@ export async function getBlogFromSlug(slug: string) {
   const allBlogs = await getAllBlogs();
   return allBlogs.find((blog) => blog.frontmatter.slug == slug);
 }
+
+export async function getPrevNextBlog(currentSlug: string) {
+  const allBlogs = await getAllBlogs();
+  const currentBlogIndex = allBlogs.findIndex(
+    (item) => item.frontmatter.slug == currentSlug
+  );
+  return {
+    next: allBlogs[currentBlogIndex - 1]?.frontmatter,
+    prev: allBlogs[currentBlogIndex + 1]?.frontmatter,
+  };
+}

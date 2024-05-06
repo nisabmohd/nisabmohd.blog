@@ -1,3 +1,4 @@
+import Paginate from "@/components/paginate";
 import { MDXFrontmatter, getAllBlogs, getBlogFromSlug } from "@/lib/markdown";
 import { notFound } from "next/navigation";
 import { cache } from "react";
@@ -42,6 +43,7 @@ export default async function SpecificBlogPage({
       <div className="prose dark:prose-invert prose-neutral py-8 dark:prose-code:text-zinc-200 prose-code:text-[#354150] dark:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-900 prose-code:bg-zinc-100 prose-pre:bg-zinc-100 prose-pre:font-code prose-headings:font-medium underline-offset-2">
         {content}
       </div>
+      <Paginate slug={slug} />
     </div>
   );
 }
