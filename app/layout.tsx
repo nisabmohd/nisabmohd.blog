@@ -29,7 +29,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body
-        className="font-regular max-w-[680px] mx-auto sm:px-0 px-6 tracking-wide bg-neutral-50 dark:bg-neutral-950/10"
+        className="font-regular max-w-[680px] mx-auto sm:px-0 px-6 tracking-wide bg-neutral-50 dark:bg-neutral-950"
         suppressHydrationWarning
       >
         <ThemeProvider

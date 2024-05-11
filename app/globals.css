@@ -101,21 +101,19 @@ pre>code {
   text-align: right;
 }
 
-
 .highlight-line {
   @apply bg-zinc-300/45;
   @apply dark:bg-zinc-800/80;
 }
 
-
 /*  light  mode syntax highlight */
 
 .keyword {
-  color: hsla(336, 65%, 45%, 1);
+  color: #c0564f;
 }
 
 .function {
-  color: #2d5e9d
+  color: rgb(123, 68, 182);
 }
 
 .punctuation {
@@ -131,52 +129,46 @@ pre>code {
 .annotation,
 .boolean,
 .number {
-  color: hsl(0deg 0% 41.25%)
+  color: rgb(38, 129, 204);
 }
 
 .tag {
-  color: hsla(336, 65%, 45%, 1);
+  color: hsla(133, 50%, 32%, 1);
+}
+
+
+.attr-name {
+  @apply text-neutral-800;
+  @apply dark:text-neutral-200
 }
 
 .attr-value {
-  color: hsla(133, 50%, 32%, 1)
+  @apply text-neutral-600;
+  @apply dark:text-neutral-400
 }
-
-.attr-name {
-  color: #313131;
-}
-
 
 /*  dark mode syntax highlight */
 
 .dark .keyword {
-  color: hsla(341, 90%, 67%, 1)
+  color: #ff7b72;
 }
 
 .dark .function {
-  color: hsla(210, 100%, 66%, 1)
+  color: rgb(210, 168, 255);
 }
 
 .dark .string,
-.constant,
-.annotation,
-.boolean,
-.number {
-  color: hsl(0, 0%, 71%)
+.dark .constant,
+.dark .annotation,
+.dark .boolean,
+.dark .number {
+  color: rgb(165, 214, 255);
 }
 
-.dark .attr-value {
-  color: hsla(131, 43%, 57%, 1)
-}
 
 .dark .tag {
-  color: hsla(341, 90%, 67%, 1)
+  color: rgb(126, 231, 135);
 }
-
-.dark .attr-name {
-  color: #cacaca;
-}
-
 
 .rehype-code-title {
   @apply px-3;
@@ -205,7 +197,7 @@ pre>code {
 .dark .react-tweet-theme {
   --tweet-bg-color: #222;
   --tweet-bg-color-hover: var(--tweet-bg-color);
-  --tweet-quoted-bg-color-hover: hsla(0, 0%, 100%, .03);
+  --tweet-quoted-bg-color-hover: hsla(0, 0%, 100%, 0.03);
   --tweet-border: 1px solid #333;
   --tweet-color-blue-secondary: #fff;
   --tweet-color-blue-secondary-hover: #333;
