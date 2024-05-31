@@ -1,5 +1,5 @@
 import { buttonVariants } from "@/components/ui/button";
-import { AtSignIcon } from "lucide-react";
+import { GithubIcon, TwitterIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,16 +8,16 @@ export default function Home() {
     <div>
       <div>
         <div className="text-2xl mb-5 font-medium">
-          Hey, I&apos;m Nisab Mohd 👋
+          Hey, I&apos;m Nisab Mohd
         </div>
         <div className="flex sm:flex-row flex-col items-start gap-8 mt-9">
           <div className="flex flex-col items-center flex-[1]">
             <Image
-              src="/profile.png"
+              src="/profile-pic.png"
               width={180}
-              height={100}
+              height={180}
               alt="profile"
-              className="rounded-full mt-1.5"
+              className="rounded-full mt-1.5 bg-neutral-900"
             />
             <p className="text- text-center mt-3 text-muted-foreground font-semibold">
               Software Engineer.
@@ -27,7 +27,7 @@ export default function Home() {
                 href="https://github.com/nisabmohd"
                 className={buttonVariants({ variant: "link" })}
               >
-                <AtSignIcon className="mr-1 w-4 h-4" />
+                <GithubIcon className="mr-1 w-4 h-4" />
                 GitHub
               </Link>
               <Link
@@ -37,37 +37,38 @@ export default function Home() {
                   className: "-ml-3",
                 })}
               >
-                <AtSignIcon className="mr-1 w-4 h-4" /> Twitter
+                <TwitterIcon className="mr-1 w-4 h-4" /> Twitter
               </Link>
             </div>
           </div>
-          <div className="flex-[3]">
+          <div className="pr-2 pt-0.5">
             <p className="text-inherit prose dark:prose-invert prose-p:m-0">
-              I am a software engineer with a strong background in full-stack
-              development and data structures. I am a passionate and highly
-              skilled software engineer with a robust foundation in full-stack
-              development and a deep understanding of data structures. My
-              journey in the world of technology has been marked by a relentless
-              pursuit of knowledge and a commitment to delivering innovative
-              solutions. With expertise in a wide range of technologies,
-              including Java, JavaScript, React, Next.js, and Node.js.
+              I&apos;m a full-stack developer mastering Java, JavaScript, React,
+              Next.js, Node.js. My passion for data structures equals my
+              caffeine addiction. Seeking fresh challenges daily, I transform
+              complexity into elegant code. Whether crafting stunning UIs or
+              fine-tuning robust systems, it&apos;s all in a day&apos;s work for
+              this coding enthusiast who treats coffee as the ultimate fuel for
+              the journey. Who needs sleep when there&apos;s always code to
+              write, bugs to debug, and coffee to sip?
             </p>
           </div>
         </div>
       </div>
-      <div className="mt-8 flex flex-col gap-6">
+      <div className="mt-8 flex flex-col gap-7">
         <p className="text-inherit prose dark:prose-invert prose-p:m-0">
-          I am well-equipped to tackle complex projects and create seamless,
-          user-centric experiences. Whether its designing elegant user
-          interfaces, optimizing backend processes, or crafting efficient
-          algorithms, I thrive on turning challenges into opportunities for
-          growth and innovation.
+          I&apos;m ready to tackle tough projects and craft user-friendly
+          experiences. Whether it&apos;s designing sleek interfaces, optimizing
+          backend processes, or creating efficient algorithms, I enjoy turning
+          challenges into opportunities for innovation. Keeping up with the
+          latest tech trends? Absolutely. I&apos;m committed to staying ahead of
+          the curve and making a difference in the software world.
         </p>
         <p className="text-inherit prose dark:prose-invert prose-p:m-0">
-          {" "}
-          I am dedicated to staying at the forefront of the ever-evolving tech
-          landscape and leveraging my skills to make a meaningful impact in the
-          software development field.
+          When I&apos;m not busy brewing the perfect cup of coffee, you can find
+          me buried under a pile of half-finished projects and coding
+          experiments. Developing for fun and caffeine-fueled creativity—because
+          who needs sleep when you have endless ideas and espresso?
         </p>
       </div>
     </div>
