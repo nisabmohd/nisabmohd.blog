@@ -17,7 +17,7 @@ export default function Home() {
               width={180}
               height={180}
               alt="profile"
-              className="rounded-full mt-1.5 bg-neutral-900"
+              className="rounded-full mt-1.5 dark:bg-neutral-900 bg-neutral-100"
             />
             <p className="text- text-center mt-3 text-muted-foreground font-semibold">
               Software Engineer.
