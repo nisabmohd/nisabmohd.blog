@@ -10,35 +10,37 @@ export default function Home() {
         <div className="text-2xl mb-5 font-medium">
           Hey, I&apos;m Nisab Mohd
         </div>
-        <div className="flex sm:flex-row flex-col items-start gap-8 mt-9">
-          <div className="flex flex-col items-center flex-[1]">
+        <div className="flex sm:flex-col flex-col items-start gap-8 mt-9">
+          <div className="flex sm:flex-row flex-col gap-5 items-center">
             <Image
               src="/profile-pic.png"
-              width={180}
-              height={180}
+              width={170}
+              height={170}
               alt="profile"
               className="rounded-full mt-1.5 dark:bg-neutral-900 bg-neutral-100"
             />
-            <p className="text- text-center mt-3 text-muted-foreground font-semibold">
-              Software Engineer.
-            </p>
-            <div className="flex flex-row items-center">
-              <Link
-                href="https://github.com/nisabmohd"
-                className={buttonVariants({ variant: "link" })}
-              >
-                <GithubIcon className="mr-1 w-4 h-4" />
-                GitHub
-              </Link>
-              <Link
-                href="https://twitter.com/MohdNisab"
-                className={buttonVariants({
-                  variant: "link",
-                  className: "-ml-3",
-                })}
-              >
-                <TwitterIcon className="mr-1 w-4 h-4" /> Twitter
-              </Link>
+            <div className="flex flex-col">
+              <p className="text- text-center  text-muted-foreground font-semibold">
+                - Software Engineer.
+              </p>
+              <div className="flex flex-row items-center">
+                <Link
+                  href="https://github.com/nisabmohd"
+                  className={buttonVariants({ variant: "link" })}
+                >
+                  <GithubIcon className="mr-1 w-4 h-4" />
+                  GitHub
+                </Link>
+                <Link
+                  href="https://twitter.com/MohdNisab"
+                  className={buttonVariants({
+                    variant: "link",
+                    className: "-ml-3",
+                  })}
+                >
+                  <TwitterIcon className="mr-1 w-4 h-4" /> Twitter
+                </Link>
+              </div>
             </div>
           </div>
           <div className="pr-2 pt-0.5">
