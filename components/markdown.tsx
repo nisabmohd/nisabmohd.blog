@@ -17,7 +17,7 @@ import {
 
 function Highlight({ children }: PropsWithChildren) {
   return (
-    <span className="dark:bg-zinc-800 dark:text-zinc-200 bg-zinc-300/40 text-zinc-700 rounded-md text-[15px] px-2 py-1 whitespace-nowrap highlight-comp font-normal">
+    <span className="dark:bg-zinc-800 dark:text-zinc-400 bg-zinc-300/40 text-zinc-700 rounded-md px-2 py-1 whitespace-nowrap highlight-comp font-normal">
       {children}
     </span>
   );
@@ -29,7 +29,7 @@ function NoWrap({ children }: PropsWithChildren) {
 
 function Note({ children }: PropsWithChildren) {
   return (
-    <div className="dark:bg-neutral-900 bg-zinc-100 rounded-md px-3 py-4 h-fit prose-p:m-0 my-6 flex flex-row items-center gap-3">
+    <div className="dark:bg-neutral-900  bg-zinc-100 rounded-md px-3 py-4 h-fit prose-p:m-0 my-6 flex flex-row items-center gap-3">
       <InfoIcon className="min-w-[18px] min-h-[18px] max-w-[20px] max-h-[20px]" />
       <span className="text-[14.5px]">{children}</span>
     </div>
@@ -64,12 +64,6 @@ function HTMLTag({ children }: { children: string }) {
   );
 }
 
-function Quote({ children }: PropsWithChildren) {
-  return (
-    <div className="border-l-4 border-[#808080] pl-4 italic">{children}</div>
-  );
-}
-
 function Tweet({ id }: { id: string }) {
   return <CachedTweet id={id} />;
 }
@@ -82,7 +76,6 @@ export const components = {
   Note,
   NoWrap,
   Link,
-  Quote,
   Tweet,
   ThemedImage,
   Table,

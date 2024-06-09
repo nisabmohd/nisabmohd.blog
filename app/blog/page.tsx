@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 export default async function BlogIndexPage() {
   const blogs = await getAllBlogs();
   return (
-    <div>
-      <h3 className="mb-8 text-2xl font-medium">Explore my blogs</h3>
-      <div className="flex flex-col gap-5">
+    <div className="mb-2">
+      <h3 className="mb-10 text-3xl font-medium">Explore my blogs</h3>
+      <div className="flex flex-col gap-9">
         {blogs.map(({ frontmatter }) => (
           <BlogCard key={frontmatter.slug} {...frontmatter} />
         ))}
