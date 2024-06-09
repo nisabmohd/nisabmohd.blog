@@ -17,7 +17,7 @@ import {
 
 function Highlight({ children }: PropsWithChildren) {
   return (
-    <span className="dark:bg-zinc-800 dark:text-zinc-400 bg-zinc-300/40 text-zinc-700 rounded-md px-2 py-1 whitespace-nowrap highlight-comp font-normal">
+    <span className="dark:bg-zinc-800 dark:text-zinc-300 bg-zinc-300/40 text-zinc-700 rounded-md px-2 py-1 whitespace-nowrap highlight-comp font-normal">
       {children}
     </span>
   );
