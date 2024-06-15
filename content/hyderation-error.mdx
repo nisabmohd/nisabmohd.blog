@@ -7,7 +7,7 @@ slug: hydration-error
 
 Many developers have complained about hydration errors, so let's examine what these errors are and what causes them. We need to be familiar with **server side rendering (SSR)** in order to comprehend this. Thus, in SSR, the components or pages are rendered on the server and sent to the client in **HTML** that has been rendered.
 
-The client receives this rendered HTML along with a chunk of code, and attempts to render the exact DOM tree again. This process at the client is known as **Hydration**; if the rendered HTML differs from the server-generated HTML, the client throws a **Hydration Error**.
+The client receives this rendered HTML along with a chunk of code, and attempts to render the exact DOM tree again. This process at the client is known as **Hydration**; if the rendered HTML differs from the server-generated HTML, the client throws a `Hydration Error`.
 
 Hydration, to put it simply, is the process of comparing client-rendered HTML with server-rendered HTML, and all client-side events are bound during this process. Let's look at an example to understand how React's hydration works.
 

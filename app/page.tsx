@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div>
       <h1 className="font-semibold text-2xl mb-8">Hey, I&apos;m Nisab Mohd</h1>
-      <div className="flex flex-col gap-5">
+      <div className=" prose dark:prose-invert text-inherit">
         <p>
           I&apos;m a full-stack developer mastering Java, JavaScript, React,
           Next.js, Node.js. My passion for data structures equals my caffeine

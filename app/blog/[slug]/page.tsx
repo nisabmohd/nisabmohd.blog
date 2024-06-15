@@ -40,7 +40,7 @@ export default async function SpecificBlogPage({
   return (
     <div className="text-sm">
       <FrontMatter {...frontmatter} />
-      <div className="prose prose-neutral dark:prose-invert pt-8 dark:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-900 prose-code:bg-stone-100 prose-pre:bg-stone-100 prose-pre:font-mono prose-headings:font-medium underline-offset-2 prose-code:text-sm prose-code:gap-1 dark:prose-code:text-white prose-code:text-black prose-pre:border prose-pre:border-muted">
+      <div className="text-inherit prose prose-neutral dark:prose-invert pt-8 dark:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-900 prose-code:bg-stone-100 prose-pre:bg-stone-100 prose-pre:font-mono prose-headings:font-medium underline-offset-2 prose-code:text-sm prose-code:gap-1 dark:prose-code:text-white prose-code:text-black prose-pre:border prose-pre:border-muted">
         {content}
       </div>
     </div>
