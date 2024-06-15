@@ -26,7 +26,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="max-w-[38rem] mx-auto font-sans px-6 md:px-0 tracking-wide">
+          <main className="max-w-[38rem] mx-auto font-sans px-6 md:px-0 tracking-[0.018rem]">
             <Navbar />
             {children}
             <Footer />

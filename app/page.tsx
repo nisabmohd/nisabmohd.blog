@@ -1,4 +1,3 @@
-import Blog from "@/components/blog";
 import Blogs from "@/components/blogs";
 
 export default function Home() {
@@ -7,15 +6,15 @@ export default function Home() {
       <h1 className="font-semibold text-2xl mb-8">Hey, I&apos;m Nisab Mohd</h1>
       <div className=" prose dark:prose-invert text-inherit">
         <p>
-          I&apos;m a full-stack developer mastering Java, JavaScript, React,
-          Next.js, Node.js. My passion for data structures equals my caffeine
-          addiction. Seeking fresh challenges daily, I transform complexity into
-          elegant code. Whether crafting stunning UIs or fine-tuning robust
-          systems, it&apos;s all in a day&apos;s work for this coding enthusiast
-          who treats coffee as the ultimate fuel for the journey. Who needs
-          sleep when there&apos;s always code to write, bugs to debug, and
-          coffee to sip?
+          I&apos;m a passionate software engineer skilled in Java, JavaScript,
+          React, Next.js, and Node.js. My love for data structures matches my
+          caffeine addiction. I thrive on daily challenges, transforming
+          complexity into efficient code. From creating stunning UIs to
+          optimizing backend systems, I constantly innovate and improve. Coding
+          is my passion, fueled by coffee and a drive to solve problems, debug
+          bugs, and build new features.
         </p>
+
         <p>
           When I&apos;m not busy brewing the perfect cup of coffee, you can find
           me buried under a pile of half-finished projects and coding
