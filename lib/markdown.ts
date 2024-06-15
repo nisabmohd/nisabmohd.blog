@@ -26,7 +26,6 @@ export async function getAllBlogs() {
         options: {
           parseFrontmatter: true,
           mdxOptions: {
-            //@ts-ignore
             rehypePlugins: [rehypeCodeTitles, rehypePrism],
             remarkPlugins: [remarkGfm],
           },

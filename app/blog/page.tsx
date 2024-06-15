@@ -1,5 +1,4 @@
-import { getAllBlogs } from "@/lib/markdown";
-import BlogCard from "./blog-card";
+import Blogs from "@/components/blogs";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,16 +7,11 @@ export const metadata: Metadata = {
     "Explore a collection of personal blogs chronicling my coding journey and experiences, filled with insights, challenges, and solutions.",
 };
 
-export default async function BlogIndexPage() {
-  const blogs = await getAllBlogs();
+export default function BlogIndexPage() {
   return (
-    <div className="mb-2">
-      <h3 className="mb-10 text-2xl font-medium">Explore my blogs</h3>
-      <div className="flex flex-col gap-9">
-        {blogs.map(({ frontmatter }) => (
-          <BlogCard key={frontmatter.slug} {...frontmatter} />
-        ))}
-      </div>
+    <div>
+      <h1 className="font-semibold text-2xl mb-8">Explore My Blogs</h1>
+      <Blogs />
     </div>
   );
 }

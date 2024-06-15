@@ -1,4 +1,5 @@
 import { MDXFrontmatter, getAllBlogs, getBlogFromSlug } from "@/lib/markdown";
+import { formatDate } from "@/lib/utils";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 
@@ -37,45 +38,22 @@ export default async function SpecificBlogPage({
   if (!blog) return notFound();
   const { frontmatter, content } = blog;
   return (
-    <div>
+    <div className="text-sm">
       <FrontMatter {...frontmatter} />
-      <div className="prose dark:text-neutral-300 dark:prose-invert prose-neutral py-8 dark:prose-code:text-zinc-50/95 prose-code:text-[#354150] dark:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-900 prose-code:bg-neutal-100 prose-pre:bg-neutral-100 prose-pre:font-code prose-headings:font-medium underline-offset-2 prose-blockquote:font-thin">
+      <div className="prose prose-neutral dark:prose-invert pt-8 dark:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-900 prose-code:bg-stone-100 prose-pre:bg-stone-100 prose-pre:font-mono prose-headings:font-medium underline-offset-2 prose-code:text-sm prose-code:gap-1 dark:prose-code:text-white prose-code:text-black prose-pre:border prose-pre:border-muted">
         {content}
       </div>
     </div>
   );
 }
 
-function FrontMatter({ published, title, description }: MDXFrontmatter) {
+function FrontMatter({ published, title }: MDXFrontmatter) {
   return (
     <div className="flex flex-col">
+      <h3 className="font-semibold text-2xl mb-2">{title}</h3>
       <p className="text-muted-foreground text-[15px]">
-        {formatDateToReadableString(new Date(published))}
+        {formatDate(new Date(published))}
       </p>
-      <h3 className="text-2xl mt-1 font-medium mb-2">{title}</h3>
     </div>
   );
-}
-
-function formatDateToReadableString(date: Date): string {
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
-  const monthName = months[date.getMonth()];
-  const dayNumber = date.getDate();
-  const yearNumber = date.getFullYear();
-
-  return `${monthName} ${dayNumber}, ${yearNumber}`;
 }

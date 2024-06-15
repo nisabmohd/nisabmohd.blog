@@ -17,7 +17,7 @@ import {
 
 function Highlight({ children }: PropsWithChildren) {
   return (
-    <span className="dark:bg-zinc-800 dark:text-zinc-300 bg-zinc-300/40 text-zinc-700 rounded-md px-2 py-1 whitespace-nowrap highlight-comp font-normal">
+    <span className="dark:bg-neutral-900 bg-zinc-200 rounded-md px-2 py-1 whitespace-nowrap highlight-comp font-normal border border-muted text-[14.5px]">
       {children}
     </span>
   );
@@ -29,7 +29,7 @@ function NoWrap({ children }: PropsWithChildren) {
 
 function Note({ children }: PropsWithChildren) {
   return (
-    <div className="dark:bg-neutral-900  bg-zinc-100 rounded-md px-3 py-4 h-fit prose-p:m-0 my-6 flex flex-row items-center gap-3">
+    <div className="dark:bg-neutral-900  bg-stone-100 rounded-md px-3 py-4 h-fit prose-p:m-0 my-6 flex flex-row items-center gap-3">
       <InfoIcon className="min-w-[18px] min-h-[18px] max-w-[20px] max-h-[20px]" />
       <span className="text-[14.5px]">{children}</span>
     </div>
@@ -39,7 +39,7 @@ function Note({ children }: PropsWithChildren) {
 function Snippet({ children }: { children: string }) {
   return (
     <Highlight>
-      <code className="font-code whitespace-nowrap font-medium before:hidden bg-transparent after:hidden">
+      <code className="font-mono whitespace-nowrap font-medium before:hidden bg-transparent after:hidden">
         {children}
       </code>
     </Highlight>
@@ -56,7 +56,7 @@ function StaticImg(props: StaticImgProps) {
 
 function HTMLTag({ children }: { children: string }) {
   return (
-    <span className="dark:bg-zinc-800 bg-zinc-200 px-2 rounded-md text-sm py-1 mx-[2px] font-normal font-code">
+    <span className="dark:bg-zinc-800 bg-zinc-200 px-2 rounded-md text-sm py-1 mx-[2px] font-normal font-mono">
       {"<"}
       {children}
       {">"}

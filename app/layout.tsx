@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme-provider";
-import Navbar from "@/components/navbar";
+import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
-import { Space_Grotesk } from "next/font/google";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -11,35 +12,27 @@ export const metadata: Metadata = {
     "Step into my digital world at Nisab's personal website, where I share my passions, experiences, and the things that make life uniquely mine.",
 };
 
-const font = Space_Grotesk({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-regular",
-});
-
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html
-      lang="en"
-      className={`${GeistMono.variable} ${font.variable} dark`}
-      suppressHydrationWarning
-    >
+    <html lang="en" className="dark">
       <body
-        className="font-regular max-w-[620px] mx-auto sm:px-0 px-6 tracking-wide dark:bg-neutral-900/0"
-        suppressHydrationWarning
+        className={`${GeistMono.variable} ${GeistSans.variable} dark:bg-black`}
       >
         <ThemeProvider
-          defaultTheme="system"
           attribute="class"
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          <main className="mb-10">{children}</main>
+          <main className="max-w-[40rem] mx-auto font-sans px-6 md:px-0 tracking-wide">
+            <Navbar />
+            {children}
+            <Footer />
+          </main>
         </ThemeProvider>
       </body>
     </html>

@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { buttonVariants } from "./ui/button";
-import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
   {
@@ -15,17 +13,10 @@ const NAV_ITEMS = [
 
 export default function Navbar() {
   return (
-    <nav className="flex flex-row items-center justify-between">
-      <div className="flex flex-row gap-4 items-center h-32">
+    <nav className="flex flex-row items-center justify-between mb-5">
+      <div className="flex flex-row gap-5 items-center h-28">
         {NAV_ITEMS.map((item) => (
-          <Link
-            className={cn(
-              buttonVariants({ variant: "link" }),
-              "m-0 p-0 text-[16px] text-inherit"
-            )}
-            key={item.href}
-            href={item.href}
-          >
+          <Link className={""} key={item.href} href={item.href}>
             {item.title}
           </Link>
         ))}
