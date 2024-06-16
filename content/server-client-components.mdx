@@ -37,11 +37,11 @@ async function BlogList() {
 
 This approach gives you a lot of benefits such as <Highlight>Data fetching</Highlight>, <Highlight>Caching</Highlight>, <Highlight>Bundling</Highlight>, <Highlight>Streaaming</Highlight> etc. This also helps the app to render heavy libraries on the server itself.
 
-The server components will drastically reduce the waterfall in the client as all data fetching can be performed on the server in parallel. The server components can be wrapped under <HTMLTag>Suspense</HTMLTag> boundary until all the async code resolves and UI is rendered on the server.
+The server components will drastically reduce the waterfall in the client as all data fetching can be performed on the server in parallel. The server components can be wrapped under `<Suspense>` boundary until all the async code resolves and UI is rendered on the server.
 
 <Note>You can render a client component inside a server component</Note>
 
-##### Example of streaming chunks of server components with <HTMLTag>Suspense</HTMLTag>
+##### Example of streaming chunks of server components with `<Suspense>`
 
 ```tsx showLineNumbers
 type Sluggish = {
