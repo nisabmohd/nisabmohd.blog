@@ -184,7 +184,7 @@ pre>code {
   @apply font-normal;
   @apply tracking-wider;
   @apply font-medium;
-  font-family: var(--font-code) !important;
+  font-family: var(--font-mono) !important;
 }
 
 .highlight-comp>code {
