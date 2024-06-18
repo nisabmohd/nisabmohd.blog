@@ -182,9 +182,9 @@ pre>code {
   @apply pt-1;
   @apply pb-5;
   @apply font-normal;
-  @apply tracking-wider;
+  @apply tracking-tight;
   @apply font-medium;
-  font-family: var(--font-mono) !important;
+  @apply font-mono;
 }
 
 .highlight-comp>code {

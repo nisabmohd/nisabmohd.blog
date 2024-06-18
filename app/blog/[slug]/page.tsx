@@ -1,7 +1,7 @@
 import { MDXFrontmatter, getAllBlogs, getBlogFromSlug } from "@/lib/markdown";
 import { formatDate } from "@/lib/utils";
 import { notFound } from "next/navigation";
-import { cache } from "react";
+import { PropsWithChildren, cache } from "react";
 
 type PageProps = {
   params: {
@@ -40,9 +40,7 @@ export default async function SpecificBlogPage({
   return (
     <div className="text-sm">
       <FrontMatter {...frontmatter} />
-      <div className="text-inherit prose prose-neutral dark:prose-invert pt-8 dark:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-900 prose-code:bg-stone-50 prose-pre:bg-stone-50 prose-pre:font-mono prose-headings:font-medium underline-offset-2 prose-code:text-sm prose-code:leading-6 dark:prose-code:text-white prose-code:text-black prose-code:p-1 prose-code:rounded-md prose-pre:border">
-        {content}
-      </div>
+      <Markdown>{content}</Markdown>
     </div>
   );
 }
@@ -54,6 +52,14 @@ function FrontMatter({ published, title }: MDXFrontmatter) {
       <p className="font-sans text-muted-foreground text-[15px]">
         {formatDate(new Date(published))}
       </p>
+    </div>
+  );
+}
+
+function Markdown({ children }: PropsWithChildren) {
+  return (
+    <div className="text-inherit prose prose-neutral dark:prose-invert pt-8 dark:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-900 prose-code:bg-stone-50 prose-pre:bg-stone-50 prose-pre:font-mono prose-headings:font-medium underline-offset-2 prose-code:text-sm prose-code:leading-6 dark:prose-code:text-white prose-code:text-black prose-code:p-1 prose-code:rounded-md prose-pre:border">
+      {children}
     </div>
   );
 }
