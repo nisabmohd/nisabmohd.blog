@@ -1,34 +1,36 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { components } from "./markdown";
-import { useEffect, useState } from "react";
+import { ComponentProps, useEffect, useState } from "react";
+import Image from "next/image";
+
+type ThemedImgProps = ComponentProps<typeof Image>;
 
 export default function ThemedImage({
-  filename,
+  src,
   height,
   width,
-}: {
-  filename: string;
-  width?: number;
-  height?: number;
-}) {
+  alt,
+  ...rest
+}: ThemedImgProps) {
   const { resolvedTheme } = useTheme();
   const [imagePath, setImagePath] = useState<string>();
 
   useEffect(() => {
     if (!resolvedTheme || resolvedTheme == "system") return;
-    const exactFileName = `/(${resolvedTheme})${filename}`;
+    const exactFileName = `/(${resolvedTheme})${src}`;
     setImagePath(exactFileName);
-  }, [resolvedTheme, filename]);
+  }, [resolvedTheme, src]);
 
   if (!imagePath) return null;
   return (
-    <components.StaticImg
+    <Image
+      className="rounded-xl max-w-full mx-auto"
       src={imagePath}
-      alt="img"
+      alt={alt}
       width={width ?? 400}
       height={height ?? 400}
+      {...rest}
     />
   );
 }

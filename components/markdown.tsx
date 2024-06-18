@@ -1,7 +1,6 @@
 import { PropsWithChildren } from "react";
 import { InfoIcon } from "lucide-react";
 import Image from "next/image";
-import { ComponentProps } from "react";
 import Link from "next/link";
 import ThemedImage from "./themed-img";
 import { CachedTweet } from "./tweet";
@@ -44,21 +43,12 @@ function Snippet({ children }: { children: string }) {
   );
 }
 
-type StaticImgProps = ComponentProps<typeof Image>;
-
-function StaticImg(props: StaticImgProps) {
-  return (
-    <Image className="rounded-xl max-w-full mx-auto" {...props} alt="img" />
-  );
-}
-
 function Tweet({ id }: { id: string }) {
   return <CachedTweet id={id} />;
 }
 
 export const components = {
   Highlight,
-  StaticImg,
   Snippet,
   Note,
   NoWrap,
@@ -72,4 +62,5 @@ export const components = {
   TableHead,
   TableHeader,
   TableRow,
+  Image,
 };
