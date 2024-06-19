@@ -16,7 +16,7 @@ export default function Navbar() {
     <nav className="flex flex-row items-center justify-between mb-3">
       <div className="flex flex-row gap-5 items-center h-28">
         {NAV_ITEMS.map((item) => (
-          <Link className="font-medium" key={item.href} href={item.href}>
+          <Link key={item.href} href={item.href}>
             {item.title}
           </Link>
         ))}
