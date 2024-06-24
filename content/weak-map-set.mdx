@@ -7,7 +7,7 @@ slug: weak-map-set
 
 In the JavaScript engine, garbage collection is phenomenal. Whenever an object is created, it is given a reference so that the JavaScript engine can recognize its usage. When the reference is modified or removed, the garbage collector smartly identifies this change, allowing it to promptly remove the object from memory. This ensures optimal performance and efficient resource utilization.
 
-```javascript showLineNumbers
+```javascript
 let john = { name: "John" }; // the object can be accessed, john is the reference to it
 // overwrite the reference
 john = null;
@@ -16,7 +16,7 @@ john = null;
 
 For instance, if we put an object into an Map, then while the Map is alive, the object will be alive as well, even if there are no other references to it.
 
-```javascript showLineNumbers
+```javascript
 let john = { name: "John Doe" };
 const map = new Map();
 map.set(john, "secret documents");
@@ -35,14 +35,14 @@ Because in <Highlight>map</Highlight> key mapping to that <Highlight>john</Highl
 
 The first difference between Map and WeakMap is that keys must be objects, not primitive values:
 
-```javascript showLineNumbers
+```javascript
 const map = new WeakMap();
 weakMap.set("test", "Oops!"); // Error "test" is not an object
 ```
 
 Now, if we use an object as the key in it, and there are no other references to that object then it will be removed from memory (and from the map) automatically.
 
-```javascript showLineNumbers
+```javascript
 let john = { name: "John" };
 let weakMap = new WeakMap();
 weakMap.set(john, "...");
@@ -63,7 +63,7 @@ WeakMap has only the following methods:
 
 #### Real life use case :
 
-```javascript showLineNumbers
+```javascript
 weakMap.set(john, "secret documents");
 // if john dies, secret documents will be destroyed automatically
 ```
@@ -77,7 +77,7 @@ A WeakSet behaves similarly to a WeakMap; the only difference is that it does no
 
 For instance, we can add users to WeakSet to keep track of those who visited our site:
 
-```javascript showLineNumbers
+```javascript
 let visitedSet = new WeakSet();
 
 let john = { name: "John" };

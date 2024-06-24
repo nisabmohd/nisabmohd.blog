@@ -39,7 +39,7 @@ _*This blog website is also powered by NextJS using static site generation that 
 
 NextJS app router is tightly coupled with React new <Highlight>Server components</Highlight> which allow a component to fetch data at the server only or directly take data from db then render the page and serve <Snippet>HTML</Snippet> to the browser. It is highly recommended to fetch data at the server and reduce client-side fetching. NextJS also supports React data streaming.
 
-```jsx showLineNumbers
+```jsx
 // This component shows all lists of blogs
 async function AllBlogs() {
   const blogs = await db.blogs.find({});
@@ -55,7 +55,7 @@ async function AllBlogs() {
 
 NextJS also provides a wrapper around JavaScript <Snippet>fetch</Snippet> API that allows caching and revalidation out of the box.
 
-```jsx showLineNumbers
+```jsx
 async function Users() {
   const users = await (await fetch("dummyuser.api/users")).json();
   return <div>{JSON.stringify(users)}</div>;

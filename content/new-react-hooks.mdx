@@ -7,23 +7,18 @@ slug: use-useoptimistic-hooks
 
 There are two new hooks added to the React package, which is still experimental as of the writing of this blog. This hook allows for progressive improvements to the UI for server and client interactions.
 
-<Note>
-  This Hooks are currently only available in React’s Canary and experimental
-  channels.
-</Note>
-
-### use hook
+### `use` hook
 
 <Snippet>use</Snippet> is a React Hook that lets you read the value of a resource
 like a <Snippet>Promise</Snippet> or <Snippet>context</Snippet>. You can just
 call this hook inside of your component and pass a promise or context and it
-will return you a value.
+What distinguishes this hook from others is that it may be invoked within loops,
+conditionals, or any block. However, it is still necessary to call components
+and hooks exclusively. will return you a value.{" "}
 
 ```js
 const value = use(resource);
 ```
-
-What distinguishes this hook from others is that it may be invoked within loops, conditionals, or any block. However, it is still necessary to call components and hooks exclusively.
 
 ### Usage
 
@@ -31,7 +26,7 @@ What distinguishes this hook from others is that it may be invoked within loops,
 
 The use hook is similar to the useContext hook in that it accepts a Context and returns a value if that component is wrapped in the Context, but it may be used inside conditionals and loops, making it more powerful than useContext. React recommends this hooks over useContext because they are more versatile.
 
-```jsx showLineNumbers
+```jsx
 "use client";
 import ThemeContext from "@/contexts";
 import Button from "@/components";
@@ -49,7 +44,7 @@ export default function GetStartedButton({ newUI, children }) {
 
 A Promise can be passed from a Server Component to a Client Component and resolved in the Client Component with the use Hook. You can also resolve the Promise in a Server Component with <Snippet>await</Snippet> and pass the required data to the Client Component as a prop.
 
-```jsx showLineNumbers
+```jsx
 export default async function Home() {
   const feeds = await getFeed();
   const trends = await getTrends();
@@ -64,7 +59,7 @@ export default async function Home() {
 
 But using <Snippet>await</Snippet> in a Server Component will block its rendering until the <Snippet>await</Snippet> statement is finished. Passing a Promise from a Server Component to a Client Component prevents the Promise from blocking the rendering of the Server Component.
 
-```jsx showLineNumbers
+```jsx
 export default async function Home() {
   const feedsPromise = getFeed();
   const trendsPromise = getTrends();
@@ -81,7 +76,7 @@ export default async function Home() {
 }
 ```
 
-```jsx showLineNumbers
+```jsx
 export default async function Feed({data}) {
   const resolvedData=use(data)
   return ...
@@ -107,7 +102,7 @@ const [optimisticState, addOptimistic] = useOptimistic(state, updateFn);
 
 #### Optimistically updating forms.
 
-```jsx showLineNumbers
+```jsx
 export default function MessagesContainer({ messages, send }) {
   const [optimisticMessages, addMessage] = useOptimistic(messages,
   (state,newMessage)=>({...state,newMessage})

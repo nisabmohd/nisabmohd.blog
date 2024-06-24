@@ -13,7 +13,7 @@ Since this data structure only contains primitives, it can also be referred to a
 
 This is analogous to an object having a key-value pair that can only contain tuples, records, and primitives. You can access by key and index as object and arrays respectively.
 
-```js showLineNumbers
+```js
 // remember record only takes primitives
 const rec = #{
   id: 123,
@@ -45,7 +45,7 @@ const rec3 = #{ ...rec1 };
 
 Like records, tuples only contain primitives, tuples, or records; they are immutable, and all Array methods can be applied to them. Tuples are similar to arrays in that values can be accessed from them using index notation.
 
-```js showLineNumbers
+```js
 const tup = #["commit", "proceed", "resolve"];
 
 // accessing index values

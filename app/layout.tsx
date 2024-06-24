@@ -19,14 +19,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${GeistMono.variable} ${GeistSans.variable}`}>
+      <body
+        className={`${GeistMono.variable} ${GeistSans.variable} dark:text-neutral-200 dark:bg-black`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <main className="max-w-[42rem] mx-auto font-sans px-6 md:px-0 tracking-[0.019rem]">
+          <main className="max-w-[36rem] mx-auto font-sans px-6 md:px-0 tracking-[0.019rem]">
             <Navbar />
             {children}
             <Footer />

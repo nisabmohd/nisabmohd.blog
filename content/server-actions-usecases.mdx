@@ -19,7 +19,7 @@ Server actions are peice of code that is runned on the server triggered by clien
 
 This can be used even by client components by importing them and also can be used with server components
 
-```tsx showLineNumbers
+```tsx
 "use server";
 export async function create() {
   // ...
@@ -28,14 +28,10 @@ export async function create() {
 
 ###### 2. Making an async function within server component
 
-This method is useful when you have an action that is only required at one place.
+This method is useful when you have an action that is only required at one place. The create action will never reach client even though it is created in a
+component.
 
-<Note>
-  The create action will never reach client even though it is created in a
-  component.
-</Note>
-
-```tsx showLineNumbers
+```tsx
 // Server Component
 export default function Page() {
   // Server Action
@@ -53,21 +49,19 @@ export default function Page() {
 
 ### Using server action in forms
 
-React introduces the form component, a wrapper for the standard HTML form element that uses an action prop to trigger a server action upon form submission. T
+React introduces the form component, a wrapper for the standard HTML form element that uses an action prop to trigger a server action upon form submission. This component can be used in client and server components. The most recent react dom hooks, <Snippet>useFormStatus</Snippet> & <Snippet>useFormState</Snippet>, can be used with client components.
 
-```tsx showLineNumbers
+```tsx
 export default function LoginPage() {
   return <form action={login}></form>;
 }
 ```
 
-his component can be used in client and server components. The most recent react dom hooks, <Snippet>useFormStatus</Snippet> & <Snippet>useFormState</Snippet>, can be used with client components.
-
 ### Event handlers
 
 Event handlers such as onClick and onChange can initiate server operations when client components require engagement. Although you can start a server action, React advises taking care of the client's progressivity to enhance the user experience.
 
-```tsx showLineNumbers
+```tsx
 "use client";
 
 import { incrementLike } from "./actions";
@@ -96,7 +90,7 @@ export default function LikeButton({ initialLikes }: { initialLikes: number }) {
 
 You can use the React useEffect hook to invoke a Server Action when the component mounts or a dependency changes. Remember to consider the behavior and caveats of useEffect.
 
-```tsx showLineNumbers
+```tsx
 "use client";
 
 import { incrementViews } from "./actions";

@@ -19,7 +19,7 @@ This allows a react functional component to be marked as <Snippet>async</Snippet
 
 ##### Example
 
-```tsx showLineNumbers
+```tsx
 async function BlogList() {
   const blogs = await getAllBlogs();
   return (
@@ -43,7 +43,7 @@ The server components will drastically reduce the waterfall in the client as all
 
 ##### Example of streaming chunks of server components with `<Suspense>`
 
-```tsx showLineNumbers
+```tsx
 type Sluggish = {
   slug: string;
 };
@@ -93,7 +93,7 @@ Client Components allows you to write interactive UI that can be rendered on the
 
 ##### Example
 
-```tsx showLineNumbers
+```tsx
 "use client";
 
 import { use } from "react";
@@ -113,59 +113,6 @@ because the client boundary does not allow the server components to be rendered 
 the client. When react starts creating the dom tree as soon it observes a client component it stops server rendering and pretends the lower boundary as the client boundary.
 
 So, remember that if you are using any component inside a client component, it will be treated as a client component too and you do not need to mark them with directive <Snippet>"use client"</Snippet>. Also if a server component is passed to a client component as props and then rendered directly then that part of the component is server-rendered.
-
-<Table>
-  <TableCaption>When to use Server and Client Components?</TableCaption>
-  <TableHeader>
-    <TableRow>
-      <TableHead className="w-[100px]">What do you need to do?</TableHead>
-      <TableHead> Server Component</TableHead>
-      <TableHead>Client Component</TableHead>
-    </TableRow>
-  </TableHeader>
-  <TableBody>
-    <TableRow>
-      <TableCell className="font-medium">Fetch data</TableCell>
-      <TableCell>✓</TableCell>
-      <TableCell>✗</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell className="font-medium">Access backend resources directly</TableCell>
-      <TableCell>✓</TableCell>
-      <TableCell>✗</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell className="font-medium">
-        Keep sensitive information on the server
-      </TableCell>
-      <TableCell>✓</TableCell>
-      <TableCell>✗</TableCell>
-    </TableRow>
-
-    <TableRow>
-      <TableCell className="font-medium">
-        Reduce client-side JavaScript or Heavy dependencies on server
-      </TableCell>
-      <TableCell>✓</TableCell>
-      <TableCell>✗</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell className="font-medium">
-       Add interactivity and event listeners
-      </TableCell>
-      <TableCell>✗</TableCell>
-      <TableCell>✓</TableCell>
-    </TableRow>
-     <TableRow>
-      <TableCell className="font-medium">
-       Usage of default or custom hooks
-      </TableCell>
-      <TableCell>✗</TableCell>
-      <TableCell>✓</TableCell>
-    </TableRow>
-
-  </TableBody>
-</Table>
 
 Frameworks like <Link href="https://nextjs.org/docs">NextJS</Link> also render the client components on the server and are hydrated on the client by sending chunks of Javascript along (Confusing right😥).
 
