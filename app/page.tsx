@@ -23,7 +23,7 @@ export default function Home() {
         </p>
       </div>
       <div className="flex flex-col mt-10">
-        <h2 className="font-semibold text-lg mb-4">Recent Blogs</h2>
+        <h2 className="font-semibold text-lg mb-5">Recent Blogs</h2>
         <Blogs limit={3} />
       </div>
     </div>
