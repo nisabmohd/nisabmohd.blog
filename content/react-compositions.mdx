@@ -5,6 +5,56 @@ published: 1719136043335
 slug: react-adv-composition
 ---
 
-React has grown to the point where new architecture for react development has been released in previous years. This kind of significant design change occurred long after React's functional approach was first presented. React's entire new ecosystem now consists of server and client components; server side capabilities can now be leveraged out of the box with the addition of client interactions.
+React has grown to the point where new architecture for react development has been released in previous years. This kind of significant design change occurred long after React's functional approach was first presented. React's entire new ecosystem now consists of server and client components; server side capabilities can now be leveraged out of the box with the addition of client interactions. By precisely defining a boundary between client and server, server components can fully utilize server resources and integrate with client components with ease.
 
-TODO
+Recently, I worked on a project that heavily utilizes these React composition principles. Making that project approximately will help us comprehend this composition and the true potential of React. It is important to note that server code is rendered on the server and is never communicated to the client; therefore, when creating a composition, client components can be used directly in server components, but server components cannot be used in client components.
+
+However, server components when passed as a props to client components then they are still rendered on server and the chunk is replaced at client. React composition is the term for this combination of server and client components, which is highly effective in demonstrating how the react behaves when producing this tree.
+
+The project is a straightforward one in which the user may paste markdown content and share the URL to view it. The markdown is stored in a database using a special key index that we can use to retrieve the markdown.
+
+<StaticImage src="/linklob1.png" width={700} height={300} />
+
+The form action is executed when the `Generate URL` button is hit, saving the markdown in the database and redirecting to the paste URL, which may be shared with anybody to view the markdown content. Let's use programming to demonstrate this.
+
+```jsx
+import { create } from "@/actions";
+export default async function NewPaste() {
+  return (
+  <form action={create}>
+    <input name="markdown" required>
+    <button>Generate URL</button>
+  </form>
+  )
+}
+```
+
+Remember that everything is server rendered. Now that the paste is completed, the page navigates to the paste and displays the markdown parsed view by retrieving data from the database. Let's see the obtain markdown parsed view page code in action.
+
+```jsx
+import { getPaste } from "@/lib";
+import { Markdown } from "markdownlib/server";
+export default async function View(id) {
+  const content = await getPaste(id);
+  return <Markdown>{content}</Markdown>;
+}
+```
+
+Now that I'm not shipping any bundles to the client, which is what we require in this situation, I can see the parsed form of markdown on the view page. It is rendered quickly on the server.
+
+<StaticImage src="/linklob2.png" width={700} height={300} />
+
+Everything is fine as of right now, but I got a feature request to add a password so that even when the link is shared, only those with the password can view the content. It looks easy enough—I created a new, optional field in the database called password and added it to the creation form along with a new input field called password. Everything went smoothly, and I was also able to save to a database. Check out the code modifications I made.
+
+```jsx {6}
+import { create } from "@/actions";
+export default async function NewPaste() {
+  return (
+  <form action={create}>
+    <input name="markdown" required>
+     <input name="password">
+    <button>Generate URL</button>
+  </form>
+  )
+}
+```

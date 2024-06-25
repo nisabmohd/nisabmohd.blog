@@ -76,6 +76,28 @@
   }
 }
 
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #a5a5a5 transparent;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #949494;
+  border-radius: 28px;
+  border: 15px solid #080808;
+}
+
 
 pre {
   padding: 0 !important;

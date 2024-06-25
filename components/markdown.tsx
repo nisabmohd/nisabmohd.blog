@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import { ComponentProps, PropsWithChildren } from "react";
 import { InfoIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,6 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 
 function Highlight({ children }: PropsWithChildren) {
   return (
@@ -47,6 +48,10 @@ function Tweet({ id }: { id: string }) {
   return <CachedTweet id={id} />;
 }
 
+function StaticImage({ className, ...rest }: ComponentProps<typeof Image>) {
+  return <Image className={cn(className, "rounded-lg")} {...rest} alt="img" />;
+}
+
 export const components = {
   Highlight,
   Snippet,
@@ -62,5 +67,5 @@ export const components = {
   TableHead,
   TableHeader,
   TableRow,
-  Image,
+  StaticImage,
 };

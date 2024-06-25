@@ -49,7 +49,7 @@ function FrontMatter({ published, title }: MDXFrontmatter) {
   return (
     <div className="flex flex-col">
       <h3 className="font-semibold text-2xl mb-2">{title}</h3>
-      <p className="font-sans text-muted-foreground text-[15px]">
+      <p className="text-muted-foreground text-[15px]">
         {formatDate(new Date(published))}
       </p>
     </div>
