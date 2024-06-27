@@ -27,7 +27,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${GeistMono.variable} ${rubik.className} dark:text-neutral-200 dark:bg-black`}
+        className={`${GeistMono.variable} ${rubik.className} dark:text-neutral-200`}
+        suppressHydrationWarning
       >
         <ThemeProvider
           attribute="class"

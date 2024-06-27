@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 
 function Highlight({ children }: PropsWithChildren) {
   return (
-    <span className="dark:bg-neutral-900 bg-zinc-200 rounded-md px-2 py-1 whitespace-nowrap highlight-comp font-normal border border-muted text-[14.5px]">
+    <span className="dark:bg-neutral-900 bg-stone-100 rounded-md px-2 py-1 whitespace-nowrap highlight-comp font-normal border border-muted text-[14.5px]">
       {children}
     </span>
   );

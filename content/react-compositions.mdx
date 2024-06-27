@@ -13,7 +13,7 @@ However, server components when passed as a props to client components then they
 
 The project is a straightforward one in which the user may paste markdown content and share the URL to view it. The markdown is stored in a database using a special key index that we can use to retrieve the markdown.
 
-<StaticImage src="/linklob1.png" width={700} height={300} />
+<ThemedImage src="linklob1.png" width={700} height={300} />
 
 The form action is executed when the `Generate URL` button is hit, saving the markdown in the database and redirecting to the paste URL, which may be shared with anybody to view the markdown content. Let's use programming to demonstrate this.
 
@@ -35,14 +35,14 @@ Remember that everything is server rendered. Now that the paste is completed, th
 import { getPaste } from "@/lib";
 import { Markdown } from "markdownlib/server";
 export default async function View(id) {
-  const content = await getPaste(id);
+  const { content } = await getPaste(id);
   return <Markdown>{content}</Markdown>;
 }
 ```
 
 Now that I'm not shipping any bundles to the client, which is what we require in this situation, I can see the parsed form of markdown on the view page. It is rendered quickly on the server.
 
-<StaticImage src="/linklob2.png" width={700} height={300} />
+<ThemedImage src="linklob2.png" width={700} height={300} />
 
 Everything is fine as of right now, but I got a feature request to add a password so that even when the link is shared, only those with the password can view the content. It looks easy enough—I created a new, optional field in the database called password and added it to the creation form along with a new input field called password. Everything went smoothly, and I was also able to save to a database. Check out the code modifications I made.
 
@@ -52,9 +52,57 @@ export default async function NewPaste() {
   return (
   <form action={create}>
     <input name="markdown" required>
-     <input name="password">
+    <input name="password">
     <button>Generate URL</button>
   </form>
   )
 }
 ```
+
+<ThemedImage src="linklob3.png" width={700} height={300} />
+
+In order to show them the markdown on the view page of markdown, I must first obtain their password. If the paste is protected, I can show them the markdown. Alternatively, I could create a page that asks for their password and then navigate to the view markdown page. However, that would require passing the password to the page, which would not be safe. Markdown is viewed after the client verifies the password through an api call or server action, in order to achieve this client interaction. Then, if the state containing the password verification information is correct, I display the markdown, but the markdown rendering on the server side is compromised. Allow me to present to you a snapshot of the current state of the code.
+
+```jsx
+"use client";
+import { useGetPaste } from "@/lib";
+import { Markdown } from "markdownlib/client";
+import { verify } from "@/actions";
+export default function View(id) {
+  const { content, isLoading, isProtected } = useGetPaste(id);
+  const [verified, setVerifed] = useState(false);
+
+  if (isLoading) return "loading...";
+  if (!verified && isProtected)
+    return <VerifyDialog cb={setVerifed} action={verify} />;
+  return <Markdown>{content}</Markdown>;
+}
+```
+
+The password feature has been added, and everything is functioning as it did before. However, the main issue is that markdown is now rendered on the client, which means I have to ship a library to the client in order to perform the markdown render, which is inefficient.We will now leverage the power of React composition to see how we can accomplish both client interaction for password verification and markdown server side rendering. To do this, let's go back to the `View` component's old code and make a few adjustments.
+
+```jsx
+import { getPaste } from "@/lib";
+import { Markdown } from "markdownlib/server";
+export default async function View(id) {
+  const { content, isProtected } = await getPaste(id);
+  return (
+    <Verifier isProtected pasteId={id}>
+      <Markdown>{content}</Markdown>
+    </Verifier>
+  );
+}
+```
+
+```jsx
+"use client";
+import { verify } from "@/actions";
+export function Verifier({ isProtected, pasteId, children }) {
+  const [verified, setVerifed] = useState(false);
+  if (!verified && isProtected)
+    return <VerifyDialog cb={setVerifed} action={verify} />;
+  return children;
+}
+```
+
+Here, you can observe that the markdown is still rendered by the server but is only visible to the client following password verification. This is an example of how client interaction and server side rendering of a component are achieved. The point is that in order to distinguish between the client and server boundaries and build reliable applications, we must comprehend react's composition and patterns, which are incredibly powerful. A few client components should ideally be kept at the base of your tree at all times.
