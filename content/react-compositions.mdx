@@ -61,7 +61,7 @@ export default async function NewPaste() {
 
 <ThemedImage src="linklob3.png" width={700} height={300} />
 
-In order to show them the markdown on the view page of markdown, I must first obtain their password. If the paste is protected, I can show them the markdown. Alternatively, I could create a page that asks for their password and then navigate to the view markdown page. However, that would require passing the password to the page, which would not be safe. Markdown is viewed after the client verifies the password through an api call or server action, in order to achieve this client interaction. Then, if the state containing the password verification information is correct, I display the markdown, but the markdown rendering on the server side is compromised. Allow me to present to you a snapshot of the current state of the code.
+In order to show them the markdown on the view page of markdown, I must first obtain their password. If the password is correct, I can show them the markdown. Alternatively, I could create a page that asks for their password and then navigate to the view markdown page. However, that would require passing the password to the page, which would not be safe. Markdown is viewed after the client verifies the password through an api call or server action, in order to achieve this client interaction. Then, if the state containing the password verification information is correct, I display the markdown, but the markdown rendering on the server side is compromised. Allow me to present to you a snapshot of the current state of the code.
 
 ```jsx
 "use client";
@@ -87,7 +87,7 @@ import { Markdown } from "markdownlib/server";
 export default async function View(id) {
   const { content, isProtected } = await getPaste(id);
   return (
-    <Verifier isProtected pasteId={id}>
+    <Verifier isProtected={isProtected} pasteId={id}>
       <Markdown>{content}</Markdown>
     </Verifier>
   );
