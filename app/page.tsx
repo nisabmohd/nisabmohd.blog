@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div>
       <h1 className="font-semibold text-2xl mb-8">Hey, I&apos;m Nisab Mohd</h1>
-      <div className=" prose dark:prose-invert text-inherit">
+      <div className="prose dark:prose-invert text-inherit">
         <p>
           I&apos;m a passionate software engineer skilled in Java, JavaScript,
           React, Next.js, and Node.js. My love for data structures matches my

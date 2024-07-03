@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { GeistMono } from "geist/font/mono";
-import { Rubik } from "next/font/google";
+import { Work_Sans } from "next/font/google";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import "./globals.css";
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "Step into my digital world at Nisab's personal website, where I share my passions, experiences, and the things that make life uniquely mine.",
 };
 
-const rubik = Rubik({
+const sansfont = Work_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${GeistMono.variable} ${rubik.className} dark:text-neutral-200`}
+        className={`${GeistMono.variable} ${sansfont.className} dark:text-neutral-200`}
         suppressHydrationWarning
       >
         <ThemeProvider

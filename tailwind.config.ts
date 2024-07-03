@@ -75,6 +75,7 @@ const config = {
       fontFamily: {
         mono: ["var(--font-geist-mono)"],
         sans: ["var(--font-sans)"],
+        code: ["var(--font-code)"],
       },
     },
   },
