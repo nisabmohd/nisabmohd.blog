@@ -6,7 +6,7 @@ export default async function Blogs({ limit }: { limit?: number }) {
   if (limit) blogs = blogs.slice(0, limit);
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-[1.125rem]">
       {blogs.map((blog) => (
         <Blog key={blog.frontmatter.slug} {...blog.frontmatter} />
       ))}

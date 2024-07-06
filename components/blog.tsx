@@ -5,7 +5,7 @@ type BlogCardProps = MDXFrontmatter;
 
 export default function Blog({ title, slug, published }: BlogCardProps) {
   return (
-    <Link className="flex flex-col gap-0.5" href={`/blog/${slug}`}>
+    <Link className="flex flex-col gap-[0.13rem]" href={`/blog/${slug}`}>
       <span>{title}</span>
       <span className="text-muted-foreground text-[14.5px] w-[100px]">
         {formatDate(new Date(published))}
