@@ -23,8 +23,8 @@ map.set(john, "secret documents");
 john = null;
 ```
 
-So in above example <Highlight>john</Highlight> object is created and put inside <Highlight>map</Highlight> key then when we try making john to null that doesnot mean it will be garbage collected.
-Because in <Highlight>map</Highlight> key mapping to that <Highlight>john</Highlight> object which means that garbage collection of that object wont happen.
+So in above example `john` object is created and put inside `map` key then when we try making john to null that doesnot mean it will be garbage collected.
+Because in `map` key mapping to that `john` object which means that garbage collection of that object wont happen.
 
 <Note>
   WeakMap and WeakSet doesnot accept any primitives, it will throw error if
@@ -52,14 +52,14 @@ john = null; // overwrite the reference
 
 Compare it with the regular Map example above. Now if john only exists as the key of WeakMap – it will be automatically deleted from the map (and memory).
 
-WeakMap does not support iteration and methods <Snippet>keys()</Snippet>, <Snippet>values()</Snippet>, <Snippet>entries()</Snippet>, so there’s no way to get all keys or values from it.
+WeakMap does not support iteration and methods `keys()`, `values()`, `entries()`, so there’s no way to get all keys or values from it.
 
 WeakMap has only the following methods:
 
-- <Snippet>weakMap.set(key, value)</Snippet>
-- <Snippet>weakMap.get(key)</Snippet>
-- <Snippet>weakMap.delete(key)</Snippet>
-- <Snippet>weakMap.has(key)</Snippet>
+- `weakMap.set(key, value)`
+- `weakMap.get(key)`
+- `weakMap.delete(key)`
+- `weakMap.has(key)`
 
 #### Real life use case :
 
@@ -73,7 +73,7 @@ weakMap.set(john, "secret documents");
 A WeakSet behaves similarly to a WeakMap; the only difference is that it does not associate a value with an object key
 
 - It is analogous to Set, but we may only add objects to WeakSet (not primitives).
-- Like Set, it supports <Snippet>add()</Snippet>, <Snippet>has()</Snippet> and <Snippet>delete()</Snippet>, but not <Snippet>size</Snippet>, <Snippet>keys()</Snippet> and no iterations.
+- Like Set, it supports `add()`, `has()` and `delete()`, but not `size`, `keys()` and no iterations.
 
 For instance, we can add users to WeakSet to keep track of those who visited our site:
 
@@ -103,11 +103,11 @@ john = null;
 
 ### Conclusion
 
-<Highlight>WeakMap</Highlight> is <Highlight>Map</Highlight> like collection that
+`WeakMap` is `Map` like collection that
 allows only objects as keys and removes them together with associated value once
 they become inaccessible by other means.
 
-<Highlight>WeakSet</Highlight> is <Highlight>Set</Highlight> like collection that
+`WeakSet` is `Set` like collection that
 stores only objects and removes them once they become inaccessible by other means.
 
 Their main advantages are that they have weak references to objects, so they can easily be removed by garbage collector. That comes at the cost of not having support for clear, size, keys, values…

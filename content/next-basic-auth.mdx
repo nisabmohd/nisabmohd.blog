@@ -8,7 +8,7 @@ slug: next-auth-simple
 In this blog post, we'll talk about a more straightforward method of authenticating NextJs applications. Many novice developers have been dissatisfied with NextJs' peculiar and intricate auth solutions.
 
 We will use server actions and JWT to construct a basic auth solution.
-To begin, let's create a file called <Highlight>auth.ts</Highlight> in the lib folder and a login function that requires user credentials.
+To begin, let's create a file called `auth.ts` in the lib folder and a login function that requires user credentials.
 
 ```ts:lib/auth.ts
 import { SignJWT, jwtVerify } from "jose";
@@ -92,7 +92,7 @@ export async function updateSession(req: NextRequest) {
 }
 ```
 
-The <Highlight>updateSession</Highlight> function, which receives NextRequest and updates the returned new Response with the updated session cookie, is exported from the auth file.
+The `updateSession` function, which receives NextRequest and updates the returned new Response with the updated session cookie, is exported from the auth file.
 
 ```ts:middleware.ts {5}
 import { NextRequest } from "next/server";

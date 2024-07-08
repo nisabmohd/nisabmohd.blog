@@ -5,7 +5,7 @@ published: 1698601281927
 slug: util-types
 ---
 
-TypeScript provides several utility types to facilitate common type transformations. These utilities are available globally. This utilty types helps and makes our lifes easier by avoiding bunch of <Highlight>any</Highlight> type in our code. lets undertand this utility types by few real case scenarios.
+TypeScript provides several utility types to facilitate common type transformations. These utilities are available globally. This utilty types helps and makes our lifes easier by avoiding bunch of `any` type in our code. lets undertand this utility types by few real case scenarios.
 
 #### Example 1 : Infer the return type of function.
 
@@ -15,7 +15,7 @@ import { helper } from "npm-package";
 ```
 
 in above case if you want to infer return type of helper which is a function provided by some package then how would you do it?
-So you can use <Highlight>ReturnType</Highlight> utility type and can easily infer the type of function. This can also be done to normal function and reduce creating new types and importing it to multiple places.
+So you can use `ReturnType` utility type and can easily infer the type of function. This can also be done to normal function and reduce creating new types and importing it to multiple places.
 
 ```typescript showLineNumbers {3}
 import { helper } from "npm-package";
@@ -27,7 +27,7 @@ type FnReturns = ReturnType<typeof helper>;
 
 #### Example 2 : Infer a function parameters type.
 
-If you want to infer to parameters type of a function you can use <Highlight>Parameters</Highlight> utility type to easily infer the parameters of a function.
+If you want to infer to parameters type of a function you can use `Parameters` utility type to easily infer the parameters of a function.
 
 ```typescript showLineNumbers {1}
 function JSONStringify(...args: Parameters<typeof JSON.stringify>) {
@@ -41,7 +41,7 @@ function JSONStringify(...args: Parameters<typeof JSON.stringify>) {
 
 #### Example 3 : Remove or omit few properties in a type.
 
-If you have a type already defined and you want to make a type simlar but want to omit few properties of the type then we can use <Highlight>Omit</Highlight> utility type to do this.
+If you have a type already defined and you want to make a type simlar but want to omit few properties of the type then we can use `Omit` utility type to do this.
 
 ```typescript showLineNumbers {21}
 type MDXFrontmatter = {
@@ -71,7 +71,7 @@ type PageProps = Omit<MDXFrontmatter, "githubUrl" | "tags">;
 
 #### Example 4 : Pick only few properties from a type defined
 
-Its very similar to <Highlight>Omit</Highlight> type. If you have a type already defined and you want to make a type simlar but only pick few properties of the type then we can use <Highlight>Pick</Highlight> utility type.
+Its very similar to `Omit` type. If you have a type already defined and you want to make a type simlar but only pick few properties of the type then we can use `Pick` utility type.
 
 ```typescript showLineNumbers {13}
 type Something = {
@@ -93,7 +93,7 @@ type CustomType = Pick<Something, "posts">;
 
 #### Example 5 : Make all property of a type optional.
 
-If you have a type and you want to derive a type from that by keeping all properties as optional then instead of creating new type use the <Highlight>Partial</Highlight> helper type.
+If you have a type and you want to derive a type from that by keeping all properties as optional then instead of creating new type use the `Partial` helper type.
 
 ```typescript showLineNumbers {13}
 type Pagination = {
@@ -115,7 +115,7 @@ type CustomType = Partial<Pagination>;
 
 #### Example 6 : Make all property of a type required.
 
-If you have a type and you want to derive a type from that by keeping all properties as optional then instead of creating new type use the <Highlight>Partial</Highlight> helper type.
+If you have a type and you want to derive a type from that by keeping all properties as optional then instead of creating new type use the `Partial` helper type.
 
 ```typescript showLineNumbers {15}
 type User = {
@@ -139,7 +139,7 @@ type RequiredTypeUser = Required<User>;
 
 #### Example 7 : Key value pair type.
 
-If you want to have an object with all key of same type and all value of object same type then you can annotate your object as <Highlight>Record</Highlight> type.
+If you want to have an object with all key of same type and all value of object same type then you can annotate your object as `Record` type.
 
 ```typescript showLineNumbers {1}
 type UserNameAndRatings = Record<string, number>;
@@ -151,4 +151,4 @@ data.john = 3;
 
 <Tweet id="1621470978504261632" />
 
-Explore utility types such as <Highlight>Awaited</Highlight>,<Highlight>Readonly</Highlight> and more from <NoWrap><Link href="https://www.typescriptlang.org/docs/handbook/utility-types.html">TypeScript Docs</Link></NoWrap>.
+Explore utility types such as `Awaited`,`Readonly` and more from <Link href="https://www.typescriptlang.org/docs/handbook/utility-types.html">TypeScript Docs</Link>

@@ -5,13 +5,13 @@ published: 1701445620078
 slug: iterables-iterator
 ---
 
-> Iterables are objects that can be iterated by <Snippet>for..of</Snippet> loop and can also return iterators explicitly. The best examples are{" "} <Snippet>Array</Snippet>,<Snippet>Map</Snippet> and <Snippet>Set</Snippet>{" "} data structures in JavaScript.
+> Iterables are objects that can be iterated by `for..of` loop and can also return iterators explicitly. The best examples are{" "} `Array`,`Map` and `Set`{" "} data structures in JavaScript.
 
 ### Symbol.iterator
 
-<Snippet>Symbol.iterator</Snippet> is a well known system symbol in JavaScript. when
-any object has a property of <Snippet>Symbol.iterator</Snippet> then that object
-can be iterated over <Snippet>for..of</Snippet> loop. let's make our iterator to
+`Symbol.iterator` is a well known system symbol in JavaScript. when
+any object has a property of `Symbol.iterator` then that object
+can be iterated over `for..of` loop. let's make our iterator to
 understand how it works.
 
 ```js showLineNumbers
@@ -24,11 +24,10 @@ const range = {
 // for(let num of range) ...
 ```
 
-Currently, the range object does not have <Snippet>Symbol.iterator</Snippet> property, Therefore if we try using <Snippet>for..of</Snippet> loop it will throw an error. As we discussed to make the range object iterable we need to add the iterable property.
+Currently, the range object does not have `Symbol.iterator` property, Therefore if we try using `for..of` loop it will throw an error. As we discussed to make the range object iterable we need to add the iterable property.
 
 <Note>
-  Remember the <Snippet>Symbol.iterator</Snippet> must return an object having
-  the next method.
+  Remember the `Symbol.iterator` must return an object having the next method.
 </Note>
 
 ```js showLineNumbers {6-16}
@@ -54,12 +53,12 @@ for (let num of range) {
 }
 ```
 
-Similarly, you can add the property to an object and make it iterate as you like. If you have noticed <Snippet>string</Snippet> type is iterable with <Snippet>for..of</Snippet> loop, it also has implemented the property and returns characters at each iteration.
+Similarly, you can add the property to an object and make it iterate as you like. If you have noticed `string` type is iterable with `for..of` loop, it also has implemented the property and returns characters at each iteration.
 
 <Note>
   {" "}
-  Remember that the next method should return the object having
-  <Snippet>done</Snippet> and <Snippet>value</Snippet> property.
+  Remember that the next method should return the object having `done` and `value`
+  property.
 </Note>
 
 ```js showLineNumbers {2}
@@ -71,7 +70,7 @@ for (let char of str) {
 
 ### Explicit iterator
 
-You can also directly access the <Snippet>Symbol.iterator</Snippet> property and call it and it will return an iterator object in which you have <Snippet>next()</Snippet> method.
+You can also directly access the `Symbol.iterator` property and call it and it will return an iterator object in which you have `next()` method.
 
 ```js showLineNumbers {1}
 const itr = range[Symbol.iterator]();
@@ -84,9 +83,9 @@ while (true) {
 
 This is also helpful when you want only a few items from the iterator or the iterator is infinitely long.
 
-### Spread Operator <Snippet>(...)</Snippet>
+### Spread Operator `(...)`
 
-You might be using the spread operator very often but if you keenly observe the spread operator works based on the <Snippet>Symbol.iterator</Snippet> property only. it also iterates under the hood and provides you with spread values. let's recall the spread operator and let's see whether our <Snippet>range</Snippet> object can do it or not.
+You might be using the spread operator very often but if you keenly observe the spread operator works based on the `Symbol.iterator` property only. it also iterates under the hood and provides you with spread values. let's recall the spread operator and let's see whether our `range` object can do it or not.
 
 ```js showLineNumbers
 const arr = [1, 2, 3];
@@ -101,10 +100,10 @@ console.log(...range); // 1, 2, 3, 4, 5
 
 Yes, it will work because our range object has an iterator property. you can assign it to an array or other data structure or pass it as a spread parameter etc.
 
-### Generator function <Snippet>function\*</Snippet>
+### Generator function `function\*`
 
-Regular functions return only one, single value (or nothing). Generators can return <Snippet>(“yield”)</Snippet> multiple values, one after another, on-demand. They work great with iterables, allowing you to create data streams with ease.
-Generators make your life easy to make iterators. To create a generator, we need a special syntax construct: <Snippet>function\*</Snippet>, the so-called “generator function”.
+Regular functions return only one, single value (or nothing). Generators can return `(“yield”)` multiple values, one after another, on-demand. They work great with iterables, allowing you to create data streams with ease.
+Generators make your life easy to make iterators. To create a generator, we need a special syntax construct: `function\*`, the so-called “generator function”.
 
 ```js showLineNumbers {1}
 function* generateRange() {
@@ -116,7 +115,7 @@ function* generateRange() {
 }
 ```
 
-You can also specify <Snippet>Symbol.iterator</Snippet> with a generator function and it not only reduces code but also enhances readability.
+You can also specify `Symbol.iterator` with a generator function and it not only reduces code but also enhances readability.
 Let's rewrite our range iterator with the generator function.
 
 ```js showLineNumbers {6-13}
@@ -149,8 +148,8 @@ generator.next(); // { "value": 1, "done": false }
 Objects that can be used in for..of are called iterable.
 
 - Technically, iterables must implement the method named Symbol.iterator.
-  - The result of <Snippet>obj[Symbol.iterator]\()</Snippet> is called an iterator. It handles further iteration processes.
-  - An iterator must have the method named <Snippet>next()</Snippet> that returns an object with done and next, here done:true denotes the end of the iteration process, otherwise the value is the next value.
+  - The result of `obj[Symbol.iterator]\()` is called an iterator. It handles further iteration processes.
+  - An iterator must have the method named `next()` that returns an object with done and next, here done:true denotes the end of the iteration process, otherwise the value is the next value.
 - The Symbol.iterator method is called automatically by for..of, but we also can do it directly.
 - Built-in iterables like strings or arrays, also implement Symbol.iterator.
 - String iterator knows about surrogate pairs.

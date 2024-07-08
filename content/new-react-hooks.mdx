@@ -9,8 +9,8 @@ There are two new hooks added to the React package, which is still experimental 
 
 ### `use` hook
 
-<Snippet>use</Snippet> is a React Hook that lets you read the value of a resource
-like a <Snippet>Promise</Snippet> or <Snippet>context</Snippet>. You can just
+`use` is a React Hook that lets you read the value of a resource
+like a `Promise` or `context`. You can just
 call this hook inside of your component and pass a promise or context and it
 What distinguishes this hook from others is that it may be invoked within loops,
 conditionals, or any block. However, it is still necessary to call components
@@ -42,7 +42,7 @@ export default function GetStartedButton({ newUI, children }) {
 
 #### Stream data from server to client.
 
-A Promise can be passed from a Server Component to a Client Component and resolved in the Client Component with the use Hook. You can also resolve the Promise in a Server Component with <Snippet>await</Snippet> and pass the required data to the Client Component as a prop.
+A Promise can be passed from a Server Component to a Client Component and resolved in the Client Component with the use Hook. You can also resolve the Promise in a Server Component with `await` and pass the required data to the Client Component as a prop.
 
 ```jsx
 export default async function Home() {
@@ -57,7 +57,7 @@ export default async function Home() {
 }
 ```
 
-But using <Snippet>await</Snippet> in a Server Component will block its rendering until the <Snippet>await</Snippet> statement is finished. Passing a Promise from a Server Component to a Client Component prevents the Promise from blocking the rendering of the Server Component.
+But using `await` in a Server Component will block its rendering until the `await` statement is finished. Passing a Promise from a Server Component to a Client Component prevents the Promise from blocking the rendering of the Server Component.
 
 ```jsx
 export default async function Home() {
@@ -83,7 +83,7 @@ export default async function Feed({data}) {
 }
 ```
 
-The <Snippet>use</Snippet> hook auto integrates with Suspense and Error boundaries when promise is resolve it shows the fallback and when error occured in promise the Error boundary can handle the error.
+The `use` hook auto integrates with Suspense and Error boundaries when promise is resolve it shows the fallback and when error occured in promise the Error boundary can handle the error.
 
 <Note>
   See it to it that the promise value should be JSON serializable when passed

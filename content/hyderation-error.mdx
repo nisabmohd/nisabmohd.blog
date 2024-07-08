@@ -37,7 +37,7 @@ export default function CurrentDate() {
 
 In the example above, everything appears to be in order. However, when this component is rendered on the server, we receive a date value, which does not match the date value when rendered on the client for hydration. As a result, the date value does not match and a Hydration error is raised when comparing the date values. This type of error may be handled by suppressing it or by inspecting a component that should only be used by the client.
 
-{/* <ThemedImage src="hydration-err.png" width={800} height={400} alt="img" /> */}
+<ThemedImage src="hydration-err.png" width={800} height={400} alt="img" />
 
 As you can see, the error message makes it very evident that the date value on the server and the client are different, which is why the error was raised. This tweet mentions that the date hydration issue in React will be addressed in the future with this patch.
 

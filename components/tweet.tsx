@@ -19,7 +19,7 @@ const TweetComponent = async ({ id }: { id: string }) => {
   }
 };
 
-export const CachedTweet = ({ id }: { id: string }) => (
+export const Tweet = ({ id }: { id: string }) => (
   <Suspense fallback={<TweetSkeleton />}>
     <TweetComponent id={id} />
   </Suspense>
