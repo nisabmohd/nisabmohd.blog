@@ -13,8 +13,8 @@ const NAV_ITEMS = [
 
 export default function Navbar() {
   return (
-    <nav className="flex flex-row items-center mb-2">
-      <div className="flex flex-row gap-5 items-center h-24">
+    <nav className="flex flex-row items-center">
+      <div className="flex flex-row gap-5 items-center h-28">
         {NAV_ITEMS.map((item) => (
           <Link
             className="font-medium text-[15.45px]"
