@@ -12,11 +12,7 @@ export function formatDate(date: Date): string {
     day: "2-digit",
   };
   const formattedDate = date.toLocaleDateString("en-US", options);
-
-  // Split the formatted date into components
   const [month, day, year] = formattedDate.split(" ");
-
-  // Ensure the month is exactly three characters
   const abbreviatedMonth = month.slice(0, 3);
 
   return `${abbreviatedMonth} ${day} ${year}`;

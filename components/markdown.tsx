@@ -15,5 +15,5 @@ export const components = {
   Link,
   Tweet,
   ThemedImage,
-  img: Img,
+  Img,
 };
