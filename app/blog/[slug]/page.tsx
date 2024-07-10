@@ -26,7 +26,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const blog = await cachedGetMdx(slug);
   if (!blog) return {};
-  let ogImage = `https://nisabmohd.vercel.app/og?title=${blog.frontmatter.title}`;
+  let ogImage = `https://nisabmohd.vercel.app/og?title=${encodeURIComponent(
+    blog.frontmatter.title
+  )}`;
   return {
     metadataBase: new URL("https://nisabmohd.vercel.app"),
     title: blog.frontmatter.title,
