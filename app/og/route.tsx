@@ -5,7 +5,8 @@ export const runtime = "edge";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const postTitle = searchParams.get("title");
+  let postTitle = searchParams.get("title") ?? "";
+  if (postTitle.length > 50) postTitle = postTitle.slice(0, 48) + " ...";
   console.log(postTitle);
 
   const font = fetch(
@@ -30,11 +31,11 @@ export async function GET(req: NextRequest) {
       >
         <div
           style={{
-            marginLeft: 80,
+            marginLeft: 75,
             marginBottom: 125,
             marginRight: 30,
             display: "flex",
-            fontSize: 65,
+            fontSize: 90,
             letterSpacing: "-0.05em",
             fontStyle: "normal",
             color: "black",
