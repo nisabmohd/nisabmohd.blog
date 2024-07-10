@@ -6,7 +6,7 @@ export const runtime = "edge";
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   let postTitle = searchParams.get("title") ?? "";
-  if (postTitle.length > 50) postTitle = postTitle.slice(0, 48) + " ...";
+  if (postTitle.length > 35) postTitle = postTitle.slice(0, 48) + " ...";
   console.log(postTitle);
 
   const font = fetch(
