@@ -26,7 +26,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const blog = await cachedGetMdx(slug);
   if (!blog) return {};
-  let ogImage = `${process.env.VERCEL_URL}/og?title=${blog.frontmatter.title}`;
+  let ogImage = `https://nisabmohd.vercel.app/og?title=${blog.frontmatter.title}`;
   return {
     title: blog.frontmatter.title,
     description: blog.frontmatter.description,
@@ -35,7 +35,7 @@ export async function generateMetadata({
       description: blog.frontmatter.description,
       type: "article",
       publishedTime: new Date(blog.frontmatter.published).toDateString(),
-      url: `${process.env.VERCEL_URL}/blog/${slug}`,
+      url: `https://nisabmohd.vercel.app/blog/${slug}`,
       images: [
         {
           url: ogImage,

@@ -21,7 +21,7 @@ export async function GET(req: NextRequest) {
           flexDirection: "column",
           alignItems: "flex-start",
           justifyContent: "center",
-          backgroundImage: `url(${process.env.VERCEL_URL}/images/og-bg.jpg)`,
+          backgroundImage: `url(https://nisabmohd.vercel.app/og-bg.jpg)`,
           backgroundRepeat: "no-repeat",
           objectFit: "fill",
         }}
@@ -49,7 +49,7 @@ export async function GET(req: NextRequest) {
       height: 630,
       fonts: [
         {
-          name: "Kaisei Tokumin",
+          name: "Space Mono",
           data: fontData,
           style: "normal",
         },
