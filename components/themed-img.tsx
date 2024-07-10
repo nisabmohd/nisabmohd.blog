@@ -14,7 +14,7 @@ export default function ThemedImage({
     <>
       <Image
         className="rounded-xl max-w-full mx-auto dark:hidden block"
-        src={`/(light)${src}`}
+        src={`/images/(light)${src}`}
         alt={alt}
         width={width ?? 400}
         height={height ?? 400}
@@ -22,7 +22,7 @@ export default function ThemedImage({
       />
       <Image
         className="rounded-xl max-w-full mx-auto dark:block hidden"
-        src={`/(dark)${src}`}
+        src={`/images/(dark)${src}`}
         alt={alt}
         width={width ?? 400}
         height={height ?? 400}

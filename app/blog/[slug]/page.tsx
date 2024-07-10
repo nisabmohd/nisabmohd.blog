@@ -1,5 +1,6 @@
 import { MDXFrontmatter, getAllBlogs, getBlogFromSlug } from "@/lib/markdown";
 import { formatDate } from "@/lib/utils";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PropsWithChildren, cache } from "react";
 
@@ -22,12 +23,31 @@ export async function generateMetadata({
   params: { slug },
 }: {
   params: { slug: string };
-}) {
+}): Promise<Metadata> {
   const blog = await cachedGetMdx(slug);
-  if (!blog) return null;
+  if (!blog) return {};
+  let ogImage = `${process.env.VERCEL_URL}/og?title=${blog.frontmatter.title}`;
   return {
     title: blog.frontmatter.title,
     description: blog.frontmatter.description,
+    openGraph: {
+      title: blog.frontmatter.title,
+      description: blog.frontmatter.description,
+      type: "article",
+      publishedTime: new Date(blog.frontmatter.published).toDateString(),
+      url: `${process.env.VERCEL_URL}/blog/${slug}`,
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: blog.frontmatter.title,
+      description: blog.frontmatter.description,
+      images: [ogImage],
+    },
   };
 }
 
