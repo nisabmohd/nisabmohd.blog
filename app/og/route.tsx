@@ -4,8 +4,11 @@ import { NextRequest } from "next/server";
 export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
-  const { searchParams } = req.nextUrl;
+  const url = new URL(decodeURIComponent(req.nextUrl.toString()));
+  const searchParams = new URLSearchParams(url.search);
   const postTitle = searchParams.get("title");
+  console.log(postTitle);
+
   const font = fetch(
     new URL("../../public/fonts/SpaceMono-Bold.ttf", import.meta.url)
   ).then((res) => res.arrayBuffer());
