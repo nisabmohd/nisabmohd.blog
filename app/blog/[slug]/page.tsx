@@ -28,6 +28,7 @@ export async function generateMetadata({
   if (!blog) return {};
   let ogImage = `https://nisabmohd.vercel.app/og?title=${blog.frontmatter.title}`;
   return {
+    metadataBase: new URL("https://nisabmohd.vercel.app"),
     title: blog.frontmatter.title,
     description: blog.frontmatter.description,
     openGraph: {
