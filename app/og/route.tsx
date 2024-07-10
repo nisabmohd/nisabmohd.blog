@@ -30,10 +30,10 @@ export async function GET(req: NextRequest) {
         <div
           style={{
             marginLeft: 75,
-            marginBottom: 105,
+            marginBottom: 90,
             marginRight: 30,
             display: "flex",
-            fontSize: 90,
+            fontSize: 80,
             letterSpacing: "-0.05em",
             fontStyle: "normal",
             color: "black",
