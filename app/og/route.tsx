@@ -6,8 +6,6 @@ export const runtime = "edge";
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   let postTitle = searchParams.get("title") ?? "";
-  if (postTitle.length > 35) postTitle = postTitle.slice(0, 48) + " ...";
-  console.log(postTitle);
 
   const font = fetch(
     new URL("../../public/fonts/SpaceMono-Bold.ttf", import.meta.url)
@@ -32,10 +30,10 @@ export async function GET(req: NextRequest) {
         <div
           style={{
             marginLeft: 75,
-            marginBottom: 125,
+            marginBottom: 120,
             marginRight: 30,
             display: "flex",
-            fontSize: 90,
+            fontSize: 70,
             letterSpacing: "-0.05em",
             fontStyle: "normal",
             color: "black",
