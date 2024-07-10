@@ -4,8 +4,7 @@ import { NextRequest } from "next/server";
 export const runtime = "edge";
 
 export async function GET(req: NextRequest) {
-  const url = new URL(decodeURIComponent(req.nextUrl.toString()));
-  const searchParams = new URLSearchParams(url.search);
+  const { searchParams } = new URL(req.url);
   const postTitle = searchParams.get("title");
   console.log(postTitle);
 
@@ -33,7 +32,7 @@ export async function GET(req: NextRequest) {
           style={{
             marginLeft: 80,
             marginBottom: 125,
-            marginRight: 20,
+            marginRight: 30,
             display: "flex",
             fontSize: 65,
             letterSpacing: "-0.05em",
