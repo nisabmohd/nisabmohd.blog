@@ -33,7 +33,7 @@ export async function GET(req: NextRequest) {
             marginBottom: 120,
             marginRight: 30,
             display: "flex",
-            fontSize: 70,
+            fontSize: 90,
             letterSpacing: "-0.05em",
             fontStyle: "normal",
             color: "black",
