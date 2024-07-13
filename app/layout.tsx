@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Nisab Mohd",
   description:
     "Step into my digital world at Nisab's personal website, where I share my passions, experiences, and the things that make life uniquely mine.",
+  metadataBase: new URL("https://nisabmohd.vercel.app/"),
 };
 
 export default function RootLayout({

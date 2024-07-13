@@ -30,7 +30,6 @@ export async function generateMetadata({
     blog.frontmatter.title
   )}`;
   return {
-    metadataBase: new URL("https://nisabmohd.vercel.app"),
     title: blog.frontmatter.title,
     description: blog.frontmatter.description,
     openGraph: {
