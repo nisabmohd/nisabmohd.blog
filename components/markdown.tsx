@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import ThemedImage from "./themed-img";
+import AdaptiveThemeImage from "./adaptive-theme-image";
 import { Tweet } from "./tweet";
 import { cn } from "@/lib/utils";
 import { Note } from "./note";
@@ -14,6 +14,6 @@ export const components = {
   Note,
   Link,
   Tweet,
-  ThemedImage,
+  AdaptiveThemeImage,
   Img,
 };
