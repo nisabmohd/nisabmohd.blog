@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <>
       <h2 className="text-2xl font-extrabold">Hey, I&apos;m Nisab Mohd</h2>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 prose dark:prose-invert prose-p:m-0">
         <p>
           I&apos;m a passionate{" "}
           <span className="underline underline-offset-2 font-bold">
