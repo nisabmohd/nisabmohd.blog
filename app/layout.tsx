@@ -35,7 +35,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="max-w-[600px] mx-auto sm:px-0 px-4">
+          <main className="max-w-[670px] mx-auto sm:px-0 px-4">
             <Navbar />
             <div className="flex flex-col gap-7 py-7 min-h-[82vh]">
               {children}
