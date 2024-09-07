@@ -1,0 +1,18 @@
+---
+title: Crafting a Custom Component Library for Our Project
+description: Learn how I created a tailored component library to boost efficiency and consistency in our company's project, enhancing our development workflow and UI design.
+published: 1725701899786
+slug: component-library
+---
+
+I'm a frontend developer for a software company where I work on a project. Although our primary application is written in React 16, a legacy code base, I mostly work with React and NextJs. We must adhere to a user experience that is based on an internal library that was deprecated a long time ago and only functions with React 16. No support or contributions have been provided for that library. Although we had to use that library by law, it used to be very difficult to launch a new application.
+
+Additionally, the library lacks proper support for `Typescript`. We encountered several problems, with this internal library being the main obstacle preventing us from upgrading to more recent versions of React or Next.However, as of late, our project has required documentation outlining all of our components' functions. where that internal library served as the basis for the UX design. And I was happy to create this documentation in Next using app-router. I performed a Proof of Concept for Next, showing how it will assist us in creating static websites and utilizing server render capabilities. Everyone was astounded by what Nextjs had to offer. As you are aware, however, we encountered an issue with the UI library not being compatible.
+
+After demonstrating Nextjs' capabilities, I decided not to turn back. I began documenting using Next and the most well-known UI library, `@shadcn/ui`, which was a wrapper over `radixui`. While radix features unstyled components that let users control how a component looks while maintaining accessibility, shadcn's components were minimal and resembled our internal library, albeit inaccurately. Shadcn's primary advantage, though, is that it embeds the component within your code base and lets developers modify its classes or appearance. For this reason, I started altering the components locally and got them to resemble our internal UI library exactly.
+
+They were all very interested in seeing this developed further after I showed them the working version of the documentation. I therefore created a lot of components, but not all of them, as the documentation had a straightforward user interface. That UI library does not, however, stop us from taking advantage of this opportunity to migrate our legacy code base to the most recent technology. My goal was to create an updated library version that would have all the components redesigned to be more responsive and type-safe. Again, this was a wrapper around Shadcn that was adjusted for our project; we called this library the `"v2"` of our internal library. We have since used this library for several projects, and I have received numerous compliments and feedback `(obviously few bugs 😅)`, so I gradually made them.
+
+Sincerely, I'm glad I decided to create the component library we use for our everyday work rather than wasting time on a single one. While creating this library, I learned a lot about bundling, publishing, and making them generic so they would work with Next and React. I am obviously not permitted to disclose the package's name, and it is also private on npm. Yes, I agree that this was a fantastic opportunity for me.
+
+Happy coding!!
