@@ -13,7 +13,7 @@ export default async function BlogMainPage() {
   return (
     <>
       <h2 className="text-2xl font-extrabold">Blog</h2>
-      <ul className="flex flex-col gap-4 list-disc list px-5">
+      <ul className="flex flex-col sm:gap-4 gap-3 list-disc list px-5">
         {blogs.map((blog) => (
           <li
             className=" marker:text-neutral-300 dark:marker:text-neutral-700 pl-2"
