@@ -6,7 +6,7 @@ export default function Navbar() {
       <Link href="/" className="font-extrabold">
         @nisabmohd
       </Link>
-      <div className="flex items-center gap-3.5 text-neutral-800 dark:text-neutral-200">
+      <div className="flex items-center gap-3.5 text-neutral-800 dark:text-neutral-100">
         <Link href="/blog">blog</Link>
         <Link
           target="_blank"
