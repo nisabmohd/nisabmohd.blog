@@ -20,7 +20,7 @@ export default async function BlogMainPage() {
             key={blog.frontmatter.slug}
           >
             <Link
-              className="underline underline-offset-2 text-neutral-800 dark:text-neutral-200 font-medium"
+              className="underline underline-offset-2 text-neutral-800 dark:text-neutral-200"
               href={`/blog/${blog.frontmatter.slug}`}
             >
               {blog.frontmatter.title}
