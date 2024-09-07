@@ -20,15 +20,14 @@ export default async function BlogPage({
           {formatDate(res.frontmatter.published)}
         </p>
       </div>
-
-      <Markdown>{content}</Markdown>
+      <Typography>{content}</Typography>
     </>
   );
 }
 
-function Markdown({ children }: PropsWithChildren) {
+function Typography({ children }: PropsWithChildren) {
   return (
-    <div className="text-inherit prose prose-neutral dark:prose-invert  dark:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-900 prose-code:bg-neutral-100 prose-pre:bg-neutral-100 prose-pre:font-code prose-code:font-code prose-headings:font-medium underline-offset-2 prose-code:text-sm prose-code:leading-6 dark:prose-code:text-white prose-code:text-black prose-code:p-1 prose-code:rounded-md">
+    <div className="text-inherit prose prose-neutral dark:prose-invert  dark:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-900 prose-code:bg-neutral-100 prose-pre:bg-neutral-100 prose-pre:font-code prose-code:font-code prose-headings:font-medium underline-offset-2 prose-code:text-sm prose-code:leading-6 dark:prose-code:text-white prose-code:text-black prose-code:p-1 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none">
       {children}
     </div>
   );
