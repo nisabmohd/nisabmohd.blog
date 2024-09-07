@@ -4,7 +4,7 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism-plus";
 import rehypeCodeTitles from "rehype-code-titles";
-import { components } from "@/components/markdown";
+import { components } from "~/components/markdown";
 
 export type MDXFrontmatter = {
   title: string;
@@ -34,7 +34,7 @@ export async function getAllBlogs() {
       });
     })
   );
-  let result = await resultPromise;
+  const result = await resultPromise;
   result.sort((a, b) => b.frontmatter.published - a.frontmatter.published);
   return result;
 }

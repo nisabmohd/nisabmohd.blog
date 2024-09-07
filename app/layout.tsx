@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "@/components/theme-provider";
+import { Space_Grotesk } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
+import Navbar from "~/components/navbar";
+import Footer from "~/components/footer";
+import { ThemeProvider } from "~/components/theme-provider";
 import "./globals.css";
+
+const fontSpace = Space_Grotesk({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-space",
+});
 
 export const metadata: Metadata = {
   title: "Nisab Mohd",
@@ -19,10 +25,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html className="dark" lang="en" suppressHydrationWarning>
       <body
-        className={`${GeistMono.variable} ${GeistSans.variable} dark:text-neutral-300 tracking-wide`}
-        suppressHydrationWarning
+        className={`${fontSpace.variable} ${GeistMono.variable} font-space bg-neutral-50 dark:bg-neutral-950`}
       >
         <ThemeProvider
           attribute="class"
@@ -30,9 +35,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="max-w-[40rem] mx-auto font-sans px-5 md:px-0">
+          <main className="max-w-[600px] mx-auto sm:px-0 px-4">
             <Navbar />
-            {children}
+            <div className="flex flex-col gap-7 py-7 min-h-[82vh]">
+              {children}
+            </div>
             <Footer />
           </main>
         </ThemeProvider>

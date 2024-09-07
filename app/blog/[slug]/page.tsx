@@ -1,16 +1,38 @@
-import { MDXFrontmatter, getAllBlogs, getBlogFromSlug } from "@/lib/markdown";
-import { formatDate } from "@/lib/utils";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PropsWithChildren, cache } from "react";
+import { PropsWithChildren } from "react";
+import { getAllBlogs, getBlogFromSlug } from "~/lib/markdown";
+import { formatDate } from "~/lib/util";
 
-type PageProps = {
-  params: {
-    slug: string;
-  };
-};
+export default async function BlogPage({
+  params: { slug },
+}: {
+  params: { slug: string };
+}) {
+  const res = await getBlogFromSlug(slug);
+  if (!res) notFound();
+  const { content } = res;
+  return (
+    <>
+      <div className="flex flex-col gap-2">
+        <h2 className="text-2xl font-extrabold">{res.frontmatter.title}</h2>
+        <p className="text-sm text-neutral-800 dark:text-neutral-200 font-medium">
+          {formatDate(res.frontmatter.published)}
+        </p>
+      </div>
 
-const cachedGetMdx = cache(getBlogFromSlug);
+      <Markdown>{content}</Markdown>
+    </>
+  );
+}
+
+function Markdown({ children }: PropsWithChildren) {
+  return (
+    <div className="text-inherit prose prose-neutral dark:prose-invert  dark:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-900 prose-code:bg-neutral-100 prose-pre:bg-neutral-100 prose-pre:font-code prose-code:font-code prose-headings:font-medium underline-offset-2 prose-code:text-sm prose-code:leading-6 dark:prose-code:text-white prose-code:text-black prose-code:p-1 prose-code:rounded-md">
+      {children}
+    </div>
+  );
+}
 
 export async function generateStaticParams() {
   const blogs = await getAllBlogs();
@@ -24,9 +46,9 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  const blog = await cachedGetMdx(slug);
+  const blog = await getBlogFromSlug(slug);
   if (!blog) return {};
-  let ogImage = `https://nisabmohd.vercel.app/og?title=${encodeURIComponent(
+  const ogImage = `https://nisabmohd.vercel.app/og?title=${encodeURIComponent(
     blog.frontmatter.title
   )}`;
   return {
@@ -51,37 +73,4 @@ export async function generateMetadata({
       images: [ogImage],
     },
   };
-}
-
-export default async function SpecificBlogPage({
-  params: { slug },
-}: PageProps) {
-  const blog = await cachedGetMdx(slug);
-  if (!blog) return notFound();
-  const { frontmatter, content } = blog;
-  return (
-    <div className="text-sm">
-      <FrontMatter {...frontmatter} />
-      <Markdown>{content}</Markdown>
-    </div>
-  );
-}
-
-function FrontMatter({ published, title }: MDXFrontmatter) {
-  return (
-    <div className="flex flex-col">
-      <h3 className="font-semibold text-2xl mb-2">{title}</h3>
-      <p className="text-muted-foreground text-[15px]">
-        {formatDate(new Date(published))}
-      </p>
-    </div>
-  );
-}
-
-function Markdown({ children }: PropsWithChildren) {
-  return (
-    <div className="text-inherit prose prose-neutral dark:prose-invert pt-8 dark:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-900 prose-code:bg-stone-50 prose-pre:bg-stone-50 prose-pre:font-mono prose-headings:font-medium underline-offset-2 prose-code:text-sm prose-code:leading-6 dark:prose-code:text-white prose-code:text-black prose-code:p-1 prose-code:rounded-md prose-pre:border">
-      {children}
-    </div>
-  );
 }

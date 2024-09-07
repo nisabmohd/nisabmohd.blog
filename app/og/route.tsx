@@ -5,7 +5,7 @@ export const runtime = "edge";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  let postTitle = searchParams.get("title") ?? "";
+  const postTitle = searchParams.get("title") ?? "";
 
   const font = fetch(
     new URL("../../public/fonts/SpaceMono-Bold.ttf", import.meta.url)

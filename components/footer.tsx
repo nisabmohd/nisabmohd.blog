@@ -1,37 +1,16 @@
-import { MoveUpRightIcon } from "lucide-react";
 import Link from "next/link";
-
-const SOCIAL_LINKS = [
-  {
-    title: "GitHub",
-    href: "https://github.com/nisabmohd",
-  },
-  {
-    title: "Twitter",
-    href: "https://twitter.com/MohdNisab",
-  },
-  {
-    title: "LinkedIn",
-    href: "https://www.linkedin.com/in/mohd-nisab-725148197/",
-  },
-];
 
 export default function Footer() {
   return (
-    <footer className="mt-14 mb-8 dark:text-neutral-300 text-neutral-700 flex flex-col gap-7">
-      <div className="flex items-center gap-4">
-        {SOCIAL_LINKS.map((it) => (
-          <Link
-            key={it.href}
-            className="flex items-center gap-1.5"
-            href={it.href}
-            target="_blank"
-          >
-            <MoveUpRightIcon className="w-4 h-4" /> {it.title}
-          </Link>
-        ))}
+    <footer className="h-20 flex items-center justify-between text-sm text-neutral-800 dark:text-neutral-200">
+      <p>Nisab Mohd © 2024</p>
+      <div className="flex items-center gap-2 underline underline-offset-2">
+        <Link href="https://github.com/nisabmohd">GitHub</Link>
+        <Link href="https://twitter.com/MohdNisab">Twitter</Link>
+        <Link href="https://www.linkedin.com/in/mohd-nisab-725148197/">
+          LinkedIn
+        </Link>
       </div>
-      <p className="text-[15px]">© {new Date().getFullYear()} MIT Licensed</p>
     </footer>
   );
 }

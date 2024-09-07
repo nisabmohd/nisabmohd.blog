@@ -1,26 +1,24 @@
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { ComponentProps } from "react";
 
-type AdaptiveThemeImageProps = Exclude<ComponentProps<typeof Image>, "src"> & {
+type AdaptiveImageProps = Exclude<ComponentProps<typeof Image>, "src"> & {
   src: {
     light: string;
     dark: string;
   };
 };
 
-export default function AdaptiveThemeImage({
+export default function AdaptiveImage({
   src: { dark, light },
-  className,
   alt = "themed-img",
   width = 600,
   height = 400,
   ...rest
-}: AdaptiveThemeImageProps) {
+}: AdaptiveImageProps) {
   return (
     <>
       <Image
-        className={cn(className, "dark:hidden block")}
+        className="dark:hidden block"
         src={light}
         alt={alt}
         width={width}
@@ -28,7 +26,7 @@ export default function AdaptiveThemeImage({
         {...rest}
       />
       <Image
-        className={cn(className, "dark:block hidden")}
+        className="dark:block hidden"
         src={dark}
         alt={alt}
         width={width}

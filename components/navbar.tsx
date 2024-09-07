@@ -1,29 +1,19 @@
 import Link from "next/link";
 
-const NAV_ITEMS = [
-  {
-    title: "Home",
-    href: "/",
-  },
-  {
-    title: "Blog",
-    href: "/blog",
-  },
-];
-
 export default function Navbar() {
   return (
-    <nav className="flex flex-row items-center">
-      <div className="flex flex-row gap-5 items-center h-28">
-        {NAV_ITEMS.map((item) => (
-          <Link
-            className="font-medium text-[15.45px]"
-            key={item.href}
-            href={item.href}
-          >
-            {item.title}
-          </Link>
-        ))}
+    <nav className="flex items-center justify-between h-20">
+      <Link href="/" className="font-extrabold">
+        @nisabmohd
+      </Link>
+      <div className="flex items-center gap-3.5 text-neutral-800 dark:text-neutral-200">
+        <Link href="/blog">blog</Link>
+        <Link
+          target="_blank"
+          href="https://github.com/nisabmohd?tab=repositories"
+        >
+          projects
+        </Link>
       </div>
     </nav>
   );

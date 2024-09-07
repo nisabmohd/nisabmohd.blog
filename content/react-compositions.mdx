@@ -13,7 +13,7 @@ However, server components when passed as a props to client components then they
 
 The project is a straightforward one in which the user may paste markdown content and share the URL to view it. The markdown is stored in a database using a special key index that we can use to retrieve the markdown.
 
-<AdaptiveThemeImage
+<AdaptiveImage
   src={{
     dark: "/images/linklob1-dark.png",
     light: "/images/linklob1-light.png",
@@ -50,7 +50,7 @@ export default async function View(id) {
 
 Now that I'm not shipping any bundles to the client, which is what we require in this situation, I can see the parsed form of markdown on the view page. It is rendered quickly on the server.
 
-<AdaptiveThemeImage
+<AdaptiveImage
   src={{
     dark: "/images/linklob2-dark.png",
     light: "/images/linklob2-light.png",
@@ -75,7 +75,7 @@ export default async function NewPaste() {
 }
 ```
 
-<AdaptiveThemeImage
+<AdaptiveImage
   src={{
     dark: "/images/linklob3-dark.png",
     light: "/images/linklob3-light.png",

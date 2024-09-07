@@ -2,153 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
-/* ===== Scrollbar CSS ===== */
-/* Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #a5a5a5 transparent;
-}
-
-/* Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-  width: 16px;
-}
-
-*::-webkit-scrollbar-track {
-  background: transparent
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: #949494;
-  border-radius: 28px;
-  border: 15px solid #080808;
-}
-
-
 pre {
-  padding: 0 !important;
-  width: inherit;
+    padding: 0 !important;
+    width: inherit;
 }
 
 blockquote>p::before {
-  display: none;
+    display: none;
 }
 
 pre>code {
-  display: grid;
-  padding: 14px 0 !important;
+    display: grid;
+    padding: 14px 0 !important;
 }
 
 .code-line {
-  padding: 0.75px 12.5px;
+    padding: 0.75px 12.5px;
 }
 
 .line-number::before {
-  display: inline-block;
-  width: 1rem;
-  margin-right: 22px;
-  margin-left: -2px;
-  content: attr(line);
-  text-align: right;
-  @apply text-muted-foreground;
-  @apply font-light;
-  @apply text-xs
+    display: inline-block;
+    width: 1rem;
+    margin-right: 22px;
+    margin-left: -2px;
+    content: attr(line);
+    text-align: right;
+    @apply text-gray-500;
+    @apply font-light;
+    @apply text-xs
 }
 
 .highlight-line {
-  @apply bg-zinc-300/45;
-  @apply dark:bg-zinc-800/80;
+    @apply bg-zinc-300/45;
+    @apply dark:bg-zinc-800/80;
 }
 
+/* Light Mode */
 .keyword {
-  color: #c0564f;
+    color: #e53e3e;
+    /* Red */
 }
 
 .function {
-  color: rgb(123, 68, 182);
+    color: #c53030;
+    /* Darker Red */
 }
 
 .punctuation {
-  @apply text-muted-foreground;
-
+    color: #718096;
+    /* Light Gray */
 }
 
 .comment {
-  @apply text-muted-foreground;
+    color: #a0aec0;
+    /* Gray */
 }
 
 .string,
@@ -156,31 +63,34 @@ pre>code {
 .annotation,
 .boolean,
 .number {
-  color: rgb(38, 129, 204);
+    color: #f56565;
+    /* Soft Red */
 }
 
 .tag {
-  color: hsla(133, 50%, 32%, 1);
+    color: #fc8181;
+    /* Light Red */
 }
 
-
 .attr-name {
-  @apply text-neutral-800;
-  @apply dark:text-neutral-200
+    color: #e53e3e;
+    /* Red */
 }
 
 .attr-value {
-  @apply text-neutral-600;
-  @apply dark:text-neutral-400
+    color: #f6ad55;
+    /* Soft Orange */
 }
 
-
+/* Dark Mode */
 .dark .keyword {
-  color: #ff7b72;
+    color: #fc8181;
+    /* Light Red */
 }
 
 .dark .function {
-  color: rgb(210, 168, 255);
+    color: #e53e3e;
+    /* Red */
 }
 
 .dark .string,
@@ -188,53 +98,64 @@ pre>code {
 .dark .annotation,
 .dark .boolean,
 .dark .number {
-  color: rgb(165, 214, 255);
+    color: #f56565;
+    /* Soft Red */
 }
-
 
 .dark .tag {
-  color: rgb(126, 231, 135);
+    color: #fbb6ce;
+    /* Soft Pink */
 }
 
+.dark .attr-name {
+    color: #e53e3e;
+    /* Red */
+}
+
+.dark .attr-value {
+    color: #f6ad55;
+    /* Soft Orange */
+}
+
+
 .rehype-code-title {
-  @apply px-2;
-  @apply -mb-8;
-  @apply w-full;
-  @apply text-sm;
-  @apply pt-1;
-  @apply pb-5;
-  @apply font-normal;
-  @apply tracking-tight;
-  @apply font-medium;
-  @apply font-mono;
+    @apply px-2;
+    @apply -mb-8;
+    @apply w-full;
+    @apply text-sm;
+    @apply pt-1;
+    @apply pb-3.5;
+    @apply font-normal;
+    @apply tracking-tight;
+    @apply font-code;
 }
 
 .highlight-comp>code {
-  background-color: transparent !important;
+    background-color: transparent !important;
 }
 
 .react-tweet-theme {
-  margin: auto !important;
-  --tweet-body-font-size: 15px !important;
-  --tweet-font-family: var(--font-body) !important;
-  max-width: 500px !important;
+    margin: auto !important;
+    --tweet-body-font-size: 15px !important;
+    --tweet-font-family: var(--font-body) !important;
+    max-width: 500px !important;
 }
 
 .dark .react-tweet-theme {
-  --tweet-bg-color: #222;
-  --tweet-bg-color-hover: var(--tweet-bg-color);
-  --tweet-quoted-bg-color-hover: hsla(0, 0%, 100%, 0.03);
-  --tweet-border: 1px solid #333;
-  --tweet-color-blue-secondary: #fff;
-  --tweet-color-blue-secondary-hover: #333;
-  --tweet-font-color-secondary: #9ca3af;
+    --tweet-bg-color: #222;
+    --tweet-bg-color-hover: var(--tweet-bg-color);
+    --tweet-quoted-bg-color-hover: hsla(0, 0%, 100%, 0.03);
+    --tweet-border: 1px solid #333;
+    --tweet-color-blue-secondary: #fff;
+    --tweet-color-blue-secondary-hover: #333;
+    --tweet-font-color-secondary: #9ca3af;
 }
 
 .tweet-header_avatarOverflow__E2gxj {
-  overflow: visible !important;
-  top: -30px;
+    overflow: visible !important;
+    top: -30px;
 }
 
 .tweet-header_avatarOverflow__E2gxj>img {
-  @apply rounded-full;
+    @apply rounded-full;
 }
