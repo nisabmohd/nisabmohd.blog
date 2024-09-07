@@ -16,7 +16,7 @@ export default async function BlogMainPage() {
       <ul className="flex flex-col gap-4 list-disc list sm:px-5 px-3.5">
         {blogs.map((blog) => (
           <li
-            className=" marker:text-neutral-300 dark:marker:text-neutral-700"
+            className=" marker:text-neutral-300 dark:marker:text-neutral-700 pl-3"
             key={blog.frontmatter.slug}
           >
             <Link
