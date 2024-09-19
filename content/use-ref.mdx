@@ -1,0 +1,38 @@
+---
+title: Understanding useRef by Building It
+description: In this blog, we'll explore useRef in React and learn how to implement a similar custom hook.
+published: 1726765299753
+slug: use-ref
+---
+
+You must also be familiar with the `useState` hook in order to understand the `useRef` hook. States are held by the `useState` and `useRef` hooks. React provides two hooks that have the ability to hold state. UseState exposes a tuple of value and dispatcher, as you may already be aware. Since the value is a copy of the external state that React maintains and we use the function to change the value, why does React keep an internal copy of the state? The UI must take control of state variables because it is evident that when a state changes, it must re-render. Furthermore, we can refer to it as an immutable state in which updating the value requires calling a setter rather than changing the value directly.
+
+{/* <img src="/images/venn-state.png" /> */}
+
+The persistence of values between renders is a shared feature of both hooks. You may be wondering what is meant by "persist value between states" at this point. Let's clarify with an example.
+The fact that the count remains unchanged when hide is enabled and then disabled again in the example above indicates that the value within the state is persistent, despite the fact that the component was re-rendered when the toggle state changed.
+
+```jsx showLineNumbers
+function Component() {
+  const [count, setCount] = useState(0);
+  const [hide, setHide] = useState(false);
+  return (
+    <div>
+      {hide && <p>{count}</p>}
+      <button onClick={() => setCount(count + 1)}>inc</button>
+      <button onClick={() => setHide(!hide)}>hide/unhide</button>
+    </div>
+  );
+}
+```
+
+`useState` and `useRef` differ primarily in that `useState` forces a re-render while "useRef" does not. Imagine, however, that `useRef` is also an internally created state that uses only `useState`! Yes, but why does the component that changes the ref value not re-render when it was just a wrapper, you ask? To grasp the concept, one must grasp how useState determines whether the value has changed. If the value is `object`, its reference is verified using ` Object.is`, and for primitive values, the value is checked directly. If the same value is passed to state, however, React will not proceed with a re-render. Furthermore, `useRef` always returns an object with the property `current`, and we modify the value by modifying the `current` property value. As a result, we never modified the object reference of the current state; rather, we only modified the property value. For a clearer understanding, let's create our own `useRef` hook.
+
+```jsx showLineNumbers {2}
+function useRef(initialValue) {
+  const [stateRef] = useState({ current: initialValue });
+  return stateRef;
+}
+```
+
+As you can see, the `useRef` hook returns the state reference to you and internally stores a state with the value `object` and a property `current` that defaults to `initialValue` passed. Therefore, the state never updates when you modify the ref value using the `current` property; in fact, we never witness any re-renders when the value changes. This hook has very few use cases; the two that it does have are for referencing node elements and storing values that are retained between re-renders. I hope you now understand how hooks are made; we also do this with custom hooks.

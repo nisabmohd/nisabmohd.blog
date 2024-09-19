@@ -27,14 +27,11 @@ pre>code {
     margin-left: -2px;
     content: attr(line);
     text-align: right;
-    @apply text-gray-500;
-    @apply font-light;
-    @apply text-xs
+    @apply text-neutral-700 dark:text-neutral-400 text-xs font-code;
 }
 
 .highlight-line {
-    @apply bg-zinc-300/45;
-    @apply dark:bg-zinc-800/80;
+    @apply bg-zinc-300/45 dark:bg-zinc-800/80;
 }
 
 /* Light Mode */
@@ -119,15 +116,7 @@ pre>code {
 
 
 .rehype-code-title {
-    @apply px-2;
-    @apply -mb-8;
-    @apply w-full;
-    @apply text-sm;
-    @apply pt-1;
-    @apply pb-3.5;
-    @apply font-normal;
-    @apply tracking-tight;
-    @apply font-code;
+    @apply px-2 -mb-8 w-full text-sm pt-1 pb-3.5 font-normal tracking-tight font-code;
 }
 
 .highlight-comp>code {
