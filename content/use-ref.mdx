@@ -5,11 +5,11 @@ published: 1726765299753
 slug: use-ref
 ---
 
-You must also be familiar with the `useState` hook in order to understand the `useRef` hook. States are held by the `useState` and `useRef` hooks. React provides two hooks that have the ability to hold state. UseState exposes a tuple of value and dispatcher, as you may already be aware. Since the value is a copy of the external state that React maintains and we use the function to change the value, why does React keep an internal copy of the state? The UI must take control of state variables because it is evident that when a state changes, it must re-render. Furthermore, we can refer to it as an immutable state in which updating the value requires calling a setter rather than changing the value directly.
+You must also be familiar with the `useState` hook in order to understand the `useRef` hook. States are held by the `useState` and `useRef` hooks. React provides two hooks that have the ability to hold state. The `useState` exposes a tuple of value and dispatcher, as you may already be aware. Since the value is a copy of the external state that React maintains and we use the function to change the value, why does React keep an internal copy of the state? The React must take control of state variables because it is evident that when a state changes, it must re-render. Furthermore, we can refer to it as an immutable state in which updating the value requires calling a setter rather than changing the value directly.
 
 {/* <img src="/images/venn-state.png" /> */}
 
-The persistence of values between renders is a shared feature of both hooks. You may be wondering what is meant by "persist value between states" at this point. Let's clarify with an example.
+The persistence of values between renders is a shared feature of both hooks. You may be wondering what is meant by "persist value between renders" at this point. Let's clarify with an example.
 The fact that the count remains unchanged when hide is enabled and then disabled again in the example above indicates that the value within the state is persistent, despite the fact that the component was re-rendered when the toggle state changed.
 
 ```jsx showLineNumbers
