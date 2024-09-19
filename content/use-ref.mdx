@@ -30,9 +30,8 @@ function Component() {
 
 ```jsx showLineNumbers {2}
 function useRef(initialValue) {
-  const [stateRef] = useState({ current: initialValue });
-  return stateRef;
+  return useState({ current: initialValue })[0];
 }
 ```
 
-As you can see, the `useRef` hook returns the state reference to you and internally stores a state with the value `object` and a property `current` that defaults to `initialValue` passed. Therefore, the state never updates when you modify the ref value using the `current` property; in fact, we never witness any re-renders when the value changes. This hook has very few use cases; the two that it does have are for referencing node elements and storing values that are retained between re-renders. I hope you now understand how hooks are made; we also do this with custom hooks.
+As you can see, the `useRef` hook returns the state reference to you and internally stores a state with the value `object` having a property `current` that defaults to `initialValue` passed. Therefore, the state never updates when you modify the ref value using the `current` property; in fact, we never witness any re-renders when the value changes. This hook has very few use cases; the two that it does have are for referencing node elements and storing values that are retained between re-renders. I hope you now understand how hooks are made; we also do this with custom hooks.
