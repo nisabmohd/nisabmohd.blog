@@ -12,7 +12,7 @@ blockquote>p::before {
 }
 
 code {
-    @apply bg-stone-200 bg-stone-800
+    @apply bg-stone-200 dark:bg-stone-800
 }
 
 
