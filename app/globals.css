@@ -23,7 +23,7 @@ pre>code {
 
 .code-line {
     padding: 0.75px 12.5px;
-    @apply rounded-sm
+    @apply border-l-2 border-transparent
 }
 
 .line-number::before {
@@ -42,23 +42,23 @@ pre>code {
 
 /* Light Mode */
 .keyword {
-    color: #e53e3e;
+    color: #e11d48;
     /* Red */
 }
 
 .function {
-    color: #c53030;
-    /* Darker Red */
+    color: #0ea5e9;
+    /* Sky Blue */
 }
 
 .punctuation {
-    color: #718096;
-    /* Light Gray */
+    color: #64748b;
+    /* Slate Gray */
 }
 
 .comment {
-    color: #a0aec0;
-    /* Gray */
+    color: #94a3b8;
+    /* Muted Slate Gray */
 }
 
 .string,
@@ -66,34 +66,34 @@ pre>code {
 .annotation,
 .boolean,
 .number {
-    color: #f56565;
-    /* Soft Red */
+    color: #f59e0b;
+    /* Amber */
 }
 
 .tag {
-    color: #fc8181;
-    /* Light Red */
+    color: #ec4899;
+    /* Pink */
 }
 
 .attr-name {
-    color: #e53e3e;
-    /* Red */
+    color: #16a34a;
+    /* Green */
 }
 
 .attr-value {
-    color: #f6ad55;
-    /* Soft Orange */
+    color: #f97316;
+    /* Orange */
 }
 
 /* Dark Mode */
 .dark .keyword {
-    color: #fc8181;
+    color: #fb7185;
     /* Light Red */
 }
 
 .dark .function {
-    color: #e53e3e;
-    /* Red */
+    color: #38bdf8;
+    /* Sky Blue */
 }
 
 .dark .string,
@@ -101,25 +101,24 @@ pre>code {
 .dark .annotation,
 .dark .boolean,
 .dark .number {
-    color: #f56565;
-    /* Soft Red */
+    color: #fbbf24;
+    /* Amber */
 }
 
 .dark .tag {
-    color: #fbb6ce;
+    color: #fb7185;
     /* Soft Pink */
 }
 
 .dark .attr-name {
-    color: #e53e3e;
-    /* Red */
+    color: #22c55e;
+    /* Green */
 }
 
 .dark .attr-value {
-    color: #f6ad55;
+    color: #fb923c;
     /* Soft Orange */
 }
-
 
 .rehype-code-title {
     @apply px-2 -mb-8 w-full text-sm pt-1 pb-3.5 font-normal tracking-tight font-code;
@@ -131,15 +130,18 @@ pre>code {
 
 .react-tweet-theme {
     margin: auto !important;
-    --tweet-body-font-size: 15px !important;
+    --tweet-body-font-size: 14.5px !important;
     --tweet-font-family: var(--font-body) !important;
+    --tweet-bg-color: #f5f5f5 !important;
+    --tweet-bg-color-hover: #f5f5f5 !important;
+    --tweet-quoted-bg-color-hover: #f5f5f5 !important;
     max-width: 500px !important;
 }
 
 .dark .react-tweet-theme {
-    --tweet-bg-color: #222;
-    --tweet-bg-color-hover: var(--tweet-bg-color);
-    --tweet-quoted-bg-color-hover: hsla(0, 0%, 100%, 0.03);
+    --tweet-bg-color: #171717 !important;
+    --tweet-bg-color-hover: #171717 !important;
+    --tweet-quoted-bg-color-hover: #171717 !important;
     --tweet-border: 1px solid #333;
     --tweet-color-blue-secondary: #fff;
     --tweet-color-blue-secondary-hover: #333;
