@@ -42,83 +42,67 @@ pre>code {
 
 /* Light Mode */
 .keyword {
-    color: #e11d48;
-    /* Red */
+    color: #cf222e;
+}
+
+.punctuation,
+.comment {
+    color: #818181;
 }
 
 .function {
-    color: #0ea5e9;
-    /* Sky Blue */
+    color: #8250df;
 }
 
-.punctuation {
-    color: #64748b;
-    /* Slate Gray */
+.constant {
+    color: #953800;
 }
 
-.comment {
-    color: #94a3b8;
-    /* Muted Slate Gray */
-}
-
-.string,
-.constant,
 .annotation,
 .boolean,
-.number {
-    color: #f59e0b;
-    /* Amber */
+.number,
+.constant,
+.tag,
+.attr-name,
+.attr-value,
+.string {
+    color: #009a55;
 }
 
-.tag {
-    color: #ec4899;
-    /* Pink */
-}
-
-.attr-name {
-    color: #16a34a;
-    /* Green */
-}
-
-.attr-value {
-    color: #f97316;
-    /* Orange */
-}
 
 /* Dark Mode */
 .dark .keyword {
-    color: #fb7185;
-    /* Light Red */
+    color: #569cd6;
+}
+
+.dark .punctuation {
+    color: #ededed;
+}
+
+.dark .comment {
+    color: #949494;
+
 }
 
 .dark .function {
-    color: #38bdf8;
-    /* Sky Blue */
+    color: #bda4ff;
 }
 
-.dark .string,
-.dark .constant,
+.dark .constant {
+    color: #953800;
+}
+
 .dark .annotation,
 .dark .boolean,
-.dark .number {
-    color: #fbbf24;
-    /* Amber */
+.dark .number,
+.dark .constant,
+.dark .tag,
+.dark .attr-name,
+.dark .attr-value,
+.dark .string {
+    color: #3ecf8e;
 }
 
-.dark .tag {
-    color: #fb7185;
-    /* Soft Pink */
-}
-
-.dark .attr-name {
-    color: #22c55e;
-    /* Green */
-}
-
-.dark .attr-value {
-    color: #fb923c;
-    /* Soft Orange */
-}
 
 .rehype-code-title {
     @apply px-2 -mb-8 w-full text-sm pt-1 pb-3.5 font-normal tracking-tight font-code;
