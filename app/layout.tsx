@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html className="dark" lang="en" suppressHydrationWarning>
       <body
-        className={`${fontSpace.variable} ${GeistMono.variable} font-space bg-neutral-50 dark:bg-neutral-950`}
+        className={`${fontSpace.variable} ${GeistMono.variable} font-space bg-white dark:bg-[#101010] antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -35,9 +35,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="max-w-[670px] mx-auto sm:px-0 px-4">
+          <main className="max-w-[700px] mx-auto sm:px-0 px-4">
             <Navbar />
-            <div className="flex flex-col gap-7 py-7 min-h-[82vh]">
+            <div className="flex flex-col gap-7 py-7 min-h-[83vh]">
               {children}
             </div>
             <Footer />

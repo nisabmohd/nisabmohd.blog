@@ -13,14 +13,14 @@ export default async function BlogMainPage() {
   return (
     <>
       <h2 className="text-2xl font-extrabold">Explore My Blog</h2>
-      <ul className="flex flex-col gap-4 list-disc list sm:px-5 px-3.5">
+      <ul className="flex flex-col list-disc list sm:px-5 px-3.5 gap-3">
         {blogs.map((blog) => (
           <li
-            className=" marker:text-neutral-300 dark:marker:text-neutral-700 pl-3"
+            className="marker:text-neutral-300 dark:marker:text-neutral-700 pl-2"
             key={blog.frontmatter.slug}
           >
             <Link
-              className="underline underline-offset-2"
+              className="underline underline-offset-2 font-normal"
               href={`/blog/${blog.frontmatter.slug}`}
             >
               {blog.frontmatter.title}
