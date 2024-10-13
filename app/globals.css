@@ -40,22 +40,27 @@ pre>code {
     @apply bg-zinc-300/45 dark:bg-zinc-800/80;
 }
 
+
 /* Light Mode */
 .keyword {
-    color: #cf222e;
+    color: #2d2d2d;
+    /* Darker gray for visibility on light background */
 }
 
 .punctuation,
 .comment {
-    color: #818181;
+    color: #606060;
+    /* Medium gray for punctuation and comments */
 }
 
 .function {
-    color: #8250df;
+    color: #3a3a3a;
+    /* Slightly darker gray for functions */
 }
 
 .constant {
-    color: #953800;
+    color: #4b4b4b;
+    /* Darker gray for constants */
 }
 
 .annotation,
@@ -66,30 +71,35 @@ pre>code {
 .attr-name,
 .attr-value,
 .string {
-    color: #009a55;
+    color: #2f2f2f;
+    /* Dark gray for other elements */
 }
 
 
 /* Dark Mode */
 .dark .keyword {
-    color: #569cd6;
+    color: #d1d1d1;
+    /* Soft neutral for contrast on bg-neutral-900 */
 }
 
 .dark .punctuation {
-    color: #ededed;
+    color: #999999;
+    /* Subtle, less prominent gray */
 }
 
 .dark .comment {
-    color: #949494;
-
+    color: #757575;
+    /* Darker gray for comments */
 }
 
 .dark .function {
-    color: #bda4ff;
+    color: #c7c7c7;
+    /* Lighter gray for readability */
 }
 
 .dark .constant {
-    color: #953800;
+    color: #9e9e9e;
+    /* Muted gray for constants */
 }
 
 .dark .annotation,
@@ -100,7 +110,8 @@ pre>code {
 .dark .attr-name,
 .dark .attr-value,
 .dark .string {
-    color: #3ecf8e;
+    color: #bfbfbf;
+    /* Slightly bright neutral for better contrast */
 }
 
 
