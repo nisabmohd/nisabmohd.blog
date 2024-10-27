@@ -4,7 +4,7 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism-plus";
 import rehypeCodeTitles from "rehype-code-titles";
-import { components } from "~/components/markdown";
+import { components } from "~/components/markdown-custom";
 
 export type MDXFrontmatter = {
   title: string;

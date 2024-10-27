@@ -33,7 +33,7 @@ pre>code {
     margin-left: -2px;
     content: attr(line);
     text-align: right;
-    @apply text-neutral-700 dark:text-neutral-400 text-xs font-code;
+    @apply text-neutral-700 dark:text-neutral-400 text-xs font-mono;
 }
 
 .highlight-line {
@@ -116,7 +116,7 @@ pre>code {
 
 
 .rehype-code-title {
-    @apply px-2 -mb-8 w-full text-sm pt-1 pb-3.5 font-normal tracking-tight font-code;
+    @apply px-2 -mb-8 w-full text-sm pt-1 pb-3.5 font-normal tracking-tight font-mono;
 }
 
 .highlight-comp>code {

@@ -12,7 +12,7 @@ export default async function BlogMainPage() {
   const blogs = await getAllBlogs();
   return (
     <>
-      <h2 className="text-2xl font-extrabold">Explore My Blog</h2>
+      <h2 className="text-2xl font-semibold">Explore My Blog</h2>
       <ul className="flex flex-col list-disc list sm:px-5 px-3.5 gap-3">
         {blogs.map((blog) => (
           <li

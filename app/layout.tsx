@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
 import Navbar from "~/components/navbar";
 import Footer from "~/components/footer";
 import { ThemeProvider } from "~/components/theme-provider";
 import "./globals.css";
-
-const fontSpace = Space_Grotesk({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-space",
-});
 
 export const metadata: Metadata = {
   title: "Nisab Mohd",
@@ -27,7 +21,7 @@ export default function RootLayout({
   return (
     <html className="dark" lang="en" suppressHydrationWarning>
       <body
-        className={`${fontSpace.variable} ${GeistMono.variable} font-space bg-white dark:bg-[#101010] antialiased`}
+        className={`${GeistSans.variable} ${GeistMono.variable} font-sans bg-white dark:bg-[#101010] antialiased`}
       >
         <ThemeProvider
           attribute="class"

@@ -14,7 +14,7 @@ export default async function BlogPage({
   return (
     <>
       <div className="flex flex-col gap-2">
-        <h2 className="text-2xl font-extrabold">{res.frontmatter.title}</h2>
+        <h2 className="text-2xl font-semibold">{res.frontmatter.title}</h2>
         <p className="text-sm text-neutral-800 dark:text-neutral-200 font-medium">
           {new Date(res.frontmatter.published).toDateString()}
         </p>
@@ -26,7 +26,7 @@ export default async function BlogPage({
 
 function Typography({ children }: PropsWithChildren) {
   return (
-    <div className="text-inherit prose prose-neutral dark:prose-invert dark:prose-pre:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-900 prose-pre:prose-code:bg-neutral-50 prose-pre:bg-neutral-50 prose-pre:font-code prose-code:font-code prose-headings:font-medium underline-offset-2 prose-code:text-sm prose-code:leading-6 dark:prose-code:text-white prose-code:text-black prose-code:p-1 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none prose-img:rounded-md prose-img:border prose-pre:border dark:prose-pre:border-neutral-800 dark:prose-img:border-neutral-800 min-w-full">
+    <div className="text-inherit prose prose-neutral dark:prose-invert dark:prose-pre:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-900 prose-pre:prose-code:bg-neutral-50 prose-pre:bg-neutral-50 prose-pre:font-mono prose-code:font-mono prose-headings:font-medium underline-offset-2 prose-code:text-sm prose-code:leading-6 dark:prose-code:text-white prose-code:text-black prose-code:p-1 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none prose-img:rounded-md prose-img:border prose-pre:border dark:prose-pre:border-neutral-800 dark:prose-img:border-neutral-800 min-w-full">
       {children}
     </div>
   );
