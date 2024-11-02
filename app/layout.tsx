@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
+import { Space_Grotesk } from "next/font/google";
 import Navbar from "~/components/navbar";
 import Footer from "~/components/footer";
 import { ThemeProvider } from "~/components/theme-provider";
@@ -13,6 +13,13 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://nisabmohd.vercel.app/"),
 };
 
+const spaceFont = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space",
+  display: "swap",
+  weight: "400",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -21,7 +28,7 @@ export default function RootLayout({
   return (
     <html className="dark" lang="en" suppressHydrationWarning>
       <body
-        className={`${GeistSans.variable} ${GeistMono.variable} font-sans bg-white dark:bg-[#101010] antialiased`}
+        className={`${spaceFont.variable} ${GeistMono.variable} font-sans bg-background antialiased`}
       >
         <ThemeProvider
           attribute="class"
