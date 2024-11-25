@@ -3,11 +3,13 @@ import { notFound } from "next/navigation";
 import { PropsWithChildren } from "react";
 import { getAllBlogs, getBlogFromSlug } from "~/lib/markdown";
 
-export default async function BlogPage({
-  params: { slug },
-}: {
-  params: { slug: string };
+export default async function BlogPage(props: {
+  params: Promise<{ slug: string }>;
 }) {
+  const params = await props.params;
+
+  const { slug } = params;
+
   const res = await getBlogFromSlug(slug);
   if (!res) notFound();
   const { content } = res;
@@ -26,7 +28,7 @@ export default async function BlogPage({
 
 function Typography({ children }: PropsWithChildren) {
   return (
-    <div className="text-inherit prose prose-neutral dark:prose-invert dark:prose-pre:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-900 prose-pre:prose-code:bg-neutral-50 prose-pre:bg-neutral-50 prose-pre:font-mono prose-code:font-mono underline-offset-2 prose-code:text-sm prose-code:leading-6 dark:prose-code:text-white prose-code:text-black prose-code:p-1 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none prose-img:rounded-md prose-img:border prose-pre:border dark:prose-pre:border-neutral-800 dark:prose-img:border-neutral-800 min-w-full">
+    <div className="text-inherit prose prose-neutral dark:prose-invert dark:prose-pre:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-900 prose-pre:prose-code:bg-neutral-50 prose-pre:bg-neutral-50 prose-pre:font-mono prose-code:font-mono prose-code:font-normal underline-offset-2 prose-code:text-sm prose-code:leading-6 dark:prose-code:text-white prose-code:text-black prose-code:p-1 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none prose-img:rounded-md prose-img:border prose-pre:border dark:prose-pre:border-neutral-800 dark:prose-img:border-neutral-800 min-w-full">
       {children}
     </div>
   );
@@ -39,11 +41,13 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({
-  params: { slug },
-}: {
-  params: { slug: string };
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
+  const params = await props.params;
+
+  const { slug } = params;
+
   const blog = await getBlogFromSlug(slug);
   if (!blog) return {};
   const ogImage = `https://nisabmohd.vercel.app/og?title=${encodeURIComponent(
