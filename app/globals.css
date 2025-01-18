@@ -16,7 +16,7 @@ blockquote>p::before {
 }
 
 code {
-    @apply bg-stone-100 dark:bg-stone-800
+    @apply bg-stone-50 dark:bg-stone-900/90 border dark:border-neutral-800 border-neutral-200
 }
 
 
@@ -41,7 +41,7 @@ pre>code {
 }
 
 .highlight-line {
-    @apply bg-zinc-300/45 dark:bg-zinc-800/80;
+    @apply bg-zinc-200/95 dark:bg-zinc-800/90;
 }
 
 

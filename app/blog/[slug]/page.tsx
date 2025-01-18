@@ -1,7 +1,9 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PropsWithChildren } from "react";
+import { cache, PropsWithChildren } from "react";
 import { getAllBlogs, getBlogFromSlug } from "~/lib/markdown";
+
+const getBlogFromSlugCache = cache(getBlogFromSlug);
 
 export default async function BlogPage(props: {
   params: Promise<{ slug: string }>;
@@ -10,7 +12,7 @@ export default async function BlogPage(props: {
 
   const { slug } = params;
 
-  const res = await getBlogFromSlug(slug);
+  const res = await getBlogFromSlugCache(slug);
   if (!res) notFound();
   const { content } = res;
   return (
@@ -28,7 +30,7 @@ export default async function BlogPage(props: {
 
 function Typography({ children }: PropsWithChildren) {
   return (
-    <div className="text-inherit prose prose-neutral dark:prose-invert dark:prose-pre:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-900 prose-pre:prose-code:bg-neutral-50 prose-pre:bg-neutral-50 prose-pre:font-mono prose-code:font-mono prose-code:font-medium underline-offset-2 prose-code:text-sm prose-code:leading-6 dark:prose-code:text-white prose-code:text-black prose-code:py-0.5 prose-code:px-1 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none prose-img:rounded-md prose-img:border prose-pre:border dark:prose-pre:border-neutral-800 dark:prose-img:border-neutral-800 min-w-full">
+    <div className="text-inherit prose prose-neutral dark:prose-invert dark:prose-pre:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-950 prose-pre:prose-code:bg-neutral-50 prose-pre:bg-neutral-50 prose-pre:font-mono prose-code:font-mono prose-code:font-medium underline-offset-2 prose-code:text-sm prose-code:leading-[1.625rem] dark:prose-code:text-white prose-code:text-black prose-code:py-[0.0991rem] prose-code:px-1.5 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none prose-img:rounded-md prose-img:border prose-pre:border dark:prose-pre:border-neutral-800 dark:prose-img:border-neutral-800 min-w-full">
       {children}
     </div>
   );
@@ -48,7 +50,7 @@ export async function generateMetadata(props: {
 
   const { slug } = params;
 
-  const blog = await getBlogFromSlug(slug);
+  const blog = await getBlogFromSlugCache(slug);
   if (!blog) return {};
   const ogImage = `https://nisabmohd.vercel.app/og?title=${encodeURIComponent(
     blog.frontmatter.title

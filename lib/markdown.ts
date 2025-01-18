@@ -32,7 +32,7 @@ export async function getAllBlogs() {
         },
         components,
       });
-    })
+    }),
   );
   const result = await resultPromise;
   result.sort((a, b) => b.frontmatter.published - a.frontmatter.published);
@@ -40,6 +40,8 @@ export async function getAllBlogs() {
 }
 
 export async function getBlogFromSlug(slug: string) {
+  console.log("here");
+
   const allBlogs = await getAllBlogs();
   return allBlogs.find((blog) => blog.frontmatter.slug == slug);
 }
