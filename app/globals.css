@@ -45,79 +45,94 @@ pre>code {
 }
 
 
-/* Light Mode */
 .keyword {
-    color: #2d2d2d;
-    /* Darker gray for visibility on light background */
-}
-
-.punctuation,
-.comment {
-    color: #606060;
-    /* Medium gray for punctuation and comments */
+    color: #d73a49;
+    /* GitHub Red */
 }
 
 .function {
-    color: #3a3a3a;
-    /* Slightly darker gray for functions */
+    color: #6f42c1;
+    /* GitHub Purple */
 }
 
-.constant {
-    color: #4b4b4b;
-    /* Darker gray for constants */
+.punctuation {
+    color: #24292e;
+    /* GitHub Black */
 }
 
+.comment {
+    color: #6a737d;
+    /* GitHub Muted Gray */
+}
+
+.string,
+.constant,
 .annotation,
 .boolean,
-.number,
-.constant,
-.tag,
-.attr-name,
-.attr-value,
-.string {
-    color: #2f2f2f;
-    /* Dark gray for other elements */
+.number {
+    color: #005cc5;
+    /* GitHub Blue */
 }
 
+.tag {
+    color: #22863a;
+    /* GitHub Green */
+}
+
+.attr-name {
+    color: #6f42c1;
+    /* GitHub Purple */
+}
+
+.attr-value {
+    color: #e36209;
+    /* GitHub Orange */
+}
 
 /* Dark Mode */
 .dark .keyword {
-    color: #d1d1d1;
-    /* Soft neutral for contrast on bg-neutral-900 */
-}
-
-.dark .punctuation {
-    color: #999999;
-    /* Subtle, less prominent gray */
-}
-
-.dark .comment {
-    color: #757575;
-    /* Darker gray for comments */
+    color: #f97583;
+    /* GitHub Light Red */
 }
 
 .dark .function {
-    color: #c7c7c7;
-    /* Lighter gray for readability */
+    color: #d2a8ff;
+    /* GitHub Light Purple */
 }
 
-.dark .constant {
-    color: #9e9e9e;
-    /* Muted gray for constants */
+.dark .punctuation {
+    color: #c9d1d9;
+    /* GitHub Light Gray */
 }
 
+.dark .comment {
+    color: #8b949e;
+    /* GitHub Muted Gray */
+}
+
+.dark .string,
+.dark .constant,
 .dark .annotation,
 .dark .boolean,
-.dark .number,
-.dark .constant,
-.dark .tag,
-.dark .attr-name,
-.dark .attr-value,
-.dark .string {
-    color: #bfbfbf;
-    /* Slightly bright neutral for better contrast */
+.dark .number {
+    color: #79c0ff;
+    /* GitHub Light Blue */
 }
 
+.dark .tag {
+    color: #a5d6ff;
+    /* GitHub Cyan */
+}
+
+.dark .attr-name {
+    color: #d2a8ff;
+    /* GitHub Light Purple */
+}
+
+.dark .attr-value {
+    color: #ffa657;
+    /* GitHub Light Orange */
+}
 
 .rehype-code-title {
     @apply px-2 -mb-8 w-full text-sm pt-1 pb-3.5 font-normal tracking-tight font-mono;

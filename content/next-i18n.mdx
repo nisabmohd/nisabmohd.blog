@@ -1,0 +1,232 @@
+---
+title: "Next.js 15 Internationalization Simplified"
+description: A guide to internationalization in Next.js 15
+published: 1739034259354
+slug: next-i18n
+---
+
+Because Nextjs has server and client components, maintaining internationalization is more difficult than it is in a traditional React application. We'll look at how to keep Nextjs 15 international in this article. The procedures outlined in Nextjs' documentation will be what we do. The documentation can be found [here](https://nextjs.org/docs/app/building-your-application/routing/internationalization).
+
+As stated in the official documentation, I will attempt to keep it simple. For this, we won't be using any libraries. Although a negotiator-like library can be used, subpath routing will be used in this case. The entire application must be wrapped in a `[lang]` route. For example, if you have a `/article` page, it will now be `/[lang]/article`, with `lang` representing the language code such as `en`, `fr`, `es`, etc. In order to handle situations where the lang code is not available, we will add a fallback code and use it to reroute the same path. Thus, middleware is used because we will be managing this in each route segment.
+
+```ts:middleware.ts
+import { NextRequest, NextResponse } from "next/server";
+import { getLocale, pathnameHasLocale } from "./lib/locale";
+
+export function middleware(request: NextRequest) {
+    // Check if there is any supported locale in the pathname
+    const { pathname } = request.nextUrl;
+    const hasLocale = pathnameHasLocale(pathname);
+    if (hasLocale) return;
+
+    // Redirect if there is no locale
+    const locale = getLocale(pathname);
+    request.nextUrl.pathname = `/${locale}${pathname}`;
+    // e.g. incoming request is /docs/get-started
+    // The new URL is now /en/docs/get-started
+    return NextResponse.redirect(request.nextUrl);
+}
+
+export const config = {
+    matcher: [
+        // Skip all internal paths (_next)
+        "/((?!_next).*)",
+    ],
+};
+```
+
+In the middleware, we check if the pathname has a locale. If it doesn't, we get the locale and redirect to the same path with the locale. The `getLocale` and `pathnameHasLocale` functions are defined in the `lib/locale.ts` file.
+
+```ts:lib/locale.ts
+export const locales = ["en", "fr", "ja"] as const;
+export type Locale = typeof locales[number];
+
+export function getLocale(pathname: string) {
+    const [locale] = pathname.split("/").filter(Boolean);
+    return locales.includes(locale as Locale) ? locale : locales[0];
+}
+
+export function pathnameHasLocale(pathname: string) {
+    return locales.some(
+        (locale) =>
+            pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
+    );
+}
+```
+
+### Localization
+
+Changing displayed content based on the user’s preferred locale, or localization, is not something specific to Next.js. The patterns described below would work the same with any web application. lets assume we have `ja` and `en` as supported langauges, so we create two dictionaries for each language.
+
+```json:en.json
+{
+    "home": {
+        "title": "AriaDocs - Template",
+        "description": "This comprehensive ....."
+    }
+}
+```
+
+```json:js.json
+{
+    "home": {
+        "title": "AriaDocs - テンプレート",
+        "description": "Next.jsで作成されたこの包括的な ..."
+    }
+}
+```
+
+now we need to get this dictionary in our server components so we make a util in `dictionary.ts` where we pass locale and it will resolve the dictionary for that locale.
+
+```ts:lib/dictionary.ts
+const dictionaries = {
+    en: () => import("@/dict/en.json").then((module) => module.default),
+    ja: () => import("@/dict/ja.json").then((module) => module.default)
+};
+
+export const getDictionary = async (locale) => dictionaries[locale]();
+```
+
+As a result, we have implemented localization and ensure that the path of our pages contains a lang code. Therefore, each `page` and `layout` will have prop `lang` that will be used to render the content in the appropriate language when the application is wrapped in a `[lang]` route. Let's see if we can accomplish this.
+
+```tsx:pages/[lang]/article.tsx
+export default async function Home({ params }: LangProps) {
+    const { lang } = await params;
+    const dict = await getDictionary(lang);
+    return <div>
+        <h1>{dict.home.title}</h1>
+        <p>{dict.home.description}</p>
+    </div>
+}
+```
+
+Each page will have these lang properties, which are inside the lang route, and you can now render the content from the dictionary according to the locale. The client components can then render the content according to the locale by passing this resolved dictionary to them. If the client component is located far from the `lang` path, we can create a context that accepts the resolved dictionary and passes it to all of its child components. This context can then be used from the `useDictionary` hook.
+
+```tsx
+"use client";
+
+import { Dictionary } from "@/lib/dictionaries";
+import { createContext, PropsWithChildren, useContext } from "react";
+
+export function ClientDictionary({
+  children,
+  dict,
+}: PropsWithChildren<{ dict: Dictionary }>) {
+  return (
+    <DictionaryContext.Provider value={{ dict }}>
+      {children}
+    </DictionaryContext.Provider>
+  );
+}
+
+const DictionaryContext = createContext<{ dict: Dictionary } | null>(null);
+
+export function useDictionary() {
+  const val = useContext(DictionaryContext);
+  if (!val) throw new Error("...");
+  return val.dict;
+}
+```
+
+As you can see in the code above, we have created a context that accepts the dictionary and passes it to all of its child components. The `useDictionary` hook can then be used to access the dictionary from any child component. This is how we can keep our Next.js application internationalized without using any libraries. The below shows how we wrapping the `RootLayout` with the `ClientDictionary`.
+
+```tsx:layout.tsx
+export default async function RootLayout({children,params}) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+  return (
+    <html lang={lang} suppressHydrationWarning>
+      <body>
+        <ClientDictionary dict={dict}>
+            <main>
+              {children}
+            </main>
+        </ClientDictionary>
+      </body>
+    </html>
+  );
+}
+```
+
+Because the `error` and `not-found` pages in Nextjs don't receive dynamic props, they should be client components that retrieve the dictionary using the `useDictionary` hook. An example of turning the `error` page into a client component can be found below.
+
+```tsx:error.tsx
+"use client"; // Error components must be Client Components
+import { useDictionary } from "@/components/contexts/dictionary-provider";
+import { useEffect } from "react";
+
+export default function Error({error}) {
+  const dict = useDictionary();
+
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
+
+  return (
+    <div>
+       <p>{dict.error.something_went_wrong}</p>
+       <p>{dict.error.sub_text}</p>
+    </div>
+  );
+}
+```
+
+Everything functions perfectly, but there is a problem: because `lang` is a dynamic path, all pages are made dynamic. However, we are aware of the number of languages we support, so we can create static pathways for them using `generateStaticParams`; the code is shown below.
+
+```tsx:layout.tsx
+import { locales } from "@/lib/locale";
+
+export async function generateStaticParams() {
+   return locales.map((locale) => ({ lang: locale }));
+}
+```
+
+Finally, we can develop a `lang-select` component that will change the locale and reroute to the same page with the new locale. This will allow us to manually change the locale using the language dropdown in the user interface.
+
+```tsx:components/lang-select.tsx
+"use client";
+
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu, DropdownMenuContent, DropdownMenuItem, 
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { LanguagesIcon } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+
+const available_locales = [
+  {title: "English",code: "en"},
+  {title: "日本語",code: "ja"}
+];
+
+export default function LangSelect() {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  function handleChangeLocale(newLocale: string) {
+    router.push(pathname.replace(/\/[a-z]{2}/, `/${newLocale}`));
+  }
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" size="icon">
+          <LanguagesIcon className="h-[1.1rem] w-[1.1rem]" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        {available_locales.map((locale) => (
+          <DropdownMenuItem
+            onClick={() => handleChangeLocale(locale.code)}
+            key={locale.title}
+          >
+            {locale.title}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+```
+
+Hence we have successfully implemented internationalization in Next.js 15 without using any libraries. This is a simple and effective way to handle internationalization in Next.js i have used this is in one of my project AriaDocs and you can find the source code [here](https://github.com/nisabmohd/Aria-Docs/tree/i18n-support)
