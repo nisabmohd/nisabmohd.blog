@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html className="dark" lang="en" suppressHydrationWarning>
       <body
-        className={`${spaceGroteskFont.variable} ${spaceMonoFont.variable} font-sans dark:bg-black bg-white antialiased`}
+        className={`${spaceGroteskFont.variable} ${spaceMonoFont.variable} font-sans dark:bg-black bg-white antialiased tracking-wide`}
       >
         <ThemeProvider
           attribute="class"

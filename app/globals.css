@@ -41,7 +41,7 @@ pre>code {
 }
 
 .highlight-line {
-    @apply bg-zinc-200/95 dark:bg-zinc-800/90;
+    @apply bg-zinc-200/95 dark:bg-neutral-900;
 }
 
 

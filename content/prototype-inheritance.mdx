@@ -1,0 +1,288 @@
+---
+title: "Understanding Prototype Inheritance in JavaScript"
+description: Learn how prototype inheritance works in JavaScript, enabling objects to share properties and methods efficiently.
+published: 1741182385685
+slug: prototype-inheritance
+---
+
+One of the fundamental building blocks of object-oriented programming is inheritance, which minimizes duplication by enabling an object to inherit properties from another object. Classes are the basis for inheritance in static languages like Java, C++, etc. The inheritance model used in traditional JavaScript was prototype-based inheritance.
+
+<AdaptiveImage
+  src={{
+    dark: "/images/prototype-dark.png",
+    light: "/images/prototype-light.png",
+  }}
+  width={400}
+  height={400}
+  alt="hydration-err"
+/>
+
+In order to understand this, let's create an object and print it.
+
+```js showLineNumbers
+const obj = {};
+console.log(obj); // [object Object]
+```
+
+You will see that it prints something like an object, but how does that happen? We made an object with no fields, so how come the `toString` method is present in it? If you open the console, you will find a property named `[[Prototype]]`, and when you expand it, you will see a few methods that we never defined. How are those available? Our object is inheriting from `Object.prototype`. Let's go through everything properly, one by one.
+
+JavaScript internally handles `[[Prototype]]` inheritance chain and allows us to modify it at runtime (which can't be done in static languages). People think it's a flaw, but that is a super powerful feature in JavaScript. While this prototype is internal, we can manipulate it using the `__proto__` property in an object. This acts like a getter to that prototype, but we are not directly maintaining it.
+
+So, let's create two objects—one `parent` and one `child`—and make an inheritance connection between them.
+
+```js showLineNumbers {8}
+const obj1 = {
+  familyName: "Karis",
+  name: "Sam",
+};
+
+const obj2 = {
+  name: "Kyle",
+  __proto__: obj1, // making obj1 parent of obj2
+};
+
+console.log(obj2.name); // Kyle
+console.log(obj2.familyName); // Karis
+```
+
+What just happened here? We did inheritance, the `obj2` can access properties of the parent. As the `familyName` property was not present in `obj2`, it took it from the parent. And we can keep doing this chain by making multiple levels of inheritance. Also, we can add methods to parent objects, which can be used by children.
+
+Let's see that in action.
+
+```js showLineNumbers
+const obj1 = {
+  familyName: "Karis",
+  name: "Sam",
+  sayHello() {
+    console.log("Hello");
+  },
+};
+
+const obj2 = {
+  name: "Kyle",
+  __proto__: obj1, // making obj1 parent of obj2
+};
+
+const obj3 = {
+  __proto__: obj2,
+};
+
+console.log(obj3.name); // Kyle ( took just above one)
+console.log(obj2.familyName); // Karis
+obj3.sayHello(); // Hello
+```
+
+Now we created `obj3`, which does not have the `name` property in it, but when we print it, we get the `name` from the object above—`Kyle`. That means in the upper chain, as soon as a value is found, it is taken. The same applies to functions as well.  
+ Now we understand how to make an object extend another. Remember, we are doing this with objects, not classes—that's the difference in JavaScript.  
+ This is clear, but when we created an object in the very first example, we didn’t do this explicitly—we didn’t add a property named `__proto__` to that empty object. So how was it still inherited? To understand this, we must first understand Constructor Functions. But before that, let's take an example.
+
+```js showLineNumbers
+const box1 = {
+  val: 1,
+  getValue() {
+    return this.val;
+  },
+};
+
+const box2 = {
+  val: 2,
+  getValue() {
+    return this.val;
+  },
+};
+
+const boxes = [box1, box2];
+```
+
+You see that all `box` objects have the same shape. Each box has a `val` property and a `getValue` function. We are repeating the code every single time, and the `getValue` function is present on each object, taking up memory despite having the same functionality in all boxes.
+
+Why not keep this function in a prototype? Let's do that and see the code:
+
+```js showLineNumbers
+const boxProto = {
+  getValue() {
+    return this.val;
+  },
+};
+
+const box1 = {
+  val: 1,
+  __proto__: boxProto,
+};
+
+const box2 = {
+  val: 2,
+  __proto__: boxProto,
+};
+
+const boxes = [box1, box2];
+```
+
+Okay, we came out of one overhead—now there is only one function for all boxes instead of each box having its own copy. But it is still tedious to write.  
+This is where Constructor Functions come into the picture.
+
+### Constructor functions
+
+Constructor Functions are a special type of function that creates and returns objects based on the structure we define. This way, we don’t need to write repetitive code to create objects when many objects share the same structure.
+So, from the above example, let's make a `Box` constructor.
+
+<Note>
+  It is prefereed to keep the function name capital for valid reasons.
+</Note>
+
+```js showLineNumbers
+function Box(val) {
+  this.val = val;
+  this.getValue = function () {
+    // again same issue
+    return this.val;
+  };
+}
+
+const box1 = new Box(1);
+const box2 = new Box(2);
+```
+
+The code already looks better! As you can see, each time the `Box` constructor just creates and returns an object.  
+ But there is still an issue—the `getValue` method is present on all objects individually. This should not happen, right?  
+Let's fix it by understanding one more concept: `F.prototype`.
+
+### F.prototype `F.prototype`
+
+In JavaScript, functions are objects as well, and they have a property called `prototype`. Remember, this is just a property on the function—don’t confuse it with `__proto__` or `[[Prototype]]`. This property helps establish the prototype chain when an object is created. Simply put, the `prototype` property can be an object or `null`. When a constructor is called, an object is created, and that object's `__proto__` is set to the object present in the function’s `prototype` property.
+
+```js showLineNumbers
+function Box(val) {
+  this.val = val;
+}
+
+Box.prototype.getValue = function () {
+  return this.val;
+};
+```
+
+What did we just do? As mentioned, the `Box` constructor has a property named `prototype`, which is an object by default. We added a method to that object, ensuring that when a `Box` object is created, its parent has the `getValue` function. This solves our problem—now the `getValue` method exists only once and is shared by multiple `Box` objects.
+
+<Note>
+  Also, the default value of this `prototype` is an object with a property named
+  `constructor`, which again points to our function.
+</Note>
+
+<AdaptiveImage
+  src={{
+    dark: "/images/defaullt-prototype-dark.png",
+    light: "/images/defaullt-prototype-light.png",
+  }}
+  width={700}
+  height={400}
+  alt="hydration-err"
+/>
+
+```js showLineNumbers
+// The equivalent class code for Box constructor:
+// which internally does the same
+class Box {
+  constructor(val) {
+    this.val = val;
+  }
+
+  getValue() {
+    return this.value;
+  }
+}
+```
+
+This is how it works internally for many objects. When we create an object using the `{}` literal, behind the scenes, it actually does `new Object()`.  
+Coming back to our first example, the object is created via the `Object` constructor. This means the prototype of the `Object` constructor contains methods like `toString`, `valueOf`, etc. That’s why our object has access to these properties as well.
+
+<Note>
+  Constructors like `Array`, `Number`, and `String` behave the same way, where
+  their methods exist on their prototypes. These methods are accessible via
+  child objects, which is why we refer to them as `Array.prototype.map`,
+  `Array.prototype.filter`, `String.prototype.replace`, etc.
+</Note>
+
+However, if we go one level above and try accessing `__proto__`, it will be `null`, because there is nothing further up the inheritance chain.
+
+```js showLineNumbers
+const obj = {};
+console.log(obj.__proto__); // toString, valueOf, ...
+console.log(obj.__proto__.__proto__); // null
+```
+
+<Note>
+  Never change the prototype reference to another object directly. While it will
+  work, you’ll lose the `constructor` property. If you modify it, make sure to
+  add the `constructor` back in the new reference.
+</Note>
+
+Now, let’s compare this with classes while doing multi-level inheritance via constructors. If you remember from the previous examples, we learned how to make one object the parent of another by adding a `__proto__` property. But what if we wanted every object of a certain base structure to also inherit properties from another structure? For example, when a `Dog` object is created, it should automatically include `Animal` properties by extending it. The key thing to remember here is that objects are yet to be created—we don’t have any objects at this point.
+
+```js showLineNumbers
+class Animal {
+  constructor(specie) {
+    this.specie = specie;
+    this.eats = true;
+  }
+
+  breath() {
+    console.log("Breathing!!");
+  }
+}
+
+class Dog extends Animal {
+  constructor(name, specie) {
+    super(specie);
+    this.name = name;
+  }
+
+  bark() {
+    console.log("Barking!!");
+  }
+}
+
+const dog = new Dog("Tommy", "Husky");
+```
+
+The class syntax was added later in JavaScript to make inheritance easier to understand, especially for developers coming from Java or C++. However, under the hood, it didn’t change the implementation of inheritance—it still works the same way. As you can see, the class syntax makes the code much cleaner. Now, let’s also implement a functional version, and I bet you’ll prefer the class syntax over it. But understanding how it works under the hood is definitely worth it.
+
+```js showLineNumbers
+function Animal(specie) {
+  this.specie = specie;
+  this.eats = true;
+}
+
+Animal.prototype.breath = function () {
+  console.log("Breathing!!");
+};
+
+// Until here, everything is the same as we discussed earlier
+
+// Here comes the worst part –
+//  if you thought debugging was bad, wait till you see this!
+
+function Dog(name, specie) {
+  Animal.call(this, specie);
+  this.name = name;
+}
+
+// If you directly do this:
+// Dog.prototype.bark = function () {}
+// You will not get Animal's methods inside Animal.prototype
+
+// In order to get the functions,
+// we need to assign Animal's prototype to Dog's prototype
+Dog.prototype = Object.create(Animal.prototype);
+
+// Reassigning the Dog constructor because we changed the reference
+Dog.prototype.constructor = Dog;
+
+Dog.prototype.bark = function () {
+  console.log("Barking!!");
+};
+
+// Now this works the same as the class version
+const dog = new Dog("Tommy", "Husky");
+```
+
+This is how prototype inheritance works in JavaScript. There are methods like `Object.getPrototypeOf(obj)` to access an object's `[[Prototype]]`, but using `__proto__` is also fine for learning and debugging. In class-based inheritance, methods defined inside the class body are non-enumerable by default, meaning they don’t show up when logging the object but are still accessible. In the functional version, methods added via `prototype` are also non-enumerable, but properties defined inside the constructor remain enumerable. If you want non-enumerable properties in the functional version, you can use `Object.defineProperty`.
