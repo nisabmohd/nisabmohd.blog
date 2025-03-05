@@ -21,7 +21,7 @@ In order to understand this, let's create an object and print it.
 
 ```js showLineNumbers
 const obj = {};
-console.log(obj); // [object Object]
+console.log(obj.toString()); // [object Object]
 ```
 
 You will see that it prints something like an object, but how does that happen? We made an object with no fields, so how come the `toString` method is present in it? If you open the console, you will find a property named `[[Prototype]]`, and when you expand it, you will see a few methods that we never defined. How are those available? Our object is inheriting from `Object.prototype`. Let's go through everything properly, one by one.
