@@ -24,7 +24,7 @@ const obj = {};
 console.log(obj.toString()); // [object Object]
 ```
 
-You will see that it prints something like an object, but how does that happen? We made an object with no fields, so how come the `toString` method is present in it? If you open the console, you will find a property named `[[Prototype]]`, and when you expand it, you will see a few methods that we never defined. How are those available? Our object is inheriting from `Object.prototype`. Let's go through everything properly, one by one.
+You will see that it prints something like an `[object Object]`, but how does that happen? We made an object with no fields, so how come the `toString` method is present in it? If you open the console, you will find a property named `[[Prototype]]`, and when you expand it, you will see a few methods that we never defined. How are those available? Our object is inheriting from `Object.prototype`. Let's go through everything properly, one by one.
 
 JavaScript internally handles `[[Prototype]]` inheritance chain and allows us to modify it at runtime (which can't be done in static languages). People think it's a flaw, but that is a super powerful feature in JavaScript. While this prototype is internal, we can manipulate it using the `__proto__` property in an object. This acts like a getter to that prototype, but we are not directly maintaining it.
 

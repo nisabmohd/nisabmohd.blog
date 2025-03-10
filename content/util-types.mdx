@@ -23,7 +23,9 @@ import { helper } from "npm-package";
 type FnReturns = ReturnType<typeof helper>;
 ```
 
-<Note>Note that this only takes function as type to produce return type.</Note>
+
+<Note>This only takes function as type to produce return type.</Note>
+
 
 #### Example 2 : Infer a function parameters type.
 
@@ -36,8 +38,9 @@ function JSONStringify(...args: Parameters<typeof JSON.stringify>) {
 ```
 
 <Note>
-  Note that this only takes function as type to produce parameters type.
+  This only takes function as type to produce parameters type.
 </Note>
+
 
 #### Example 3 : Remove or omit few properties in a type.
 
@@ -67,7 +70,8 @@ type PageProps = {
 type PageProps = Omit<MDXFrontmatter, "githubUrl" | "tags">;
 ```
 
-<Note>Note that this only work with object types.</Note>
+<Note>This only works with object types.</Note>
+
 
 #### Example 4 : Pick only few properties from a type defined
 
@@ -89,7 +93,8 @@ type CustomType = {
 type CustomType = Pick<Something, "posts">;
 ```
 
-<Note>Note that this only work with object types.</Note>
+<Note>This only works with object types.</Note>
+
 
 #### Example 5 : Make all property of a type optional.
 
@@ -111,7 +116,8 @@ type OptionalPagination = {
 type CustomType = Partial<Pagination>;
 ```
 
-<Note>Note that this only work with object types.</Note>
+<Note>This only works with object types.</Note>
+
 
 #### Example 6 : Make all property of a type required.
 
@@ -135,7 +141,8 @@ type RequiredTypeUser = {
 type RequiredTypeUser = Required<User>;
 ```
 
-<Note>Note that this only work with object types.</Note>
+<Note>This only works with object types.</Note>
+
 
 #### Example 7 : Key value pair type.
 
