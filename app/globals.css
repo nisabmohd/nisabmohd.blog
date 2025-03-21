@@ -145,9 +145,9 @@ pre>code {
 
 .react-tweet-theme {
     margin: auto !important;
-    --tweet-body-font-size: 14.5px !important;
-    --tweet-font-family: var(--font-body) !important;
-    --tweet-bg-color: #f5f5f5 !important;
+    --tweet-body-font-size: 13.195px !important;
+    --tweet-font-family: var(--font-sans) !important;
+    --tweet-bg-color: #fcfcfc !important;
     --tweet-bg-color-hover: #f5f5f5 !important;
     --tweet-quoted-bg-color-hover: #f5f5f5 !important;
     max-width: 500px !important;
@@ -163,9 +163,22 @@ pre>code {
     --tweet-font-color-secondary: #9ca3af;
 }
 
+.tweet-header_authorLinkText__y6HdU,
+.tweet-header_authorMeta__gIC3U {
+    @apply text-sm !important
+}
+
+.tweet-actions_likeCount__MyxBd, .tweet-actions_replyText__doQct, .tweet-actions_copyText__fEqBx, .tweet-replies_text__o0Naf, .tweet-info-created-at_root__KaxZi {
+    @apply text-xs !important
+}
+
+.tweet-header_follow__Fi7bf {
+    @apply font-medium text-xs mt-[1.7px] !important
+}
+
 .tweet-header_avatarOverflow__E2gxj {
     overflow: visible !important;
-    top: -30px;
+    top: -25px;
 }
 
 .tweet-header_avatarOverflow__E2gxj>img {

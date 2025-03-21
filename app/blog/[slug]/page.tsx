@@ -32,7 +32,7 @@ export default async function BlogPage(props: {
 
 function Typography({ children }: PropsWithChildren) {
   return (
-    <div className="text-inherit dark:text-neutral-300 prose-headings:font-mono prose-headings:font-semibold prose-headings:dark:text-neutral-300 prose-headings:text-neutral-700 text-neutral-700 prose prose-sm  prose-neutral dark:prose-invert dark:prose-pre:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-950 prose-pre:prose-code:bg-neutral-50 prose-pre:bg-neutral-50 prose-pre:font-mono prose-code:font-mono prose-code:font-thin  prose-code:text-xs underline-offset-2 prose-code:leading-[1.4rem] dark:prose-code:text-neutral-300 prose-code:text-neutral-700 prose-code:py-[0.0991rem] prose-code:px-1 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none prose-img:rounded-md prose-pre:border dark:prose-pre:border-neutral-800  min-w-full prose-img:mx-auto mt-7">
+    <div className="text-inherit dark:text-neutral-300 prose-headings:font-mono prose-headings:font-semibold prose-headings:dark:text-neutral-300 prose-headings:text-neutral-700 text-neutral-700 prose prose-sm  prose-neutral dark:prose-invert dark:prose-pre:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-950 prose-pre:prose-code:bg-neutral-50 prose-pre:bg-neutral-50 prose-pre:font-mono prose-code:font-mono prose-code:font-thin  prose-code:text-xs underline-offset-2 prose-code:leading-[1.4rem] dark:prose-code:text-neutral-300 prose-code:text-neutral-700 prose-code:py-[0.0991rem] prose-code:px-1 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none prose-img:rounded-md prose-pre:border dark:prose-pre:border-neutral-800  min-w-full prose-img:mx-auto mt-7 prose-strong:text-inherit">
       {children}
     </div>
   );
