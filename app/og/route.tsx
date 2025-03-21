@@ -33,11 +33,11 @@ export async function GET(req: NextRequest) {
             marginBottom: 85,
             marginRight: 30,
             display: "flex",
-            fontSize: 70,
+            fontSize: 45,
             letterSpacing: "-0.05em",
             fontStyle: "normal",
             color: "black",
-            lineHeight: "65px",
+            lineHeight: "40px",
             whiteSpace: "pre-wrap",
           }}
         >

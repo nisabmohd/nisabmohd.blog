@@ -42,7 +42,7 @@ pre>code {
 }
 
 .highlight-line {
-    @apply bg-zinc-200/60 dark:bg-neutral-800/60 border-l-2 dark:border-sky-800 border-green-300;
+    @apply bg-zinc-200/60 dark:bg-neutral-800/60 border-l-2 dark:border-sky-800 border-sky-600;
 }
 
 
@@ -170,4 +170,35 @@ pre>code {
 
 .tweet-header_avatarOverflow__E2gxj>img {
     @apply rounded-full;
+}
+
+/* Apply globally */
+* {
+    scrollbar-width: thin;
+    /* Firefox thin scrollbar */
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+    /* Thumb color with transparent track */
+}
+
+*::-webkit-scrollbar {
+    width: 8px;
+    /* Vertical scrollbar width */
+    height: 8px;
+    /* Horizontal scrollbar height */
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    /* Thumb color */
+    border-radius: 9999px;
+    /* Fully rounded thumb */
+    border: 2px solid transparent;
+    /* Thin padding effect */
+    background-clip: content-box;
+    /* Smooth thumb edges */
+}
+
+*::-webkit-scrollbar-track {
+    background-color: transparent;
+    /* Transparent track */
 }
