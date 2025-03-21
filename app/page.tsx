@@ -16,7 +16,7 @@ const socials = [
   },
   {
     name: "bsky",
-    url: "#",
+    url: "https://bsky.app/profile/nisabmohd.bsky.social",
   },
 ];
 

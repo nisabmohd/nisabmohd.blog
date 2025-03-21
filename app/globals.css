@@ -42,7 +42,7 @@ pre>code {
 }
 
 .highlight-line {
-    @apply bg-zinc-200/95 dark:bg-neutral-900;
+    @apply bg-zinc-200/60 dark:bg-neutral-800/60 border-l-2 dark:border-sky-800 border-green-300;
 }
 
 
