@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
   const postTitle = searchParams.get("title") ?? "";
 
   const font = fetch(
-    new URL("../../public/fonts/SpaceMono-Bold.ttf", import.meta.url)
+    new URL("../../public/fonts/SpaceGrotesk-Regular.ttf", import.meta.url)
   ).then((res) => res.arrayBuffer());
   const fontData = await font;
 
@@ -22,23 +22,40 @@ export async function GET(req: NextRequest) {
           flexDirection: "column",
           alignItems: "flex-start",
           justifyContent: "center",
-          backgroundImage: `url(https://nisabmohd.vercel.app/og-bg.jpg)`,
+          backgroundImage: `url(https://nisabmohd.vercel.app/nisab-og.png)`,
           backgroundRepeat: "no-repeat",
           objectFit: "fill",
         }}
       >
         <div
           style={{
-            marginLeft: 75,
-            marginBottom: 85,
+            marginLeft: 95,
+            marginTop: -55,
             marginRight: 30,
             display: "flex",
             fontSize: 45,
             letterSpacing: "-0.05em",
             fontStyle: "normal",
-            color: "black",
+            color: "#9CA3AF",
             lineHeight: "40px",
+            fontWeight: "bolder",
+          }}
+        >
+          Read This Blog :
+        </div>
+        <div
+          style={{
+            marginLeft: 95,
+            marginTop: 20,
+            marginRight: 95,
+            display: "flex",
+            fontSize: 45,
+            letterSpacing: "-0.05em",
+            fontStyle: "normal",
+            color: "white",
+            lineHeight: "60px",
             whiteSpace: "pre-wrap",
+            fontWeight: "bolder",
           }}
         >
           {postTitle}
@@ -46,7 +63,7 @@ export async function GET(req: NextRequest) {
       </div>
     ),
     {
-      width: 1200,
+      width: 1100,
       height: 630,
       fonts: [
         {
