@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Space_Mono } from "next/font/google";
-import Navbar from "~/components/navbar";
-import Footer from "~/components/footer";
 import { ThemeProvider } from "~/components/theme-provider";
 import "./globals.css";
 
@@ -34,7 +32,7 @@ export default function RootLayout({
   return (
     <html className="dark" lang="en" suppressHydrationWarning>
       <body
-        className={`${spaceGroteskFont.variable} ${spaceMonoFont.variable} font-sans dark:bg-black bg-white antialiased tracking-wide`}
+        className={`${spaceGroteskFont.variable} ${spaceMonoFont.variable} font-sans dark:bg-[#0a0a0a] text-sm text-neutral-700 dark:text-neutral-400 bg-white antialiased tracking-wide`}
       >
         <ThemeProvider
           attribute="class"
@@ -42,12 +40,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="max-w-[700px] mx-auto sm:px-0 px-4">
-            <Navbar />
-            <div className="flex flex-col gap-7 py-7 min-h-[83vh]">
-              {children}
-            </div>
-            <Footer />
+          <main className="max-w-[700px] mx-auto px-4">
+            <div className="py-7 min-h-[83vh]">{children}</div>
           </main>
         </ThemeProvider>
       </body>

@@ -17,9 +17,11 @@ export default async function BlogPage(props: {
   const { content } = res;
   return (
     <>
-      <div className="flex flex-col gap-2">
-        <h2 className="text-2xl font-semibold">{res.frontmatter.title}</h2>
-        <p className="text-sm text-neutral-800 dark:text-neutral-200 font-medium">
+      <div className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold font-mono tracking-tighter dark:text-neutral-300 text-neutral-700">
+          {res.frontmatter.title}
+        </h2>
+        <p className="text-sm text-neutral-700 dark:text-neutral-400 -mt-1 lowercase">
           {new Date(res.frontmatter.published).toDateString()}
         </p>
       </div>
@@ -30,7 +32,7 @@ export default async function BlogPage(props: {
 
 function Typography({ children }: PropsWithChildren) {
   return (
-    <div className="text-inherit prose prose-neutral dark:prose-invert dark:prose-pre:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-950 prose-pre:prose-code:bg-neutral-50 prose-pre:bg-neutral-50 prose-pre:font-mono prose-code:font-mono prose-code:font-medium underline-offset-2 prose-code:text-sm prose-code:leading-[1.625rem] dark:prose-code:text-white prose-code:text-black prose-code:py-[0.0991rem] prose-code:px-1.5 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none prose-img:rounded-md  prose-pre:border dark:prose-pre:border-neutral-800  min-w-full prose-img:mx-auto">
+    <div className="text-inherit dark:text-neutral-300 prose-headings:font-mono prose-headings:font-semibold prose-headings:dark:text-neutral-300 prose-headings:text-neutral-700 text-neutral-700 prose prose-sm  prose-neutral dark:prose-invert dark:prose-pre:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-950 prose-pre:prose-code:bg-neutral-50 prose-pre:bg-neutral-50 prose-pre:font-mono prose-code:font-mono prose-code:font-thin  prose-code:text-xs underline-offset-2 prose-code:leading-[1.4rem] dark:prose-code:text-neutral-300 prose-code:text-neutral-700 prose-code:py-[0.0991rem] prose-code:px-1 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none prose-img:rounded-md prose-pre:border dark:prose-pre:border-neutral-800  min-w-full prose-img:mx-auto mt-7">
       {children}
     </div>
   );

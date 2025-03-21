@@ -22,18 +22,19 @@ code {
 
 pre>code {
     display: grid;
-    padding: 14px 0 !important;
+    padding: 12px 0 !important;
+    @apply text-[12.5px] !important
 }
 
 .code-line {
-    padding: 0.75px 12.5px;
+    padding: 0.015px 12.5px;
     @apply border-l-2 border-transparent
 }
 
 .line-number::before {
     display: inline-block;
     width: 1rem;
-    margin-right: 22px;
+    margin-right: 28px;
     margin-left: -2px;
     content: attr(line);
     text-align: right;

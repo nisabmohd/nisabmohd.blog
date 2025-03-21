@@ -1,8 +1,45 @@
+import Link from "next/link";
+import Articles from "~/components/articles";
+
+const socials = [
+  {
+    name: "twitter",
+    url: "https://twitter.com/MohdNisab",
+  },
+  {
+    name: "github",
+    url: "https://github.com/nisabmohd",
+  },
+  {
+    name: "linkedin",
+    url: "https://www.linkedin.com/in/mohd-nisab-725148197/",
+  },
+  {
+    name: "bsky",
+    url: "#",
+  },
+];
+
 export default function Home() {
   return (
-    <>
-      <h2 className="text-2xl font-semibold">Hey, I&apos;m Nisab Mohd</h2>
-      <div className="flex flex-col gap-5 prose dark:prose-invert prose-p:m-0 text-inherit min-w-full">
+    <div className="flex flex-col gap-4">
+      <h2 className="text-xl font-semibold font-mono tracking-tighter dark:text-neutral-300 text-neutral-700">
+        nisabmohd
+      </h2>
+
+      <div className="flex items-center gap-3 -mt-1">
+        {socials.map((social) => (
+          <Link
+            key={social.url}
+            className="hover:underline underline-offset-2 hover:dark:text-neutral-200 hover:text-neutral-800"
+            href={social.url}
+          >
+            {social.name}
+          </Link>
+        ))}
+      </div>
+
+      <div className="flex mt-3 flex-col gap-5 prose dark:prose-invert prose-p:m-0 prose-sm min-w-full dark:text-neutral-300 text-neutral-700">
         <p>
           I&apos;m a passionate{" "}
           <span className="font-semibold">software engineer</span> skilled in
@@ -20,6 +57,13 @@ export default function Home() {
           who needs sleep when you have endless ideas and espresso?
         </p>
       </div>
-    </>
+
+      <div className="flex flex-col gap-5 my-6">
+        <h2 className="text-xl font-semibold font-mono tracking-tighter dark:text-neutral-300 text-neutral-700">
+          articles
+        </h2>
+        <Articles />
+      </div>
+    </div>
   );
 }
