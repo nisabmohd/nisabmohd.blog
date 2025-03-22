@@ -10,7 +10,7 @@ export default async function Articles() {
           <Link
             key={blog.frontmatter.slug}
             className="dark:text-neutral-300 text-neutral-700 no-underline"
-            href={`/blog/${blog.frontmatter.slug}`}
+            href={`/${blog.frontmatter.slug}`}
           >
             {blog.frontmatter.title}
           </Link>

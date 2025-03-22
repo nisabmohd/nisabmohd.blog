@@ -65,7 +65,7 @@ export async function generateMetadata(props: {
       description: blog.frontmatter.description,
       type: "article",
       publishedTime: new Date(blog.frontmatter.published).toDateString(),
-      url: `https://nisabmohd.vercel.app/blog/${slug}`,
+      url: `https://nisabmohd.vercel.app/${slug}`,
       images: [
         {
           url: ogImage,
