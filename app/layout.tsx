@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Space_Mono } from "next/font/google";
 import { ThemeProvider } from "~/components/theme-provider";
 import "./globals.css";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "Nisab Mohd",
@@ -31,6 +32,12 @@ export default function RootLayout({
 }>) {
   return (
     <html className="dark" lang="en" suppressHydrationWarning>
+      <Head>
+        <meta
+          name="google-site-verification"
+          content="FTrhj2zTINy-vnMsxA-8wy7poFXbSq2LuArgbuPLiGU"
+        />
+      </Head>
       <body
         className={`${spaceGroteskFont.variable} ${spaceMonoFont.variable} font-sans dark:bg-[#0a0a0a] text-sm text-neutral-700 dark:text-neutral-400 bg-white antialiased tracking-wide`}
       >
