@@ -136,7 +136,7 @@ pre>code {
 }
 
 .rehype-code-title {
-    @apply px-2 -mb-8 w-full text-sm pt-1 pb-3.5 font-normal tracking-tight font-mono;
+    @apply px-2.5 -mb-7 w-full text-[13px] pt-1 pb-3.5 font-normal tracking-tight font-mono;
 }
 
 .highlight-comp>code {

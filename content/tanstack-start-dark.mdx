@@ -1,0 +1,198 @@
+---
+title: Implement Dark Mode in TanStack Start
+description: Easily add dark mode to your TanStack Start app with a simple toggle and persistent theme preference across routes.
+published: 1743924931166
+slug: tanstack-dark
+---
+
+Recently, I started rewriting my project using the TanStack Start framework. One of the features I wanted to implement early on was a light/dark mode toggle. My initial approach used localStorage to store the user's preference, but I quickly ran into a common issue — a flash of incorrect theme on the initial page load.
+
+I didn’t want that flickering experience, especially when aiming for a polished UI. So I switched gears and moved the theme handling to the server side by storing the preference in a cookie instead. This way, the correct theme gets applied during SSR itself — no more flickering.
+
+Let’s see how the implementation goes.
+
+I started by creating two `serverFn` — `getThemeServerFn` and `setThemeServerFn`. The goal was simple:
+
+- `getThemeServerFn` retrieves the current theme from the cookie (if present) or falls back to a default.
+- `setThemeServerFn` updates the cookie with the new theme value.
+
+This approach ensures the theme is handled on the server, which prevents flickering on initial load and keeps the experience consistent across pages and refreshes.
+
+Let’s take a look at the code:
+
+```ts:@/lib/theme.ts showLineNumbers {8,18}
+import { Theme } from "@/components/theme-provider";
+import { createServerFn } from "@tanstack/react-start";
+import { getCookie, setCookie } from "@tanstack/react-start/server";
+
+const storageKey = "_ui_theme";
+
+export const getThemeSeverFn = createServerFn().handler(async () => {
+  return (getCookie(storageKey) || "light") as Theme;
+});
+
+export const setThemeSeverFn = createServerFn({ method: "POST" })
+  .validator((data: unknown) => {
+    if (typeof data != "string" && (data != "dark" || data != "light"))
+      throw new Error("Invalid theme provided");
+    return data as Theme;
+  })
+  .handler(async ({ data }) => {
+    setCookie(storageKey, data);
+  });
+```
+
+Now let’s use this `getThemeServerFn` in our `__root.tsx` to determine the theme during SSR. In TanStack, while defining a route, we can pass a `loader` function that runs on the server before rendering the content. This gives us the perfect place to use our `serverFn` and fetch the theme ahead of time.
+
+We’ll use this theme value inside our document to ensure the correct mode is applied right from the initial render — no flickering, no flashes.
+
+> Our ultimate goal is simple: if the user should be shown a dark theme, we want to add a `dark` class to the root HTML tag.
+
+Let’s see the code in action:
+
+```tsx:__root.tsx showLineNumbers {5,9,11}
+import { getThemeSeverFn } from "@/lib/theme";
+
+export const Route = createRootRoute({
+  component: RootComponent,
+  loader: () => getThemeSeverFn(),
+});
+
+function RootDocument({ children }: PropsWithChildren) {
+  const theme = Route.useLoaderData();
+  return (
+    <html className={theme} suppressHydrationWarning>
+      <head>
+        <HeadContent />
+      </head>
+      <body className="font-regular antialiased tracking-wide">
+        {children}
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+```
+
+Until here it's fine, but we also need access to the current theme on the client so we can modify it based on user preference. To achieve this, we’ll create a `Context` that holds the current theme and provides a function to update it.
+
+The context will take the initial theme coming from the server and expose a `setTheme` function. This function will trigger the `setThemeServerFn` and then invalidate the page. By doing this, we ensure the app re-renders with the updated theme applied directly from the server.
+
+Let’s dive into how this setup works:
+
+```tsx:@/components/theme-provider.tsx showLineNumbers
+import { setThemeSeverFn } from "@/lib/theme";
+import { useRouter } from "@tanstack/react-router";
+
+import { createContext, PropsWithChildren, use, useState } from "react";
+
+export type Theme = "light" | "dark";
+
+type ThemeContextVal = { theme: Theme; setTheme: (val: Theme) => void };
+
+type Props = PropsWithChildren<{ theme: Theme }>;
+
+const ThemeContext = createContext<ThemeContextVal | null>(null);
+
+export function ThemeProvider({ children, theme } : Props) {
+  const [_theme, _setTheme] = useState(theme);
+  const router = useRouter();
+
+  function setTheme(val: Theme) {
+    setThemeSeverFn({ data: val });
+    _setTheme(val);
+    router.invalidate();
+  }
+
+  return (
+    <ThemeContext value={{ theme, setTheme }}>
+      {children}
+    </ThemeContext>
+  );
+}
+
+export function useTheme() {
+  const val = use(ThemeContext);
+  if (!val) throw new Error("useTheme called outside!");
+  return val;
+}
+```
+
+Now let’s make a few changes in the `__root.tsx` file to wrap our root component with the `ThemeProvider` and pass the initial theme to it. This ensures the entire app has access to the current theme context right from the start, using the value we fetched during SSR.
+
+```tsx:__root.tsx showLineNumbers {1,10,12,21}
+import { ThemeProvider, useTheme } from "@/components/theme-provider";
+import { getThemeSeverFn } from "@/lib/theme";
+
+export const Route = createRootRoute({
+  component: RootComponent,
+  loader: () => getThemeSeverFn(),
+});
+
+function RootComponent() {
+  const data = Route.useLoaderData();
+  return (
+    <ThemeProvider theme={data}>
+      <RootDocument>
+        <Outlet />
+      </RootDocument>
+    </ThemeProvider>
+  );
+}
+
+function RootDocument({ children }: PropsWithChildren) {
+   const { theme } = useTheme();
+  return (
+    <html className={theme} suppressHydrationWarning>
+      <head>
+        <HeadContent />
+      </head>
+      <body className="font-regular antialiased tracking-wide">
+        {children}
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+```
+
+Now all set — we’ve completed the dark/light mode implementation. We can now use the `useTheme` hook’s `setTheme` function anywhere in the app to update the theme, and it works like a charm.
+
+Here’s a `ThemeToggle` component inspired by shadcn/ui. You can simply paste this code into your project and use it to toggle between light and dark themes directly from the UI.
+
+```tsx:@/components/theme-toggle.tsx showLineNumbers
+import { Moon, Sun } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useTheme } from "@/components/theme-provider";
+
+export function ModeToggle() {
+  const { setTheme } = useTheme();
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" size="icon">
+          <Sun className="!h-[1.2rem] !w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute !h-[1.2rem] !w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <span className="sr-only">Toggle theme</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem onClick={() => setTheme("light")}>
+          Light
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("dark")}>
+          Dark
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+```
