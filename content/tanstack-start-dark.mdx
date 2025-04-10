@@ -20,21 +20,22 @@ This approach ensures the theme is handled on the server, which prevents flicker
 
 Let’s take a look at the code:
 
-```ts:@/lib/theme.ts showLineNumbers {8,18}
-import { Theme } from "@/components/theme-provider";
+```ts:lib/theme.ts showLineNumbers {8,19}
+import { type Theme } from "@/components/theme-provider";
 import { createServerFn } from "@tanstack/react-start";
 import { getCookie, setCookie } from "@tanstack/react-start/server";
 
-const storageKey = "_ui_theme";
+const storageKey = "ui-theme";
 
-export const getThemeSeverFn = createServerFn().handler(async () => {
+export const getThemeServerFn = createServerFn().handler(async () => {
   return (getCookie(storageKey) || "light") as Theme;
 });
 
-export const setThemeSeverFn = createServerFn({ method: "POST" })
+export const setThemeServerFn = createServerFn({ method: "POST" })
   .validator((data: unknown) => {
-    if (typeof data != "string" && (data != "dark" || data != "light"))
+    if (typeof data != "string" || (data != "dark" && data != "light")) {
       throw new Error("Invalid theme provided");
+    }
     return data as Theme;
   })
   .handler(async ({ data }) => {
@@ -50,12 +51,12 @@ We’ll use this theme value inside our document to ensure the correct mode is a
 
 Let’s see the code in action:
 
-```tsx:__root.tsx showLineNumbers {5,9,11}
-import { getThemeSeverFn } from "@/lib/theme";
+```tsx:routes/__root.tsx showLineNumbers {5,9,11}
+import { getThemeServerFn } from "@/lib/theme";
 
 export const Route = createRootRoute({
   component: RootComponent,
-  loader: () => getThemeSeverFn(),
+  loader: () => getThemeServerFn(),
 });
 
 function RootDocument({ children }: PropsWithChildren) {
@@ -80,35 +81,31 @@ The context will take the initial theme coming from the server and expose a `set
 
 Let’s dive into how this setup works:
 
-```tsx:@/components/theme-provider.tsx showLineNumbers
-import { setThemeSeverFn } from "@/lib/theme";
+```tsx:components/theme-provider.tsx showLineNumbers
+import { setThemeServerFn } from "@/lib/theme";
 import { useRouter } from "@tanstack/react-router";
-
 import { createContext, PropsWithChildren, use, useState } from "react";
 
 export type Theme = "light" | "dark";
 
 type ThemeContextVal = { theme: Theme; setTheme: (val: Theme) => void };
-
 type Props = PropsWithChildren<{ theme: Theme }>;
 
 const ThemeContext = createContext<ThemeContextVal | null>(null);
 
-export function ThemeProvider({ children, theme } : Props) {
+export function ThemeProvider({ children, theme }: Props) {
   const [_theme, _setTheme] = useState(theme);
   const router = useRouter();
 
   function setTheme(val: Theme) {
-    setThemeSeverFn({ data: val });
+    setThemeServerFn({ data: val });
     _setTheme(val);
     router.invalidate();
   }
 
-  return (
-    <ThemeContext value={{ theme, setTheme }}>
+  return <ThemeContext value={{ theme, setTheme }}>
       {children}
-    </ThemeContext>
-  );
+  </ThemeContext>;
 }
 
 export function useTheme() {
@@ -122,11 +119,11 @@ Now let’s make a few changes in the `__root.tsx` file to wrap our root compone
 
 ```tsx:__root.tsx showLineNumbers {1,10,12,21}
 import { ThemeProvider, useTheme } from "@/components/theme-provider";
-import { getThemeSeverFn } from "@/lib/theme";
+import { getThemeServerFn } from "@/lib/theme";
 
 export const Route = createRootRoute({
   component: RootComponent,
-  loader: () => getThemeSeverFn(),
+  loader: () => getThemeServerFn(),
 });
 
 function RootComponent() {
@@ -141,7 +138,7 @@ function RootComponent() {
 }
 
 function RootDocument({ children }: PropsWithChildren) {
-   const { theme } = useTheme();
+  const { theme } = useTheme();
   return (
     <html className={theme} suppressHydrationWarning>
       <head>
