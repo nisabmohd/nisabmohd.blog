@@ -83,8 +83,8 @@ export function Pre({
   ...rest
 }: ComponentProps<"pre"> & { raw?: string }) {
   return (
-    <div className="my-5 relative">
-      <div className="absolute top-2.5 right-2.5 z-10">
+    <div className="my-5 relative group">
+      <div className="absolute top-2.5 right-2.5 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
         <Copy content={raw!} />
       </div>
       <div className="relative">
