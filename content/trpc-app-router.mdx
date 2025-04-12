@@ -1,0 +1,218 @@
+---
+title: Setting Up tRPC with Next.js App Router
+description: Learn how to set up tRPC in a Next.js project using the App Router. A simple guide to building type-safe APIs with zero hassle.
+published: 1744443814419
+slug: trpc-app-router
+---
+
+`tRPC` is great for building fullstack applications within a monorepo with type safety. `tRPC` is essentially an RPC call with added type safety, meaning if the procedure changes, the client will receive hints about type issues. `RPC` stands for **Remote Procedure Calls**—an alternative to `REST` and `GraphQL`. In `REST`, we call a URL with a payload using `HTTP` verbs, whereas `RPCs` are similar but, instead of calling URLs, we call functions.
+
+`tRPC` is based on routers and procedures, where each procedure is callable as an endpoint. Procedures can be of type `query`, `mutation`, or `subscription`. `tRPC` creates a main router, commonly named `appRouter`, and the type of this router is imported on the client to infer the types of procedure calls. `tRPC` also provides seamless integration with `@tanstack/react-query`, enabling usage on the client side through auto-generated hooks. Server-side calls are also possible by creating a callable using a factory function.
+
+`tRPC` can be used with multiple frameworks, but using it with `Next.js` is seamless and helps you understand the server–client model of React more clearly. In `Next.js` applications, there’s an imaginary boundary between the frontend and backend. Using Server Components for data fetching ensures type safety, but client-side fetching isn’t type-safe by default. This is where `tRPC` shines—when combined with `@tanstack/react-query`, it enables seamless, type-safe client-side fetching.
+
+It also unlocks powerful features like prefetching data on the server and hydrating it on the client, removing the need for redundant client-side fetches. On-demand fetching on the client is still fully supported when needed.
+Let's start with the setup in our `Next.js` application, specifically using the App Router. First, initialize a simple `Next.js` App Router project. Then, we’ll need a few libraries to set up `tRPC` properly.
+
+```bash
+npm install @trpc/server @trpc/client @trpc/react-query @tanstack/react-query@latest zod client-only server-only
+```
+
+After installing the required packages, we need to initialize `tRPC` on the server. Let's create a folder named `trpc` to keep all `tRPC`-related logic organized.
+
+```ts:trpc/init.ts
+import { initTRPC } from "@trpc/server";
+import { cache } from "react";
+import superjson from "superjson";
+
+export const createTRPCContext = cache(async () => {
+  return {
+    // auth : ...
+  };
+});
+
+const t = initTRPC.create({
+  transformer: superjson,
+});
+
+export const createTRPCRouter = t.router;
+export const createCallerFactory = t.createCallerFactory;
+export const baseProcedure = t.procedure;
+```
+
+Next, we create the main router for our `tRPC` server and export it along with its `typeof` so that we can use it later in our client-side code.
+
+```ts:trpc/routers/_app.ts
+import { z } from "zod";
+import { baseProcedure, createTRPCRouter } from "../init";
+
+export const appRouter = createTRPCRouter({
+  hello: baseProcedure
+    .input(
+      z.object({
+        text: z.string(),
+      })
+    )
+    .query(async (opts) => {
+      return {
+        greeting: `hello ${opts.input.text}`,
+      };
+    }),
+});
+
+// export type definition of API
+export type AppRouter = typeof appRouter;
+```
+
+Now, let's set up our `Next.js` endpoint that listens to `tRPC` calls and forwards them to our `tRPC` fetch adapter handler. This way, any request to the `Next.js` API route will be handled by `tRPC`.
+
+```ts:app/api/trpc/[trpc]/route.ts
+import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
+import { createTRPCContext } from "@/trpc/init";
+import { appRouter } from "@/trpc/routers/_app";
+
+const handler = (req: Request) =>
+  fetchRequestHandler({
+    endpoint: "/api/trpc",
+    req,
+    router: appRouter,
+    createContext: createTRPCContext,
+  });
+
+export { handler as GET, handler as POST };
+```
+
+Now we create a `tRPC` server file for our server-side `tRPC` helpers. This will export the `tRPC` client for the server and a `HydrateClient` component, which can be used to wrap our Server Components when prefetching is done.
+
+```ts:trpc/query-client.ts
+import {
+  defaultShouldDehydrateQuery,
+  QueryClient,
+} from "@tanstack/react-query";
+import superjson from "superjson";
+
+export function makeQueryClient() {
+  return new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 30 * 1000,
+      },
+      dehydrate: {
+        serializeData: superjson.serialize,
+        shouldDehydrateQuery: (query) =>
+          defaultShouldDehydrateQuery(query) ||
+          query.state.status === "pending",
+      },
+      hydrate: {
+        deserializeData: superjson.deserialize,
+      },
+    },
+  });
+}
+```
+
+```ts:trpc/server.ts
+import "server-only";
+
+import { createHydrationHelpers } from "@trpc/react-query/rsc";
+import { cache } from "react";
+import { createCallerFactory, createTRPCContext } from "./init";
+import { makeQueryClient } from "./query-client";
+import { appRouter } from "./routers/_app";
+
+export const getQueryClient = cache(makeQueryClient);
+
+const caller = createCallerFactory(appRouter)(createTRPCContext);
+
+const { trpc, HydrateClient } = createHydrationHelpers<typeof appRouter>(
+  caller,
+  getQueryClient
+);
+
+export {trpc,HydrateClient}
+```
+
+Finally, we create a client component helper for our client-side `tRPC`. From here, we export a provider that wraps our application with both the `tRPC` provider and the `TanStack Query` provider. We also export the `tRPC` client for client-side fetching.
+
+```tsx:trpc/react.tsx
+"use client";
+
+import type { QueryClient } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { httpBatchLink } from "@trpc/client";
+import { createTRPCReact } from "@trpc/react-query";
+import { PropsWithChildren, useState } from "react";
+import { makeQueryClient } from "./query-client";
+import type { AppRouter } from "./routers/_app";
+import superjson from "superjson";
+
+export const trpc = createTRPCReact<AppRouter>();
+
+let clientQueryClientSingleton: QueryClient;
+function getQueryClient() {
+  // For server create new client
+  if (typeof window === "undefined") return makeQueryClient();
+  return (clientQueryClientSingleton ??= makeQueryClient());
+}
+
+function getUrl() {
+  // need to change for deploy url
+  return "http://localhost:3000";
+}
+
+export function TRPCProvider(props: PropsWithChildren) {
+  const queryClient = getQueryClient();
+  const [trpcClient] = useState(() =>
+    trpc.createClient({
+      links: [
+        httpBatchLink({
+          transformer: superjson,
+          url: getUrl(),
+        }),
+      ],
+    })
+  );
+
+  return (
+    <trpc.Provider client={trpcClient} queryClient={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        {props.children}
+      </QueryClientProvider>
+    </trpc.Provider>
+  );
+}
+```
+
+All done! Now we can test our `tRPC` in both server and client components. In the server component, we can fetch data directly from our `tRPC` procedures, ensuring everything is fully type-safe on the server-side. On the client side, we can use the `tRPC` hooks, provided by the integration with `TanStack Query`, to fetch data from the server. This setup allows for seamless data fetching with type safety across the entire application.
+
+```tsx:app/page.tsx
+import { HydrateClient, trpc } from "@/trpc/server";
+import ClientGreetings from "./client-greetings";
+import { Suspense } from "react";
+
+export default async function Home() {
+  void trpc.hello.prefetch({ text: "Nisab" });
+
+  return (
+    <HydrateClient>
+      <div>This rendered on server</div>
+      <Suspense fallback="Loading....">
+        <ClientGreetings />
+      </Suspense>
+    </HydrateClient>
+  );
+}
+```
+
+```tsx:app/client-greetings.tsx
+"use client";
+
+import { trpc } from "@/trpc/react";
+
+export default function ClientGreetings() {
+  const [res] = trpc.hello.useSuspenseQuery({ text: "Nisab" });
+  return <div>{res.greeting}</div>;
+}
+```
+
+In conclusion, by integrating `tRPC` with `Next.js`, we can build a highly efficient, type-safe full-stack application. The separation between server and client components in `Next.js` becomes much more streamlined with `tRPC`, and features like prefetching, hydration, and on-demand data fetching are much easier to implement. This setup improves both the developer experience and application performance, making `tRPC` a great choice for modern full-stack applications.
