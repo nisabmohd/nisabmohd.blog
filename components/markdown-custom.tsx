@@ -2,6 +2,7 @@ import { ComponentProps, PropsWithChildren } from "react";
 import NextImage from "next/image";
 import NextLink from "next/link";
 import { Tweet } from "./tweet";
+import Copy from "./copy";
 
 type Height = ComponentProps<typeof NextImage>["height"];
 type Width = ComponentProps<typeof NextImage>["width"];
@@ -76,10 +77,28 @@ export function Note({ children }: PropsWithChildren) {
   );
 }
 
+export function Pre({
+  children,
+  raw,
+  ...rest
+}: ComponentProps<"pre"> & { raw?: string }) {
+  return (
+    <div className="my-5 relative">
+      <div className="absolute top-2.5 right-2.5 z-10 sm:block hidden">
+        <Copy content={raw!} />
+      </div>
+      <div className="relative">
+        <pre {...rest}>{children}</pre>
+      </div>
+    </div>
+  );
+}
+
 export const components = {
   Note,
   a: Link,
   Tweet,
   img: Image,
   AdaptiveImage,
+  pre: Pre,
 };
