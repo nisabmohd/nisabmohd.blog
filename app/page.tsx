@@ -12,7 +12,7 @@ const socials = [
   },
   {
     name: "linkedin",
-    url: "https://www.linkedin.com/in/mohd-nisab-725148197/",
+    url: "https://www.linkedin.com/in/nisabmohd/",
   },
   {
     name: "bsky",
