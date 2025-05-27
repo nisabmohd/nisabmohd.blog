@@ -21,7 +21,7 @@ export default async function BlogPage(props: {
         <h2 className="text-xl font-semibold font-mono tracking-tighter dark:text-neutral-300 text-neutral-700">
           {res.frontmatter.title}
         </h2>
-        <p className="text-sm text-neutral-700 dark:text-neutral-400 -mt-1 lowercase">
+        <p className="text-sm text-neutral-700 dark:text-neutral-400 -mt-1">
           {new Date(res.frontmatter.published).toDateString()}
         </p>
       </div>

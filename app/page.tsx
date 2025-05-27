@@ -3,19 +3,19 @@ import Articles from "~/components/articles";
 
 const socials = [
   {
-    name: "twitter",
+    name: "Twitter",
     url: "https://twitter.com/MohdNisab",
   },
   {
-    name: "github",
+    name: "GitHub",
     url: "https://github.com/nisabmohd",
   },
   {
-    name: "linkedin",
+    name: "LinkedIn",
     url: "https://www.linkedin.com/in/mohd-nisab-725148197/",
   },
   {
-    name: "bsky",
+    name: "BlueSky",
     url: "https://bsky.app/profile/nisabmohd.bsky.social",
   },
 ];
@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-4">
       <h2 className="text-xl font-semibold font-mono tracking-tighter dark:text-neutral-300 text-neutral-700">
-        nisabmohd
+        Nisab Mohd
       </h2>
 
       <div className="flex items-center gap-3 -mt-1">
@@ -59,7 +59,7 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col gap-5 my-6">
-        <h2 className="text-xl font-semibold font-mono tracking-tighter dark:text-neutral-300 text-neutral-700">
+        <h2 className="text-xl font-semibold font-mono tracking-tighter dark:text-neutral-300 text-neutral-700 capitalize">
           articles
         </h2>
         <Articles />
