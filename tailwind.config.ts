@@ -15,8 +15,8 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        sans: ["var(--font-space-grotesk)"],
-        mono: ["var(--font-space-mono)"],
+        sans: ["var(--font-one)"],
+        mono: ["var(--font-two)"],
       },
     },
   },

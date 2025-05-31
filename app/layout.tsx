@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Space_Mono } from "next/font/google";
+import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import { ThemeProvider } from "~/components/theme-provider";
 import "./globals.css";
 
@@ -13,16 +13,16 @@ export const metadata: Metadata = {
   },
 };
 
-const spaceGroteskFont = Space_Grotesk({
+const fontOne = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  variable: "--font-one",
   display: "swap",
   weight: "400",
 });
 
-const spaceMonoFont = Space_Mono({
+const fontTwo = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-space-mono",
+  variable: "--font-two",
   display: "swap",
   weight: "400",
 });
@@ -35,7 +35,7 @@ export default function RootLayout({
   return (
     <html className="dark" lang="en" suppressHydrationWarning>
       <body
-        className={`${spaceGroteskFont.variable} ${spaceMonoFont.variable} font-sans dark:bg-[#0a0a0a] text-sm text-neutral-700 dark:text-neutral-400 bg-white antialiased tracking-wide`}
+        className={`${fontOne.variable} ${fontTwo.variable} font-sans dark:bg-[#0a0a0a] text bg-white antialiased px-4 py-5 sm:py-8`}
       >
         <ThemeProvider
           attribute="class"
@@ -43,7 +43,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="max-w-[700px] mx-auto px-4">
+          <main className="max-w-[640px] mx-auto px-4 text-[15.5px]">
             <div className="py-7 min-h-[83vh]">{children}</div>
           </main>
         </ThemeProvider>

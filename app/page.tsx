@@ -3,19 +3,19 @@ import Articles from "~/components/articles";
 
 const socials = [
   {
-    name: "Twitter",
+    name: "twitter",
     url: "https://twitter.com/MohdNisab",
   },
   {
-    name: "GitHub",
+    name: "github",
     url: "https://github.com/nisabmohd",
   },
   {
-    name: "LinkedIn",
+    name: "linkedin",
     url: "https://www.linkedin.com/in/nisabmohd/",
   },
   {
-    name: "BlueSky",
+    name: "bluesky",
     url: "https://bsky.app/profile/nisabmohd.bsky.social",
   },
 ];
@@ -23,23 +23,17 @@ const socials = [
 export default function Home() {
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="text-xl font-semibold font-mono tracking-tighter dark:text-neutral-300 text-neutral-700">
-        Nisab Mohd
-      </h2>
+      <h2 className="heading text">Nisab Mohd</h2>
 
       <div className="flex items-center gap-3 -mt-1">
         {socials.map((social) => (
-          <Link
-            key={social.url}
-            className="hover:underline underline-offset-2 hover:dark:text-neutral-200 hover:text-neutral-800"
-            href={social.url}
-          >
+          <Link key={social.url} className="link" href={social.url}>
             {social.name}
           </Link>
         ))}
       </div>
 
-      <div className="flex mt-3 flex-col gap-5 prose dark:prose-invert prose-p:m-0 prose-sm min-w-full dark:text-neutral-300 text-neutral-700">
+      <div className="flex mt-3 flex-col !gap-5 prose dark:prose-invert leading-normal prose-p:my-0 text">
         <p>
           I&apos;m a passionate{" "}
           <span className="font-semibold">software engineer</span> skilled in
@@ -59,9 +53,7 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col gap-5 my-6">
-        <h2 className="text-xl font-semibold font-mono tracking-tighter dark:text-neutral-300 text-neutral-700 capitalize">
-          articles
-        </h2>
+        <h2 className="text heading">Articles</h2>
         <Articles />
       </div>
     </div>
