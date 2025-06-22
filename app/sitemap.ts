@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllBlogs } from "~/lib/markdown";
+import { getAllBlogs } from "@/lib/markdown";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const blogs = await getAllBlogs();

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Articles from "~/components/articles";
+import Articles from "@/components/articles";
 
 const socials = [
   {

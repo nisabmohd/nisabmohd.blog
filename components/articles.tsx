@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllBlogs } from "~/lib/markdown";
+import { getAllBlogs } from "@/lib/markdown";
 
 export default async function Articles() {
   const blogs = await getAllBlogs();

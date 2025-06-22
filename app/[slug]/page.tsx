@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache, PropsWithChildren } from "react";
-import { getAllBlogs, getBlogFromSlug } from "~/lib/markdown";
+import { getAllBlogs, getBlogFromSlug } from "@/lib/markdown";
 
 const getBlogFromSlugCache = cache(getBlogFromSlug);
 
@@ -30,7 +30,7 @@ export default async function BlogPage(props: {
 
 function Typography({ children }: PropsWithChildren) {
   return (
-    <div className="text-inherit text text-neutral-700 prose-headings:text-inherit prose prose-neutral dark:prose-invert dark:prose-pre:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-950 prose-pre:prose-code:bg-neutral-50 prose-pre:bg-neutral-50 prose-pre:font-mono prose-code:font-mono prose-code:font-thin prose-code:text-sm underline-offset-2 prose-code:leading-[1.4rem] dark:prose-code:text-neutral-300 prose-code:text-neutral-700 prose-code:py-[0.0991rem] prose-code:px-1 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none prose-img:rounded-md prose-pre:border dark:prose-pre:border-neutral-800  min-w-full prose-img:mx-auto mt-7 prose-strong:text-inherit md:prose-code:text-nowrap prose-p:leading-normal">
+    <div className="text text-neutral-700 prose-code:min-w-fit prose-headings:text-inherit prose prose-neutral dark:prose-invert dark:prose-pre:prose-code:bg-neutral-900 dark:prose-pre:bg-neutral-950 prose-pre:prose-code:bg-neutral-50 prose-pre:bg-neutral-50 prose-pre:font-mono prose-code:font-mono prose-code:font-thin prose-code:text-sm underline-offset-2 prose-code:leading-[1.4rem] dark:prose-code:text-neutral-300 prose-code:text-neutral-700 prose-code:py-[0.0991rem] prose-code:px-1 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none prose-img:rounded-md prose-pre:border dark:prose-pre:border-neutral-800  min-w-full prose-img:mx-auto mt-7 prose-strong:text-inherit md:prose-code:text-nowrap prose-p:leading-normal">
       {children}
     </div>
   );

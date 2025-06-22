@@ -4,7 +4,7 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism-plus";
 import rehypeCodeTitles from "rehype-code-titles";
-import { components } from "~/components/markdown-custom";
+import { components } from "@/components/markdown";
 import { visit } from "unist-util-visit";
 
 export type MDXFrontmatter = {
@@ -14,7 +14,7 @@ export type MDXFrontmatter = {
   description: string;
 };
 
-const BASE_CONTENT_PATH = "content";
+const BASE_CONTENT_PATH = "contents";
 
 export async function getAllBlogs() {
   const contentDir = path.join(process.cwd(), BASE_CONTENT_PATH);
