@@ -16,7 +16,7 @@ export default function Copy({ content }: { content: string }) {
 
   return (
     <button
-      className="text-xs dark:bg-neutral-800/60 bg-neutral-200/60 p-1.5 rounded-md"
+      className="text-xs dark:bg-[#44403C] bg-[#E4D9BC] p-1.5 rounded-md"
       onClick={handleCopy}
     >
       {isCopied ? (

@@ -70,8 +70,8 @@ function AdaptiveImage({
 
 export function Note({ children }: PropsWithChildren) {
   return (
-    <div className="dark:bg-neutral-900 bg-stone-50 rounded-md px-3 py-4 h-fit prose-p:m-0 my-6 flex flex-col items-start gap-2 border dark:border-stone-800">
-      <p className="font-medium italic font-mono">Note: </p>
+    <div className="dark:bg-[#292524] bg-[#F8F4EE] rounded-md px-3 py-4 h-fit prose-p:m-0 my-6 flex flex-col items-start gap-2 border border-stone-300 dark:border-stone-700">
+      <p className="font-semibold text-sm">Note: </p>
       <span>{children}</span>
     </div>
   );
