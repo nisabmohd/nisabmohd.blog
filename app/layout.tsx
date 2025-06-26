@@ -35,7 +35,7 @@ export default function RootLayout({
   return (
     <html className="dark" lang="en" suppressHydrationWarning>
       <body
-        className={`${fontOne.variable} ${fontTwo.variable} font-sans dark:bg-[#0a0a0a] text bg-white antialiased px-4 py-5 sm:py-8`}
+        className={`${fontOne.variable} ${fontTwo.variable} font-sans dark:bg-[#171717] text bg-white antialiased px-4 py-5 sm:py-8`}
       >
         <ThemeProvider
           attribute="class"
