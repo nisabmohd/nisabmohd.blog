@@ -96,8 +96,8 @@ const ThemeContext = createContext<ThemeContextVal | null>(null);
 export function ThemeProvider({ children, theme }: Props) {
   const router = useRouter();
 
-  function setTheme(val: Theme) {
-    setThemeServerFn({ data: val });
+  async function setTheme(val: Theme) {
+    await setThemeServerFn({ data: val });
     router.invalidate();
   }
 
