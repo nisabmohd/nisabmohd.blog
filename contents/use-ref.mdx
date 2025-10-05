@@ -5,6 +5,9 @@ published: 1726765299753
 slug: use-ref
 ---
 
+<Note>This is a simplified and rough implementation of `useRef`, meant only for learning purposes. The real React implementation involves internal optimizations and lifecycle management that aren’t covered here.</Note>
+
+
 You must also be familiar with the `useState` hook in order to understand the `useRef` hook. States are held by the `useState` and `useRef` hooks. React provides two hooks that have the ability to hold state. The `useState` exposes a tuple of value and dispatcher, as you may already be aware. Since the value is a copy of the external state that React maintains and we use the function to change the value, why does React keep an internal copy of the state? The React must take control of state variables because it is evident that when a state changes, it must re-render. Furthermore, we can refer to it as an immutable state in which updating the value requires calling a setter rather than changing the value directly.
 
 {/* <img src="/images/venn-state.png" /> */}

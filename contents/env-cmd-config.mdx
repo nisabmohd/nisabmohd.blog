@@ -5,39 +5,47 @@ published: 1697564476495
 slug: env-cmd-next
 ---
 
-In this blog we will discuss how we use a specific env file such as `.env.trail` , `.env.test` , `.env.prod` etc to use in our apllication.
-As per many projects the requirement will be that for a specific environment the **Secret Keys** or **Tokens** or some **URLs** in env file must differ. But by default few frameworks supports `.env.test` , `.env.production` , `.env.development`. So what if your project has multiple other environments such as **stage**, **trail**, **pre-prod** etc...
+In this blog, we'll discuss how to use specific environment files such as `.env.trail`, `.env.test`, `.env.prod`, etc., in your application.
 
-For this we can create our env files with suffix with environment name such as `.env.prod`, then we need an package which will configure the specific **env** file while runtime.
+In many projects, it's often required that for each environment, certain **Secret Keys**, **Tokens**, or **URLs** in the environment file differ. By default, some frameworks support files like `.env.test`, `.env.production`, and `.env.development`.  
+But what if your project has additional environments such as **stage**, **trail**, or **pre-prod**?
+
+For this, we can create our own environment files with suffixes for each environment, such as `.env.prod`, and then use a package to load the specific **.env** file at runtime.
 
 ```bash:.env.test
-JWT_TOKEN = qwertyuiop
-LOGIN_URL_CALLBACK = test.url.com
-```
+JWT_TOKEN=qwertyuiop
+LOGIN_URL_CALLBACK=test.url.com
+````
 
 ```bash:.env.development
-JWT_TOKEN = abcdefghijk
-LOGIN_URL_CALLBACK = dev.url.com
+JWT_TOKEN=abcdefghijk
+LOGIN_URL_CALLBACK=dev.url.com
 ```
 
-So we can use popular npm package called `<a href="https://www.npmjs.com/package/env-cmd" >env-cmd</a>` which can be installed to your project by the npm command.
+We can use a popular npm package called [env-cmd](https://www.npmjs.com/package/env-cmd), which helps load specific environment files during runtime.
+
+Install it using:
 
 ```bash
 npm i env-cmd
 ```
 
-Once the package is installed you can add scripts in `package.json` to use specific env for specific environments.
+Once installed, add scripts in your `package.json` to specify which environment file should be used for each command:
 
 ```json:package.json
 {
-    "scripts": {
-       ... ,
-       "test-deploy" : "env-cmd -f .env.test npm run build && npm run start",
-       "dev-start" : "env-cmd -f .env.development npm run dev",
-       "dev-deploy" : "env-cmd -f .env.development npm run build && npm run start"
-    }
+  "scripts": {
+    "test-deploy": "env-cmd -f .env.test npm run build && npm run start",
+    "dev-start": "env-cmd -f .env.development npm run dev",
+    "dev-deploy": "env-cmd -f .env.development npm run build && npm run start"
+  }
 }
 ```
 
-Now when you start application in a specific environment, use the script mentioned in **package.json** file as `npm run dev-start` which will start the dev server with **.env.development** file as env config file. Also you can run `npm run test-deploy` which will take the env file as **env.test** before building & starting the production server.
-So this can be helpul for usage of multiple **env** files in multiple environments and you can add scripts based on your needs.
+Now, when starting your application in a specific environment, simply run one of the defined scripts:
+
+* `npm run dev-start` → uses `.env.development`
+* `npm run test-deploy` → uses `.env.test`
+
+This approach helps manage multiple **.env** files for different environments efficiently.
+You can easily extend it by adding more scripts for environments like **staging**, **pre-prod**, or **production** based on your needs.

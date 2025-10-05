@@ -10,28 +10,22 @@ Because Nextjs has server and client components, maintaining internationalizatio
 As stated in the official documentation, I will attempt to keep it simple. For this, we won't be using any libraries. Although a negotiator-like library can be used, subpath routing will be used in this case. The entire application must be wrapped in a `[lang]` route. For example, if you have a `/article` page, it will now be `/[lang]/article`, with `lang` representing the language code such as `en`, `fr`, `es`, etc. In order to handle situations where the lang code is not available, we will add a fallback code and use it to reroute the same path. Thus, middleware is used because we will be managing this in each route segment.
 
 ```ts:middleware.ts
+// middleware.ts
 import { NextRequest, NextResponse } from "next/server";
-import { getLocale, pathnameHasLocale } from "./lib/locale";
+import { getLocale } from "./lib/locale";
 
 export function middleware(request: NextRequest) {
-    // Check if there is any supported locale in the pathname
-    const { pathname } = request.nextUrl;
-    const hasLocale = pathnameHasLocale(pathname);
-    if (hasLocale) return;
+  const { pathname } = request.nextUrl;
+  const { locale, hasLocale } = getLocale(pathname);
 
-    // Redirect if there is no locale
-    const locale = getLocale(pathname);
+  if (!hasLocale) {
     request.nextUrl.pathname = `/${locale}${pathname}`;
-    // e.g. incoming request is /docs/get-started
-    // The new URL is now /en/docs/get-started
     return NextResponse.redirect(request.nextUrl);
+  }
 }
 
 export const config = {
-    matcher: [
-        // Skip all internal paths (_next)
-        "/((?!_next).*)",
-    ],
+  matcher: ["/((?!_next).*)"],
 };
 ```
 
@@ -41,16 +35,16 @@ In the middleware, we check if the pathname has a locale. If it doesn't, we get 
 export const locales = ["en", "fr", "ja"] as const;
 export type Locale = typeof locales[number];
 
-export function getLocale(pathname: string) {
-    const [locale] = pathname.split("/").filter(Boolean);
-    return locales.includes(locale as Locale) ? locale : locales[0];
-}
-
-export function pathnameHasLocale(pathname: string) {
-    return locales.some(
-        (locale) =>
-            pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
-    );
+export function getLocale(pathname: string): {
+  locale: Locale;
+  hasLocale: boolean;
+} {
+  const [firstSegment] = pathname.split("/").filter(Boolean);
+  const isSupported = locales.includes(firstSegment as Locale);
+  return {
+    locale: isSupported ? (firstSegment as Locale) : locales[0],
+    hasLocale: isSupported,
+  };
 }
 ```
 

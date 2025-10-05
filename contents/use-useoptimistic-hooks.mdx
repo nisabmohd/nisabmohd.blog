@@ -1,0 +1,173 @@
+---
+title: New use & useOptimistic hooks in React package
+description: React’s new stable hooks in action.
+published: 1708928797210
+slug: use-useoptimistic-hooks
+---
+
+React has added two new hooks — `use` and `useOptimistic` — now available in the stable React package.  
+These hooks make handling server-client interactions and managing async UI updates much simpler and more natural.
+
+---
+
+### use hook
+
+The `use` hook lets you read the value of a resource such as a **Promise** or **Context** directly inside your component.  
+Unlike other hooks, `use` can be called inside loops, conditionals, or any block — while still following React’s rules of hooks (it must be used inside a component or another hook).
+
+```js
+const value = use(resource);
+````
+
+---
+
+### Usage
+
+#### Reading context values
+
+`use` works similarly to `useContext`, but it’s more flexible.
+It can be used inside conditionals or loops, which `useContext` doesn’t allow. React recommends using `use` over `useContext` since it’s more adaptable.
+
+```jsx
+"use client";
+import ThemeContext from "@/contexts";
+import Button from "@/components";
+
+export default function GetStartedButton({ newUI, children }) {
+  if (newUI) {
+    const theme = use(ThemeContext); // using hook inside condition
+    return <Button theme={theme}>{children}</Button>;
+  }
+  return <button>{children}</button>;
+}
+```
+
+---
+
+#### Streaming data from server to client
+
+A Promise can be passed from a Server Component to a Client Component and resolved in the Client Component using the `use` hook.
+
+If you use `await` in a Server Component, rendering is blocked until the promise resolves:
+
+```jsx
+export default async function Home() {
+  const feeds = await getFeed();
+  const trends = await getTrends();
+
+  return (
+    <div>
+      <Feed data={feeds} />
+      <Explore data={trends} />
+    </div>
+  );
+}
+```
+
+To avoid blocking, you can pass the promise directly to the Client Component.
+React will render parts of the page in parallel and suspend where needed using `Suspense`.
+
+```jsx
+export default async function Home() {
+  const feedsPromise = getFeed();
+  const trendsPromise = getTrends();
+
+  return (
+    <div>
+      <Suspense fallback="Loading feed...">
+        <Feed data={feedsPromise} />
+      </Suspense>
+      <Suspense fallback="Loading trends...">
+        <Explore data={trendsPromise} />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+In the Client Component, you can resolve the promise directly with `use`:
+
+```jsx
+export default function Feed({ data }) {
+  const resolvedData = use(data);
+  return <div>{/* render feed here */}</div>;
+}
+```
+
+The `use` hook integrates automatically with Suspense and Error Boundaries.
+When the promise is pending, the fallback is shown, and if it fails, the nearest Error Boundary handles the error.
+
+<Note>
+  Make sure the promise result is **JSON serializable** when passing data from
+  the server to the client.
+</Note>
+
+---
+
+### useOptimistic hook
+
+`useOptimistic` is another new React hook that helps you optimistically update the UI.
+When performing async actions, instead of waiting for the server response, you can show an immediate UI update and replace it later when the real data arrives.
+
+```js
+const [optimisticState, addOptimistic] = useOptimistic(state, updateFn);
+```
+
+---
+
+### Usage
+
+#### Optimistically updating forms
+
+```jsx
+export default function MessagesContainer({ messages, send }) {
+  const [optimisticMessages, addMessage] = useOptimistic(
+    messages,
+    (state, newMessage) => [...state, newMessage]
+  );
+
+  const [inputMessage, setInputMessage] = useState("");
+
+  async function handleSend() {
+    const message = inputMessage;
+    setInputMessage("");
+
+    addMessage({
+      body: message,
+      pending: true,
+      key: uuid(),
+    });
+
+    await send(message);
+  }
+
+  return (
+    <div>
+      {optimisticMessages.map((message) => (
+        <Message key={message.key} {...message} />
+      ))}
+      <div>
+        <input
+          value={inputMessage}
+          onChange={(e) => setInputMessage(e.target.value)}
+        />
+        <button onClick={handleSend}>Send</button>
+      </div>
+    </div>
+  );
+}
+
+function Message({ body, pending }) {
+  return <p>{body} {pending && " - sending..."}</p>;
+}
+```
+
+When you send a message, it appears instantly with the “sending...” suffix before the server responds.
+Once the actual data is returned and revalidated, the pending state is removed.
+This makes interactions feel faster and smoother for users.
+
+---
+
+Both `use` and `useOptimistic` are now part of stable React.
+They make data handling and UI updates more seamless — bringing a smoother bridge between server logic and the client experience.
+
