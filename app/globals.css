@@ -41,7 +41,7 @@ pre > code {
 }
 
 .highlight-line {
-  @apply bg-[#E4D9BC] dark:bg-[#44403C] border-l-2 dark:border-[#F97316] border-[#B45309];
+  @apply bg-[#E4D9BC] dark:bg-[#282522] border-l-2 dark:border-[#F97316] border-[#B45309];
 }
 
 /* === LIGHT MODE (bg: #F8F4EE) === */
@@ -115,11 +115,11 @@ pre > code {
 }
 
 .dark .attr-name {
-  color: #e86a67; /* destructive */
+  color: #e86a67 !important; /* destructive */
 }
 
 .dark .attr-value {
-  color: #ffffff; /* primary-foreground */
+  color: #bcbcbc !important; /* primary-foreground */
 }
 
 .rehype-code-title {

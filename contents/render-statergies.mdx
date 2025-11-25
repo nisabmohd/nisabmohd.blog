@@ -1,0 +1,80 @@
+---
+title: WTF Is CSR, SSR, SSG, ISR, PPR & Server Components?
+description: "Let’s understand web rendering strategies: CSR, SSR, SSG, ISR, PPR & Server Components."
+published: 1764098761679
+slug: render-strategies
+---
+
+CSR, SSR, ISR, Server Components, PPR, SSG… what are these terms and why do they matter so much in modern frontend development? Let’s go through each one and clear things up. I know it feels scary how fast the web is moving, but once you understand these concepts, it actually becomes pretty easy. You’ll also know exactly what to use and when.
+
+### CSR (Client side rendering)
+
+The traditional React model was completely client side. The entire bundle was loaded in the browser. React was originally built to create interactive frontend apps with a declarative UI. In this model, the server sends an almost empty HTML file, and then the browser requests the full JavaScript bundle. Once all the chunks are downloaded, the client executes them.
+
+This worked fine back then because frontend apps weren’t that complicated. But later a few problems showed up like SEO issues and the classic blank screen. Web crawlers mainly read the HTML markup of a page, and since the initial markup was basically empty, SEO took a hit because crawlers usually skip executing scripts.
+
+As apps grew, the JavaScript bundle also grew. Downloading that big bundle took more time, which led to longer blank screens. React added features like `lazy` to split chunks and load code only when needed. Even today a lot of apps still run on this model and that’s totally fine.
+
+Now let’s look at the network graph of a CSR application.
+
+![csr.png](/images/csr.png)
+
+### SSR (Server side rendering)
+
+Server side rendering isn’t something new or invented by React. It has been around for a long time. PHP is one of the best examples of SSR. Even HTMX relies on the same idea. Basically any server that sends HTML markup is doing a form of server rendering. The word “rendered” is more specific when we talk about React, but the core idea is the same.
+
+SSR fixed one major issue: SEO. On the server, a basic non-interactive markup is generated for the page. So when crawlers visit the site, they can actually see the content. This solved a big React problem. Now the initial HTML wasn’t empty anymore. Instead, the server itself sent a ready markup. React rendered the page on the server. Next.js popularised this with `getServerSideProps`, which many devs hated but it worked.
+
+In SSR the markup is rendered, but it’s not interactive yet. This non-interactive page is sent to the client. Then the page’s JavaScript chunks are downloaded and hydration begins. Hydration is the process where React makes the page interactive by generating the whole React tree again on the client. Yes, it’s basically double work but it fixes SEO.
+
+Now let’s look at the network graph of SSR.
+
+![csr.png](/images/ssr.png)
+
+
+### SSG (Static Site Generation)
+
+SSG is basically SSR but without rendering on every request. Instead of generating the page when a user hits the server, we generate all the possible pages at build time and store them in a CDN. This makes page loads extremely fast.
+
+This works best when the content of a page doesn’t change often. For example, a blog page won’t change until I update it and rebuild the site. Same with docs pages or any other static content. These can be rendered at build time and cached, so when a request comes in the server doesn’t have to render anything at runtime.
+
+If the page has interactive parts, then the required JavaScript chunks will still be added so those components can hydrate on the client.
+
+Now let’s look at the network graph of SSG.
+
+![csr.png](/images/ssg.png)
+
+
+### ISR (Incremental Static Regeneration)
+
+ISR is almost like SSG but with revalidation. We build the pages at compile time, and then after an interval we regenerate those pages again so the content stays up to date. It works like a scheduled refresh, similar to a cron job. The page doesn’t have to update only on a fixed interval, it can also be revalidated on demand.
+
+The idea is simple. Keep the page static until something actually changes, then rebuild only those pages. For example, if I have a Privacy Policy page where some content comes from an external source, I can set a 24 hour revalidation time. If the content changes, the next request will serve the updated version.
+
+### Server components
+
+Server components are probably the best thing React has introduced after hooks. They let you render a component on the server so the HTML is always produced there. But don’t confuse SSR with server components. Server components use the server, but SSR is not the same thing.
+
+With server components you get full server capabilities while rendering. But there is one catch. You cannot make a server component interactive because you cannot use state or event listeners unless you define a client boundary. Inside a server component you can still compose client components, which run on the client and handle interactivity. The data shared between server and client components must be serialisable.
+
+React renders the server components on the server, skips the parts inside client boundaries marked with "use client", and leaves placeholders for the interactive parts. For server components, React sends an RSC payload to the client, which is basically a lightweight version of the React tree. This is different from SSR where the entire tree is regenerated on the client and hydrated. In the RSC model the client only renders the interactive parts of the UI.
+
+A few things to note:
+
+- You can still hit a blank screen if the server component rendering takes too long.
+- Heavy server components can be streamed through Suspense boundaries so the page loads progressively instead of waiting for everything.
+
+Server components are basically SSR on steroids because they let you render UI on the server with way less JavaScript on the client and without the heavy hydration cost.
+
+### PPR (Partial Pre Rendering)
+
+PPR is a recent feature from React where parts of the UI can be cached at build time. It’s powerful because the non-interactive parts of the UI can be rendered on the server and cached, while the dynamic parts are skipped during build. Frameworks like Next.js already support this with the `cacheComponents` flag, where you mark the static part of the UI to be cached and wrap the dynamic part inside a Suspense boundary.
+
+At render time, the fallback of the Suspense boundary is placed in the slots where the dynamic UI will appear. Later, those dynamic parts are streamed from the server to the client when needed. This avoids rendering the entire UI every time and instead only renders the dynamic pieces.
+
+A perfect example is Amazon. The images, product description and layout stay the same, but the price and reviews change frequently. PPR lets you cache the stable parts and stream only the updated ones.
+
+![csr.png](/images/ppr.png)
+
+
+> And yeah, this is the same stuff some backend devs look at and still say “frontend is easy.”

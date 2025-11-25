@@ -35,7 +35,7 @@ export default function RootLayout({
   return (
     <html className="dark" lang="en" suppressHydrationWarning>
       <body
-        className={`${fontOne.variable} ${fontTwo.variable} font-sans dark:bg-[#1C1917] text-inherit bg-[#FDFBF7] antialiased px-2 py-4 sm:py-8`}
+        className={`${fontOne.variable} ${fontTwo.variable} font-sans dark:bg-[#030303] text-inherit bg-[#FDFBF7] antialiased px-2 py-4 sm:py-8`}
       >
         <ThemeProvider
           attribute="class"
@@ -43,7 +43,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="max-w-[640px] mx-auto px-4 text-[15.5px]">
+          <main className="max-w-[700px] mx-auto px-4 text-[15.5px]">
             <div className="py-7 min-h-[83vh]">{children}</div>
           </main>
         </ThemeProvider>
