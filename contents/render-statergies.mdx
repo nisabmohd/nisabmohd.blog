@@ -66,6 +66,9 @@ A few things to note:
 
 Server components are basically SSR on steroids because they let you render UI on the server with way less JavaScript on the client and without the heavy hydration cost.
 
+![csr.png](/images/rsc.png)
+
+
 ### PPR (Partial Pre Rendering)
 
 PPR is a recent feature from React where parts of the UI can be cached at build time. It’s powerful because the non-interactive parts of the UI can be rendered on the server and cached, while the dynamic parts are skipped during build. Frameworks like Next.js already support this with the `cacheComponents` flag, where you mark the static part of the UI to be cached and wrap the dynamic part inside a Suspense boundary.
