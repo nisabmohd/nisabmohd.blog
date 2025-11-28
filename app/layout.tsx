@@ -66,15 +66,19 @@ export default function RootLayout({
           <main className="max-w-[700px] mx-auto px-4 text-[15.5px]">
             <div className="py-7 min-h-[83vh]">
               <nav className="h-16">
-                 <h2 className="heading text">Nisab Mohd</h2>
-
-      <div className="flex items-center gap-3 -mt-1">
-        {socials.map((social) => (
-          <Link key={social.url} className="link" href={social.url}>
-            {social.name}
-          </Link>
-        ))}
-      </div>
+                <Link
+                  href="/"
+                  className="link heading text  dark:!text-white !text-black"
+                >
+                  Nisab Mohd
+                </Link>
+                <div className="flex items-center gap-3 mt-1">
+                  {socials.map((social) => (
+                    <Link key={social.url} className="link" href={social.url}>
+                      {social.name}
+                    </Link>
+                  ))}
+                </div>
               </nav>
               {children}
             </div>
