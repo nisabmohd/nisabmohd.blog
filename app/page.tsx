@@ -1,38 +1,8 @@
-import Link from "next/link";
 import Articles from "@/components/articles";
-
-const socials = [
-  {
-    name: "twitter",
-    url: "https://twitter.com/MohdNisab",
-  },
-  {
-    name: "github",
-    url: "https://github.com/nisabmohd",
-  },
-  {
-    name: "linkedin",
-    url: "https://www.linkedin.com/in/nisabmohd/",
-  },
-  {
-    name: "bluesky",
-    url: "https://bsky.app/profile/nisabmohd.bsky.social",
-  },
-];
 
 export default function Home() {
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="heading text">Nisab Mohd</h2>
-
-      <div className="flex items-center gap-3 -mt-1">
-        {socials.map((social) => (
-          <Link key={social.url} className="link" href={social.url}>
-            {social.name}
-          </Link>
-        ))}
-      </div>
-
       <div className="flex mt-3 flex-col !gap-5 prose dark:prose-invert leading-normal prose-p:my-0 text">
         <p>
           I&apos;m a passionate{" "}

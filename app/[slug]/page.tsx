@@ -17,7 +17,7 @@ export default async function BlogPage(props: {
   const { content } = res;
   return (
     <>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 pt-4">
         <h2 className="text heading">{res.frontmatter.title}</h2>
         <p className="sub-text -mt-1">
           {new Date(res.frontmatter.published).toDateString()}

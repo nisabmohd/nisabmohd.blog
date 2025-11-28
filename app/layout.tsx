@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Nisab Mohd",
@@ -27,6 +28,25 @@ const fontTwo = IBM_Plex_Mono({
   weight: "400",
 });
 
+const socials = [
+  {
+    name: "twitter",
+    url: "https://twitter.com/MohdNisab",
+  },
+  {
+    name: "github",
+    url: "https://github.com/nisabmohd",
+  },
+  {
+    name: "linkedin",
+    url: "https://www.linkedin.com/in/nisabmohd/",
+  },
+  {
+    name: "bluesky",
+    url: "https://bsky.app/profile/nisabmohd.bsky.social",
+  },
+];
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -44,7 +64,20 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <main className="max-w-[700px] mx-auto px-4 text-[15.5px]">
-            <div className="py-7 min-h-[83vh]">{children}</div>
+            <div className="py-7 min-h-[83vh]">
+              <nav className="h-16">
+                 <h2 className="heading text">Nisab Mohd</h2>
+
+      <div className="flex items-center gap-3 -mt-1">
+        {socials.map((social) => (
+          <Link key={social.url} className="link" href={social.url}>
+            {social.name}
+          </Link>
+        ))}
+      </div>
+              </nav>
+              {children}
+            </div>
           </main>
         </ThemeProvider>
       </body>
