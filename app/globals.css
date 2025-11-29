@@ -41,7 +41,7 @@ pre > code {
 }
 
 .highlight-line {
-  @apply bg-[#E4D9BC] dark:bg-[#282522] border-l-2 dark:border-[#F97316] border-[#B45309];
+  @apply bg-[#ecf0fb] dark:bg-[#282522] border-l-2 dark:border-[#F97316] border-[#B45309];
 }
 
 /* === LIGHT MODE (bg: #F8F4EE) === */
