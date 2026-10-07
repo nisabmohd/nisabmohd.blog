@@ -7,7 +7,7 @@ type TweetData = NonNullable<Awaited<ReturnType<typeof _getTweet>>>;
 
 // The syndication API sometimes omits entity arrays, which react-tweet iterates while rendering.
 function withEntities<T extends Pick<TweetData, "entities">>(tweet: T): T {
-  const e = tweet.entities ?? {};
+  const e: Partial<TweetData["entities"]> = tweet.entities ?? {};
   tweet.entities = {
     ...e,
     hashtags: e.hashtags ?? [],
