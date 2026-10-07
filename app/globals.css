@@ -223,14 +223,14 @@ h1.hello {
 
 .prose { color: var(--muted); margin-top: 32px; line-height: 1.75; font-size: 15.5px; min-width: 0; }
 .prose > :first-child { margin-top: 0; }
-.prose p { margin: 0 0 20px; }
+.prose p:not(.react-tweet-theme *) { margin: 0 0 20px; }
 .prose h2, .prose h3, .prose h4 { color: var(--fg); font-weight: 600; text-wrap: balance; scroll-margin-top: 24px; }
 .prose h2 { font-size: 20px; letter-spacing: -0.02em; margin: 44px 0 14px; }
 .prose h3 { font-size: 17px; letter-spacing: -0.015em; margin: 32px 0 10px; }
 .prose h4 { font-size: 15.5px; margin: 24px 0 8px; }
-.prose a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
+.prose a:not(.react-tweet-theme *) { color: var(--fg); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
 .prose :is(h2, h3, h4) a { text-decoration: none; }
-.prose strong { color: var(--fg); font-weight: 600; }
+.prose strong:not(.react-tweet-theme *) { color: var(--fg); font-weight: 600; }
 .prose ul, .prose ol { margin: 0 0 20px; padding-left: 22px; }
 .prose ul { list-style: disc; }
 .prose ol { list-style: decimal; }
@@ -239,7 +239,7 @@ h1.hello {
 .prose li > p { margin: 0; }
 .prose blockquote { border-left: 2px solid var(--line); margin: 0 0 20px; padding: 2px 0 2px 16px; color: var(--muted); }
 .prose hr { border: 0; border-top: 1px solid var(--line); margin: 36px 0; }
-.prose img { border-radius: 10px; margin: 28px auto; height: auto; }
+.prose img:not(.react-tweet-theme *) { border-radius: 10px; margin: 28px auto; height: auto; }
 .prose table { width: 100%; border-collapse: collapse; margin: 0 0 24px; font-size: 14px; display: block; overflow-x: auto; }
 .prose th, .prose td { border-bottom: 1px solid var(--line); padding: 8px 12px 8px 0; text-align: left; vertical-align: top; }
 .prose th { color: var(--fg); font-weight: 500; }

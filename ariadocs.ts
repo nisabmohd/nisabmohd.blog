@@ -1,4 +1,4 @@
-import { createDocs } from "@ariadocs/react";
+import { createDocs } from "@ariadocs/mdx";
 import {
   remarkGfm,
   rehypePrism,
@@ -6,7 +6,7 @@ import {
   rehypeSlug,
   rehypeCodeTitles,
   rehypeCodeRaw,
-} from "@ariadocs/react/plugins";
+} from "@ariadocs/mdx/plugins";
 import { components } from "./components/markdown";
 
 type HastNode = {
@@ -66,7 +66,7 @@ export const docs = createDocs({
     rehypeAutolinkHeadings,
   ],
   remarkPlugins: [remarkGfm],
-  mdxComponents: components,
+  components,
 });
 
 export type Fmt = {

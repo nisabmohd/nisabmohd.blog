@@ -18,7 +18,7 @@ function readingTime(raw: string) {
 export const getPost = cache(async (slug: string): Promise<Post> => {
   const [fmt, raw] = await Promise.all([
     docs.getFrontmatter<Fmt>({ slug }),
-    docs.readMdx({ slug }),
+    docs.read({ slug }),
   ]);
   return {
     slug,
