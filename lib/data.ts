@@ -17,7 +17,7 @@ export const socials = [
   { name: "GitHub", url: "https://github.com/nisabmohd" },
   { name: "X", url: "https://x.com/MohdNisab" },
   { name: "LinkedIn", url: "https://www.linkedin.com/in/nisabmohd/" },
-  { name: "Résumé", url: "https://drive.google.com/file/d/1qFDL9Ye15ChlmuKzAGpW2i7kuDT0KKSg/view?usp=sharing" },
+  { name: "Résumé", url: "https://drive.google.com/file/d/1Isd8OhDX00_eMq_903WOUaPoKLDQsVS-/view?usp=sharing" },
 ];
 
 export type ProjectLink = {
