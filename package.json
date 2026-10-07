@@ -11,28 +11,28 @@
   },
   "dependencies": {
     "@ariadocs/react": "^2.1.0",
-    "next": "16.0.10",
+    "next": "16.4.0",
     "next-themes": "^0.4.6",
-    "react": "19.2.1",
-    "react-dom": "19.2.1",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "react-tweet": "^3.2.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^20",
-    "@types/react": "19.2.7",
-    "@types/react-dom": "19.2.3",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
     "eslint": "^9",
-    "eslint-config-next": "16.0.7",
+    "eslint-config-next": "16.4.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
   "packageManager": "pnpm@10.11.1+sha512.e519b9f7639869dc8d5c3c5dfef73b3f091094b0a006d7317353c72b124e80e1afd429732e28705ad6bfa1ee879c1fce46c128ccebd3192101f43dd67c667912",
   "pnpm": {
     "overrides": {
-      "@types/react": "19.2.7",
-      "@types/react-dom": "19.2.3"
+      "@types/react": "19.3.0",
+      "@types/react-dom": "19.3.0"
     }
   }
 }

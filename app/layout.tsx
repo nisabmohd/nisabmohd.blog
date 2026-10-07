@@ -1,84 +1,104 @@
 import type { Metadata } from "next";
-import { Sanchez, IBM_Plex_Mono } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
+import { Space_Grotesk, Geist_Mono, Amiri } from "next/font/google";
 import Link from "next/link";
+import { ThemeProvider } from "@/components/theme-provider";
+import ThemeToggle from "@/components/theme-toggle";
+import CommandMenu from "@/components/command-menu";
+import { Logo } from "@/components/icons";
+import { getPosts } from "@/lib/posts";
+import { site } from "@/lib/data";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Nisab Mohd",
-  description:
-    "Step into my digital world at Nisab's personal website, where I share my passions, experiences, and the things that make life uniquely mine.",
-  metadataBase: new URL("https://nisabmohd.vercel.app/"),
+  title: {
+    default: site.name,
+    template: `%s · ${site.name}`,
+  },
+  description: site.description,
+  metadataBase: new URL(site.url),
+  openGraph: {
+    title: site.name,
+    description: site.shortTagline,
+    url: site.url,
+    siteName: site.name,
+    type: "website",
+  },
+  twitter: { card: "summary_large_image" },
   verification: {
     google: "FTrhj2zTINy-vnMsxA-8wy7poFXbSq2LuArgbuPLiGU",
   },
 };
 
-const fontOne = Sanchez({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-one",
+  variable: "--font-body",
   display: "swap",
-  weight: "400",
 });
 
-const fontTwo = IBM_Plex_Mono({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  variable: "--font-two",
+  variable: "--font-geist-mono",
   display: "swap",
-  weight: "400",
 });
 
-const socials = [
-  {
-    name: "github",
-    url: "https://github.com/nisabmohd",
-  },
-  {
-    name: "x",
-    url: "https://x.com/MohdNisab",
-  },
-  {
-    name: "linkedin",
-    url: "https://www.linkedin.com/in/nisabmohd/",
-  },
-];
+const amiri = Amiri({
+  subsets: ["arabic"],
+  weight: "400",
+  variable: "--font-amiri",
+  display: "swap",
+  preload: false,
+});
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const posts = await getPosts();
+
   return (
-    <html className="dark" lang="en" suppressHydrationWarning>
-      <body
-        className={`${fontOne.variable} ${fontTwo.variable} font-sans dark:bg-[#030303] text-inherit bg-white antialiased px-2 py-4 sm:py-8`}
-      >
+    <html
+      lang="en"
+      className={`${spaceGrotesk.variable} ${geistMono.variable} ${amiri.variable}`}
+      suppressHydrationWarning
+    >
+      <body>
         <ThemeProvider
-          attribute="class"
+          attribute="data-theme"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <main className="max-w-[600px] mx-auto px-4 text-[15.5px]">
-            <div className="py-7 min-h-[83vh]">
-              <nav className="h-16">
-                <Link
-                  href="/"
-                  className="link heading text  dark:!text-white !text-black"
-                >
-                  Nisab Mohd
+          <div className="page">
+            <header className="nav">
+              <div className="nav-left">
+                <Link href="/" className="logo" aria-label={`${site.name}, home`}>
+                  <Logo />
                 </Link>
-                <div className="flex items-center gap-3 mt-1">
-                  {socials.map((social) => (
-                    <Link key={social.url} className="link" href={social.url}>
-                      {social.name}
-                    </Link>
-                  ))}
-                </div>
-              </nav>
-              {children}
-            </div>
-          </main>
+                <span className="status">
+                  <span className="pulse" />
+                  {site.status}
+                </span>
+              </div>
+              <div className="nav-right">
+                <CommandMenu
+                  posts={posts.map(({ slug, title }) => ({ slug, title }))}
+                />
+                <ThemeToggle />
+              </div>
+            </header>
+
+            {children}
+
+            <footer className="site-footer">
+              <span>
+                © {new Date().getFullYear()} {site.name}
+              </span>
+              <span>
+                Press <kbd>⌘K</kbd> to navigate
+              </span>
+            </footer>
+          </div>
         </ThemeProvider>
       </body>
     </html>

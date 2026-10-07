@@ -1,35 +1,43 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PropsWithChildren } from "react";
-import { docs, Fmt, getBlogSlugFromHref } from "@/ariadocs";
+import { docs, getBlogSlugFromHref } from "@/ariadocs";
+import ReadingProgress from "@/components/reading-progress";
+import { formatDate, getPost } from "@/lib/posts";
+import { site } from "@/lib/data";
 
 export default async function BlogPage(props: {
   params: Promise<{ slug: string }>;
 }) {
-  const params = await props.params;
+  const { slug } = await props.params;
+  let page;
   try {
-    const { MDX, frontmatter } = await docs.parse({ slug: params.slug });
-    return (
-      <>
-        <div className="flex flex-col gap-4 pt-4">
-          <h2 className="text heading">{frontmatter.title}</h2>
-          <p className="sub-text -mt-1">
-            {new Date(frontmatter.published as string).toDateString()}
-          </p>
-        </div>
-        <Typography>{MDX}</Typography>
-      </>
-    );
-  } catch (e) {
+    const [{ MDX }, post] = await Promise.all([
+      docs.parse({ slug }),
+      getPost(slug),
+    ]);
+    page = { MDX, post };
+  } catch {
     notFound();
   }
-}
+  const { MDX, post } = page;
 
-function Typography({ children }: PropsWithChildren) {
   return (
-    <div className="text text-neutral-700 dark:text-neutral-300 prose-code:min-w-fit prose-headings:text-inherit prose prose-neutral dark:prose-invert dark:prose-code:bg-[#1a1817]! dark:prose-pre:bg-[#1a1817]! prose-code:bg-[#f8f7f6]! prose-pre:bg-[#f8f7f6]! prose-pre:font-mono prose-code:font-mono prose-code:font-thin prose-code:text-sm underline-offset-2 prose-code:leading-[1.4rem] dark:prose-code:text-neutral-300 prose-code:text-neutral-700 prose-code:py-[0.0991rem] prose-code:px-1 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none prose-img:rounded-md prose-code:border prose-code:border-neutral-300 dark:prose-code:border-neutral-700  min-w-full prose-img:mx-auto mt-7 prose-strong:text-inherit md:prose-code:text-nowrap prose-p:leading-normal">
-      {children}
-    </div>
+    <main>
+      <ReadingProgress />
+      <Link href="/#writing" className="back">
+        <span>←</span> All writing
+      </Link>
+      <div className="art-head">
+        <h1>{post.title}</h1>
+        <div className="art-meta">
+          <span>{formatDate(post.published)}</span>
+          <span>·</span>
+          <span>{post.readMinutes} min read</span>
+        </div>
+      </div>
+      <article className="prose">{MDX}</article>
+    </main>
   );
 }
 
@@ -41,38 +49,36 @@ export async function generateStaticParams() {
 export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const params = await props.params;
-  const slug = params.slug;
+  const { slug } = await props.params;
   try {
-    const fmt = await docs.getFrontmatter<Fmt>({ slug });
-    const ogImage = `https://nisabmohd.vercel.app/og?title=${encodeURIComponent(
-      fmt.title as string,
-    )}`;
+    const post = await getPost(slug);
+    const og = new URLSearchParams({
+      title: post.title,
+      date: formatDate(post.published),
+      read: `${post.readMinutes} min read`,
+    });
+    const ogImage = `${site.url}/og?${og}`;
     return {
-      title: fmt.title,
-      description: fmt.description,
+      title: post.title,
+      description: post.description,
       openGraph: {
-        title: fmt.title,
-        description: fmt.description,
+        title: post.title,
+        description: post.description,
         type: "article",
-        publishedTime: new Date(fmt.published).toDateString(),
-        url: `https://nisabmohd.vercel.app/${slug}`,
-        images: [
-          {
-            url: ogImage,
-          },
-        ],
+        publishedTime: post.published.toISOString(),
+        url: `${site.url}/${slug}`,
+        images: [{ url: ogImage, width: 1200, height: 630 }],
       },
       twitter: {
         card: "summary_large_image",
-        title: fmt.title,
-        description: fmt.description,
+        title: post.title,
+        description: post.description,
         images: [ogImage],
       },
     };
-  } catch (e) {
+  } catch {
     return {
-      title: "Blog Not Found",
+      title: "Not found",
     };
   }
 }

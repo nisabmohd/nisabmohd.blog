@@ -2,11 +2,13 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="flex flex-col gap-2">
-      <h1 className="font-semibold text-2xl">404 | Not Found</h1>
-      <Link className="underline underline-offset-2" href="/">
-        Go to homepage
+    <main className="nf">
+      <span className="count">404</span>
+      <h1>This page doesn&apos;t exist</h1>
+      <p className="bio">It may have moved, or the link is mistyped.</p>
+      <Link href="/" className="back">
+        <span>←</span> Back home
       </Link>
-    </div>
+    </main>
   );
 }

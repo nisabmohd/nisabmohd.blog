@@ -1,0 +1,843 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Nisab Mohd Site Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Amiri:wght@400&display=swap">
+<style>
+/* Layout: one 680px column. Quiet type, with craft concentrated in the project previews, the ⌘K palette and small motion details. */
+:root {
+  --bg: #fbfbfa;
+  --surface: #ffffff;
+  --fg: #141517;
+  --muted: #56585f;
+  --subtle: #8c8e95;
+  --line: #e8e8e6;
+  --hover: #f2f2f0;
+  --accent: #2f9e5b;
+  --g0: #ebedea; --g1: #c5e8cf; --g2: #86d29c; --g3: #3fae66; --g4: #23733f;
+  --shadow: 0 1px 2px rgba(20,21,23,.04), 0 8px 24px rgba(20,21,23,.06);
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090a; --surface: #111113; --fg: #ededef; --muted: #a3a5ac; --subtle: #6e7077;
+    --line: #1f2023; --hover: #17181b; --accent: #4cc27a;
+    --g0: #1a1c1e; --g1: #173a24; --g2: #1f6b3b; --g3: #31a35a; --g4: #5fd68a;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090a; --surface: #111113; --fg: #ededef; --muted: #a3a5ac; --subtle: #6e7077;
+  --line: #1f2023; --hover: #17181b; --accent: #4cc27a;
+  --g0: #1a1c1e; --g1: #173a24; --g2: #1f6b3b; --g3: #31a35a; --g4: #5fd68a;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding: 0 20px;
+}
+::selection { background: var(--accent); color: var(--bg); }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.mono { font-family: var(--font-mono); }
+
+.page { max-width: 680px; margin: 0 auto; padding-block: 72px 120px; }
+
+/* ── Header ─────────────────────────────── */
+.nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 72px; }
+.name { font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: var(--fg); transition: opacity .15s; }
+.name:hover { opacity: .7; }
+.nav-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.logo { display: block; line-height: 0; border-radius: 9px; transition: transform .2s; }
+.logo:hover { transform: rotate(-6deg) scale(1.05); }
+.nav-right { display: flex; align-items: center; gap: 6px; }
+.icon-btn, .kbd-btn {
+  height: 32px; display: inline-flex; align-items: center; gap: 8px; padding: 0 10px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+  border-radius: 8px; font: inherit; font-size: 13px; cursor: pointer;
+  transition: color .15s, border-color .15s;
+}
+.icon-btn { width: 32px; padding: 0; justify-content: center; }
+.icon-btn:hover, .kbd-btn:hover { color: var(--fg); border-color: var(--subtle); }
+kbd { font-family: var(--font-mono); font-size: 11px; color: var(--subtle); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; background: var(--bg); }
+
+.hero { display: flex; flex-direction: column; gap: 18px; }
+.status {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--muted); padding: 4px 10px 4px 8px;
+  border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
+}
+.pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); position: relative; }
+.pulse::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 1.5px solid var(--accent); opacity: 0; animation: ping 2.2s ease-out infinite; }
+@keyframes ping { 0% { transform: scale(.5); opacity: .7; } 100% { transform: scale(1.4); opacity: 0; } }
+.intro { display: flex; flex-direction: column; gap: 8px; }
+h1.hello {
+  margin: 0; font-size: clamp(40px, 9vw, 56px); line-height: 1; font-weight: 600; letter-spacing: -0.045em;
+  background: linear-gradient(180deg, var(--fg) 30%, var(--subtle));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  padding-bottom: 4px;
+}
+.tagline { font-size: 17px; color: var(--muted); letter-spacing: -0.01em; text-wrap: balance; }
+.bio { margin: 0; color: var(--muted); max-width: 56ch; line-height: 1.7; }
+.bio b { color: var(--fg); font-weight: 500; }
+.socials { display: flex; gap: 18px; flex-wrap: wrap; font-size: 14px; }
+.link { color: var(--muted); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 4px; transition: color .15s, text-decoration-color .15s; }
+.link:hover { color: var(--fg); text-decoration-color: var(--accent); }
+
+/* ── Sections ───────────────────────────── */
+.sections { display: flex; flex-direction: column; gap: 72px; margin-top: 80px; }
+section { display: flex; flex-direction: column; gap: 20px; scroll-margin-top: 24px; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.label { margin: 0; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: .09em; color: var(--subtle); }
+.count { font-family: var(--font-mono); font-size: 12px; color: var(--subtle); }
+
+/* Projects: the one place that gets cards */
+.projects { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  display: flex; flex-direction: row; border: 1px solid var(--line); border-radius: 14px;
+  background: var(--surface); overflow: hidden; transition: border-color .2s, transform .2s, box-shadow .2s;
+  min-width: 0;
+}
+.card:hover { border-color: var(--subtle); transform: translateY(-2px); box-shadow: var(--shadow); }
+.preview { width: 280px; flex-shrink: 0; min-height: 196px; border-right: 1px solid var(--line); background: var(--bg); position: relative; overflow: hidden; }
+.card-body { flex: 1; min-width: 0; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; }
+
+/* Sprout preview: mini "Today" screen drawn in HTML, colors taken from the app */
+:root {
+  --sp-bg: #f6f4f0; --sp-card: #fdfcfa; --sp-line: #e3ded6; --sp-ink: #24201b; --sp-sub: #7b7368;
+  --sp-gold: #9a7433; --sp-gold-bg: #e9d9b9;
+  --sp-blue: #2f5597; --sp-blue-bg: #dde6f3;
+  --sp-teal: #3a8a99; --sp-teal-bg: #dcedf3;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --sp-bg: #17150f; --sp-card: #201d17; --sp-line: #2e2a22; --sp-ink: #efe9df; --sp-sub: #a39a8c;
+  --sp-gold: #d2a75c; --sp-gold-bg: #3b2f1b; --sp-blue: #8fb0e8; --sp-blue-bg: #1f2a3d; --sp-teal: #7cc3cf; --sp-teal-bg: #1a3036;
+} }
+:root[data-theme="dark"] {
+  --sp-bg: #17150f; --sp-card: #201d17; --sp-line: #2e2a22; --sp-ink: #efe9df; --sp-sub: #a39a8c;
+  --sp-gold: #d2a75c; --sp-gold-bg: #3b2f1b; --sp-blue: #8fb0e8; --sp-blue-bg: #1f2a3d; --sp-teal: #7cc3cf; --sp-teal-bg: #1a3036;
+}
+.sprout {
+  position: absolute; inset: 14px 22px -12px; border: 1px solid var(--line); border-radius: 12px 12px 0 0;
+  background: var(--sp-bg); color: var(--sp-ink); padding: 11px 11px 0; display: flex; flex-direction: column; gap: 7px;
+  transition: transform .3s;
+}
+.card:hover .sprout { transform: translateY(-6px); }
+.s-head { display: flex; justify-content: space-between; align-items: center; }
+.s-head div { display: flex; flex-direction: column; line-height: 1.2; }
+.s-head b { font-size: 13px; font-weight: 600; letter-spacing: -0.01em; }
+.s-head span { font-size: 8.5px; color: var(--sp-sub); }
+.s-add { width: 18px; height: 18px; border-radius: 50%; background: var(--sp-line); display: grid; place-items: center; font-size: 12px; line-height: 1; color: var(--sp-ink); }
+.s-sum { background: var(--sp-card); border-radius: 8px; padding: 6px 8px; display: flex; flex-direction: column; gap: 5px; }
+.s-sum-top { display: flex; align-items: baseline; gap: 4px; font-size: 8.5px; color: var(--sp-sub); }
+.s-sum-top b { font-size: 13px; font-weight: 600; color: var(--sp-ink); font-variant-numeric: tabular-nums; }
+.s-segs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 3px; }
+.s-seg { height: 3px; border-radius: 2px; background: var(--sp-line); overflow: hidden; }
+.s-seg i { display: block; height: 100%; transition: width .3s; }
+.s-list { display: flex; flex-direction: column; gap: 4px; }
+.s-row {
+  display: flex; align-items: center; gap: 7px; padding: 5px 7px; border-radius: 8px; border: 0; width: 100%;
+  font: inherit; text-align: left; color: var(--sp-ink); cursor: pointer;
+  background: linear-gradient(90deg, var(--fill) var(--p), var(--sp-card) var(--p));
+}
+.s-row:hover { filter: brightness(.98); }
+.s-ico { width: 16px; height: 16px; border-radius: 4px; background: var(--sp-card); color: var(--tone); display: grid; place-items: center; font-size: 9px; flex-shrink: 0; }
+.s-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.2; }
+.s-txt b { font-size: 9.5px; font-weight: 600; }
+.s-txt span { font-size: 8px; color: var(--sp-sub); }
+.s-ring { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; display: grid; place-items: center; font-size: 8px; color: var(--sp-card);
+  background: conic-gradient(var(--tone) var(--p), var(--sp-line) 0); -webkit-mask: radial-gradient(circle 5px, transparent 98%, #000 100%); mask: radial-gradient(circle 5px, transparent 98%, #000 100%); }
+.s-row.done .s-ring { background: var(--tone); -webkit-mask: none; mask: none; }
+
+/* Nisab preview: verse card */
+.quran { position: absolute; inset: 14px 22px -12px; border: 1px solid var(--line); border-radius: 12px 12px 0 0; background: var(--surface); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; transition: transform .3s; }
+.card:hover .quran { transform: translateY(-6px); }
+.q-top { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--subtle); }
+.q-top b { color: var(--fg); font-weight: 500; }
+.ayah { font-family: "Amiri", "Scheherazade New", "Noto Naskh Arabic", serif; font-size: 22px; line-height: 1.7; color: var(--fg); text-align: center; direction: rtl; }
+.q-trans { font-size: 10.5px; color: var(--muted); text-align: center; line-height: 1.5; }
+.q-player { display: flex; align-items: center; gap: 8px; margin-top: 2px; }
+.q-play { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: var(--bg); display: grid; place-items: center; font-size: 8px; border: 0; cursor: pointer; padding: 0; }
+.q-track { flex: 1; height: 3px; border-radius: 2px; background: var(--hover); overflow: hidden; }
+.q-track span { display: block; height: 100%; width: 35%; background: var(--accent); transition: width .3s linear; }
+.card-title { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-weight: 500; }
+.arrow { color: var(--subtle); font-size: 13px; transition: transform .2s, color .2s; }
+.stat { font-family: var(--font-mono); font-size: 11.5px; font-weight: 400; color: var(--subtle); }
+.card-links { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; padding-top: 12px; }
+.pill {
+  display: inline-flex; align-items: center; gap: 6px; height: 28px; font-size: 12.5px; line-height: 1; color: var(--muted);
+  border: 1px solid var(--line); border-radius: 7px; padding: 0 10px; background: var(--bg);
+  transition: color .15s, border-color .15s;
+}
+.pill svg { width: 13px; height: 13px; flex-shrink: 0; }
+.pill:hover { color: var(--fg); border-color: var(--subtle); }
+.see-more { font-size: 13px; color: var(--subtle); display: inline-flex; gap: 4px; transition: color .15s; }
+.see-more:hover { color: var(--fg); }
+.see-more:hover .arrow { transform: translate(2px, -2px); color: var(--fg); }
+.card-desc { color: var(--muted); font-size: 14px; line-height: 1.55; }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+.tag { font-family: var(--font-mono); font-size: 11px; color: var(--muted); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; }
+
+/* Sprouts preview: live habit grid */
+.habit { position: absolute; inset: 0; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.habit-top { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); }
+.habit-top b { color: var(--fg); font-weight: 500; }
+.streak { font-family: var(--font-mono); font-size: 11px; color: var(--accent); }
+.grid { display: grid; grid-template-columns: repeat(26, 1fr); grid-auto-flow: column; grid-template-rows: repeat(7, auto); gap: 2px; align-content: center; flex: 1; }
+.cell { border-radius: 2px; background: var(--g0); aspect-ratio: 1; min-width: 0; }
+.cell[data-l="1"] { background: var(--g1); }
+.cell[data-l="2"] { background: var(--g2); }
+.cell[data-l="3"] { background: var(--g3); }
+.cell[data-l="4"] { background: var(--g4); }
+.hint { font-size: 11px; color: var(--subtle); }
+
+/* AriaDocs preview: tiny docs window */
+.docs { position: absolute; inset: 14px 14px -10px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); display: grid; grid-template-columns: 34% 1fr; overflow: hidden; transition: transform .3s; }
+.card:hover .docs { transform: translateY(-6px); }
+.docs-side { border-right: 1px solid var(--line); padding: 10px 8px; display: flex; flex-direction: column; gap: 5px; }
+.docs-side span { font-size: 10px; color: var(--subtle); padding: 2px 6px; border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.docs-side span.on { color: var(--fg); background: var(--hover); }
+.docs-side span.grp { font-size: 9px; text-transform: uppercase; letter-spacing: .08em; margin-top: 4px; padding-bottom: 0; }
+.m { font-style: normal; font-family: var(--font-mono); font-size: 8px; font-weight: 500; margin-right: 4px; }
+.m.get { color: var(--accent); }
+.m.post { color: #c27c1a; }
+.docs-main { padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.docs-main .h { font-size: 12px; font-weight: 600; }
+.bar { height: 5px; border-radius: 3px; background: var(--hover); }
+.docs-code { font-family: var(--font-mono); font-size: 9.5px; line-height: 1.5; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; color: var(--muted); white-space: pre; overflow: hidden; }
+.docs-code .k { color: var(--accent); }
+
+/* Experience: timeline */
+.timeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.job { display: grid; grid-template-columns: 18px 1fr auto; column-gap: 14px; padding-bottom: 26px; position: relative; }
+.job:last-child { padding-bottom: 0; }
+.job::before { content: ""; position: absolute; left: 8px; top: 18px; bottom: 0; width: 1px; background: var(--line); }
+.job:last-child::before { display: none; }
+.dot { width: 9px; height: 9px; margin: 7px 0 0 4px; border-radius: 50%; border: 1.5px solid var(--subtle); background: var(--bg); }
+.job.now .dot { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent); }
+.job-main { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.job-title { font-weight: 500; }
+.job-role { color: var(--muted); font-size: 14px; }
+.job-desc { color: var(--muted); font-size: 14px; margin-top: 6px; max-width: 52ch; }
+.stack-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.period { font-family: var(--font-mono); font-size: 12px; color: var(--subtle); padding-top: 3px; white-space: nowrap; }
+
+/* Writing: grouped by year, siblings dim on hover */
+.years { display: flex; flex-direction: column; gap: 6px; }
+.year { display: grid; grid-template-columns: 56px 1fr; gap: 8px; }
+.year-label { font-family: var(--font-mono); font-size: 12px; color: var(--subtle); padding-top: 11px; }
+.posts { list-style: none; margin: 0; padding: 0; }
+.posts:hover .post { opacity: .45; }
+.posts .post:hover { opacity: 1; }
+.post { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--line); transition: opacity .2s; }
+.post-title { min-width: 0; }
+.post-meta { font-family: var(--font-mono); font-size: 12px; color: var(--subtle); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+footer { margin-top: 96px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 13px; color: var(--subtle); }
+
+/* ── Article ────────────────────────────── */
+.progress { position: fixed; top: env(safe-area-inset-top, 0px); left: 0; height: 2px; width: 0; background: var(--accent); z-index: 20; }
+.back { font-size: 14px; color: var(--subtle); display: inline-flex; gap: 6px; transition: color .15s; }
+.back:hover { color: var(--fg); }
+.back span { transition: transform .15s; }
+.back:hover span { transform: translateX(-3px); }
+.art-head { display: flex; flex-direction: column; gap: 12px; margin-top: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+.art-head h1 { margin: 0; font-size: clamp(28px, 5vw, 36px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; text-wrap: balance; }
+.art-meta { display: flex; gap: 14px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 12px; color: var(--subtle); }
+.prose { color: var(--muted); margin-top: 32px; line-height: 1.75; font-size: 15.5px; }
+.prose p { margin: 0 0 20px; max-width: 65ch; }
+.prose h2 { color: var(--fg); font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin: 44px 0 14px; text-wrap: balance; }
+.prose a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
+.prose code { font-family: var(--font-mono); font-size: 13px; background: var(--hover); border: 1px solid var(--line); border-radius: 5px; padding: 1px 5px; color: var(--fg); }
+.codeblock { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); margin: 0 0 24px; overflow: hidden; }
+.codebar { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--line); font-family: var(--font-mono); font-size: 12px; color: var(--subtle); }
+.copy { font: inherit; color: var(--subtle); background: none; border: 1px solid var(--line); border-radius: 6px; padding: 2px 8px; cursor: pointer; }
+.copy:hover { color: var(--fg); }
+.codeblock pre { margin: 0; padding: 14px 16px; overflow-x: auto; }
+.codeblock pre code { background: none; border: 0; padding: 0; font-size: 13px; line-height: 1.7; color: var(--fg); }
+.tk { color: #8a4fc9; } .tf { color: #3f6fc4; } .tc { color: var(--subtle); font-style: italic; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tk { color: #c49bff; } :root:not([data-theme="light"]) .tf { color: #86b6f0; } }
+:root[data-theme="dark"] .tk { color: #c49bff; } :root[data-theme="dark"] .tf { color: #86b6f0; }
+.callout { border-left: 2px solid var(--accent); padding: 2px 0 2px 16px; margin: 0 0 20px; color: var(--fg); }
+
+/* ── Favicon & OG ───────────────────────── */
+#brand { display: flex; flex-direction: column; gap: 56px; }
+#brand[hidden] { display: none; }
+.b-intro { display: flex; flex-direction: column; gap: 12px; }
+.b-title { margin: 0; font-size: clamp(28px, 5vw, 36px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; }
+.fav-panel { border: 1px solid var(--line); border-radius: 14px; background: var(--surface); overflow: hidden; }
+.fav-sizes { display: flex; align-items: flex-end; gap: 28px; flex-wrap: wrap; padding: 28px 24px; }
+.fav-size { display: flex; flex-direction: column; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 11px; color: var(--subtle); }
+.fav-size svg[width="180"] { width: clamp(96px, 26vw, 180px); height: auto; aspect-ratio: 1; }
+.tabs { display: flex; gap: 2px; padding: 8px 10px 0; background: var(--hover); border-top: 1px solid var(--line); overflow: hidden; }
+.tab { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 0 1 200px; padding: 8px 12px; font-size: 12px; color: var(--subtle); border-radius: 8px 8px 0 0; white-space: nowrap; }
+.tab span { overflow: hidden; text-overflow: ellipsis; }
+.tab i { font-style: normal; margin-left: auto; opacity: .6; }
+.tab.on { background: var(--surface); color: var(--fg); }
+.tab svg { flex-shrink: 0; }
+.tab-dot { width: 14px; height: 14px; border-radius: 4px; background: var(--line); flex-shrink: 0; }
+
+/* OG cards are fixed-look images (always dark), scaled with container units: 1px at 1200w = .0833cqw */
+.og {
+  container-type: inline-size; position: relative; aspect-ratio: 1200 / 630; width: 100%;
+  border-radius: 12px; overflow: hidden; border: 1px solid var(--line);
+  background-color: #0a0a0b;
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.07) 1px, transparent 0), radial-gradient(ellipse 60% 70% at 85% 110%, rgba(76,194,122,.18), transparent 70%);
+  background-size: 28px 28px, 100% 100%;
+  color: #ededef; font-family: var(--font-sans);
+}
+.og > * { container-type: normal; }
+.og-home, .og-post { display: flex; flex-direction: column; justify-content: space-between; padding: 6.67cqw; }
+.og-top { display: flex; align-items: center; gap: 1.2cqw; font-family: var(--font-mono); font-size: 2.17cqw; color: #8c8e95; }
+.og-path { color: #56585f; }
+.og-dot { width: 1.4cqw; height: 1.4cqw; border-radius: 50%; background: #4cc27a; box-shadow: 0 0 0 .6cqw rgba(76,194,122,.18); }
+.og-mid { display: flex; flex-direction: column; gap: 1.5cqw; }
+.og-name { font-size: 10cqw; font-weight: 600; letter-spacing: -0.045em; line-height: 1; }
+.og-tag { font-size: 3.2cqw; color: #a3a5ac; letter-spacing: -0.01em; }
+.og-bottom { display: flex; gap: 1cqw; flex-wrap: wrap; }
+.og-bottom span { font-family: var(--font-mono); font-size: 1.9cqw; color: #a3a5ac; border: .1cqw solid #2a2b2f; border-radius: .8cqw; padding: .5cqw 1.3cqw; background: rgba(255,255,255,.02); }
+.og-title { font-size: 6.2cqw; font-weight: 600; letter-spacing: -0.035em; line-height: 1.1; text-wrap: balance; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.og-title.long { font-size: 4.8cqw; }
+.og-foot { display: flex; justify-content: space-between; align-items: center; gap: 2cqw; padding-top: 2.5cqw; border-top: .1cqw solid #232428; }
+.og-author { display: flex; align-items: center; gap: 1.4cqw; font-size: 2.4cqw; font-weight: 500; }
+.og-author svg { width: 3.7cqw; height: 3.7cqw; }
+.og-meta { font-family: var(--font-mono); font-size: 2cqw; color: #8c8e95; }
+.og-input { display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--subtle); }
+.og-input input { font: inherit; font-size: 14px; color: var(--fg); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 9px 12px; width: 100%; }
+.og-input input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.share { display: flex; flex-direction: column; gap: 8px; max-width: 440px; }
+.share-msg { align-self: flex-start; background: var(--hover); border-radius: 14px 14px 14px 4px; padding: 8px 12px; font-size: 14px; }
+.share-card { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); }
+.share-card .og { border: 0; border-radius: 0; border-bottom: 1px solid var(--line); }
+.share-text { display: flex; flex-direction: column; gap: 2px; padding: 10px 14px 12px; font-size: 13px; color: var(--muted); }
+.share-text b { color: var(--fg); font-weight: 500; font-size: 14px; }
+.share-domain { font-size: 12px; color: var(--subtle); }
+
+/* ── Command palette ────────────────────── */
+.scrim { position: fixed; inset: 0; background: color-mix(in srgb, var(--bg) 60%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); z-index: 50; display: flex; justify-content: center; align-items: flex-start; padding: 14vh 16px 16px; }
+.palette { width: 100%; max-width: 520px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; animation: pop .16s ease-out; }
+@keyframes pop { from { transform: scale(.97); opacity: 0; } to { transform: none; opacity: 1; } }
+.palette input { width: 100%; border: 0; border-bottom: 1px solid var(--line); background: none; color: var(--fg); font: inherit; font-size: 15px; padding: 14px 16px; outline: none; }
+.palette ul { list-style: none; margin: 0; padding: 6px; max-height: 300px; overflow-y: auto; }
+.palette li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 9px 10px; border-radius: 8px; font-size: 14px; color: var(--muted); cursor: pointer; }
+.palette li[aria-selected="true"] { background: var(--hover); color: var(--fg); }
+.palette li small { font-family: var(--font-mono); font-size: 11px; color: var(--subtle); }
+.palette .empty { padding: 16px; color: var(--subtle); font-size: 14px; }
+
+/* Mockup controls (not part of the site) */
+.controls { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); display: flex; gap: 4px; padding: 4px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; box-shadow: var(--shadow); font-size: 13px; z-index: 40; }
+.controls button { font: inherit; color: var(--muted); background: none; border: 0; padding: 6px 12px; border-radius: 999px; cursor: pointer; }
+.controls button[aria-pressed="true"] { background: var(--hover); color: var(--fg); }
+
+@media (max-width: 600px) {
+  .page { padding-block: 40px 120px; }
+  .nav { margin-bottom: 48px; }
+  .card { flex-direction: column; }
+  .preview { width: auto; height: 170px; min-height: 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .card-body { padding: 14px 16px 16px; }
+  .job { grid-template-columns: 18px 1fr; }
+  .period { grid-column: 2; grid-row: 1; padding-top: 0; }
+  .job-main { grid-column: 2; }
+  .year { grid-template-columns: 1fr; gap: 0; }
+  .year-label { padding-top: 8px; }
+  .kbd-btn .lbl { display: none; }
+  .status { font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::after { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="progress" id="progress"></div>
+
+<div class="page">
+  <header class="nav">
+    <div class="nav-left">
+      <a href="#home" class="logo" data-go="home" aria-label="Nisab Mohd, home"><svg width="34" height="34"><use href="#logo"/></svg></a>
+      <span class="status"><span class="pulse"></span>Currently building Sprout</span>
+    </div>
+    <div class="nav-right">
+      <button class="kbd-btn" type="button" id="open-k"><span class="lbl">Search</span><kbd>⌘K</kbd></button>
+      <button class="icon-btn" type="button" id="theme" aria-label="Toggle theme">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- HOME -->
+  <main id="home">
+    <div class="hero">
+      <div class="intro">
+        <h1 class="hello">Nisab Mohd</h1>
+        <span class="tagline">Software engineer, frontend first. I build interfaces that feel fast and look quiet.</span>
+      </div>
+      <p class="bio">I work mostly in <b>TypeScript</b>, <b>React</b> and <b>Next.js</b>, build backends with <b>Node.js</b> and <b>Java</b>, and ship <b>Android</b> apps in Kotlin now and then. <b>AI</b> is part of how I work every day, from agents that help me write and review code to AI features inside the products I build.</p>
+      <div class="socials">
+        <a class="link" href="https://github.com/nisabmohd">GitHub</a>
+        <a class="link" href="https://x.com/MohdNisab">X</a>
+        <a class="link" href="https://www.linkedin.com/in/nisabmohd/">LinkedIn</a>
+        <a class="link" href="#home">Résumé</a>
+      </div>
+    </div>
+
+    <div class="sections">
+      <section id="projects">
+        <div class="sec-head"><h2 class="label">Projects</h2><a class="see-more" href="https://github.com/nisabmohd?tab=repositories">More on GitHub <span class="arrow">↗</span></a></div>
+        <div class="projects">
+          <div class="card">
+            <div class="preview">
+              <div class="quran">
+                <div class="q-top"><span><b>Al-Fatihah</b> · 1:1</span><span>Juz 1</span></div>
+                <div class="ayah" lang="ar">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+                <div class="q-trans">In the name of Allah, the Most Gracious, the Most Merciful.</div>
+                <div class="q-player"><button class="q-play" type="button" id="qplay" aria-label="Play recitation">▶</button><span class="q-track"><span id="qbar"></span></span></div>
+              </div>
+            </div>
+            <div class="card-body">
+              <span class="card-title">Nisab <span class="stat">Android</span></span>
+              <span class="card-desc">A Quran app for reading and listening, with translations and a clean, distraction-free reader.</span>
+              <span class="tags"><span class="tag">Android</span><span class="tag">Quran</span><span class="tag">Audio</span></span>
+              <span class="card-links">
+                <a class="pill" href="https://play.google.com/store"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3.5v17a1 1 0 0 0 1.5.86l14-8.5a1 1 0 0 0 0-1.72l-14-8.5A1 1 0 0 0 5 3.5z"/></svg>Play Store</a>
+              </span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="preview">
+              <div class="habit">
+                <div class="habit-top"><span><b>Read 20 pages</b></span><span class="streak" id="streak">12 day streak</span></div>
+                <div class="grid" id="grid" role="img" aria-label="Sample 26-week habit heatmap"></div>              </div>
+            </div>
+            <div class="card-body">
+              <span class="card-title">Sprout <span class="stat">Android · &lt;3 MB</span></span>
+              <span class="card-desc">A small, open-source habit tracker. Works offline with no account, with heatmaps, streaks, a journal and home-screen widgets.</span>
+              <span class="tags"><span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span><span class="tag">Material 3</span><span class="tag">GPL-3.0</span></span>
+              <span class="card-links">
+                <a class="pill" href="https://play.google.com/store"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3.5v17a1 1 0 0 0 1.5.86l14-8.5a1 1 0 0 0 0-1.72l-14-8.5A1 1 0 0 0 5 3.5z"/></svg>Play Store</a>
+                <a class="pill" href="https://github.com/nisabmohd/sprout-habit-tracker"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
+              </span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="preview">
+              <div class="docs" aria-hidden="true">
+                <div class="docs-side">
+                  <span>Introduction</span><span>Installation</span><span>Components</span>
+                  <span class="grp">API</span>
+                  <span><i class="m get">GET</i>/users</span><span class="on"><i class="m post">POST</i>/users</span><span><i class="m get">GET</i>/users/{id}</span>
+                </div>
+                <div class="docs-main">
+                  <span class="h"><i class="m post">POST</i> /users</span>
+                  <span class="bar" style="width:88%"></span>
+                  <span class="bar" style="width:64%"></span>
+                  <div class="docs-code">{
+  <span class="k">"name"</span>: "string",
+  <span class="k">"email"</span>: "string"
+}</div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <span class="card-title">AriaDocs <span class="stat">★ 412</span></span>
+              <span class="card-desc">Build documentation sites and API references in React. MDX guides and OpenAPI specs in one navigation, as server components. This site runs on it.</span>
+              <span class="tags"><span class="tag">React</span><span class="tag">MDX</span><span class="tag">OpenAPI</span><span class="tag">MIT</span></span>
+              <span class="card-links">
+                <a class="pill" href="https://ariadocs.vercel.app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.6 2.8 3.8 6 3.8 9.5s-1.2 6.7-3.8 9.5c-2.6-2.8-3.8-6-3.8-9.5S9.4 5.3 12 2.5z"/></svg>Website</a>
+                <a class="pill" href="https://github.com/nisabmohd/Aria-Docs"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <div class="sec-head"><h2 class="label">Experience</h2><span class="count">02</span></div>
+        <ol class="timeline">
+          <li class="job now">
+            <span class="dot"></span>
+            <div class="job-main">
+              <span class="job-title">Company Name</span>
+              <span class="job-role">Frontend Engineer</span>
+              <span class="job-desc">One or two lines on what you own and the impact, e.g. rebuilt the checkout UI and cut load time by 40%.</span>
+              <span class="stack-row"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Design systems</span></span>
+            </div>
+            <span class="period">2024 — Now</span>
+          </li>
+          <li class="job">
+            <span class="dot"></span>
+            <div class="job-main">
+              <span class="job-title">Previous Company</span>
+              <span class="job-role">Software Engineer Intern</span>
+              <span class="job-desc">Short line about the work.</span>
+            </div>
+            <span class="period">2023 — 2024</span>
+          </li>
+        </ol>
+      </section>
+
+      <section id="writing">
+        <div class="sec-head"><h2 class="label">Writing</h2><span class="count">05</span></div>
+        <div class="years">
+          <div class="year">
+            <span class="year-label">2025</span>
+            <ul class="posts">
+              <li><a class="post" href="#article" data-go="article"><span class="post-title">Understanding React Server Components</span><span class="post-meta">Mar 04</span></a></li>
+              <li><a class="post" href="#article" data-go="article"><span class="post-title">Building a docs site with MDX and Next.js</span><span class="post-meta">Jan 18</span></a></li>
+            </ul>
+          </div>
+          <div class="year">
+            <span class="year-label">2024</span>
+            <ul class="posts">
+              <li><a class="post" href="#article" data-go="article"><span class="post-title">How JavaScript closures actually work</span><span class="post-meta">Oct 02</span></a></li>
+              <li><a class="post" href="#article" data-go="article"><span class="post-title">A practical guide to binary search</span><span class="post-meta">Jul 21</span></a></li>
+              <li><a class="post" href="#article" data-go="article"><span class="post-title">Debouncing vs throttling in React</span><span class="post-meta">Feb 09</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ARTICLE -->
+  <main id="article" hidden>
+    <a href="#home" class="back" data-go="home"><span>←</span> All writing</a>
+    <div class="art-head">
+      <h1>Understanding React Server Components</h1>
+      <div class="art-meta"><span>Mar 04, 2025</span><span>·</span><span>6 min read</span><span>·</span><span>React</span></div>
+    </div>
+    <div class="prose">
+      <p>Server Components let you render parts of your UI on the server and send only the result to the browser. They can read data directly, and they ship no JavaScript to the client.</p>
+      <p class="callout">The rule of thumb: start on the server, and move to the client only when you need state or event handlers.</p>
+      <h2>A simple example</h2>
+      <p>Here is a component that reads posts on the server. It is just an <code>async</code> function.</p>
+      <div class="codeblock">
+        <div class="codebar"><span>app/posts.tsx</span><button class="copy" type="button" id="copy">Copy</button></div>
+<pre><code id="code"><span class="tk">export default async function</span> <span class="tf">Posts</span>() {
+  <span class="tk">const</span> posts = <span class="tk">await</span> <span class="tf">getPosts</span>(); <span class="tc">// runs on the server</span>
+  <span class="tk">return</span> &lt;<span class="tf">List</span> items={posts} /&gt;;
+}</code></pre>
+      </div>
+      <h2>When to reach for the client</h2>
+      <p>Add <code>"use client"</code> at the top of a file when the component needs <code>useState</code>, effects, or browser APIs. Everything it imports becomes part of the client bundle, so keep those files small.</p>
+      <p>Links look like <a href="#article">this</a>. The thin bar at the top of the page tracks reading progress.</p>
+      <p>Server and client components can be mixed freely. A server component can render a client component and pass it serializable props, which keeps most of the tree on the server while interactive leaves hydrate on their own.</p>
+      <p>That split is the main idea. Most of the page stays static and cheap, and only the parts that need to move pay for JavaScript.</p>
+    </div>
+  </main>
+
+  <!-- BRAND: favicon + Open Graph -->
+  <main id="brand" hidden>
+    <div class="b-intro">
+      <h1 class="b-title">Favicon & share images</h1>
+      <p class="bio">The favicon is a lowercase <b>n</b> with the green status dot from the site. Share images use the same type and colors as the pages, rendered at 1200 × 630.</p>
+    </div>
+
+    <section>
+      <div class="sec-head"><h2 class="label">Favicon</h2><span class="count">SVG · 16 – 180 px</span></div>
+      <div class="fav-panel">
+        <div class="fav-sizes">
+          <div class="fav-size"><svg class="fav" width="180" height="180"><use href="#fav-dark"/></svg><span>180 · Apple touch</span></div>
+          <div class="fav-size"><svg class="fav" width="64" height="64"><use href="#fav-dark"/></svg><span>64</span></div>
+          <div class="fav-size"><svg class="fav" width="32" height="32"><use href="#fav-dark"/></svg><span>32</span></div>
+          <div class="fav-size"><svg class="fav" width="16" height="16"><use href="#fav-dark"/></svg><span>16</span></div>
+          <div class="fav-size"><svg class="fav" width="64" height="64"><use href="#fav-light"/></svg><span>Light variant</span></div>
+        </div>
+        <div class="tabs" aria-hidden="true">
+          <div class="tab on"><svg width="14" height="14"><use href="#fav-dark"/></svg><span>Nisab Mohd</span><i>×</i></div>
+          <div class="tab"><span class="tab-dot"></span><span>Pull requests · GitHub</span><i>×</i></div>
+          <div class="tab"><span class="tab-dot"></span><span>Inbox</span><i>×</i></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><h2 class="label">Open Graph · Home</h2><span class="count">1200 × 630</span></div>
+      <div class="og og-home">
+        <div class="og-top"><span class="og-dot"></span>nisabmohd.vercel.app</div>
+        <div class="og-mid">
+          <div class="og-name">Nisab Mohd</div>
+          <div class="og-tag">Software engineer, frontend first.</div>
+        </div>
+        <div class="og-bottom">
+          <span>React</span><span>Next.js</span><span>Node.js</span><span>Android</span><span>AI</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><h2 class="label">Open Graph · Article</h2><span class="count">/og?title=…</span></div>
+      <div class="og og-post">
+        <div class="og-top"><span class="og-dot"></span>nisabmohd.vercel.app<span class="og-path">/ writing</span></div>
+        <div class="og-mid">
+          <div class="og-title" id="og-title">Understanding React Server Components</div>
+        </div>
+        <div class="og-foot">
+          <span class="og-author"><svg width="44" height="44"><use href="#fav-dark"/></svg>Nisab Mohd</span>
+          <span class="og-meta">Mar 04, 2025 · 6 min read</span>
+        </div>
+      </div>
+      <label class="og-input" for="og-input">
+        <span>Try a title</span>
+        <input id="og-input" type="text" value="Understanding React Server Components" maxlength="110">
+      </label>
+    </section>
+
+    <section>
+      <div class="sec-head"><h2 class="label">As a link preview</h2><span class="count">Chat / social card</span></div>
+      <div class="share">
+        <div class="share-msg">Wrote about server components. Have a read.</div>
+        <div class="share-card">
+          <div class="og og-post og-mini" aria-hidden="true">
+            <div class="og-top"><span class="og-dot"></span>nisabmohd.vercel.app<span class="og-path">/ writing</span></div>
+            <div class="og-mid"><div class="og-title og-title-mirror">Understanding React Server Components</div></div>
+            <div class="og-foot">
+              <span class="og-author"><svg width="44" height="44"><use href="#fav-dark"/></svg>Nisab Mohd</span>
+              <span class="og-meta">Mar 04, 2025 · 6 min read</span>
+            </div>
+          </div>
+          <div class="share-text">
+            <span class="share-domain">nisabmohd.vercel.app</span>
+            <b class="og-title-mirror">Understanding React Server Components</b>
+            <span>How server components render on the server and ship no JavaScript to the browser.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="logo" viewBox="0 0 64 64">
+        <rect width="64" height="64" rx="15" style="fill: var(--fg)"/>
+        <path d="M21 45V27M21 35c0-5.2 4-9 9.5-9S40 29.8 40 35v10" style="stroke: var(--bg)" stroke-width="6.5" fill="none" stroke-linecap="round"/>
+        <circle class="logo-dot" cx="49" cy="43" r="4.5" style="fill: var(--accent)"/>
+      </symbol>
+      <symbol id="fav-dark" viewBox="0 0 64 64">
+        <rect width="64" height="64" rx="15" fill="#141517"/>
+        <path d="M21 45V27M21 35c0-5.2 4-9 9.5-9S40 29.8 40 35v10" stroke="#ffffff" stroke-width="6.5" fill="none" stroke-linecap="round"/>
+        <circle cx="49" cy="43" r="4.5" fill="#4cc27a"/>
+      </symbol>
+      <symbol id="fav-light" viewBox="0 0 64 64">
+        <rect width="64" height="64" rx="15" fill="#ffffff"/>
+        <rect x=".75" y=".75" width="62.5" height="62.5" rx="14.25" fill="none" stroke="#e3e3e0" stroke-width="1.5"/>
+        <path d="M21 45V27M21 35c0-5.2 4-9 9.5-9S40 29.8 40 35v10" stroke="#141517" stroke-width="6.5" fill="none" stroke-linecap="round"/>
+        <circle cx="49" cy="43" r="4.5" fill="#2f9e5b"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <footer>
+    <span>© 2026 Nisab Mohd</span>
+    <span>Press <kbd>⌘K</kbd> to navigate</span>
+  </footer>
+</div>
+
+<div class="controls" role="toolbar" aria-label="Mockup controls">
+  <button type="button" id="v-home" aria-pressed="true">Home</button>
+  <button type="button" id="v-article" aria-pressed="false">Article</button>
+  <button type="button" id="v-brand" aria-pressed="false">Favicon & OG</button>
+</div>
+
+<div class="scrim" id="scrim" hidden>
+  <div class="palette" role="dialog" aria-label="Command menu">
+    <input id="q" type="text" placeholder="Type a command or search…" autocomplete="off" aria-label="Search">
+    <ul id="results" role="listbox"></ul>
+  </div>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  /* Views */
+  var home = document.getElementById("home");
+  var article = document.getElementById("article");
+  var brand = document.getElementById("brand");
+  var vh = document.getElementById("v-home"), va = document.getElementById("v-article"), vb = document.getElementById("v-brand");
+  var bar = document.getElementById("progress");
+  function show(view, anchor) {
+    home.hidden = view !== "home"; article.hidden = view !== "article"; brand.hidden = view !== "brand";
+    vh.setAttribute("aria-pressed", String(view === "home"));
+    va.setAttribute("aria-pressed", String(view === "article"));
+    vb.setAttribute("aria-pressed", String(view === "brand"));
+    if (anchor) { var el = document.getElementById(anchor); if (el) { el.scrollIntoView({ behavior: "smooth" }); return; } }
+    window.scrollTo(0, 0); onScroll();
+  }
+  vh.onclick = function () { show("home"); };
+  va.onclick = function () { show("article"); };
+  vb.onclick = function () { show("brand"); };
+  document.querySelectorAll("[data-go]").forEach(function (a) {
+    a.addEventListener("click", function (e) { e.preventDefault(); show(a.getAttribute("data-go")); });
+  });
+  if (location.hash === "#article") show("article");
+  if (location.hash === "#brand") show("brand");
+
+  /* OG title playground */
+  var ogIn = document.getElementById("og-input"), ogT = document.getElementById("og-title");
+  function syncOg() {
+    var t = ogIn.value.trim() || "Untitled";
+    ogT.textContent = t;
+    document.querySelectorAll(".og-title-mirror").forEach(function (el) { el.textContent = t; });
+    ogT.classList.toggle("long", t.length > 60);
+  }
+  ogIn.addEventListener("input", syncOg);
+
+  function onScroll() {
+    if (article.hidden) { bar.style.width = "0"; return; }
+    var h = document.documentElement.scrollHeight - innerHeight;
+    bar.style.width = (h > 0 ? Math.min(100, scrollY / h * 100) : 0) + "%";
+  }
+  addEventListener("scroll", onScroll, { passive: true });
+
+  /* Theme */
+  function current() {
+    return root.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  }
+  function toggleTheme() { root.setAttribute("data-theme", current() === "dark" ? "light" : "dark"); }
+  document.getElementById("theme").onclick = toggleTheme;
+
+  /* Sprout heatmap: static, seeded so it looks the same on every load */
+  var grid = document.getElementById("grid");
+  if (grid) {
+    var cols = 26, rows = 7, total = cols * rows, seed = 7;
+    function rnd() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+    for (var i = 0; i < total; i++) {
+      var c = document.createElement("span");
+      c.className = "cell";
+      var r = rnd(), recent = i > total - 13;
+      c.setAttribute("data-l", String(recent ? 2 + Math.floor(rnd() * 3) : (r < .3 ? 0 : 1 + Math.floor(rnd() * 4))));
+      grid.appendChild(c);
+    }
+  }
+
+  /* Sprout mini Today screen: click a habit to log progress */
+  var sList = document.getElementById("s-list");
+  if (sList) {
+    var habits = [
+      { name: "Wake up at 7", unit: "", done: 1, goal: 1, icon: "⏰", tone: "--sp-gold", fill: "--sp-gold-bg", sub: function (h) { return h.done >= h.goal ? "Done at 6:52 AM" : "Not yet"; } },
+      { name: "Read", done: 15, goal: 20, step: 5, icon: "▤", tone: "--sp-blue", fill: "--sp-blue-bg", sub: function (h) { return h.done + " / " + h.goal + " pages"; } },
+      { name: "Drink water", done: 5, goal: 8, step: 1, icon: "◖", tone: "--sp-teal", fill: "--sp-teal-bg", sub: function (h) { return h.done + " / " + h.goal + " glasses"; } }
+    ];
+    var segs = document.getElementById("s-segs"), pctEl = document.getElementById("s-pct");
+    var rowsEls = habits.map(function (h) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "s-row";
+      b.style.setProperty("--tone", "var(" + h.tone + ")");
+      b.style.setProperty("--fill", "var(" + h.fill + ")");
+      b.innerHTML = '<span class="s-ico"></span><span class="s-txt"><b></b><span></span></span><span class="s-ring">✓</span>';
+      b.querySelector(".s-ico").textContent = h.icon;
+      b.querySelector("b").textContent = h.name;
+      b.addEventListener("click", function () {
+        h.done = h.done >= h.goal ? 0 : Math.min(h.goal, h.done + (h.step || 1));
+        drawSprout();
+      });
+      sList.appendChild(b);
+      return b;
+    });
+    var tones = ["--sp-gold", "--sp-blue", "--sp-teal"];
+    for (var s = 0; s < 6; s++) {
+      var seg = document.createElement("span"); seg.className = "s-seg";
+      seg.innerHTML = "<i></i>";
+      if (s < 3) seg.firstChild.style.background = "var(" + tones[s] + ")";
+      segs.appendChild(seg);
+    }
+    function drawSprout() {
+      var sum = 0;
+      habits.forEach(function (h, i) {
+        var p = Math.round(h.done / h.goal * 100), el = rowsEls[i];
+        sum += h.done / h.goal;
+        el.style.setProperty("--p", p + "%");
+        el.classList.toggle("done", p >= 100);
+        el.querySelector(".s-ring").textContent = p >= 100 ? "✓" : "";
+        el.querySelector(".s-txt span").textContent = h.sub(h);
+        el.setAttribute("aria-label", h.name + ", " + h.sub(h) + ". Click to log.");
+        segs.children[i].firstChild.style.width = p + "%";
+      });
+      pctEl.textContent = Math.round(sum / 6 * 100) + "%";
+    }
+    drawSprout();
+  }
+
+  /* Nisab player (visual only, no audio) */
+  var qplay = document.getElementById("qplay"), qbar = document.getElementById("qbar"), qt = null, qp = 35;
+  qplay.onclick = function () {
+    if (qt) { clearInterval(qt); qt = null; qplay.textContent = "▶"; qplay.setAttribute("aria-label", "Play recitation"); return; }
+    qplay.textContent = "❚❚"; qplay.setAttribute("aria-label", "Pause recitation");
+    qt = setInterval(function () { qp = qp >= 100 ? 0 : qp + 1.5; qbar.style.width = qp + "%"; }, 120);
+  };
+
+  /* Copy button */
+  var copyBtn = document.getElementById("copy");
+  copyBtn.onclick = function () {
+    var text = document.getElementById("code").textContent;
+    function done() { copyBtn.textContent = "Copied"; setTimeout(function () { copyBtn.textContent = "Copy"; }, 1400); }
+    try { navigator.clipboard.writeText(text).then(done, done); } catch (e) { done(); }
+  };
+
+  /* Command palette */
+  var scrim = document.getElementById("scrim"), q = document.getElementById("q"), list = document.getElementById("results");
+  var cmds = [
+    { t: "Projects", k: "Go to", run: function () { show("home", "projects"); } },
+    { t: "Nisab · Quran app", k: "Project", run: function () { window.open("https://github.com/nisabmohd", "_blank"); } },
+    { t: "Sprout · Habit tracker", k: "Project", run: function () { window.open("https://github.com/nisabmohd/sprout-habit-tracker", "_blank"); } },
+    { t: "AriaDocs · Docs toolkit", k: "Project", run: function () { window.open("https://ariadocs.vercel.app", "_blank"); } },
+    { t: "Experience", k: "Go to", run: function () { show("home", "experience"); } },
+    { t: "Writing", k: "Go to", run: function () { show("home", "writing"); } },
+    { t: "Understanding React Server Components", k: "Article", run: function () { show("article"); } },
+    { t: "Building a docs site with MDX and Next.js", k: "Article", run: function () { show("article"); } },
+    { t: "How JavaScript closures actually work", k: "Article", run: function () { show("article"); } },
+    { t: "Toggle theme", k: "Action", run: toggleTheme },
+    { t: "GitHub", k: "Link", run: function () { window.open("https://github.com/nisabmohd", "_blank"); } },
+    { t: "LinkedIn", k: "Link", run: function () { window.open("https://www.linkedin.com/in/nisabmohd/", "_blank"); } }
+  ];
+  var filtered = cmds, sel = 0;
+  function render() {
+    var term = q.value.trim().toLowerCase();
+    filtered = cmds.filter(function (c) { return c.t.toLowerCase().indexOf(term) !== -1; });
+    sel = Math.min(sel, Math.max(0, filtered.length - 1));
+    list.innerHTML = "";
+    if (!filtered.length) { list.innerHTML = '<div class="empty">No results for “' + term.replace(/</g, "&lt;") + '”</div>'; return; }
+    filtered.forEach(function (c, i) {
+      var li = document.createElement("li");
+      li.setAttribute("role", "option");
+      li.setAttribute("aria-selected", String(i === sel));
+      li.innerHTML = "<span></span><small></small>";
+      li.firstChild.textContent = c.t; li.lastChild.textContent = c.k;
+      li.onmouseenter = function () { sel = i; mark(); };
+      li.onclick = function () { run(i); };
+      list.appendChild(li);
+    });
+  }
+  function mark() {
+    Array.prototype.forEach.call(list.children, function (li, i) { li.setAttribute("aria-selected", String(i === sel)); });
+    var cur = list.children[sel]; if (cur && cur.scrollIntoView) cur.scrollIntoView({ block: "nearest" });
+  }
+  function open() { scrim.hidden = false; q.value = ""; sel = 0; render(); q.focus(); }
+  function close() { scrim.hidden = true; }
+  function run(i) { var c = filtered[i]; close(); if (c) c.run(); }
+  document.getElementById("open-k").onclick = open;
+  scrim.addEventListener("click", function (e) { if (e.target === scrim) close(); });
+  q.addEventListener("input", function () { sel = 0; render(); });
+  document.addEventListener("keydown", function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); scrim.hidden ? open() : close(); return; }
+    if (scrim.hidden) return;
+    if (e.key === "Escape") close();
+    else if (e.key === "ArrowDown") { e.preventDefault(); sel = (sel + 1) % Math.max(1, filtered.length); mark(); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); sel = (sel - 1 + filtered.length) % Math.max(1, filtered.length); mark(); }
+    else if (e.key === "Enter") { e.preventDefault(); run(sel); }
+  });
+})();
+</script>
+
+</body></html>

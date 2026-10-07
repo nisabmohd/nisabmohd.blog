@@ -69,27 +69,29 @@ function AdaptiveImage({
 }
 
 export function Note({ children }: PropsWithChildren) {
-  return (
-    <div className="dark:bg-[#292524] bg-[#F8F4EE] rounded-md px-3 py-4 h-fit prose-p:m-0 my-6 flex flex-col items-start gap-2 border border-stone-300 dark:border-stone-700">
-      <p className="font-semibold text-sm">Note: </p>
-      <span>{children}</span>
-    </div>
-  );
+  return <div className="callout">{children}</div>;
 }
 
 export function Pre({
   children,
   raw,
+  className,
+  "data-title": title,
   ...rest
-}: ComponentProps<"pre"> & { raw?: string }) {
+}: ComponentProps<"pre"> & { raw?: string; "data-title"?: string }) {
+  const lang = className
+    ?.split(" ")
+    .find((c) => c.startsWith("language-"))
+    ?.slice("language-".length);
   return (
-    <div className="my-5 relative group">
-      <div className="absolute top-2.5 right-2.5 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-        <Copy content={raw!} />
+    <div className="codeblock">
+      <div className="codebar">
+        <span>{title || lang || "code"}</span>
+        {raw && <Copy content={raw} />}
       </div>
-      <div className="relative">
-        <pre {...rest}>{children}</pre>
-      </div>
+      <pre className={className} {...rest}>
+        {children}
+      </pre>
     </div>
   );
 }
