@@ -29,7 +29,7 @@ export type ProjectLink = {
 };
 
 export type Project = {
-  id: "nisab" | "sprout" | "ariadocs";
+  id: "sprout" | "ariadocs";
   name: string;
   stat: string;
   description: string;
@@ -39,18 +39,6 @@ export type Project = {
 };
 
 export const projects: Project[] = [
-  {
-    id: "nisab",
-    name: "Nisab",
-    stat: "Android",
-    description:
-      "A Quran app for reading and listening, with translations and a clean, distraction-free reader. Built with Material 3, with no ads.",
-    tags: ["Kotlin", "Material 3", "Audio", "No ads"],
-    links: [
-      { kind: "playstore", label: "Play Store", soon: true },
-    ],
-    palette: "Nisab · Quran app",
-  },
   {
     id: "sprout",
     name: "Sprout",

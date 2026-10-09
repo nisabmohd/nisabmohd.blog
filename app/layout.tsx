@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Geist_Mono, Amiri } from "next/font/google";
+import { Space_Grotesk, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import { ThemeProvider } from "@/components/theme-provider";
 import ThemeToggle from "@/components/theme-toggle";
@@ -41,14 +41,6 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const amiri = Amiri({
-  subsets: ["arabic"],
-  weight: "400",
-  variable: "--font-amiri",
-  display: "swap",
-  preload: false,
-});
-
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -59,7 +51,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${geistMono.variable} ${amiri.variable}`}
+      className={`${spaceGrotesk.variable} ${geistMono.variable}`}
       suppressHydrationWarning
     >
       <body>

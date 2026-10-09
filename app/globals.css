@@ -143,18 +143,6 @@ h1.hello {
 .pill.soon:hover { color: var(--subtle); border-color: var(--line); }
 .pill.soon em { font-style: normal; font-family: var(--font-mono); font-size: 10.5px; color: var(--accent); margin-left: 2px; }
 
-/* Nisab preview: verse card */
-.quran { position: absolute; inset: 14px 22px -12px; border: 1px solid var(--line); border-radius: 12px 12px 0 0; background: var(--surface); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; transition: transform .3s; }
-.card:hover .quran { transform: translateY(-6px); }
-.q-top { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--subtle); }
-.q-top b { color: var(--fg); font-weight: 500; }
-.ayah { font-family: var(--font-amiri), "Scheherazade New", "Noto Naskh Arabic", serif; font-size: 22px; line-height: 1.7; color: var(--fg); text-align: center; direction: rtl; }
-.q-trans { font-size: 10.5px; color: var(--muted); text-align: center; line-height: 1.5; }
-.q-player { display: flex; align-items: center; gap: 8px; margin-top: 2px; }
-.q-play { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: var(--bg); display: grid; place-items: center; font-size: 8px; border: 0; cursor: pointer; padding: 0; }
-.q-track { flex: 1; height: 3px; border-radius: 2px; background: var(--hover); overflow: hidden; }
-.q-track span { display: block; height: 100%; background: var(--accent); transition: width .3s linear; }
-
 /* Sprout preview: habit heatmap */
 .habit { position: absolute; inset: 0; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
 .habit-top { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); }
@@ -213,10 +201,12 @@ h1.hello {
 
 /* ── Article ────────────────────────────── */
 .progress { position: fixed; top: env(safe-area-inset-top, 0px); left: 0; height: 2px; width: 0; background: var(--accent); z-index: 20; }
-.back { font-size: 14px; color: var(--subtle); display: inline-flex; gap: 6px; transition: color .15s; }
-.back:hover { color: var(--fg); }
-.back span { transition: transform .15s; }
-.back:hover span { transform: translateX(-3px); }
+.back { font-size: 14px; color: var(--subtle); display: inline-flex; align-items: center; gap: 6px; transition: color .15s; }
+.back svg { width: 14px; height: 14px; flex-shrink: 0; transition: transform .15s; }
+@media (hover: hover) {
+  .back:hover { color: var(--fg); }
+  .back:hover svg { transform: translateX(-3px); }
+}
 .art-head { display: flex; flex-direction: column; gap: 12px; margin-top: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
 .art-head h1 { margin: 0; font-size: clamp(28px, 5vw, 36px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; text-wrap: balance; }
 .art-meta { display: flex; gap: 14px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 12px; color: var(--subtle); }

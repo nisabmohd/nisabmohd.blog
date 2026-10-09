@@ -26,7 +26,10 @@ export default async function BlogPage(props: {
     <main>
       <ReadingProgress />
       <Link href="/#writing" className="back">
-        <span>←</span> All writing
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M13 8H3M7 4 3 8l4 4" />
+        </svg>
+        All writing
       </Link>
       <div className="art-head">
         <h1>{post.title}</h1>

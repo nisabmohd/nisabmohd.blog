@@ -1,25 +1,4 @@
 import type { Project } from "@/lib/data";
-import QuranPlayer from "./quran-player";
-
-function NisabPreview() {
-  return (
-    <div className="quran">
-      <div className="q-top">
-        <span>
-          <b>Al-Fatihah</b> · 1:1
-        </span>
-        <span>Juz 1</span>
-      </div>
-      <div className="ayah" lang="ar">
-        بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
-      </div>
-      <div className="q-trans">
-        In the name of Allah, the Most Gracious, the Most Merciful.
-      </div>
-      <QuranPlayer />
-    </div>
-  );
-}
 
 // Seeded so the heatmap looks the same on every render.
 function heatmapLevels(cols = 26, rows = 7) {
@@ -91,7 +70,6 @@ function AriaDocsPreview() {
 }
 
 export const previews: Record<Project["id"], () => React.JSX.Element> = {
-  nisab: NisabPreview,
   sprout: SproutPreview,
   ariadocs: AriaDocsPreview,
 };

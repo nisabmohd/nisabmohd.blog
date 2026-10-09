@@ -24,10 +24,6 @@
     "title": "Next.js Internationalization Simplified"
   },
   {
-    "slug": "generic-args",
-    "title": "Java's Type Flexibility: Bug or Feature?"
-  },
-  {
     "slug": "use-ref",
     "title": "Understanding useRef by Building It"
   },
@@ -36,16 +32,8 @@
     "title": "React Advanced Composition Patterns"
   },
   {
-    "slug": "hyderation-error",
-    "title": "Understanding Hydration Errors in React"
-  },
-  {
     "slug": "record-tuple",
     "title": "My Take on JavaScript's Record & Tuple Proposal."
-  },
-  {
-    "slug": "next-auth-simple",
-    "title": "Basic auth in NextJS without library"
   },
   {
     "slug": "server-actions-usecases",
@@ -70,10 +58,6 @@
   {
     "slug": "util-types",
     "title": "Helpful TypeScript Utility Types."
-  },
-  {
-    "slug": "env-cmd-config",
-    "title": "Run Node with specific env file"
   },
   {
     "slug": "use-fetch",
