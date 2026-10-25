@@ -33,6 +33,34 @@ function SproutPreview() {
   );
 }
 
+function BurrowPreview() {
+  return (
+    <div className="spend" aria-hidden="true">
+      <span className="spend-label">Safe to spend today</span>
+      <span className="spend-amt">₹1,240</span>
+      <span className="spend-bar">
+        <i className="spent" style={{ width: "52%" }} />
+        <i className="bills" style={{ width: "18%" }} />
+      </span>
+      <span className="spend-legend">
+        <span>Spent ₹18.2k</span>
+        <span>Bills ₹6.3k</span>
+        <span>Left ₹10.5k</span>
+      </span>
+      <span className="txn">
+        <span>Swiggy</span>
+        <small>from SMS</small>
+        <b>−₹349</b>
+      </span>
+      <span className="txn">
+        <span>Electricity</span>
+        <small>bill paid</small>
+        <b>−₹1,180</b>
+      </span>
+    </div>
+  );
+}
+
 function AriaDocsPreview() {
   return (
     <div className="docs" aria-hidden="true">
@@ -71,5 +99,6 @@ function AriaDocsPreview() {
 
 export const previews: Record<Project["id"], () => React.JSX.Element> = {
   sprout: SproutPreview,
+  burrow: BurrowPreview,
   ariadocs: AriaDocsPreview,
 };

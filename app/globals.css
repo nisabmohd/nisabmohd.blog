@@ -155,6 +155,20 @@ h1.hello {
 .cell[data-l="3"] { background: var(--g3); }
 .cell[data-l="4"] { background: var(--g4); }
 
+/* Burrow preview: safe-to-spend card */
+.spend { position: absolute; inset: 14px 14px -10px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; overflow: hidden; transition: transform .3s; }
+.card:hover .spend { transform: translateY(-6px); }
+.spend-label { font-size: 10px; color: var(--subtle); text-transform: uppercase; letter-spacing: .08em; }
+.spend-amt { font-size: 24px; font-weight: 600; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.spend-bar { display: flex; height: 6px; border-radius: 3px; background: var(--g1); overflow: hidden; margin-top: 2px; }
+.spend-bar i { display: block; height: 100%; }
+.spend-bar .spent { background: var(--g4); }
+.spend-bar .bills { background: var(--g2); }
+.spend-legend { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 9px; color: var(--subtle); margin-bottom: 4px; }
+.txn { display: flex; align-items: baseline; gap: 6px; font-size: 11px; color: var(--muted); padding: 5px 0; border-top: 1px solid var(--line); }
+.txn small { font-family: var(--font-mono); font-size: 9px; color: var(--accent); }
+.txn b { margin-left: auto; font-weight: 500; color: var(--fg); font-variant-numeric: tabular-nums; }
+
 /* AriaDocs preview: tiny docs window */
 .docs { position: absolute; inset: 14px 14px -10px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); display: grid; grid-template-columns: 34% 1fr; overflow: hidden; transition: transform .3s; }
 .card:hover .docs { transform: translateY(-6px); }
@@ -296,6 +310,7 @@ h1.hello {
   .page { padding-block: 40px 120px; }
   .nav { margin-bottom: 48px; }
   .card { flex-direction: column; }
+  .txn + .txn { display: none; }
   .preview { width: auto; height: 170px; min-height: 0; border-right: 0; border-bottom: 1px solid var(--line); }
   .card-body { padding: 14px 16px 16px; }
   .job { grid-template-columns: 18px 1fr; }

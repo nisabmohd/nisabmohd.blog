@@ -9,7 +9,7 @@ export const site = {
   shortTagline: "Full-stack engineer building with AI.",
   description:
     "Full-stack engineer building with AI. Projects, experience and writing on React, Next.js, TypeScript and more.",
-  status: "Currently building Sprout",
+  status: "Currently building Burrow",
   ogTags: ["React", "Next.js", "Node.js", "Android", "AI"],
 };
 
@@ -29,7 +29,7 @@ export type ProjectLink = {
 };
 
 export type Project = {
-  id: "sprout" | "ariadocs";
+  id: "sprout" | "burrow" | "ariadocs";
   name: string;
   stat: string;
   description: string;
@@ -40,6 +40,19 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "burrow",
+    name: "Burrow",
+    stat: "Android · 3 MB",
+    description:
+      "A private expense tracker that records payments itself from bank SMS and payment notifications. Budgets, bills and goals, with no account, no sync and no analytics.",
+    tags: ["Kotlin", "Jetpack Compose", "Material You", "GPL-3.0"],
+    links: [
+      { kind: "playstore", label: "Play Store", soon: true },
+      { kind: "github", label: "GitHub", url: "https://github.com/nisabmohd/burrow" },
+    ],
+    palette: "Burrow · Expense tracker",
+  },
+  {
     id: "sprout",
     name: "Sprout",
     stat: "Android · <3 MB",
@@ -47,11 +60,15 @@ export const projects: Project[] = [
       "A small, open-source habit tracker. Works offline with no account, with heatmaps, streaks, a journal and home-screen widgets.",
     tags: ["Kotlin", "Jetpack Compose", "Material 3", "GPL-3.0"],
     links: [
-      { kind: "playstore", label: "Play Store", soon: true },
+      {
+        kind: "playstore",
+        label: "Play Store",
+        url: "https://play.google.com/store/apps/details?id=app.sprout.habits",
+      },
       {
         kind: "github",
         label: "GitHub",
-        url: "https://github.com/nisabmohd/sprout-habit-tracker",
+        url: "https://github.com/nisabmohd/sprout",
       },
     ],
     palette: "Sprout · Habit tracker",
