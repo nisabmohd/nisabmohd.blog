@@ -24,6 +24,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       priority: 1,
     },
+    { url: "https://nisabmohd.vercel.app/weft", lastModified: new Date(), priority: 0.9 },
+    { url: "https://nisabmohd.vercel.app/weft/privacy", lastModified: new Date(), priority: 0.5 },
     ...blogSitemaps,
   ];
 }

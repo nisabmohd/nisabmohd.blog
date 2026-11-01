@@ -143,7 +143,7 @@ h1.hello {
 .pill.soon:hover { color: var(--subtle); border-color: var(--line); }
 .pill.soon em { font-style: normal; font-family: var(--font-mono); font-size: 10.5px; color: var(--accent); margin-left: 2px; }
 
-/* Sprout preview: habit heatmap */
+/* Weft preview: habit heatmap */
 .habit { position: absolute; inset: 0; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
 .habit-top { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); }
 .habit-top b { color: var(--fg); font-weight: 500; }
@@ -298,6 +298,23 @@ h1.hello {
 .palette li[aria-selected="true"] { background: var(--hover); color: var(--fg); }
 .palette li small { font-family: var(--font-mono); font-size: 11px; color: var(--subtle); flex-shrink: 0; }
 .palette .empty { padding: 16px; color: var(--subtle); font-size: 14px; }
+
+/* ── App pages: an article with the app icon, then the mid apps row ── */
+.app-head { margin-top: 32px; gap: 10px; }
+.app-icon { width: 64px; height: 64px; border-radius: 15px; display: block; }
+.app-head h1 { margin-top: 6px; }
+.app-by { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); }
+.app-by img { width: 18px; height: 18px; border-radius: 5px; }
+.art-meta .sep { margin-right: 14px; }
+.app-head .card-links { padding-top: 6px; }
+.app-shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 8px 0 12px; }
+.prose .app-shots img { margin: 0; width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--line); }
+.dev-row { display: flex; align-items: center; gap: 14px; margin-top: 40px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); transition: border-color .15s; }
+.dev-row:hover { border-color: var(--subtle); }
+.dev-row img { width: 44px; height: 44px; border-radius: 11px; flex-shrink: 0; }
+.dev-text { display: flex; flex-direction: column; min-width: 0; }
+.dev-name { font-weight: 500; color: var(--fg); }
+.dev-line { font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
 
 /* ── 404 ────────────────────────────────── */
 .nf { display: flex; flex-direction: column; gap: 14px; }

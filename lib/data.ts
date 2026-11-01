@@ -29,7 +29,7 @@ export type ProjectLink = {
 };
 
 export type Project = {
-  id: "sprout" | "burrow" | "ariadocs";
+  id: "weft" | "burrow" | "ariadocs";
   name: string;
   stat: string;
   description: string;
@@ -53,11 +53,11 @@ export const projects: Project[] = [
     palette: "Burrow · Expense tracker",
   },
   {
-    id: "sprout",
-    name: "Sprout",
+    id: "weft",
+    name: "Weft",
     stat: "Android · <3 MB",
     description:
-      "A small, open-source habit tracker. Works offline with no account, with heatmaps, streaks, a journal and home-screen widgets.",
+      "A small, open-source habit tracker by mid apps (formerly Sprout). Works offline with no account, with heatmaps, streaks, a journal and home-screen widgets.",
     tags: ["Kotlin", "Jetpack Compose", "Material 3", "GPL-3.0"],
     links: [
       {
@@ -68,10 +68,11 @@ export const projects: Project[] = [
       {
         kind: "github",
         label: "GitHub",
-        url: "https://github.com/nisabmohd/sprout",
+        url: "https://github.com/nisabmohd/weft",
       },
+      { kind: "website", label: "About & privacy", url: "/weft" },
     ],
-    palette: "Sprout · Habit tracker",
+    palette: "Weft · Habit tracker",
   },
   {
     id: "ariadocs",

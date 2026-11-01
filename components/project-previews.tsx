@@ -15,7 +15,7 @@ function heatmapLevels(cols = 26, rows = 7) {
   });
 }
 
-function SproutPreview() {
+function WeftPreview() {
   return (
     <div className="habit">
       <div className="habit-top">
@@ -98,7 +98,7 @@ function AriaDocsPreview() {
 }
 
 export const previews: Record<Project["id"], () => React.JSX.Element> = {
-  sprout: SproutPreview,
+  weft: WeftPreview,
   burrow: BurrowPreview,
   ariadocs: AriaDocsPreview,
 };
