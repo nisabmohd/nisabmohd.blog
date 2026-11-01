@@ -28,6 +28,9 @@ export default function CommandMenu({
         title: p.palette,
         kind: "Project",
         run: (() => {
+          // An app's own page (/weft) first, else its first live link.
+          const page = p.links.find((l) => l.url?.startsWith("/"))?.url;
+          if (page) return () => router.push(page);
           const url = p.links.find((l) => l.url && !l.soon)?.url;
           return url ? ext(url) : go("projects");
         })(),
