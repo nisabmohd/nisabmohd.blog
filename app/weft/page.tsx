@@ -27,6 +27,7 @@ export default function WeftPage() {
         </p>
 
         <Screens
+          size={[540, 960]}
           shots={[
             { src: "/weft/today.webp", alt: "Today: each habit as a card, with a score for the day" },
             { src: "/weft/journal.webp", alt: "Journal: notes grouped by day" },

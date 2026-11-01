@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { linkIcons } from "@/components/icons";
 import type { ProjectLink } from "@/lib/data";
+import { renderGithubMarkdown } from "@/lib/github";
 
 // The page for one of my apps (e.g. /weft and /weft/privacy): a back link, the app's icon and
 // name, "by mid apps" and a line of facts, its links as pills, then the text in the article style,
@@ -18,6 +19,8 @@ export const midApps = {
 export type AppInfo = {
   /** URL segment: /{slug} and /{slug}/privacy */
   slug: string;
+  /** GitHub "owner/name"; its PRIVACY.md is the privacy page */
+  repo: string;
   /** As in the store listing, e.g. "Weft: Habit Tracker" */
   title: string;
   icon: string;
@@ -81,12 +84,19 @@ export function AppHeader({
   );
 }
 
-export function Screens({ shots }: { shots: { src: string; alt: string }[] }) {
+/** Phone screenshots, three to a row. `size` is the images' pixel size, for the aspect ratio. */
+export function Screens({
+  shots,
+  size = [540, 1200],
+}: {
+  shots: { src: string; alt: string }[];
+  size?: [number, number];
+}) {
   return (
     <div className="app-shots">
       {shots.map((s) => (
         // eslint-disable-next-line @next/next/no-img-element
-        <img key={s.src} src={s.src} alt={s.alt} width={540} height={1200} loading="lazy" />
+        <img key={s.src} src={s.src} alt={s.alt} width={size[0]} height={size[1]} loading="lazy" />
       ))}
     </div>
   );
@@ -105,5 +115,20 @@ export function DeveloperRow() {
         </span>
       </span>
     </a>
+  );
+}
+
+/**
+ * An app's privacy page: this site's header and developer row around PRIVACY.md from the app's
+ * GitHub repo, so the policy is edited in one place.
+ */
+export async function PrivacyPage({ app, name }: { app: AppInfo; name: string }) {
+  const policy = await renderGithubMarkdown(app.repo, "PRIVACY.md");
+  return (
+    <main>
+      <AppHeader app={app} heading={`${name} privacy policy`} back={{ href: `/${app.slug}`, label: name }} />
+      <article className="prose">{policy}</article>
+      <DeveloperRow />
+    </main>
   );
 }

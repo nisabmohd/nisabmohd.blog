@@ -28,12 +28,13 @@ const getTweet = unstable_cache(
     return tweet;
   },
   ["tweet-v2"],
-  { revalidate: 3600 * 24 }
+  { revalidate: 3600 * 24 },
 );
 
 const TweetComponent = async ({ id }: { id: string }) => {
   try {
     const tweet = await getTweet(id);
+    // eslint-disable-next-line react-hooks/error-boundaries
     return tweet ? <EmbeddedTweet tweet={tweet} /> : <TweetNotFound />;
   } catch (error) {
     console.error(error);

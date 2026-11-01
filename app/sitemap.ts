@@ -26,6 +26,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     { url: "https://nisabmohd.vercel.app/weft", lastModified: new Date(), priority: 0.9 },
     { url: "https://nisabmohd.vercel.app/weft/privacy", lastModified: new Date(), priority: 0.5 },
+    { url: "https://nisabmohd.vercel.app/burrow", lastModified: new Date(), priority: 0.9 },
+    { url: "https://nisabmohd.vercel.app/burrow/privacy", lastModified: new Date(), priority: 0.5 },
     ...blogSitemaps,
   ];
 }
