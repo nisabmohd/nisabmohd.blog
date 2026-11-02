@@ -12,7 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   );
 
   const blogSitemaps: MetadataRoute.Sitemap = blogsFmts.map((fmt) => ({
-    url: `https://nisabmohd.vercel.app/${fmt.slug}`,
+    url: `https://nisabmohd.com/${fmt.slug}`,
     lastModified: new Date(fmt.published),
     changeFrequency: "monthly",
     priority: 0.8,
@@ -20,14 +20,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     {
-      url: "https://nisabmohd.vercel.app",
+      url: "https://nisabmohd.com",
       lastModified: new Date(),
       priority: 1,
     },
-    { url: "https://nisabmohd.vercel.app/weft", lastModified: new Date(), priority: 0.9 },
-    { url: "https://nisabmohd.vercel.app/weft/privacy", lastModified: new Date(), priority: 0.5 },
-    { url: "https://nisabmohd.vercel.app/burrow", lastModified: new Date(), priority: 0.9 },
-    { url: "https://nisabmohd.vercel.app/burrow/privacy", lastModified: new Date(), priority: 0.5 },
+    { url: "https://nisabmohd.com/weft", lastModified: new Date(), priority: 0.9 },
+    { url: "https://nisabmohd.com/weft/privacy", lastModified: new Date(), priority: 0.5 },
+    { url: "https://nisabmohd.com/burrow", lastModified: new Date(), priority: 0.9 },
+    { url: "https://nisabmohd.com/burrow/privacy", lastModified: new Date(), priority: 0.5 },
     ...blogSitemaps,
   ];
 }

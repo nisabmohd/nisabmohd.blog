@@ -2,8 +2,8 @@
 
 export const site = {
   name: "Nisab Mohd",
-  url: "https://nisabmohd.vercel.app",
-  domain: "nisabmohd.vercel.app",
+  url: "https://nisabmohd.com",
+  domain: "nisabmohd.com",
   tagline:
     "Full-stack engineer building with AI. I make products that feel fast and look quiet.",
   shortTagline: "Full-stack engineer building with AI.",
