@@ -1,13 +1,33 @@
 import Link from "next/link";
-import { experience, projects, site, socials } from "@/lib/data";
+import { experience, projects, site, socials, type Project } from "@/lib/data";
+import { formatSize, getReleases, getStars } from "@/lib/github";
 import { formatDate, getPosts, Post } from "@/lib/posts";
 import { linkIcons } from "@/components/icons";
 import { previews } from "@/components/project-previews";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
+/**
+ * A project's stat from GitHub: "Android · v1.6.1 · 3.3 MB" or "★ 414". Falls back to the written
+ * one if GitHub doesn't answer, so the home page never fails on it.
+ */
+async function liveStat(p: Project) {
+  try {
+    if (p.live && "release" in p.live) {
+      const [latest] = await getReleases(p.live.release);
+      if (latest) {
+        return [p.stat, `v${latest.version}`, latest.apkSize && formatSize(latest.apkSize)]
+          .filter(Boolean)
+          .join(" · ");
+      }
+    }
+    if (p.live && "stars" in p.live) return `★ ${await getStars(p.live.stars)}`;
+  } catch {}
+  return p.stat;
+}
+
 export default async function Home() {
-  const posts = await getPosts();
+  const [posts, stats] = await Promise.all([getPosts(), Promise.all(projects.map(liveStat))]);
   const byYear = posts.reduce<[number, Post[]][]>((acc, post) => {
     const year = post.published.getUTCFullYear();
     const group = acc.at(-1);
@@ -57,7 +77,7 @@ export default async function Home() {
             </a>
           </div>
           <div className="projects">
-            {projects.map((p) => {
+            {projects.map((p, i) => {
               const Preview = previews[p.id];
               return (
                 <div key={p.id} className="card">
@@ -66,7 +86,7 @@ export default async function Home() {
                   </div>
                   <div className="card-body">
                     <span className="card-title">
-                      {p.name} <span className="stat">{p.stat}</span>
+                      {p.name} <span className="stat">{stats[i]}</span>
                     </span>
                     <span className="card-desc">{p.description}</span>
                     <span className="chips">

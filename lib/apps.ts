@@ -1,14 +1,14 @@
 import type { AppInfo } from "@/components/app-page";
 
-// My apps' pages (/{slug} and /{slug}/privacy). The privacy page renders PRIVACY.md from the
-// app's GitHub repo, so the policy is edited there.
+// My apps' pages (/{slug} and /{slug}/privacy). Everything the repo already has comes from GitHub:
+// the store listing's icon, screenshots, description and release notes, the latest release's
+// version and size, and PRIVACY.md for the privacy page.
 
 export const weft: AppInfo = {
   slug: "weft",
   repo: "nisabmohd/weft",
   title: "Weft: Habit Tracker",
-  icon: "/weft/icon.svg",
-  meta: ["Android", "Free and open source", "GPL-3.0"],
+  color: "#2A6F52",
   links: [
     {
       kind: "playstore",
@@ -24,8 +24,7 @@ export const burrow: AppInfo = {
   slug: "burrow",
   repo: "nisabmohd/burrow",
   title: "Burrow: Expense Tracker",
-  icon: "/burrow/icon.svg",
-  meta: ["Android", "Free and open source", "GPL-3.0"],
+  color: "#A3294A",
   links: [
     { kind: "playstore", label: "Play Store", soon: true },
     { kind: "github", label: "GitHub", url: "https://github.com/nisabmohd/burrow" },

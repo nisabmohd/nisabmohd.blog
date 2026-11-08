@@ -307,8 +307,27 @@ h1.hello {
 .app-by img { width: 18px; height: 18px; border-radius: 5px; }
 .art-meta .sep { margin-right: 14px; }
 .app-head .card-links { padding-top: 6px; }
-.app-shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 8px 0 12px; }
-.prose .app-shots img { margin: 0; width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--line); }
+/* Screenshots: a sideways strip, a bit over three in view so the cut-off one says "scroll" */
+.app-shots { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; margin: 8px 0 12px; padding-bottom: 10px; }
+.prose .app-shots img { flex: 0 0 auto; width: calc((100% - 36px) / 3.25); height: auto; margin: 0; scroll-snap-align: start; border-radius: 14px; border: 1px solid var(--line); }
+
+/* What sets the app apart */
+.prose .app-highlights { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 32px; margin: 28px 0 8px; }
+.prose .hl { display: grid; grid-template-columns: 34px 1fr; column-gap: 14px; row-gap: 3px; align-content: start; margin: 0; padding: 18px 0 20px; border-top: 1px solid var(--line); line-height: 1.55; }
+.hl-icon { grid-row: span 2; width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: color-mix(in srgb, var(--app) 18%, transparent); color: color-mix(in srgb, var(--app) 55%, var(--fg)); }
+.hl-icon svg { width: 18px; height: 18px; }
+.prose .hl strong { font-size: 15px; letter-spacing: -0.01em; padding-top: 6px; }
+.hl-text { font-size: 14px; }
+
+/* What's new: the latest releases from GitHub, tinted with the app's logo colour */
+.whats-new { margin: 40px 0 8px; padding: 20px; border-radius: 16px; border: 1px solid color-mix(in srgb, var(--app) 35%, var(--line)); background: color-mix(in srgb, var(--app) 6%, var(--surface)); }
+.wn-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.wn-tag { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #fff; background: var(--app); padding: 2px 8px; border-radius: 999px; }
+.prose .whats-new h2 { margin: 0; font-size: 18px; }
+.prose .whats-new a.wn-date { font-family: var(--font-mono); font-size: 12px; color: var(--subtle); text-decoration: none; }
+.prose .whats-new a.wn-date:hover { color: var(--fg); }
+.prose .whats-new ul { margin: 6px 0 16px; }
+.prose .whats-new .wn-more { font-size: 14px; }
 .dev-row { display: flex; align-items: center; gap: 14px; margin-top: 40px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); transition: border-color .15s; }
 .dev-row:hover { border-color: var(--subtle); }
 .dev-row img { width: 44px; height: 44px; border-radius: 11px; flex-shrink: 0; }
@@ -334,6 +353,9 @@ h1.hello {
   .period { grid-column: 2; grid-row: 1; padding-top: 0; }
   .job-main { grid-column: 2; }
   .year { grid-template-columns: 1fr; gap: 0; }
+  .prose .app-shots img { width: 44%; }
+  .prose .app-highlights { grid-template-columns: 1fr; }
+  .whats-new { padding: 16px; }
   .year-label { padding-top: 8px; }
   .kbd-btn .lbl { display: none; }
   .status { font-size: 12px; }

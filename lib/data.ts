@@ -31,7 +31,10 @@ export type ProjectLink = {
 export type Project = {
   id: "weft" | "burrow" | "ariadocs";
   name: string;
+  /** Shown when GitHub can't be reached; otherwise `live` builds it. */
   stat: string;
+  /** Builds the stat from GitHub: the latest release's version and APK size, or the star count. */
+  live?: { release: string } | { stars: string };
   description: string;
   tags: string[];
   links: ProjectLink[];
@@ -42,22 +45,25 @@ export const projects: Project[] = [
   {
     id: "burrow",
     name: "Burrow",
-    stat: "Android · 3 MB",
+    stat: "Android",
+    live: { release: "nisabmohd/burrow" },
     description:
-      "A private expense tracker that records payments itself from bank SMS and payment notifications. Budgets, bills and goals, with no account, no sync and no analytics.",
+      "A private expense tracker that records payments by itself from bank SMS and payment notifications, and shows what is safe to spend today. Bills, budgets, goals and cards, with no account and no analytics.",
     tags: ["Kotlin", "Jetpack Compose", "Material You", "GPL-3.0"],
     links: [
       { kind: "playstore", label: "Play Store", soon: true },
       { kind: "github", label: "GitHub", url: "https://github.com/nisabmohd/burrow" },
+      { kind: "website", label: "About & privacy", url: "/burrow" },
     ],
     palette: "Burrow · Expense tracker",
   },
   {
     id: "weft",
     name: "Weft",
-    stat: "Android · <3 MB",
+    stat: "Android",
+    live: { release: "nisabmohd/weft" },
     description:
-      "A small, open-source habit tracker by mid apps (formerly Sprout). Works offline with no account, with heatmaps, streaks, a journal, alarm reminders and home-screen widgets.",
+      "A small, open-source habit tracker by mid apps (formerly Sprout). Swipe to check off, log part of a day, keep a journal, and set alarms that ring until you answer. Works offline, with no account.",
     tags: ["Kotlin", "Jetpack Compose", "Material 3", "GPL-3.0"],
     links: [
       {
@@ -78,6 +84,7 @@ export const projects: Project[] = [
     id: "ariadocs",
     name: "AriaDocs",
     stat: "★ 400+",
+    live: { stars: "nisabmohd/Aria-Docs" },
     description:
       "Build docs sites and API references from MDX and OpenAPI, with shadcn-style components. Works with Next.js, React Router and TanStack Start.",
     tags: ["React", "MDX", "OpenAPI", "MIT"],
