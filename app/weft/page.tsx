@@ -45,7 +45,11 @@ export default function WeftPage() {
           <li>See your week at a glance, or the last 26 weeks as a heatmap, with streaks.</li>
           <li>Keep a Journal: a short note for any habit and day.</li>
           <li>Insights for any dates: scores by weekday and by habit.</li>
-          <li>Reminders, four home-screen widgets, light and dark themes, five fonts and seven languages.</li>
+          <li>
+            Reminders as a quiet notification with Done and Dismiss buttons, or as an
+            alarm that rings full screen until you slide it done, log an amount or skip.
+          </li>
+          <li>Four home-screen widgets, light and dark themes, five fonts and seven languages.</li>
           <li>Export to a JSON or CSV file, and optional backup to your own Google Drive.</li>
         </ul>
 
