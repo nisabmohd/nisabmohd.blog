@@ -57,7 +57,7 @@ export const projects: Project[] = [
     name: "Weft",
     stat: "Android · <3 MB",
     description:
-      "A small, open-source habit tracker by mid apps (formerly Sprout). Works offline with no account, with heatmaps, streaks, a journal and home-screen widgets.",
+      "A small, open-source habit tracker by mid apps (formerly Sprout). Works offline with no account, with heatmaps, streaks, a journal, alarm reminders and home-screen widgets.",
     tags: ["Kotlin", "Jetpack Compose", "Material 3", "GPL-3.0"],
     links: [
       {
