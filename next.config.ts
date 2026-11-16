@@ -7,6 +7,14 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [{ protocol: "https", hostname: "raw.githubusercontent.com", pathname: "/nisabmohd/**" }],
   },
+  // Asusual was called Weft until November 2026: its old pages (store listings and the app's own
+  // links pointed at them) go to the new ones.
+  async redirects() {
+    return [
+      { source: "/weft", destination: "/asusual", permanent: true },
+      { source: "/weft/privacy", destination: "/asusual/privacy", permanent: true },
+    ];
+  },
   experimental: {
     agentUpgrade: "security",
   },

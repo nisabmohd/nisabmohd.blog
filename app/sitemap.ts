@@ -24,10 +24,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       priority: 1,
     },
-    { url: "https://nisabmohd.com/weft", lastModified: new Date(), priority: 0.9 },
-    { url: "https://nisabmohd.com/weft/privacy", lastModified: new Date(), priority: 0.5 },
+    { url: "https://nisabmohd.com/asusual", lastModified: new Date(), priority: 0.9 },
+    { url: "https://nisabmohd.com/asusual/privacy", lastModified: new Date(), priority: 0.5 },
     { url: "https://nisabmohd.com/burrow", lastModified: new Date(), priority: 0.9 },
     { url: "https://nisabmohd.com/burrow/privacy", lastModified: new Date(), priority: 0.5 },
+    { url: "https://nisabmohd.com/unpeep", lastModified: new Date(), priority: 0.9 },
+    { url: "https://nisabmohd.com/unpeep/privacy", lastModified: new Date(), priority: 0.5 },
     ...blogSitemaps,
   ];
 }

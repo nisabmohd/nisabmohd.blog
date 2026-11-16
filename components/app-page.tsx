@@ -13,7 +13,7 @@ import {
   renderGithubMarkdown,
 } from "@/lib/github";
 
-// The page for one of my apps (e.g. /weft and /weft/privacy): a back link, the app's icon and
+// The page for one of my apps (e.g. /asusual and /asusual/privacy): a back link, the app's icon and
 // name, "by mid apps" and a line of facts, its links as pills, then the text in the article style,
 // and the mid apps developer row at the end. Store listings and Google's OAuth consent screen link
 // here, so each app has a home page and a privacy policy on a domain I own.
@@ -34,7 +34,7 @@ export type AppInfo = {
   slug: string;
   /** GitHub "owner/name". Its store listing (icon, screenshots, notes), releases and PRIVACY.md feed the pages. */
   repo: string;
-  /** As in the store listing, e.g. "Weft: Habit Tracker" */
+  /** As in the store listing, e.g. "Asusual: Habit Tracker" */
   title: string;
   /** The logo's background colour; tints the What's new card */
   color: string;
@@ -179,6 +179,18 @@ const highlightIcons = {
     </>
   ),
   bank: <path d="M3.5 9 12 4.5 20.5 9M6 10.5v7M10 10.5v7M14 10.5v7M18 10.5v7M3.5 20h17" />,
+  wifi: (
+    <>
+      <path d="M3.5 9.5a12.5 12.5 0 0 1 17 0M6.5 13a8 8 0 0 1 11 0M9.5 16.3a3.8 3.8 0 0 1 5 0" />
+      <circle cx="12" cy="19.2" r="1.1" fill="currentColor" stroke="none" />
+    </>
+  ),
+  lens: (
+    <>
+      <circle cx="12" cy="12" r="8.5" />
+      <circle cx="12" cy="12" r="3.5" />
+    </>
+  ),
   wallet: (
     <>
       <path d="M4 7.5h14.5a1.5 1.5 0 0 1 1.5 1.5v9.5a1.5 1.5 0 0 1-1.5 1.5H4z" />

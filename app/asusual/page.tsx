@@ -8,31 +8,31 @@ import {
   appMetadata,
   midApps,
 } from "@/components/app-page";
-import { weft } from "@/lib/apps";
+import { asusual } from "@/lib/apps";
 
-// The icon, facts, screenshots, What's new and description come from github.com/nisabmohd/weft,
+// The icon, facts, screenshots, What's new and description come from github.com/nisabmohd/asusual,
 // rebuilt at most once an hour. The intro, highlights and feature list are written here.
 export const revalidate = 3600;
 
-export const generateMetadata = () => appMetadata(weft);
+export const generateMetadata = () => appMetadata(asusual);
 
-export default function WeftPage() {
+export default function AsusualPage() {
   return (
     <main>
-      <AppHeader app={weft} back={{ href: "/#projects", label: "All projects" }} />
+      <AppHeader app={asusual} back={{ href: "/#projects", label: "All projects" }} />
       <article className="prose">
         <p>
-          <strong>Weft</strong> is a habit tracker for Android, made by{" "}
+          <strong>Asusual</strong> is a habit tracker for Android, made by{" "}
           {midApps.name}. Check off habits with a swipe, log part of a day when
           you only got halfway, and write a line about how it went. It works
-          offline and doesn&apos;t need an account. Weft was called Sprout
-          until November 2026.
+          offline and doesn&apos;t need an account. Asusual was called Weft, and
+          Sprout before that, until November 2026.
         </p>
 
-        <Screens app={weft} />
+        <Screens app={asusual} />
 
         <Highlights
-          app={weft}
+          app={asusual}
           items={[
             {
               icon: "partial",
@@ -57,7 +57,7 @@ export default function WeftPage() {
           ]}
         />
 
-        <WhatsNew app={weft} />
+        <WhatsNew app={asusual} />
 
         <h2>Everything it does</h2>
 
@@ -71,7 +71,7 @@ export default function WeftPage() {
             steps, minutes, hours. You set how far each step moves.
           </li>
           <li>Pick the days a habit is due, one of 29 icons and a colour. Reorder, archive or delete habits in Manage habits.</li>
-          <li>The first time you open Weft, you try every gesture on a practice card and start from five suggested habits or your own.</li>
+          <li>The first time you open Asusual, you try every gesture on a practice card and start from five suggested habits or your own.</li>
         </ul>
 
         <h3>Seeing your progress</h3>
@@ -90,12 +90,12 @@ export default function WeftPage() {
         <ul>
           <li>A note belongs to a habit and a day. The Journal lists them newest first, filtered by habit or dates.</li>
           <li>
-            While you write, Weft suggests a way to start that fits the day, the
+            While you write, Asusual suggests a way to start that fits the day, the
             rest of a sentence you&apos;ve written before, and similar notes.
             It works from a fixed list of phrases and your own notes, on the
             phone. You can turn it off or clear what it learned.
           </li>
-          <li>A habit can ask for a note when you skip it, and at 9 PM Weft reminds you about any you haven&apos;t written.</li>
+          <li>A habit can ask for a note when you skip it, and at 9 PM Asusual reminds you about any you haven&apos;t written.</li>
           <li>Press and hold a note to edit, share or delete it.</li>
         </ul>
 
@@ -140,19 +140,19 @@ export default function WeftPage() {
 
         <h2>Your data</h2>
         <p>
-          Weft has no account, no ads, no analytics and no server. Your habits,
+          Asusual has no account, no ads, no analytics and no server. Your habits,
           check-ins and notes are stored only on your phone.
         </p>
         <p>
           <strong>Google Drive backup</strong> is optional and off until you tap
-          Connect Google Drive (Google Play and GitHub versions). Weft then asks
+          Connect Google Drive (Google Play and GitHub versions). Asusual then asks
           Google for two things:
         </p>
         <ul>
           <li>
             <strong>Its own hidden folder in your Google Drive</strong> (
             <code>drive.appdata</code>), to keep your last 10 backups there.
-            Weft can&apos;t see any other file in your Drive.
+            Asusual can&apos;t see any other file in your Drive.
           </li>
           <li>
             <strong>Your email address</strong>, to show which account the
@@ -162,16 +162,16 @@ export default function WeftPage() {
         <p>
           Backups go straight from your phone to your own Drive; {midApps.name}{" "}
           never receives them. You can disconnect, or delete the backups, at
-          any time from Weft&apos;s Backup &amp; restore screen. The details
-          are in the <Link href="/weft/privacy">privacy policy</Link>.
+          any time from Asusual&apos;s Backup &amp; restore screen. The details
+          are in the <Link href="/asusual/privacy">privacy policy</Link>.
         </p>
 
         <h2>Free and open source</h2>
         <p>
-          Weft is free under the GNU GPL v3. The code, issues and releases are
-          on <a href="https://github.com/nisabmohd/weft">GitHub</a>. Besides
+          Asusual is free under the GNU GPL v3. The code, issues and releases are
+          on <a href="https://github.com/nisabmohd/asusual">GitHub</a>. Besides
           Google Play, the{" "}
-          <a href="https://github.com/nisabmohd/weft/releases/latest">releases page</a>{" "}
+          <a href="https://github.com/nisabmohd/asusual/releases/latest">releases page</a>{" "}
           has an APK that updates itself, and a version with no Google code
           and no network access for F-Droid and Obtainium. It runs on Android
           8.0 and later.
@@ -181,7 +181,7 @@ export default function WeftPage() {
         <p>
           Questions, ideas or bugs: write to{" "}
           <a href={`mailto:${midApps.email}`}>{midApps.email}</a>, or{" "}
-          <a href="https://github.com/nisabmohd/weft/issues">open an issue</a>.
+          <a href="https://github.com/nisabmohd/asusual/issues">open an issue</a>.
         </p>
       </article>
       <DeveloperRow />

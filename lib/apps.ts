@@ -4,19 +4,20 @@ import type { AppInfo } from "@/components/app-page";
 // the store listing's icon, screenshots, description and release notes, the latest release's
 // version and size, and PRIVACY.md for the privacy page.
 
-export const weft: AppInfo = {
-  slug: "weft",
-  repo: "nisabmohd/weft",
-  title: "Weft: Habit Tracker",
-  color: "#2A6F52",
+// Called Weft until November 2026 (and Sprout before that); /weft redirects here (next.config.ts).
+export const asusual: AppInfo = {
+  slug: "asusual",
+  repo: "nisabmohd/asusual",
+  title: "Asusual: Habit Tracker",
+  color: "#2B6F52",
   links: [
     {
       kind: "playstore",
       label: "Play Store",
       url: "https://play.google.com/store/apps/details?id=app.sprout.habits",
     },
-    { kind: "github", label: "GitHub", url: "https://github.com/nisabmohd/weft" },
-    { kind: "website", label: "Privacy policy", url: "/weft/privacy" },
+    { kind: "github", label: "GitHub", url: "https://github.com/nisabmohd/asusual" },
+    { kind: "website", label: "Privacy policy", url: "/asusual/privacy" },
   ],
 };
 
@@ -29,5 +30,17 @@ export const burrow: AppInfo = {
     { kind: "playstore", label: "Play Store", soon: true },
     { kind: "github", label: "GitHub", url: "https://github.com/nisabmohd/burrow" },
     { kind: "website", label: "Privacy policy", url: "/burrow/privacy" },
+  ],
+};
+
+export const unpeep: AppInfo = {
+  slug: "unpeep",
+  repo: "nisabmohd/unpeep",
+  title: "Unpeep: Hidden Camera Finder",
+  color: "#173782",
+  links: [
+    { kind: "playstore", label: "Play Store", soon: true },
+    { kind: "github", label: "GitHub", url: "https://github.com/nisabmohd/unpeep" },
+    { kind: "website", label: "Privacy policy", url: "/unpeep/privacy" },
   ],
 };

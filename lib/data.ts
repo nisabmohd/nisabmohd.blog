@@ -29,7 +29,7 @@ export type ProjectLink = {
 };
 
 export type Project = {
-  id: "weft" | "burrow" | "ariadocs";
+  id: "unpeep" | "asusual" | "burrow" | "ariadocs";
   name: string;
   /** Shown when GitHub can't be reached; otherwise `live` builds it. */
   stat: string;
@@ -42,6 +42,21 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    id: "unpeep",
+    name: "Unpeep",
+    stat: "Android",
+    live: { release: "nisabmohd/unpeep" },
+    description:
+      "Checks a hotel room, a rental or a trial room for hidden cameras and trackers: the Wi-Fi, setup hotspots, Bluetooth, lens and infrared finders, and a magnet check. It says plainly what it checked and what it couldn't.",
+    tags: ["Kotlin", "Jetpack Compose", "Material 3", "GPL-3.0"],
+    links: [
+      { kind: "playstore", label: "Play Store", soon: true },
+      { kind: "github", label: "GitHub", url: "https://github.com/nisabmohd/unpeep" },
+      { kind: "website", label: "About & privacy", url: "/unpeep" },
+    ],
+    palette: "Unpeep · Hidden camera finder",
+  },
   {
     id: "burrow",
     name: "Burrow",
@@ -58,12 +73,12 @@ export const projects: Project[] = [
     palette: "Burrow · Expense tracker",
   },
   {
-    id: "weft",
-    name: "Weft",
+    id: "asusual",
+    name: "Asusual",
     stat: "Android",
-    live: { release: "nisabmohd/weft" },
+    live: { release: "nisabmohd/asusual" },
     description:
-      "A small, open-source habit tracker by mid apps (formerly Sprout). Swipe to check off, log part of a day, keep a journal, and set alarms that ring until you answer. Works offline, with no account.",
+      "A small, open-source habit tracker by mid apps (formerly Weft, and Sprout before that). Swipe to check off, log part of a day, keep a journal, and set alarms that ring until you answer. Works offline, with no account.",
     tags: ["Kotlin", "Jetpack Compose", "Material 3", "GPL-3.0"],
     links: [
       {
@@ -74,11 +89,11 @@ export const projects: Project[] = [
       {
         kind: "github",
         label: "GitHub",
-        url: "https://github.com/nisabmohd/weft",
+        url: "https://github.com/nisabmohd/asusual",
       },
-      { kind: "website", label: "About & privacy", url: "/weft" },
+      { kind: "website", label: "About & privacy", url: "/asusual" },
     ],
-    palette: "Weft · Habit tracker",
+    palette: "Asusual · Habit tracker",
   },
   {
     id: "ariadocs",

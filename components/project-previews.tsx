@@ -15,7 +15,7 @@ function heatmapLevels(cols = 26, rows = 7) {
   });
 }
 
-function WeftPreview() {
+function AsusualPreview() {
   return (
     <div className="habit">
       <div className="habit-top">
@@ -61,6 +61,30 @@ function BurrowPreview() {
   );
 }
 
+function UnpeepPreview() {
+  return (
+    <div className="spend" aria-hidden="true">
+      <span className="spend-label">Room check</span>
+      <span className="spend-amt">2 to look at</span>
+      <span className="txn">
+        <span>IP camera</span>
+        <small>Wi-Fi · ONVIF</small>
+        <b>Check</b>
+      </span>
+      <span className="txn">
+        <span>AirTag</span>
+        <small>Bluetooth</small>
+        <b>Check</b>
+      </span>
+      <span className="txn">
+        <span>Lens finder</span>
+        <small>torch</small>
+        <b>Nothing seen</b>
+      </span>
+    </div>
+  );
+}
+
 function AriaDocsPreview() {
   return (
     <div className="docs" aria-hidden="true">
@@ -98,7 +122,8 @@ function AriaDocsPreview() {
 }
 
 export const previews: Record<Project["id"], () => React.JSX.Element> = {
-  weft: WeftPreview,
+  unpeep: UnpeepPreview,
+  asusual: AsusualPreview,
   burrow: BurrowPreview,
   ariadocs: AriaDocsPreview,
 };
